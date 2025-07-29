@@ -639,6 +639,36 @@ wheels = [
 ]
 
 [[package]]
+name = "duckdb"
+version = "0.10.3"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/ae/0f/3935a004fba5a145ce41d8f4c21f1febb4e580151b7456917e6e622ded3e/duckdb-0.10.3.tar.gz", hash = "sha256:c5bd84a92bc708d3a6adffe1f554b94c6e76c795826daaaf482afc3d9c636971", size = 11349245 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/bf/f3/a2a6f8a99562320df7228aabe2eae500b361374c9e53884d49a6edff9bac/duckdb-0.10.3-cp311-cp311-macosx_10_9_universal2.whl", hash = "sha256:d917dde19fcec8cadcbef1f23946e85dee626ddc133e1e3f6551f15a61a03c61", size = 29585151 },
+    { url = "https://files.pythonhosted.org/packages/8a/ac/b0f8e2466c6c163924c90e02cb6190fd37f2a457ecf82d7a4bf21b98e484/duckdb-0.10.3-cp311-cp311-macosx_10_9_x86_64.whl", hash = "sha256:46757e0cf5f44b4cb820c48a34f339a9ccf83b43d525d44947273a585a4ed822", size = 15510796 },
+    { url = "https://files.pythonhosted.org/packages/db/08/c14d5a3cf989b3bc9564955b14fcb70d08ad8bb562dd907d0f9f39fa2346/duckdb-0.10.3-cp311-cp311-macosx_11_0_arm64.whl", hash = "sha256:338c14d8ac53ac4aa9ec03b6f1325ecfe609ceeb72565124d489cb07f8a1e4eb", size = 14155658 },
+    { url = "https://files.pythonhosted.org/packages/00/1c/45ceee9055be365ec39daa52211e3be442c2f403b94b9b239f640ea90726/duckdb-0.10.3-cp311-cp311-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:651fcb429602b79a3cf76b662a39e93e9c3e6650f7018258f4af344c816dab72", size = 16946391 },
+    { url = "https://files.pythonhosted.org/packages/3b/a4/de34ae429790965cd4235f997c3bcbb0a3268bbbff48c130068b9252c06b/duckdb-0.10.3-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:d3ae3c73b98b6215dab93cc9bc936b94aed55b53c34ba01dec863c5cab9f8e25", size = 18512855 },
+    { url = "https://files.pythonhosted.org/packages/37/6d/f3f514962230327ae40e78025aade71694dbf2cdc6ade866487c4a832ee9/duckdb-0.10.3-cp311-cp311-manylinux_2_24_aarch64.manylinux_2_28_aarch64.whl", hash = "sha256:56429b2cfe70e367fb818c2be19f59ce2f6b080c8382c4d10b4f90ba81f774e9", size = 16739206 },
+    { url = "https://files.pythonhosted.org/packages/1a/8e/a29e32760270ad0d0f06c008f27b635108e1634c3a8bcb10054052d76ab1/duckdb-0.10.3-cp311-cp311-musllinux_1_2_x86_64.whl", hash = "sha256:b46c02c2e39e3676b1bb0dc7720b8aa953734de4fd1b762e6d7375fbeb1b63af", size = 19961928 },
+    { url = "https://files.pythonhosted.org/packages/ef/c1/f02dd78450dde455a1b099ba57c1c5c726814f9a6314a3633c19ca81707b/duckdb-0.10.3-cp311-cp311-win_amd64.whl", hash = "sha256:bcd460feef56575af2c2443d7394d405a164c409e9794a4d94cb5fdaa24a0ba4", size = 9926193 },
+]
+
+[[package]]
+name = "duckdb-engine"
+version = "0.17.0"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "duckdb" },
+    { name = "packaging" },
+    { name = "sqlalchemy" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/89/d5/c0d8d0a4ca3ffea92266f33d92a375e2794820ad89f9be97cf0c9a9697d0/duckdb_engine-0.17.0.tar.gz", hash = "sha256:396b23869754e536aa80881a92622b8b488015cf711c5a40032d05d2cf08f3cf", size = 48054 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/2a/a2/e90242f53f7ae41554419b1695b4820b364df87c8350aa420b60b20cab92/duckdb_engine-0.17.0-py3-none-any.whl", hash = "sha256:3aa72085e536b43faab635f487baf77ddc5750069c16a2f8d9c6c3cb6083e979", size = 49676 },
+]
+
+[[package]]
 name = "dynaconf"
 version = "3.2.11"
 source = { registry = "https://pypi.org/simple" }
@@ -843,6 +873,8 @@ source = { editable = "." }
 dependencies = [
     { name = "category-encoders" },
     { name = "click" },
+    { name = "duckdb" },
+    { name = "duckdb-engine" },
     { name = "fastapi" },
     { name = "fastparquet" },
     { name = "feature-engine" },
@@ -870,6 +902,7 @@ dependencies = [
     { name = "scikit-learn" },
     { name = "seaborn" },
     { name = "shap" },
+    { name = "sqlalchemy" },
     { name = "structlog" },
     { name = "tqdm" },
     { name = "uvicorn" },
@@ -956,6 +989,8 @@ requires-dist = [
     { name = "black", marker = "extra == 'dev'", specifier = ">=24.2.0,<25.0.0" },
     { name = "category-encoders", specifier = ">=2.6.0,<3.0.0" },
     { name = "click", specifier = ">=8.1.0,<9.0.0" },
+    { name = "duckdb", specifier = ">=0.10.0,<1.0.0" },
+    { name = "duckdb-engine", specifier = ">=0.12.0,<1.0.0" },
     { name = "evidently", marker = "extra == 'monitoring'", specifier = ">=0.4.0,<1.0.0" },
     { name = "fastapi", specifier = ">=0.110.0,<1.0.0" },
     { name = "fastparquet", specifier = ">=2024.2.0" },
@@ -1011,6 +1046,7 @@ requires-dist = [
     { name = "scikit-learn", specifier = ">=1.4.0,<2.0.0" },
     { name = "seaborn", specifier = ">=0.13.0,<1.0.0" },
     { name = "shap", specifier = ">=0.44.0,<1.0.0" },
+    { name = "sqlalchemy", specifier = ">=2.0.0,<3.0.0" },
     { name = "structlog", specifier = ">=24.1.0,<25.0.0" },
     { name = "tqdm", specifier = ">=4.66.0,<5.0.0" },
     { name = "types-python-dateutil", marker = "extra == 'dev'", specifier = ">=2.9.0,<3.0.0" },

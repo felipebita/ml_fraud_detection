@@ -1,1 +1,67 @@
+# .gitignore - Portfolio Version
+
+# ============================================
+# CRITICAL - Never commit these!
+# ============================================
 .env
+.env.*
+!.env.example
+*.key
+*.pem
+credentials/
+
+# ============================================
+# Data - Include samples for portfolio
+# ============================================
+# Ignore large data files
+data/raw/full_*.csv
+data/raw/production_*.csv
+data/processed/full_*.csv
+
+# But INCLUDE sample data
+!data/raw/sample_*.csv
+!data/raw/synthetic_*.csv
+!data/processed/sample_*.csv
+!data/*/README.md
+
+# File size limits
+*.csv > 100MB
+*.parquet > 100MB
+
+# ============================================
+# Models - Include key models
+# ============================================
+models/experiments/*
+models/staging/*
+
+# But INCLUDE final models
+!models/final/
+!models/final/fraud_detector_v1.pkl
+!models/README.md
+!models/model_card.md
+!models/performance_metrics.json
+
+# ============================================
+# MLflow - Include key artifacts
+# ============================================
+mlruns/
+mlflow.db
+mlflow.duckdb
+
+# But INCLUDE documentation
+!mlflow_screenshots/
+!experiment_results.md
+!best_model_metrics.csv
+
+# ============================================
+# Notebooks - KEEP OUTPUTS!
+# ============================================
+.ipynb_checkpoints/
+# Don't clear notebook outputs for portfolio
+
+# ============================================
+# Include Example Outputs
+# ============================================
+!reports/figures/*.png
+!reports/model_comparison.html
+!logs/training_example.log
