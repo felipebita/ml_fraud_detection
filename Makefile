@@ -6,16 +6,22 @@
 help:
 	@echo "Commands:"
 	@echo "  setup          : Initial project setup"
+	@echo "  lint           : Run linting checks (ruff)"
+	@echo "  type-check     : Run type checking (mypy)"
+	@echo "  format         : Format code (black)"
+	@echo "  pre-commit     : Run pre-commit hooks"
+	@echo "  test           : Run all tests"
 	@echo "  data           : Run data pipeline"
 	@echo "  train          : Train models"
 	@echo "  evaluate       : Evaluate models"
-	@echo "  test           : Run all tests"
+
 	@echo "  serve          : Start model server"
 	@echo "  dashboard      : Launch MLflow UI"
 
 setup:
 	@echo "Setting up the project..."
-	# Add setup commands here, e.g., pip install -e .
+	uv sync --all-extras
+	uv run pre-commit install
 
 data:
 	@echo "Running the data pipeline..."
@@ -28,6 +34,22 @@ train:
 evaluate:
 	@echo "Evaluating models..."
 	# Add model evaluation commands here
+
+lint:
+	@echo "Linting code..."
+	ruff check src/ tests/ --fix
+
+type-check:
+	@echo "Type-checking code..."
+	mypy src/
+
+format:
+	@echo "Formating code..."
+	black src/ tests/
+
+pre-commit:
+	@echo "Runnin pre-commit hooks..."
+	uv run pre-commit run --all-files
 
 test:
 	@echo "Running tests..."
