@@ -1,6 +1,6 @@
-from typing import cast
+# src/utils/mlflow_analytics.py
+from typing import Any, Protocol, cast
 
-import duckdb
 import pandas as pd
 
 from src.utils.logger import LoggerContext, get_logger
@@ -9,19 +9,28 @@ from src.utils.logger import LoggerContext, get_logger
 logger = get_logger(__name__)
 
 
+class DuckDBConnection(Protocol):
+    """Protocol for DuckDB connection interface."""
+
+    def execute(self, query: str) -> Any: ...
+    def close(self) -> None: ...
+
+
 class MLflowAnalytics:
     """Analytics for MLflow experiments using DuckDB"""
 
-    def __init__(self, db_path: str = "mlflow.duckdb") -> None:
-        self.db_path = db_path
-        logger.info("mlflow_analytics_initialized", db_path=self.db_path)
+    def __init__(self, conn: DuckDBConnection) -> None:
+        """Initialize with a DuckDB connection.
+
+        Args:
+            conn: DuckDB connection object (dependency injection)
+        """
+        self.conn = conn
+        logger.info("mlflow_analytics_initialized")
 
     def get_model_comparison(self) -> pd.DataFrame:
         """Compare all models across all metrics"""
-        with (
-            LoggerContext(logger, "get_model_comparison"),
-            duckdb.connect(self.db_path) as conn,
-        ):
+        with LoggerContext(logger, "get_model_comparison"):
             query = """
             WITH model_metrics AS (
                 SELECT
@@ -42,16 +51,13 @@ class MLflowAnalytics:
             USING FIRST(avg_value)
             ORDER BY f1_score DESC NULLS LAST
             """
-            df = conn.execute(query).fetchdf()
+            df = self.conn.execute(query).fetchdf()
             logger.info("model_comparison_retrieved", num_models=len(df))
             return cast(pd.DataFrame, df)
 
     def get_experiment_timeline(self) -> pd.DataFrame:
         """Get experiment timeline for visualization"""
-        with (
-            LoggerContext(logger, "get_experiment_timeline"),
-            duckdb.connect(self.db_path) as conn,
-        ):
+        with LoggerContext(logger, "get_experiment_timeline"):
             query = """
             SELECT
                 DATE_TRUNC('hour', to_timestamp(start_time/1000)) as hour,
@@ -64,7 +70,7 @@ class MLflowAnalytics:
             GROUP BY hour
             ORDER BY hour
             """
-            df = conn.execute(query).fetchdf()
+            df = self.conn.execute(query).fetchdf()
             logger.info("experiment_timeline_retrieved", num_points=len(df))
             return cast(pd.DataFrame, df)
 
@@ -72,14 +78,11 @@ class MLflowAnalytics:
         self, model_type: str, metric: str = "f1_score"
     ) -> pd.DataFrame:
         """Find best hyperparameters for a specific model"""
-        with (
-            LoggerContext(
-                logger,
-                "find_best_hyperparameters",
-                model_type=model_type,
-                metric=metric,
-            ),
-            duckdb.connect(self.db_path) as conn,
+        with LoggerContext(
+            logger,
+            "find_best_hyperparameters",
+            model_type=model_type,
+            metric=metric,
         ):
             query = f"""
             WITH model_runs AS (
@@ -108,6 +111,6 @@ class MLflowAnalytics:
             WHERE rr.rank <= 5
             ORDER BY rr.rank, p.key
             """
-            df = conn.execute(query).fetchdf()
+            df = self.conn.execute(query).fetchdf()
             logger.info("best_hyperparameters_found", num_results=len(df))
             return cast(pd.DataFrame, df)

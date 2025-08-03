@@ -16,3 +16,5 @@ Will assume non-transactional DDL.
 2025-08-01T02:48:49.222942Z [info     ] mlflow_test_run_logged         [__main__] filename=test_mlflow_setup.py func_name=test_mlflow_connection lineno=33 run_id=c87a01b9dbf44fb7ae59b64c48cd954f
 2025-08-01T02:48:49.230521Z [info     ] mlflow_setup_successful        [__main__] filename=test_mlflow_setup.py func_name=test_mlflow_connection lineno=35 run_id=c87a01b9dbf44fb7ae59b64c48cd954f ui_hint=Check the MLflow UI at http://localhost:5000
 2025-08-01T02:48:49.230692Z [info     ] mlflow_setup_test_succeeded    [__main__] filename=test_mlflow_setup.py func_name=<module> lineno=51
+2025-08-02T23:29:34.997928Z [error    ] get_model_comparison_failed    [src.utils.mlflow_analytics] duration_seconds=0.000306 error=object of type 'Mock' has no len() error_type=TypeError filename=logger.py func_name=__exit__ lineno=121
+2025-08-02T23:29:35.094911Z [error    ] get_experiment_timeline_failed [src.utils.mlflow_analytics] duration_seconds=0.000302 error=object of type 'Mock' has no len() error_type=TypeError filename=logger.py func_name=__exit__ lineno=121

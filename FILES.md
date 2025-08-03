@@ -102,3 +102,12 @@ This file provides a comprehensive overview of all files in the project, includi
     *   **`get_best_models()`**: Retrieves the best models based on a specified metric.
     *   **`analyze_experiments()`**: Performs a summary analysis of all experiments.
     *   A singleton instance `mlflow_duckdb_config` is created for easy access to the configuration.
+
+## `Makefile`
+
+*   **Purpose**: This file provides a set of common command-line shortcuts for managing the project's lifecycle.
+*   **Usage**: It allows developers to run complex or frequently used commands with a simple `make <target>` syntax, improving consistency and ease of use.
+*   **Key Information**:
+    *   Defines targets for key project operations: `setup`, `data`, `train`, `evaluate`, `test`, `serve`, and `dashboard`.
+    *   These targets correspond to the "Quick Start Commands" outlined in `PROJECT_PLAN.md`.
+    *   Includes a `help` target to display a list of available commands.

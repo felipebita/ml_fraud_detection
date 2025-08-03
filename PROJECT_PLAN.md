@@ -85,10 +85,11 @@ fraud-detection/
  Set up MLflow tracking server - Completed
 1.3 Development Tools Configuration
  Configure VS Code/IDE settings - Completed
- Set up linting (ruff, black) -
- Configure type checking (mypy)
+ Set up linting (ruff, black) - Completed
+ Configure type checking (mypy) - Completed
+ Set up testing framework (pytest)
  Set up logging framework
- Create Makefile for common commands
+ Create Makefile for common commands - Completed
 📊 Phase 2: Data Engineering (Week 1-2)
 2.1 Data Understanding
  Document data schema and dictionary
@@ -101,16 +102,19 @@ fraud-detection/
 - Implement robust data loading with error handling
 - Add data versioning
 - Create data validation schemas using Pydantic
+- Write unit tests for data loading and validation
 
 # src/data/data_validator.py
 - Implement Great Expectations or Pandera for data quality
 - Create automated data quality checks
 - Set up data drift detection
+- Write unit tests for data quality checks
 
 # src/data/data_splitter.py
 - Implement time-based splitting for fraud detection
 - Create stratified splits maintaining fraud ratio
 - Ensure no data leakage
+- Write unit tests for data splitting logic
 2.3 Feature Engineering Pipeline
 # src/features/feature_builder.py
 - Create domain-specific features:
@@ -121,6 +125,7 @@ fraud-detection/
 * Device/IP features
 - Implement feature versioning
 - Create feature store abstraction
+- Write unit tests for all feature transformations
 2.4 Data Artifacts
  Create clean training/validation/test sets
  Document feature engineering decisions
@@ -132,6 +137,7 @@ fraud-detection/
  Create logistic regression baseline
  Establish performance benchmarks
  Log all experiments in MLflow
+ Write unit tests for baseline model
 3.2 Advanced Models
 # Implement multiple algorithms:
 1. Random Forest (good interpretability)
@@ -146,11 +152,13 @@ fraud-detection/
 - Handle class imbalance (SMOTE, class weights)
 - Implement early stopping
 - Add model checkpointing
+- Write unit tests for training pipeline components
 3.4 Ensemble Methods
  Create voting ensemble
  Implement stacking
  Test blending strategies
  Compare ensemble vs individual models
+ Write unit tests for ensembling logic
 📈 Phase 4: Model Evaluation & Validation (Week 3-4)
 4.1 Metrics Implementation
 # src/evaluation/metrics.py
@@ -160,6 +168,7 @@ fraud-detection/
 - ROC AUC and PR AUC
 - Confusion matrix analysis
 - Lift and gain charts
+- Write unit tests for all custom metrics
 4.2 Model Validation
  Implement time-based validation
  Create holdout test set evaluation
@@ -175,6 +184,7 @@ fraud-detection/
  Check for discrimination in predictions
  Implement fairness metrics
  Create bias mitigation strategies
+- Write unit tests for fairness checks
 🔧 Phase 5: MLOps Implementation (Week 4-5)
 5.1 Experiment Tracking
 # Full MLflow integration:
@@ -197,13 +207,13 @@ fraud-detection/
 - Feature computation for inference
 - Model loading optimization
 - Prediction monitoring
-5.4 Testing Suite
-# Comprehensive testing:
-1. Unit tests for all components
-2. Integration tests for pipelines
-3. Model quality tests
-4. Data quality tests
-5. Performance benchmarks
+5.4 Advanced Testing & Quality Gates
+# Comprehensive high-level testing:
+1. Integration tests for pipelines (data, training, inference)
+2. Model quality and performance regression tests
+3. Data quality and drift validation gates
+4. Performance benchmarks for serving
+5. Achieve 90%+ test coverage goal
 📝 Phase 6: Documentation & Deployment Prep (Week 5-6)
 6.1 Documentation
  Complete README with setup instructions

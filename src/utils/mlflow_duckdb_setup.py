@@ -1,4 +1,6 @@
+# src/utils/mlflow_duckdb_setup.py
 import os
+from dataclasses import dataclass
 from pathlib import Path
 from typing import cast
 
@@ -12,47 +14,70 @@ from src.utils.logger import LoggerContext, get_logger
 logger = get_logger(__name__)
 
 
-class MLflowDuckDBConfig:
-    """MLflow configuration with DuckDB backend"""
+@dataclass
+class MLflowConfig:
+    """Configuration for MLflow with DuckDB backend."""
 
-    def __init__(self) -> None:
-        """Initialize configuration and create necessary directories."""
-        # Use DuckDB for tracking
-        self.tracking_uri = os.getenv("MLFLOW_TRACKING_URI", "duckdb:///mlflow.duckdb")
-        self.artifact_root = os.getenv("MLFLOW_ARTIFACT_ROOT", "./mlruns")
-        self.experiment_name = os.getenv("MLFLOW_EXPERIMENT_NAME", "fraud_detection")
+    tracking_uri: str = "duckdb:///mlflow.duckdb"
+    artifact_root: str = "./mlruns"
+    experiment_name: str = "fraud_detection"
 
-        # Extract DuckDB path
-        self.db_path = self.tracking_uri.replace("duckdb:///", "")
+    @property
+    def db_path(self) -> str:
+        """Extract database path from tracking URI."""
+        return self.tracking_uri.replace("duckdb:///", "")
 
-        logger.info(
-            "initializing_mlflow_config",
-            tracking_uri=self.tracking_uri,
-            artifact_root=self.artifact_root,
-            db_path=self.db_path,
+    @classmethod
+    def from_env(cls) -> "MLflowConfig":
+        """Create configuration from environment variables."""
+        return cls(
+            tracking_uri=os.getenv("MLFLOW_TRACKING_URI", cls.tracking_uri),
+            artifact_root=os.getenv("MLFLOW_ARTIFACT_ROOT", cls.artifact_root),
+            experiment_name=os.getenv("MLFLOW_EXPERIMENT_NAME", cls.experiment_name),
         )
 
-        # Create directories
-        Path(self.artifact_root).mkdir(parents=True, exist_ok=True)
-        Path(self.db_path).parent.mkdir(parents=True, exist_ok=True)
+
+class MLflowDuckDBManager:
+    """Manages MLflow operations with DuckDB backend."""
+
+    def __init__(self, config: MLflowConfig):
+        """Initialize with configuration object.
+
+        Args:
+            config: MLflow configuration object
+        """
+        self.config = config
+        self._ensure_directories()
+
+        logger.info(
+            "initializing_mlflow_manager",
+            tracking_uri=self.config.tracking_uri,
+            artifact_root=self.config.artifact_root,
+            db_path=self.config.db_path,
+        )
+
+    def _ensure_directories(self) -> None:
+        """Create necessary directories."""
+        Path(self.config.artifact_root).mkdir(parents=True, exist_ok=True)
+        Path(self.config.db_path).parent.mkdir(parents=True, exist_ok=True)
 
     def setup_mlflow(self) -> str:
         """Initialize MLflow with DuckDB backend."""
         with LoggerContext(logger, "setup_mlflow_backend"):
             try:
                 # Set tracking URI
-                mlflow.set_tracking_uri(self.tracking_uri)
+                mlflow.set_tracking_uri(self.config.tracking_uri)
 
                 # Create or get experiment
-                experiment = mlflow.get_experiment_by_name(self.experiment_name)
+                experiment = mlflow.get_experiment_by_name(self.config.experiment_name)
                 if experiment is None:
                     logger.info(
                         "mlflow_experiment_not_found",
-                        experiment_name=self.experiment_name,
+                        experiment_name=self.config.experiment_name,
                     )
                     experiment_id = mlflow.create_experiment(
-                        self.experiment_name,
-                        artifact_location=self.artifact_root,
+                        self.config.experiment_name,
+                        artifact_location=self.config.artifact_root,
                         tags={
                             "project": "fraud_detection",
                             "backend": "duckdb",
@@ -61,34 +86,43 @@ class MLflowDuckDBConfig:
                     )
                     logger.info(
                         "mlflow_experiment_created",
-                        experiment_name=self.experiment_name,
+                        experiment_name=self.config.experiment_name,
                         experiment_id=experiment_id,
                     )
                 else:
                     experiment_id = experiment.experiment_id
                     logger.info(
                         "mlflow_experiment_found",
-                        experiment_name=self.experiment_name,
+                        experiment_name=self.config.experiment_name,
                         experiment_id=experiment_id,
                     )
 
-                mlflow.set_experiment(self.experiment_name)
+                mlflow.set_experiment(self.config.experiment_name)
                 return str(experiment_id)
 
             except Exception as e:
                 logger.error("mlflow_setup_failed", error=str(e), exc_info=True)
                 raise
 
-    def get_duckdb_connection(self) -> duckdb.DuckDBPyConnection:
-        """Get direct DuckDB connection for analytics."""
-        logger.debug("connecting_to_duckdb", db_path=self.db_path)
-        return duckdb.connect(self.db_path)
+    def get_connection(self, read_only: bool = False) -> duckdb.DuckDBPyConnection:
+        """Get direct DuckDB connection.
+
+        Args:
+            read_only: Whether to open connection in read-only mode
+
+        Returns:
+            DuckDB connection object
+        """
+        logger.debug(
+            "connecting_to_duckdb", db_path=self.config.db_path, read_only=read_only
+        )
+        return duckdb.connect(self.config.db_path, read_only=read_only)
 
     def query_experiments(self, query: str) -> pd.DataFrame:
         """Query MLflow data using DuckDB."""
         with (
             LoggerContext(logger, "query_duckdb", query=query),
-            self.get_duckdb_connection() as conn,
+            self.get_connection(read_only=True) as conn,
         ):
             df = conn.execute(query).fetchdf()
             logger.info("query_successful", num_rows=len(df))
@@ -121,7 +155,7 @@ class MLflowDuckDBConfig:
         """Analyze all experiments using DuckDB."""
         with (
             LoggerContext(logger, "analyze_experiments"),
-            self.get_duckdb_connection() as conn,
+            self.get_connection(read_only=True) as conn,
         ):
             # Get experiment summary
             summary_query = """
@@ -168,30 +202,41 @@ class MLflowDuckDBConfig:
 
             logger.info(
                 "experiment_analysis_complete",
-                num_experiments=summary["num_experiments"][0],
-                total_runs=summary["total_runs"][0],
+                num_experiments=(
+                    int(summary["num_experiments"][0]) if len(summary) > 0 else 0
+                ),
+                total_runs=int(summary["total_runs"][0]) if len(summary) > 0 else 0,
             )
             return {"summary": summary, "metrics": metrics, "models": models}
 
 
-# Singleton instance
-mlflow_duckdb_config = MLflowDuckDBConfig()
+# Factory function for creating manager with env config
+def create_mlflow_manager() -> MLflowDuckDBManager:
+    """Create MLflow manager with configuration from environment."""
+    config = MLflowConfig.from_env()
+    return MLflowDuckDBManager(config)
 
 
+# Module-level convenience function
 def setup_mlflow_duckdb() -> None:
-    """Setup MLflow with DuckDB backend"""
-    mlflow_duckdb_config.setup_mlflow()
+    """Setup MLflow with DuckDB backend using environment configuration."""
+    manager = create_mlflow_manager()
+    manager.setup_mlflow()
 
 
 if __name__ == "__main__":
     logger.info("running_mlflow_duckdb_setup_script")
-    setup_mlflow_duckdb()
+
+    # Create manager and setup
+    manager = create_mlflow_manager()
+    manager.setup_mlflow()
+
     logger.info(
         "mlflow_duckdb_backend_setup_complete",
-        tracking_uri=mlflow_duckdb_config.tracking_uri,
-        artifact_root=mlflow_duckdb_config.artifact_root,
-        experiment_name=mlflow_duckdb_config.experiment_name,
-        db_path=mlflow_duckdb_config.db_path,
+        tracking_uri=manager.config.tracking_uri,
+        artifact_root=manager.config.artifact_root,
+        experiment_name=manager.config.experiment_name,
+        db_path=manager.config.db_path,
     )
 
     # Example usage
