@@ -103,6 +103,16 @@ This file provides a comprehensive overview of all files in the project, includi
     *   **`analyze_experiments()`**: Performs a summary analysis of all experiments.
     *   A singleton instance `mlflow_duckdb_config` is created for easy access to the configuration.
 
+## `src/utils/logger.py`
+
+*   **Purpose**: This file provides a centralized logging setup for the entire project, using the `structlog` library for structured and configurable logging.
+*   **Usage**: It is used to ensure consistent, informative, and machine-readable logs across all modules. The logger can be configured for different environments (e.g., development, production) and outputs (e.g., console, JSON).
+*   **Key Information**:
+    *   **`setup_logging()`**: A function to configure the global logging settings, including log level, file output, and format (JSON or console).
+    *   **`get_logger()`**: A helper function to get a logger instance with the project's standardized configuration.
+    *   **`LoggerContext`**: A context manager to log the start, completion, and failure of specific operations, automatically tracking duration and errors.
+    *   **Specialized Loggers**: Includes functions like `log_data_info`, `log_model_metrics`, and `log_prediction` for logging specific, structured information related to data and model lifecycle events.
+
 ## `Makefile`
 
 *   **Purpose**: This file provides a set of common command-line shortcuts for managing the project's lifecycle.

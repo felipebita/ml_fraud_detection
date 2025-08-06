@@ -87,8 +87,8 @@ fraud-detection/
  Configure VS Code/IDE settings - Completed
  Set up linting (ruff, black) - Completed
  Configure type checking (mypy) - Completed
- Set up testing framework (pytest)
- Set up logging framework
+ Set up testing framework (pytest) - Completed
+ Set up logging framework - Completed
  Create Makefile for common commands - Completed
 📊 Phase 2: Data Engineering (Week 1-2)
 2.1 Data Understanding
@@ -118,14 +118,20 @@ fraud-detection/
 2.3 Feature Engineering Pipeline
 # src/features/feature_builder.py
 - Create domain-specific features:
-* Transaction velocity features
-* Time-based aggregations
-* Customer behavior patterns
-* Merchant risk scores
-* Device/IP features
+    * Transaction velocity features
+    * Time-based aggregations
+    * Customer behavior patterns
+    * Merchant risk scores
+    * Device/IP features
 - Implement feature versioning
-- Create feature store abstraction
+- Create feature store abstraction using Feast:
+    * Initialize Feast repository
+    * Define feature views and entities
+    * Set up offline/online stores
+    * Implement materialization pipeline
+- Integrate feature store with training/inference pipelines
 - Write unit tests for all feature transformations
+- Write integration tests for feature store operations
 2.4 Data Artifacts
  Create clean training/validation/test sets
  Document feature engineering decisions
