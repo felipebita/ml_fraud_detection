@@ -25,7 +25,7 @@ setup:
 
 data:
 	@echo "Running the data pipeline..."
-	# Add data pipeline commands here
+	uv run python3 -m src.data.data_loader
 
 train:
 	@echo "Training models..."

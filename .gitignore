@@ -14,9 +14,8 @@ credentials/
 # Data - Include samples for portfolio
 # ============================================
 # Ignore large data files
-data/raw/full_*.csv
-data/raw/production_*.csv
-data/processed/full_*.csv
+data/raw/raw.csv
+data/processed/validated_raw_data.parquet
 
 # But INCLUDE sample data
 !data/raw/sample_*.csv

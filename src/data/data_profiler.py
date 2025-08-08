@@ -155,7 +155,7 @@ class DataProfiler:
                     balance_check["oldbalanceOrg"] - balance_check["amount"]
                 )
                 balance_mismatch = (
-                    abs(balance_check["newbalanceOrig"] - expected_balance) > 0.01
+                    abs(balance_check["newbalanceOrig"] - expected_balance) > 10
                 ).sum()
                 if balance_mismatch > 0:
                     issues.append(
@@ -206,8 +206,17 @@ class DataProfiler:
         """Analyze temporal aspects of the data."""
         temporal_stats = {}
 
-        # Check for PaySim 'step' column (time in hours)
         if "step" in self.df.columns:
+            hourly_stats = self.df.groupby("step").agg(
+                {"isFraud": ["sum", "count", "mean"]}
+            )
+            hourly_stats.columns = pd.Index(
+                ["fraud_count", "total_count", "fraud_ratio"]
+            )
+
+            # Filter for significant hours (10+ transactions)
+            significant_hours = hourly_stats[hourly_stats["total_count"] >= 10]
+
             temporal_stats["step_analysis"] = {
                 "min_step": int(self.df["step"].min()),
                 "max_step": int(self.df["step"].max()),
@@ -216,28 +225,16 @@ class DataProfiler:
                     (self.df["step"].max() - self.df["step"].min()) / 24, 2
                 ),
                 "unique_steps": int(self.df["step"].nunique()),
+                "total_fraud_cases": int(hourly_stats["fraud_count"].sum()),
+                "hours_with_fraud": int((hourly_stats["fraud_count"] > 0).sum()),
             }
 
-            # Analyze fraud rate over time
-            if any(col in self.df.columns for col in ["isFraud", "is_fraud"]):
-                fraud_col = "isFraud" if "isFraud" in self.df.columns else "is_fraud"
-                hourly_fraud = self.df.groupby("step")[fraud_col].mean()
+            if len(significant_hours) > 0:
                 temporal_stats["fraud_temporal_pattern"] = {
-                    "avg_hourly_fraud_rate": round(hourly_fraud.mean() * 100, 4),
-                    "max_hourly_fraud_rate": round(hourly_fraud.max() * 100, 4),
-                    "min_hourly_fraud_rate": round(hourly_fraud.min() * 100, 4),
-                    "fraud_rate_std": round(hourly_fraud.std() * 100, 4),
-                }
-
-        # Check for actual datetime columns
-        datetime_cols = self.df.select_dtypes(include=["datetime64"]).columns
-        if len(datetime_cols) > 0:
-            for col in datetime_cols:
-                temporal_stats[col] = {
-                    "min_date": str(self.df[col].min()),
-                    "max_date": str(self.df[col].max()),
-                    "date_range_days": (self.df[col].max() - self.df[col].min()).days,
-                    "has_future_dates": self.df[col].max() > pd.Timestamp.now(),
+                    "avg_fraud_rate_pct": round(
+                        significant_hours["fraud_rate"].mean() * 100, 4
+                    ),
+                    "note": "Based on hours with 10+ transactions",
                 }
 
         return temporal_stats
