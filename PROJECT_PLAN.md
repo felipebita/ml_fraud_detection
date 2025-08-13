@@ -92,51 +92,45 @@ fraud-detection/
  Create Makefile for common commands - Completed
 📊 Phase 2: Data Engineering (Week 1-2)
 2.1 Data Understanding
- Document data schema and dictionary
- Create data quality report
- Identify data issues (missing values, outliers)
- Analyze class imbalance
- Create EDA notebook with visualizations
-2.2 Data Pipeline Development
-# src/data/data_loader.py
-- Implement robust data loading with error handling
-- Add data versioning
-- Create data validation schemas using Pydantic
-- Write unit tests for data loading and validation
-
-# src/data/data_validator.py
-- Implement Great Expectations or Pandera for data quality
-- Create automated data quality checks
-- Set up data drift detection
-- Write unit tests for data quality checks
-
-# src/data/data_splitter.py
-- Implement time-based splitting for fraud detection
-- Create stratified splits maintaining fraud ratio
-- Ensure no data leakage
-- Write unit tests for data splitting logic
-2.3 Feature Engineering Pipeline
-# src/features/feature_builder.py
-- Create domain-specific features:
-    * Transaction velocity features
-    * Time-based aggregations
-    * Customer behavior patterns
-    * Merchant risk scores
-    * Device/IP features
-- Implement feature versioning
-- Create feature store abstraction using Feast:
-    * Initialize Feast repository
-    * Define feature views and entities
-    * Set up offline/online stores
-    * Implement materialization pipeline
-- Integrate feature store with training/inference pipelines
-- Write unit tests for all feature transformations
-- Write integration tests for feature store operations
-2.4 Data Artifacts
- Create clean training/validation/test sets
- Document feature engineering decisions
- Version control data splits
- Create data lineage documentation
+ Document data schema and dictionary - Completed
+ Create data quality report - Completed
+ Identify data issues (missing values, outliers) - Completed
+ Analyze class imbalance - Completed
+ Create EDA notebook with visualizations - Completed
+2.1 Data Ingestion & Validation Pipeline (Raw -> Processed)
+    src/data/data_loader.py
+    Implement robust data loading for data/raw/raw.csv.
+    Add comprehensive error handling and logging.
+    Create data validation schemas using Pydantic for initial structure and type checks.
+    Write unit tests for data loading and schema validation.
+-src/data/data_validator.py
+    Implement data quality rules using Pandera or Great Expectations.
+    Create automated data quality checks (e.g., nulls, value ranges, valid categories).
+    Standardize critical columns (e.g., convert all timestamps to UTC).
+    Generate a clean data/processed/transactions.parquet file as the trusted source table.
+    Write unit tests for all data quality checks.
+2.2 Feature Engineering Pipeline (Processed -> Feature Store)
+-src/features/feature_builder.py
+    Initialize the Feast repository (feature_repo/).
+    Configure feature_store.yaml with offline (Parquet) and online (SQLite/Redis) stores.
+    Define Feast entities (e.g., customer, merchant) and FeatureViews.
+    Implement transformation logic for domain-specific features within the feature views:
+    Transaction velocity features
+    Time-based aggregations
+    Customer behavior patterns
+    Implement the materialization pipeline script (feast materialize) to populate the offline store from data/processed/transactions.parquet.
+    Write unit tests for all feature transformation functions.
+    Write integration tests for Feast materialize and retrieve operations.
+2.3 Training Data Generation
+-src/data/spine_creator.py
+    Read the clean data/processed/transactions.parquet file.
+    Generate and save a spine file (data/processed/training_spine.parquet) containing transaction_id, entity IDs, event_timestamp, and the is_fraud label.
+-src/data/data_splitter.py
+    Load the data/processed/training_spine.parquet.
+    Implement a strict, time-based split on the spine file (e.g., 80% for training/CV, 20% for final test).
+    Ensure no data leakage by preventing timestamp overlap between splits.
+    Output train_spine.parquet and test_spine.parquet.
+    Write unit tests for the splitting logic to verify temporal integrity.
 🤖 Phase 3: Model Development (Week 2-3)
 3.1 Baseline Model
  Implement simple rule-based fraud detector

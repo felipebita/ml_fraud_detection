@@ -2,6 +2,39 @@
 
 This file provides a comprehensive overview of all files in the project, including their purpose, usage, and any other relevant information.
 
+## Files
+./configs/logging_config.yaml
+./data/
+./htmlcov/
+./logs/.gitkeep
+./logs/fraud_detection.log
+./notebooks/logs/fraud_detection.log
+./notebooks/01_eda.ipynb
+./scripts/start_mlflow_duckdb.sh
+./scripts/test_mlflow_setup.py
+./scripts/test_profiler.py
+./src/data/data_loader.py
+./src/data/data_profiler.py
+./src/utils/logger.py
+./src/utils/mlflow_analytics.py
+./src/utils/mlflow_duckdb_setup.py
+./src/tests/
+./.coverage
+./.env
+./.env.test
+./.gitignore
+./.pre-commit-config.yaml
+./coverage.xml
+./FILES.md
+./Makefile
+./mlflow.duckdb
+./PROJECT_PLAN.md
+./pyproject.toml
+./README.md
+./TESTING.md
+./uv.lock
+
+
 ## `.gitignore`
 
 *   **Purpose**: This file specifies intentionally untracked files that Git should ignore.
@@ -19,10 +52,10 @@ This file provides a comprehensive overview of all files in the project, includi
 *   **Purpose**: This file configures the pre-commit hooks that are run before each commit to ensure code quality and consistency.
 *   **Usage**: It helps to automate code formatting, linting, and other checks to catch issues before they are committed to the repository.
 *   **Key Information**:
-    *   **`pre-commit-hooks`**: Includes basic checks like trailing whitespace, end-of-file fixer, YAML validation, and detection of large files or private keys.
+    *   **`pre-commit-hooks`**: Includes basic checks like fixing trailing whitespace and end-of-file issues, validating YAML files, checking for large files, merge conflicts, private keys, and valid Python syntax. It also checks for docstrings and debug statements.
     *   **`black`**: An opinionated code formatter for Python to ensure consistent code style.
-    *   **`ruff`**: A fast Python linter that checks for a wide range of errors and style issues.
-    *   **`mypy`**: A static type checker for Python, configured to check the `src/` directory for type errors.
+    *   **`ruff`**: A fast Python linter that checks for a wide range of errors and style issues, and automatically fixes them.
+    *   **`mypy`**: A static type checker for Python, configured to check the `src/` directory for type errors, ignoring missing imports and not enforcing strict optional types.
 
 ## `pyproject.toml`
 
@@ -42,10 +75,13 @@ This file provides a comprehensive overview of all files in the project, includi
 
 ## `README.md`
 
-*   **Purpose**: This file provides a high-level overview of the project.
-*   **Usage**: It is the first file that users see when they visit the project's repository, so it should contain essential information about the project, such as its purpose, how to install it, and how to use it.
+*   **Purpose**: This file provides a high-level overview of the project, including the business context, project goals, and scope of analysis.
+*   **Usage**: It is the first file that users see when they visit the project's repository, so it should contain essential information about the project.
 *   **Key Information**:
-    *   The current `README.md` is a placeholder and needs to be updated with more information.
+    *   **Executive Summary**: Provides a brief overview of the project.
+    *   **Business Context**: Describes the business problem and the monetization model.
+    *   **Project Goals**: Outlines the objectives of the project.
+    *   **Scope of Analysis**: Details the framework for evaluating the model's success.
 
 ## `uv.lock`
 
@@ -73,12 +109,16 @@ This file provides a comprehensive overview of all files in the project, includi
     *   It starts a test run, logs a parameter and a metric, and then ends the run.
     *   It prints a success message if the connection is successful, or an error message if it fails.
 
-## `notebooks/notebook.ipynb`
+## `notebooks/01_eda.ipynb`
 
-*   **Purpose**: This Jupyter notebook is intended for exploratory data analysis, model development, and visualization.
-*   **Usage**: It provides an interactive environment for data scientists and developers to experiment with different models and analyze the results.
+*   **Purpose**: This Jupyter notebook is used for exploratory data analysis (EDA) of the fraud detection dataset.
+*   **Usage**: It provides an interactive environment for data scientists and developers to explore the data, visualize distributions, and identify patterns and anomalies.
 *   **Key Information**:
-    *   The notebook is currently empty and needs to be populated with content.
+    *   **Data Loading**: Loads the dataset and provides an initial overview of the data.
+    *   **Data Profiling**: Performs data profiling to understand the data types, missing values, and other quality issues.
+    *   **Fraud Analysis**: Analyzes the distribution of fraud and non-fraud transactions.
+    *   **Feature Engineering**: Creates new features based on the analysis of the data.
+    *   **Temporal Analysis**: Analyzes the temporal patterns of fraud.
 
 ## `src/utils/mlflow_analytics.py`
 
@@ -92,16 +132,18 @@ This file provides a comprehensive overview of all files in the project, includi
 
 ## `src/utils/mlflow_duckdb_setup.py`
 
-*   **Purpose**: This file contains a class to configure and set up MLflow with a DuckDB backend.
+*   **Purpose**: This file contains classes to configure and set up MLflow with a DuckDB backend.
 *   **Usage**: It provides a centralized way to initialize MLflow, manage experiments, and query experiment data using DuckDB.
 *   **Key Information**:
-    *   **`MLflowDuckDBConfig` class**: A class that encapsulates the MLflow configuration and setup logic.
-    *   **`setup_mlflow()`**: Initializes MLflow with the DuckDB backend, creates or gets an experiment, and sets the tracking URI.
-    *   **`get_duckdb_connection()`**: Returns a direct connection to the DuckDB database for analytics.
-    *   **`query_experiments()`**: Executes a SQL query against the MLflow data using DuckDB.
-    *   **`get_best_models()`**: Retrieves the best models based on a specified metric.
-    *   **`analyze_experiments()`**: Performs a summary analysis of all experiments.
-    *   A singleton instance `mlflow_duckdb_config` is created for easy access to the configuration.
+    *   **`MLflowConfig` class**: A dataclass that encapsulates the MLflow configuration.
+    *   **`MLflowDuckDBManager` class**: A class that manages MLflow operations with a DuckDB backend.
+    *   **`setup_mlflow()`**: A method of `MLflowDuckDBManager` that initializes MLflow with the DuckDB backend, creates or gets an experiment, and sets the tracking URI.
+    *   **`get_connection()`**: A method of `MLflowDuckDBManager` that returns a direct connection to the DuckDB database for analytics.
+    *   **`query_experiments()`**: A method of `MLflowDuckDBManager` that executes a SQL query against the MLflow data using DuckDB.
+    *   **`get_best_models()`**: A method of `MLflowDuckDBManager` that retrieves the best models based on a specified metric.
+    *   **`analyze_experiments()`**: A method of `MLflowDuckDBManager` that performs a summary analysis of all experiments.
+    *   **`create_mlflow_manager()`**: A factory function to create an `MLflowDuckDBManager` instance with configuration from environment variables.
+    *   **`setup_mlflow_duckdb()`**: A convenience function to set up MLflow with a DuckDB backend using environment configuration.
 
 ## `src/utils/logger.py`
 
@@ -118,6 +160,68 @@ This file provides a comprehensive overview of all files in the project, includi
 *   **Purpose**: This file provides a set of common command-line shortcuts for managing the project's lifecycle.
 *   **Usage**: It allows developers to run complex or frequently used commands with a simple `make <target>` syntax, improving consistency and ease of use.
 *   **Key Information**:
-    *   Defines targets for key project operations: `setup`, `data`, `train`, `evaluate`, `test`, `serve`, and `dashboard`.
+    *   Defines targets for key project operations: `setup`, `lint`, `type-check`, `format`, `pre-commit`, `test`, `data`, `train`, `evaluate`, `serve`, and `dashboard`.
     *   These targets correspond to the "Quick Start Commands" outlined in `PROJECT_PLAN.md`.
     *   Includes a `help` target to display a list of available commands.
+
+## `configs/logging_config.yaml`
+
+*   **Purpose**: This file configures the logging for the project.
+*   **Usage**: It is used by the `logging` module to configure the loggers, handlers, and formatters for the project.
+*   **Key Information**:
+    *   **`formatters`**: Defines different log formats, such as `default`, `json`, and `detailed`.
+    *   **`handlers`**: Defines different log handlers, such as `console`, `file`, and `error_file`.
+    *   **`loggers`**: Defines the loggers for different modules, such as `src`, `src.models`, and `src.data`.
+    *   **`root`**: Defines the root logger.
+
+## `data/profiling_results.json`
+
+*   **Purpose**: This file contains the results of the data profiling.
+*   **Usage**: It is generated by the data profiler and contains a detailed summary of the data, including basic information, data types, missing values, numerical and categorical stats, data quality issues, class distribution, and temporal analysis.
+*   **Key Information**:
+    *   **`basic_info`**: Contains basic information about the dataset, such as the number of rows and columns, memory usage, and column names.
+    *   **`data_types`**: Contains the data types of each column.
+    *   **`missing_values`**: Contains the number and percentage of missing values for each column.
+    *   **`numerical_stats`**: Contains numerical statistics for each numerical column, such as mean, median, std, min, max, and quartiles.
+    *   **`categorical_stats`**: Contains categorical statistics for each categorical column, such as the number of unique values and the top 5 values.
+    *   **`data_quality_issues`**: Contains a list of data quality issues found in the dataset.
+    *   **`class_distribution`**: Contains the distribution of the target variable.
+    *   **`temporal_analysis`**: Contains the temporal analysis of the dataset.
+
+## `scripts/test_profiler.py`
+
+*   **Purpose**: This script tests the data profiler with sample data.
+*   **Usage**: It can be run to verify that the data profiler is working correctly and to generate a sample profiling report.
+*   **Key Information**:
+    *   It creates a sample DataFrame with random data.
+    *   It adds some data quality issues to the DataFrame, such as missing values.
+    *   It runs the data profiler on the sample DataFrame and exports the results to a JSON file.
+
+## `src/data/data_loader.py`
+
+*   **Purpose**: This script loads and validates the raw data.
+*   **Usage**: It is used to load the raw data from a CSV file, validate it against a Pydantic schema, and save the validated data to a Parquet file.
+*   **Key Information**:
+    *   **`TransactionSchema` class**: A Pydantic schema for validating the structure and types of a single transaction row.
+    *   **`load_data()`**: Loads transaction data from a CSV file, validates it against the `TransactionSchema`, and returns a clean DataFrame.
+    *   When run as a standalone script, it loads the raw data, validates it, and saves the validated data to a Parquet file in the `data/processed` directory.
+
+## `src/data/data_profiler.py`
+
+*   **Purpose**: This script profiles the data to provide a comprehensive overview of the data quality and characteristics.
+*   **Usage**: It is used to generate a data profile report that includes basic information, data types, missing values, numerical and categorical stats, data quality issues, class distribution, and temporal analysis.
+*   **Key Information**:
+    *   **`DataProfiler` class**: A class that encapsulates the data profiling functionality.
+    *   **`generate_profile()`**: Generates a comprehensive data profile.
+    *   **`export_profile()`**: Exports the profile to a JSON file.
+    *   **`get_summary_report()`**: Generates a human-readable summary report.
+    *   **`quick_profile()`**: A convenience function to quickly generate and print a data profile.
+
+## `src/__init__.py`
+
+*   **Purpose**: This file initializes the `src` package and sets up the logging for the project.
+*   **Usage**: It is automatically imported when any module from the `src` package is imported.
+*   **Key Information**:
+    *   It initializes the logging for the project by calling the `setup_logging()` function from `src.utils.logger`.
+    *   It gets the logging configuration from environment variables.
+    *   It creates a package-level logger.
