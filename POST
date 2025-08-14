@@ -1,0 +1,21 @@
+  Refactoring some of my old Machine Learning projects, this time with a heavy focus on applying MLOps best practices right from the start. A solid foundation is everything!
+
+  Here's a peek at my professional environment setup:
+
+   - `Makefile`: My command center for simplifying project tasks. I use it to create shortcuts for common operations like make test, make lint, and make train, which saves time and ensures
+     consistency.
+
+   - `.pre-commit-config.yaml`: The guardian of my codebase. It automatically runs tools like black (formatter) and ruff (linter) to check my code before it gets committed, maintaining quality and
+     catching issues early.
+
+   - `uv` & `uv.lock`: For super-fast and reproducible environments. I define dependencies in pyproject.toml, and uv creates a uv.lock file to pin the exact versions of all packages. No more "it works
+     on my machine" headaches!
+
+   - `.env file`: To handle environment variables and secrets (like API keys) securely. Keeping sensitive data out of version control is a non-negotiable best practice!
+
+   - `logging_config.yaml`: For centralized, structured logging. This lets me easily switch between human-readable logs for development and JSON-formatted logs for a production environment, which is
+     crucial for effective monitoring.
+
+  This setup makes the development lifecycle so much smoother and more professional. What are your must-have tools when starting a new ML project?
+
+  #MachineLearning #MLOps #DataScience #Python #MLEngineering #BestPractices
