@@ -1,7 +1,6 @@
-
 # Makefile for the Fraud Detection project
 
-.PHONY: help setup data train evaluate test serve dashboard
+.PHONY: help setup data train evaluate test serve dashboard docs-serve docs-build
 
 help:
 	@echo "Commands:"
@@ -14,9 +13,10 @@ help:
 	@echo "  data           : Run data pipeline"
 	@echo "  train          : Train models"
 	@echo "  evaluate       : Evaluate models"
-
 	@echo "  serve          : Start model server"
 	@echo "  dashboard      : Launch MLflow UI"
+	@echo "  docs-serve     : Serve the documentation site locally"
+	@echo "  docs-build     : Build the documentation site"
 
 setup:
 	@echo "Setting up the project..."
@@ -62,3 +62,11 @@ serve:
 dashboard:
 	@echo "Launching MLflow UI..."
 	@./scripts/start_mlflow_duckdb.sh
+
+docs-serve:
+	@echo "Starting documentation server at http://127.0.0.1:8000"
+	uv run mkdocs serve
+
+docs-build:
+	@echo "Building documentation site..."
+	uv run mkdocs build
