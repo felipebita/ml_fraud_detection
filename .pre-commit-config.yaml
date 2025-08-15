@@ -30,6 +30,7 @@ repos:
   hooks:
     - id: mypy
       additional_dependencies: [
+        "duckdb",
         "types-requests",
         "types-PyYAML",
         "pandas-stubs",

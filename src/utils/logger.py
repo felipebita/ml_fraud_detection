@@ -8,7 +8,7 @@ from typing import Any, cast
 import pandas as pd
 import structlog
 from structlog.stdlib import LoggerFactory
-from structlog.types import BoundLogger
+from structlog.typing import BoundLogger
 
 
 def setup_logging(

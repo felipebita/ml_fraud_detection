@@ -2,7 +2,6 @@
 import os
 from dataclasses import dataclass
 from pathlib import Path
-from typing import cast
 
 import duckdb
 import mlflow
@@ -25,7 +24,7 @@ class MLflowConfig:
     @property
     def db_path(self) -> str:
         """Extract database path from tracking URI."""
-        return self.tracking_uri.replace("duckdb:///", "")
+        return self.tracking_uri.replace("duckdb:////", "")
 
     @classmethod
     def from_env(cls) -> "MLflowConfig":
@@ -126,7 +125,7 @@ class MLflowDuckDBManager:
         ):
             df = conn.execute(query).fetchdf()
             logger.info("query_successful", num_rows=len(df))
-            return cast(pd.DataFrame, df)
+            return df
 
     def get_best_models(
         self, metric: str = "f1_score", top_n: int = 10
