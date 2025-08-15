@@ -33,10 +33,6 @@ jobs:
       - name: Run linter
         run: make lint
 
-      - name: Debug Structlog Installation
-        run: |
-          uv run python -c "import structlog; print(f'structlog version: {structlog.__version__}'); print('--- dir(structlog) ---'); print(dir(structlog)); print('--- dir(structlog.typing) ---'); import structlog.typing; print(dir(structlog.typing))"
-
       - name: Run type checker
         run: make type-check
 
