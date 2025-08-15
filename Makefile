@@ -37,15 +37,15 @@ evaluate:
 
 lint:
 	@echo "Linting code..."
-	ruff check src/ tests/ --fix
+	uv run ruff check src/ tests/ --fix
 
 type-check:
 	@echo "Type-checking code..."
-	mypy src/
+	uv run mypy src/
 
 format:
 	@echo "Formating code..."
-	black src/ tests/
+	uv run black src/ tests/
 
 pre-commit:
 	@echo "Runnin pre-commit hooks..."
@@ -53,7 +53,7 @@ pre-commit:
 
 test:
 	@echo "Running tests..."
-	pytest tests/ -v --cov=src --cov-report=html --cov-report=term-missing
+	uv run pytest tests/ -v --cov=src --cov-report=html --cov-report=term-missing
 
 serve:
 	@echo "Starting the model server..."
