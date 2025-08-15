@@ -282,7 +282,7 @@ class DataProfiler:
         return report
 
 
-def quick_profile(df: pd.DataFrame, export_path: str = None) -> dict[str, Any]:
+def quick_profile(df: pd.DataFrame, export_path: str | None = None) -> dict[str, Any]:
     """Quick profiling function for convenience."""
     profiler = DataProfiler(df)
     profile = profiler.generate_profile()

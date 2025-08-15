@@ -3,11 +3,12 @@ import logging.handlers
 import sys
 from datetime import datetime
 from pathlib import Path
-from typing import Any
+from typing import Any, cast
 
 import pandas as pd
 import structlog
 from structlog.stdlib import LoggerFactory
+from structlog.types import BoundLogger
 
 
 def setup_logging(
@@ -79,17 +80,15 @@ def setup_logging(
         logging.getLogger().addHandler(file_handler)
 
 
-def get_logger(name: str) -> structlog.BoundLogger:
+def get_logger(name: str) -> BoundLogger:
     """Get a structured logger instance"""
-    return structlog.get_logger(name)
+    return cast(BoundLogger, structlog.get_logger(name))
 
 
 class LoggerContext:
     """Context manager for operation logging"""
 
-    def __init__(
-        self, logger: structlog.BoundLogger, operation: str, **kwargs: Any
-    ) -> None:
+    def __init__(self, logger: BoundLogger, operation: str, **kwargs: Any) -> None:
         self.logger = logger
         self.operation = operation
         self.context = kwargs
@@ -129,7 +128,7 @@ class LoggerContext:
 
 # Fraud detection specific logging utilities
 def log_data_info(
-    logger: structlog.BoundLogger, df: pd.DataFrame, dataset_name: str = "dataset"
+    logger: BoundLogger, df: pd.DataFrame, dataset_name: str = "dataset"
 ) -> None:
     """Log dataset information relevant for fraud detection"""
     logger.info(
@@ -144,14 +143,12 @@ def log_data_info(
 
 
 def log_model_metrics(
-    logger: structlog.BoundLogger, metrics: dict[str, float], model_name: str
+    logger: BoundLogger, metrics: dict[str, float], model_name: str
 ) -> None:
     """Log model performance metrics"""
     logger.info("model_metrics", model=model_name, **metrics)
 
 
-def log_prediction(
-    logger: structlog.BoundLogger, prediction_info: dict[str, Any]
-) -> None:
+def log_prediction(logger: BoundLogger, prediction_info: dict[str, Any]) -> None:
     """Log prediction details for an audit trail"""
     logger.info("prediction_made", **prediction_info)

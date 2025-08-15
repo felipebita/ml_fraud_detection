@@ -35,5 +35,4 @@ repos:
         "pandas-stubs",
         "types-python-dateutil"
       ]
-      args: [--ignore-missing-imports, --no-strict-optional]
       files: ^src/  # Only type-check src/ directory for now

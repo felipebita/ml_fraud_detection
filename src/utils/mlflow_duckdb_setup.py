@@ -248,3 +248,15 @@ if __name__ == "__main__":
         logger.info("test_run_logged_successfully", run_id=run.info.run_id)
     except Exception as e:
         logger.error("failed_to_log_test_run", error=str(e), exc_info=True)
+
+    # Example analysis
+    logger.info("performing_example_analysis")
+    try:
+        analysis_results = manager.analyze_experiments()
+        print("\n--- Experiment Analysis ---")
+        for name, df in analysis_results.items():
+            print(f"\n--- {name.capitalize()} ---")
+            print(df)
+        print("\n-------------------------\n")
+    except Exception as e:
+        logger.error("failed_to_analyze_experiments", error=str(e), exc_info=True)
