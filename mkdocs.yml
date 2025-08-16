@@ -3,8 +3,9 @@ site_description: Project documentation for the Real-Time Fraud Detection API.
 
 nav:
   - 'Home': 'index.md'
-  - 'Testing Strategy': 'TESTING.md'
+  - 'Business': 'business.md'
   - 'Project Files': 'project_files.md'
+  - 'Testing Strategy': 'TESTING.md'
 
 theme:
   name: material

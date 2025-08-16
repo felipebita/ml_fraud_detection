@@ -1,6 +1,6 @@
 # Makefile for the Fraud Detection project
 
-.PHONY: help setup data train evaluate test serve dashboard docs-serve docs-build
+.PHONY: help setup data train evaluate test serve dashboard docs-serve docs-build docs-preview
 
 help:
 	@echo "Commands:"
@@ -15,8 +15,9 @@ help:
 	@echo "  evaluate       : Evaluate models"
 	@echo "  serve          : Start model server"
 	@echo "  dashboard      : Launch MLflow UI"
-	@echo "  docs-serve     : Serve the documentation site locally"
-	@echo "  docs-build     : Build the documentation site"
+	@echo "  docs-serve     : Serve the documentation site locally (development)"
+	@echo "  docs-build     : Build the documentation site (for deployment)"
+	@echo "  docs-preview   : Serve the built documentation site (for review)"
 
 setup:
 	@echo "Setting up the project..."
@@ -70,3 +71,7 @@ docs-serve:
 docs-build:
 	@echo "Building documentation site..."
 	uv run mkdocs build
+
+docs-preview:
+	@echo "Serving built documentation site from site/ directory..."
+	@cd site && python -m http.server 8000

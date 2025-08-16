@@ -1,6 +1,7 @@
-  Refactoring some of my old Machine Learning projects, this time with a heavy focus on applying MLOps best practices right from the start. A solid foundation is everything!
-
+  Refactoring some of my old Machine Learning projects, this time with a heavy focus on applying MLOps best practices right from the start.
   Here's a peek at my professional environment setup:
+  - pyproject.toml:
+
   - `uv` & `uv.lock`: For super-fast and reproducible environments. I define dependencies in pyproject.toml, and uv creates a uv.lock file to pin the exact versions of all packages. No more "it workson my machine" headaches!
 
    - `.env file`: To handle environment variables and secrets (like API keys) securely. Keeping sensitive data out of version control is a non-negotiable best practice!

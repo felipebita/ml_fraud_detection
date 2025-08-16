@@ -20,7 +20,7 @@ class TestMLflowConfig:
         assert config.tracking_uri == "duckdb:///test.db"
         assert config.artifact_root == "./test_artifacts"
         assert config.experiment_name == "test_experiment"
-        assert config.db_path == "test.db"
+        assert config.db_path == "duckdb:///test.db"
 
     def test_config_defaults(self):
         """Test config with default values."""
