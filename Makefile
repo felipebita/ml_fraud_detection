@@ -10,6 +10,7 @@ help:
 	@echo "  format         : Format code (black)"
 	@echo "  pre-commit     : Run pre-commit hooks"
 	@echo "  test           : Run all tests"
+	@echo "  coverage       : Run all tests and generate coverage report"
 	@echo "  data           : Run data pipeline"
 	@echo "  train          : Train models"
 	@echo "  evaluate       : Evaluate models"

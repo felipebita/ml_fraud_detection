@@ -6,6 +6,7 @@ from pathlib import Path
 import pandas as pd
 from pydantic import BaseModel, ValidationError
 
+from src.data.data_validator import DataValidator
 from src.utils.logger import LoggerContext, get_logger, log_data_info
 
 logger = get_logger(__name__)
@@ -69,9 +70,6 @@ def load_data(file_name: str = "raw.csv") -> pd.DataFrame:
             raise
 
         # 4. Validate data row-by-row using Pydantic
-        # Note: For very large datasets, this can be slow. Libraries like Pandera
-        # are more performant for DataFrame-level validation. This approach, however,
-        # provides detailed row-level error reporting.
         valid_records: list[dict] = []
         invalid_row_count = 0
 
@@ -83,7 +81,6 @@ def load_data(file_name: str = "raw.csv") -> pd.DataFrame:
                 valid_records.append(validated_record)
             except ValidationError as e:
                 invalid_row_count += 1
-                # Log the first few validation errors for debugging
                 if invalid_row_count <= 5:
                     logger.warning(
                         "Row validation failed.",
@@ -103,46 +100,47 @@ def load_data(file_name: str = "raw.csv") -> pd.DataFrame:
 
         # 5. Create final DataFrame and log summary
         validated_df = pd.DataFrame(valid_records)
-        log_data_info(logger, validated_df, dataset_name="validated_raw_data")
+        log_data_info(logger, validated_df, dataset_name="pydantic_validated_data")
 
         return validated_df
 
 
 if __name__ == "__main__":
-    print("--- DEBUG: INSIDE data_loader's MAIN BLOCK ---")
-    # This block runs only when the script is executed directly
-    # (e.g., `python src/data/data_loader.py`)
-
-    # For a simple execution, we can just load and print info
-    # This is useful for a quick check.
-    logger.info("Running data_loader.py as a standalone script.")
+    logger.info("--- Starting Data Ingestion & Validation Pipeline ---")
 
     try:
-        # Load the data using the function we already built
-        validated_df = load_data(file_name="raw.csv")
+        # 1. Load data with initial Pydantic validation
+        initial_df = load_data(file_name="raw.csv")
 
-        # A pipeline step should produce an output artifact.
-        # Let's save the validated DataFrame to the processed data path.
+        # 2. Perform DataFrame-level validation with Pandera
+        validator = DataValidator()
+        validated_df = validator.validate(initial_df)
+
+        # 3. Standardize the validated data
+        standardized_df = validator.standardize(validated_df)
+
+        # 4. Save the final, trusted DataFrame
         processed_data_path_str = os.getenv("PROCESSED_DATA_PATH", "./data/processed")
         output_path = Path(processed_data_path_str)
-
-        # Ensure the directory exists
         output_path.mkdir(parents=True, exist_ok=True)
+        output_file = output_path / "transactions.parquet"
 
-        output_file = output_path / "validated_raw_data.parquet"
-
-        with LoggerContext(logger, "save_validated_data", output_file=str(output_file)):
-            validated_df.to_parquet(output_file, index=False)
-            logger.info("Validated data saved successfully.")
+        with LoggerContext(
+            logger, "save_processed_data", output_file=str(output_file)
+        ) as log_context:
+            standardized_df.to_parquet(output_file, index=False)
+            log_data_info(logger, standardized_df, dataset_name="final_processed_data")
+            logger.info("Processed data saved successfully.")
 
     except (FileNotFoundError, ValueError) as e:
-        logger.error("Data loading process failed.", error=str(e), exc_info=True)
-        # Exit with a non-zero status code to indicate failure, which is important for Makefiles
+        logger.error("Pipeline failed.", error=str(e), exc_info=True)
         exit(1)
     except Exception as e:
         logger.critical(
-            "An unexpected error occurred during script execution.",
+            "An unexpected error occurred during the pipeline execution.",
             error=str(e),
             exc_info=True,
         )
         exit(1)
+
+    logger.info("--- Data Ingestion & Validation Pipeline Finished ---")

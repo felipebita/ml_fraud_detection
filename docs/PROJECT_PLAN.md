@@ -97,18 +97,19 @@ fraud-detection/
  Identify data issues (missing values, outliers) - Completed
  Analyze class imbalance - Completed
  Create EDA notebook with visualizations - Completed
-2.1 Data Ingestion & Validation Pipeline (Raw -> Processed)
-    src/data/data_loader.py
-    Implement robust data loading for data/raw/raw.csv.
-    Add comprehensive error handling and logging.
-    Create data validation schemas using Pydantic for initial structure and type checks.
-    Write unit tests for data loading and schema validation.
--src/data/data_validator.py
-    Implement data quality rules using Pandera or Great Expectations.
-    Create automated data quality checks (e.g., nulls, value ranges, valid categories).
-    Standardize critical columns (e.g., convert all timestamps to UTC).
-    Generate a clean data/processed/transactions.parquet file as the trusted source table.
-    Write unit tests for all data quality checks.
+
+2.1 Data Ingestion & Validation Pipeline (Raw -> Processed) - Completed
+    - src/data/data_loader.py - Completed
+        - Implement robust data loading for data/raw/raw.csv. - Completed
+        - Add comprehensive error handling and logging. - Completed
+        - Create data validation schemas using Pydantic for initial structure and type checks. - Completed
+        - Write unit tests for data loading and schema validation. - Completed
+    - src/data/data_validator.py - Completed
+        - Implement data quality rules using Pandera or Great Expectations. - Completed
+        - Create automated data quality checks (e.g., nulls, value ranges, valid categories). - Completed
+        - Standardize critical columns (e.g., convert all timestamps to UTC). - Completed
+        - Generate a clean data/processed/transactions.parquet file as the trusted source table. - Completed
+        - Write unit tests for all data quality checks. - Completed
 2.2 Feature Engineering Pipeline (Processed -> Feature Store)
 -src/features/feature_builder.py
     Initialize the Feast repository (feature_repo/).

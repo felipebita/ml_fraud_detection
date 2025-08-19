@@ -1,30 +1,6 @@
 # Testing Documentation
-
-## FILES
-./tests/unit/test_data_loader.py
-./tests/unit/test_mlflow_analytics.py
-./tests/unit/test_mlflow_duckdb_setup.py
-
-### MLflow Analytics (`test_mlflow_analytics.py`)
-- **Class**: `MLflowAnalytics`
-- **Coverage**: Connection handling, query execution, data retrieval
-- **Key Tests**:
-- `test_initialization`: Verifies proper dependency injection
-- `test_get_model_comparison`: Tests model comparison queries
-- `test_get_experiment_timeline`: Tests timeline data retrieval
-- `test_find_best_hyperparameters`: Tests parameter optimization queries
-
-### MLflow Setup (`test_mlflow_duckdb_setup.py`)
-- **Classes**: `MLflowConfig`, `MLflowDuckDBManager`
-- **Coverage**: Configuration, MLflow initialization, connection management
-- **Key Tests**:
-- Config initialization from env vars
-- Experiment creation/retrieval
-- Connection handling and failures
-
 ## Running Tests
 
-```bash
 # Run all tests
 make test
 
@@ -33,6 +9,13 @@ pytest tests/unit/test_mlflow_analytics.py -v
 
 # Run with coverage
 pytest --cov=src --cov-report=html
+
+## FILES
+./tests/conftest.py`
+./tests/unit/test_data_loader.py
+./tests/unit/test_data_validator.py
+./tests/unit/test_mlflow_analytics.py
+./tests/unit/test_mlflow_duckdb_setup.py
 
 ## `tests/conftest.py`
 
@@ -54,6 +37,15 @@ pytest --cov=src --cov-report=html
     *   It tests that invalid rows are skipped and valid ones are loaded.
     *   It tests that an error is raised if no rows are valid.
     *   It directly tests the `TransactionSchema` Pydantic schema.
+
+## `tests/unit/test_data_validator.py`
+
+*   **Purpose**: This file contains unit tests for the data validator.
+*   **Usage**: It is used to test the `DataValidator` class in `src/data/data_validator.py` to ensure that it is working correctly.
+*   **Key Information**:
+    *   It tests for successful validation of a valid DataFrame.
+    *   It tests that validation fails for incorrect data types, out-of-range values, disallowed categories, missing columns, and extra columns.
+    *   It tests the standardization of column types.
 
 ## `tests/unit/test_mlflow_analytics.py`
 
