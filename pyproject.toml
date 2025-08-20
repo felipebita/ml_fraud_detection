@@ -40,6 +40,7 @@ dependencies = [
   "great-expectations>=0.18.0,<1.0.0",
 
   # Feature Engineering
+  "feast>=0.36,<1.0",
   "feature-engine>=1.6.0,<2.0.0",
   "category-encoders>=2.6.0,<3.0.0",
 
@@ -159,22 +160,9 @@ packages = ["src"]
 # Black configuration
 [tool.black]
 line-length = 88
-target-version = ['py311']
-include = '\.pyi?$'
-extend-exclude = '''
-/(
-# directories
-\.eggs
-| \.git
-| \.hg
-| \.mypy_cache
-| \.tox
-| \.venv
-| build
-| dist
-| mlruns
-)/
-'''
+target-version = ["py311"]
+include = "\\.pyi?$"
+extend-exclude = "''"
 
 # Ruff configuration
 [tool.ruff]

@@ -1,23 +1,33 @@
 # Testing Documentation
-## Running Tests
 
-# Run all tests
+#### Run all tests
 make test
 
-# Run specific test file
+#### Run specific test file
 pytest tests/unit/test_mlflow_analytics.py -v
 
-# Run with coverage
+#### Run with coverage
 pytest --cov=src --cov-report=html
 
 ## FILES
-./tests/conftest.py`
-./tests/unit/test_data_loader.py
-./tests/unit/test_data_validator.py
-./tests/unit/test_mlflow_analytics.py
-./tests/unit/test_mlflow_duckdb_setup.py
+- `./tests/`
+    - `./tests/conftest.py`
+    - `./tests/integration/`
+    - `./tests/unit/`
+    - `./tests/unit/test_data_loader.py`
+    - `./tests/unit/test_data_validator.py`
+    - `./tests/unit/test_mlflow_analytics.py`
+    - `./tests/unit/test_mlflow_duckdb_setup.py`
 
-## `tests/conftest.py`
+## `tests/`
+
+*   **Purpose**: This directory contains all the tests for the project, including unit and integration tests.
+*   **Usage**: It is used to ensure the quality and correctness of the code.
+*   **Key Information**:
+    *   It is organized into `unit/` and `integration/` subdirectories.
+    *   `conftest.py` provides shared fixtures for all tests.
+
+### `tests/conftest.py`
 
 *   **Purpose**: This file contains shared fixtures for the pytest tests.
 *   **Usage**: It is used to define fixtures that can be used by multiple tests, such as temporary directories, mock objects, and sample data.
@@ -26,7 +36,21 @@ pytest --cov=src --cov-report=html
     *   **`mock_mlflow_config()`**: A fixture that creates a mock MLflow configuration for testing.
     *   **`sample_experiment_data()`**: A fixture that creates a sample DataFrame with MLflow experiment data for analytics testing.
 
-## `tests/unit/test_data_loader.py`
+### `tests/integration/`
+
+*   **Purpose**: This directory contains all the integration tests for the project.
+*   **Usage**: It is used to test the interaction between different components of the application.
+*   **Key Information**:
+    *   Tests are organized by the workflow they are testing.
+
+### `tests/unit/`
+
+*   **Purpose**: This directory contains all the unit tests for the project.
+*   **Usage**: It is used to test individual components of the application in isolation.
+*   **Key Information**:
+    *   Tests are organized by the module they are testing.
+
+#### `tests/unit/test_data_loader.py`
 
 *   **Purpose**: This file contains unit tests for the data loader.
 *   **Usage**: It is used to test the `load_data()` function in `src/data/data_loader.py` to ensure that it is working correctly.
@@ -38,7 +62,7 @@ pytest --cov=src --cov-report=html
     *   It tests that an error is raised if no rows are valid.
     *   It directly tests the `TransactionSchema` Pydantic schema.
 
-## `tests/unit/test_data_validator.py`
+#### `tests/unit/test_data_validator.py`
 
 *   **Purpose**: This file contains unit tests for the data validator.
 *   **Usage**: It is used to test the `DataValidator` class in `src/data/data_validator.py` to ensure that it is working correctly.
@@ -47,7 +71,7 @@ pytest --cov=src --cov-report=html
     *   It tests that validation fails for incorrect data types, out-of-range values, disallowed categories, missing columns, and extra columns.
     *   It tests the standardization of column types.
 
-## `tests/unit/test_mlflow_analytics.py`
+#### `tests/unit/test_mlflow_analytics.py`
 
 *   **Purpose**: This file contains unit tests for the MLflow analytics.
 *   **Usage**: It is used to test the `MLflowAnalytics` class in `src/utils/mlflow_analytics.py` to ensure that it is working correctly.
@@ -57,7 +81,7 @@ pytest --cov=src --cov-report=html
     *   It tests the `get_experiment_timeline()` method.
     *   It tests the `find_best_hyperparameters()` method.
 
-## `tests/unit/test_mlflow_duckdb_setup.py`
+#### `tests/unit/test_mlflow_duckdb_setup.py`
 
 *   **Purpose**: This file contains unit tests for the MLflow DuckDB setup.
 *   **Usage**: It is used to test the `MLflowConfig` and `MLflowDuckDBManager` classes in `src/utils/mlflow_duckdb_setup.py` to ensure that they are working correctly.

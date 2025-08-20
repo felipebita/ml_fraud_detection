@@ -1,6 +1,6 @@
 # Makefile for the Fraud Detection project
 
-.PHONY: help setup data train evaluate test serve dashboard docs-serve docs-build docs-preview
+.PHONY: help setup data train evaluate test serve dashboard feature-repo-init docs-serve docs-build docs-preview
 
 help:
 	@echo "Commands:"
@@ -16,6 +16,7 @@ help:
 	@echo "  evaluate       : Evaluate models"
 	@echo "  serve          : Start model server"
 	@echo "  dashboard      : Launch MLflow UI"
+	@echo "  feature-repo-init: Initialize Feast feature repository"
 	@echo "  docs-serve     : Serve the documentation site locally (development)"
 	@echo "  docs-build     : Build the documentation site (for deployment)"
 	@echo "  docs-preview   : Serve the built documentation site (for review)"
@@ -64,6 +65,11 @@ serve:
 dashboard:
 	@echo "Launching MLflow UI..."
 	@./scripts/start_mlflow_duckdb.sh
+
+feature-repo-init:
+	@echo "Initializing Feast feature repository..."
+	rm -rf feature_repo
+	uv run feast init
 
 docs-serve:
 	@echo "Starting documentation server at http://127.0.0.1:8000"

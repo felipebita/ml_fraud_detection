@@ -15,6 +15,7 @@ credentials/
 # ============================================
 # Ignore large data files
 data/raw/raw.csv
+data/processed/transactions.parquet
 data/processed/validated_raw_data.parquet
 
 # But INCLUDE sample data
