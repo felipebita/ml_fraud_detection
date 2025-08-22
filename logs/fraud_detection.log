@@ -317,3 +317,22 @@ Will assume non-transactional DDL.
 2025-08-19T03:13:55.679675Z [info     ] --- Data Ingestion & Validation Pipeline Finished --- [__main__] filename=data_loader.py func_name=<module> lineno=146
 2025-08-20T03:19:59.143813Z [info     ] fraud_detection_package_initialized [src] filename=__init__.py func_name=<module> lineno=16 version=0.1.0
 2025-08-20T03:22:27.347425Z [info     ] fraud_detection_package_initialized [src] filename=__init__.py func_name=<module> lineno=16 version=0.1.0
+2025-08-21T22:58:06.906643Z [info     ] fraud_detection_package_initialized [src] filename=__init__.py func_name=<module> lineno=16 version=0.1.0
+2025-08-22T00:05:34.179357Z [info     ] fraud_detection_package_initialized [src] filename=__init__.py func_name=<module> lineno=16 version=0.1.0
+2025-08-22T00:05:34.179833Z [info     ] executing_mlflow_setup_test    [__main__] filename=test_mlflow_setup.py func_name=<module> lineno=44
+2025-08-22T00:05:34.180024Z [info     ] mlflow_tracking_uri_set        [__main__] filename=test_mlflow_setup.py func_name=test_mlflow_connection lineno=21 uri=sqlite:///mlflow.duckdb
+2025-08-22T00:05:34.180204Z [info     ] starting_mlflow_test_run       [__main__] filename=test_mlflow_setup.py func_name=test_mlflow_connection lineno=24
+Context impl SQLiteImpl.
+Will assume non-transactional DDL.
+2025-08-22T00:05:39.181093Z [info     ] mlflow_test_run_logged         [__main__] filename=test_mlflow_setup.py func_name=test_mlflow_connection lineno=29 run_id=acbb62b3b25c4db38a18b0e1a3ef046d
+2025-08-22T00:05:39.189334Z [info     ] mlflow_setup_successful        [__main__] filename=test_mlflow_setup.py func_name=test_mlflow_connection lineno=31 run_id=acbb62b3b25c4db38a18b0e1a3ef046d ui_hint=Check the MLflow UI at http://localhost:5000
+2025-08-22T00:05:39.189716Z [info     ] mlflow_setup_test_succeeded    [__main__] filename=test_mlflow_setup.py func_name=<module> lineno=47
+2025-08-22T03:16:33.024441Z [info     ] fraud_detection_package_initialized [src] filename=__init__.py func_name=<module> lineno=16 version=0.1.0
+2025-08-22T03:16:33.024940Z [info     ] executing_mlflow_setup_test    [__main__] filename=test_mlflow_setup.py func_name=<module> lineno=44
+2025-08-22T03:16:33.025165Z [info     ] mlflow_tracking_uri_set        [__main__] filename=test_mlflow_setup.py func_name=test_mlflow_connection lineno=21 uri=sqlite:///mlflow.duckdb
+2025-08-22T03:16:33.025325Z [info     ] starting_mlflow_test_run       [__main__] filename=test_mlflow_setup.py func_name=test_mlflow_connection lineno=24
+Context impl SQLiteImpl.
+Will assume non-transactional DDL.
+2025-08-22T03:16:34.006132Z [info     ] mlflow_test_run_logged         [__main__] filename=test_mlflow_setup.py func_name=test_mlflow_connection lineno=29 run_id=723180aab1a443ca93f27724a5dc0420
+2025-08-22T03:16:34.016628Z [info     ] mlflow_setup_successful        [__main__] filename=test_mlflow_setup.py func_name=test_mlflow_connection lineno=31 run_id=723180aab1a443ca93f27724a5dc0420 ui_hint=Check the MLflow UI at http://localhost:5000
+2025-08-22T03:16:34.016825Z [info     ] mlflow_setup_test_succeeded    [__main__] filename=test_mlflow_setup.py func_name=<module> lineno=47

@@ -19,6 +19,7 @@ This file provides a comprehensive overview of all files in the project, includi
     - `./docs/project_files.md`
     - `./docs/PROJECT_PLAN.md`
     - `./docs/TESTING.md`
+    - `./docs/LAST_SESSION.md`
 - `./duckdb:` ?
 - `./dhtmlcov/`
 - `./logs/`
@@ -27,7 +28,6 @@ This file provides a comprehensive overview of all files in the project, includi
 - `./notebooks/`
     - `./notebooks/01_eda.ipynb`
 - `./scripts/`
-    - `./scripts/start_mlflow_duckdb.sh`
     - `./scripts/test_mlflow_setup.py`
     - `./scripts/test_profiler.py`
 - `./src/`
@@ -52,6 +52,8 @@ This file provides a comprehensive overview of all files in the project, includi
 - `./.gitignore`
 - `./.pre-commit-config.yaml`
 - `./coverage.xml`
+- `./docker-compose.yml`
+- `./Dockerfile`
 - `./Makefile`
 - `./mkdocs.yml`
 - `./mlflow.duckdb`
@@ -208,16 +210,6 @@ This file provides a comprehensive overview of all files in the project, includi
 
 *   **Purpose**: This directory contains standalone scripts for various tasks, such as starting services or running tests.
 
-### `scripts/start_mlflow_duckdb.sh`
-
-*   **Purpose**: This script starts the MLflow tracking server with a DuckDB backend.
-*   **Usage**: It is used to launch the MLflow server, which is essential for logging experiments, tracking model performance, and managing the machine learning lifecycle.
-*   **Key Information**:
-    *   It loads environment variables from a `.env` file.
-    *   It sets default values for the database path, MLflow port, host, and artifact root if they are not defined in the `.env` file.
-    *   It creates the necessary directories for the database and artifacts.
-    *   It starts the MLflow server using the specified configurations.
-
 ### `scripts/test_mlflow_setup.py`
 
 *   **Purpose**: This script tests the MLflow setup to ensure that it is properly configured and accessible.
@@ -326,7 +318,7 @@ This file provides a comprehensive overview of all files in the project, includi
     *   **`setup_mlflow()`**: A method of `MLflowDuckDBManager` that initializes MLflow with the DuckDB backend, creates or gets an experiment, and sets the tracking URI.
     *   **`get_connection()`**: A method of `MLflowDuckDBManager` that returns a direct connection to the DuckDB database for analytics.
     *   **`query_experiments()`**: A method of `MLflowDuckDBManager` that executes a SQL query against the MLflow data using DuckDB.
-    *   **`get_best_models()`**: A method of `MLflowDuckDBManager` that retrieves the best models based on a specified metric.
+    *   **`get_best_models()`**: A method of `MLflowDuckDBManager` that retrieves the best models whbased on a specified metric.
     *   **`analyze_experiments()`**: A method of `MLflowDuckDBManager` that performs a summary analysis of all experiments.
     *   **`create_mlflow_manager()`**: A factory function to create an `MLflowDuckDBManager` instance with configuration from environment variables.
     *   **`setup_mlflow_duckdb()`**: A convenience function to set up MLflow with a DuckDB backend using environment configuration.
@@ -356,3 +348,41 @@ This file provides a comprehensive overview of all files in the project, includi
     *   **`handlers`**: Defines different log handlers, such as `console`, `file`, and `error_file`.
     *   **`loggers`**: Defines the loggers for different modules, such as `src`, `src.models`, and `src.data`.
     *   **`root`**: Defines the root logger.
+
+## `Dockerfile`
+
+*   **Purpose**: This file defines the Docker image for the application, ensuring a consistent and reproducible environment for development and deployment.
+*   **Usage**: It is used by `docker-compose` to build the images for the `app` and `mlflow` services.
+*   **Key Information**:
+    *   **Base Image**: Uses the `python:3.11-slim` image as a lightweight base.
+    *   **Working Directory**: Sets the working directory to `/app`.
+    *   **Dependency Management**: Copies the `pyproject.toml` and `uv.lock` files and uses `uv` to install all project dependencies, including optional extras.
+    *   **Git Installation**: Installs `git` to prevent warnings from MLflow about being unable to track Git commits.
+    *   **Application Code**: Copies the entire project directory into the image.
+
+## `docker-compose.yml`
+
+*   **Purpose**: This file defines and configures the multi-container Docker application for a local development environment.
+*   **Usage**: It is used with the `docker-compose` command to start, stop, and manage the application services (`docker-compose up`, `docker-compose down`).
+*   **Key Information**:
+    *   **`app` Service**:
+        *   The main container for running the application code and scripts.
+        *   Builds its image using the `Dockerfile` in the root directory.
+        *   Mounts the current project directory into the container at `/app` to allow for live code changes without rebuilding the image.
+        *   Depends on the `mlflow` service to ensure the tracking server is available.
+        *   The `command: tail -f /dev/null` is used to keep the container running during development, allowing for interactive use with `docker-compose exec`.
+    *   **`mlflow` Service**:
+        *   Runs the MLflow tracking server.
+        *   Exposes port `5000` to allow access to the MLflow UI from the host machine.
+        *   Uses volumes to persist MLflow data (`mlruns` directory for artifacts and `mlflow.duckdb` for the database) on the host machine.
+        *   The command starts the MLflow server using `uv run`, configured with a DuckDB backend and the appropriate artifact root.
+
+## `docs/LAST_SESSION.md`
+
+*   **Purpose**: This file provides a summary of the previous development session to ensure continuity.
+*   **Usage**: It is read at the beginning of a new session to quickly understand the project's current state, what was accomplished, and what the next steps are.
+*   **Key Information**:
+    *   **Session Date**: Records the date of the last session.
+    *   **Objective**: Briefly describes the goal of the previous session.
+    *   **Issues & Solutions**: Details any problems encountered and how they were resolved.
+    *   **Status & Next Steps**: Summarizes the state of the project at the end of the session and outlines the goals for the current session.
