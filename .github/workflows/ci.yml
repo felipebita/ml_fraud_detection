@@ -18,11 +18,11 @@ jobs:
 
       - name: Build the Docker services
         # We only need to build the 'app' service as it contains all dev dependencies
-        run: docker-compose build app
+        run: docker compose build app
 
       - name: Run pre-commit checks
         # Use 'run --rm' to start a fresh container for the command and remove it after
-        run: docker-compose run --rm app make pre-commit
+        run: docker compose run --rm app make pre-commit
 
       - name: Run tests
-        run: docker-compose run --rm app make test
+        run: docker compose run --rm app make test

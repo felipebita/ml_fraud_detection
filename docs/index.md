@@ -41,7 +41,7 @@ This project uses Docker and Docker Compose to create a consistent and isolated 
 3.  **Build and Start the Services:**
     This command will build the Docker images and start the `app` and `mlflow` services in the background.
     ```bash
-    docker-compose up --build -d
+    docker compose up --build -d
     ```
 
 ## 4. Project Usage
@@ -50,42 +50,42 @@ This project uses Docker and Docker Compose to create a consistent and isolated 
 
 -   **Starting the environment:** After the initial build, you can start all services in the background with:
     ```bash
-    docker-compose up -d
+    docker compose up -d
     ```
 
 -   **Stopping the environment:** To stop and remove the containers for a clean shutdown, use:
     ```bash
-    docker-compose down
+    docker compose down
     ```
 
 -   **Checking logs:** To view the real-time logs from all running services, you can use:
     ```bash
-    docker-compose logs -f
+    docker compose logs -f
     ```
 
 ### Running Commands
 
-All development commands should be run inside the `app` container to ensure consistency. This is done by prefixing your commands with `docker-compose exec app`.
+All development commands should be run inside the `app` container to ensure consistency. This is done by prefixing your commands with `docker compose exec app`.
 
 This project uses a `Makefile` to simplify common commands.
 
 -   **Run all tests:**
     ```bash
-    docker-compose exec app make test
+    docker compose exec app make test
     ```
 -   **Format and lint the code:**
     ```bash
-    docker-compose exec app make format
-    docker-compose exec app make lint
+    docker compose exec app make format
+    docker compose exec app make lint
     ```
 -   **Run the data pipeline:**
     ```bash
-    docker-compose exec app make data
+    docker compose exec app make data
     ```
 -   **Access the MLflow UI:**
     The MLflow UI is available at [http://localhost:5000](http://localhost:5000) in your browser.
 
-For a full list of commands, run `docker-compose exec app make help`.
+For a full list of commands, run `docker compose exec app make help`.
 
 ## 5. Project Structure
 

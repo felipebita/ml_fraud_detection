@@ -378,7 +378,7 @@ This file provides a comprehensive overview of all files in the project, includi
         *   Builds its image using the `Dockerfile` in the root directory.
         *   Mounts the current project directory into the container at `/app` to allow for live code changes without rebuilding the image.
         *   Depends on the `mlflow` service to ensure the tracking server is available.
-        *   The `command: tail -f /dev/null` is used to keep the container running during development, allowing for interactive use with `docker-compose exec`.
+        *   The `command: tail -f /dev/null` is used to keep the container running during development, allowing for interactive use with `docker compose exec`.
     *   **`mlflow` Service**:
         *   Runs the MLflow tracking server.
         *   Exposes port `5000` to allow access to the MLflow UI from the host machine.
