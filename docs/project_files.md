@@ -7,6 +7,7 @@ This file provides a comprehensive overview of all files in the project, includi
 - `./.github/`
     - `./.github/workflows/ci.yml`
 - `./configs/`
+    - `./configs/config.yaml`
     - `./configs/logging_config.yaml`
 - `./data/`
     - `./data/profiling_results.json`
@@ -37,6 +38,7 @@ This file provides a comprehensive overview of all files in the project, includi
         - `./src/data/data_profiler.py`
         - `./src/data/data_validator.py`
     - `./src/utils/`
+        - `./src/utils/config.py`
         - `./src/utils/logger.py`
         - `./src/utils/mlflow_analytics.py`
         - `./src/utils/mlflow_duckdb_setup.py`
@@ -288,6 +290,11 @@ This file provides a comprehensive overview of all files in the project, includi
 
 ### `src/utils/`
 
+#### `src/utils/config.py`
+
+*   **Purpose**: A utility module that provides a centralized system for managing project configuration.
+*   **Usage**: It exposes a single function, `get_config()`, which loads settings from `configs/config.yaml` and `configs/logging_config.yaml`, merges them, and overrides them with any matching environment variables. This provides a single, reliable source of truth for all configuration parameters throughout the application.
+
 #### `src/utils/logger.py`
 
 *   **Purpose**: This file provides a centralized logging setup for the entire project, using the `structlog` library for structured and configurable logging.
@@ -337,6 +344,7 @@ This file provides a comprehensive overview of all files in the project, includi
 
 *   **Purpose**: This directory contains configuration files for the project.
 *   **Key Files**:
+    *   `config.yaml`: The primary configuration file for the project. It stores non-sensitive settings such as file paths, model parameters, and environment-specific settings. This file is loaded by `src/utils/config.py` and its values can be overridden by environment variables.
     *   `logging_config.yaml`: Configures the logging for the project.
 
 ### `configs/logging_config.yaml`

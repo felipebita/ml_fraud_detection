@@ -1,6 +1,3 @@
-import logging
-import logging.handlers
-import sys
 from datetime import datetime
 from pathlib import Path
 from typing import Any, cast
@@ -8,80 +5,25 @@ from typing import Any, cast
 import pandas as pd
 import structlog
 from structlog import BoundLogger
-from structlog.stdlib import LoggerFactory
+
+from src.utils.config import get_config
 
 
-def setup_logging(
-    log_level: str = "INFO",
-    log_file: str | None = "logs/fraud_detection.log",
-    json_logs: bool = False,
-    environment: str = "development",
-) -> None:
-    """Configure structured logging for the fraud detection project"""
+def setup_logging() -> None:
+    """Configure logging for the project using the centralized configuration."""
+    config = get_config()
 
-    # Create logs directory if needed
-    if log_file:
-        Path(log_file).parent.mkdir(parents=True, exist_ok=True)
-
-    # Configure processors based on environment
-    timestamper = structlog.processors.TimeStamper(fmt="iso")
-
-    shared_processors: list[structlog.types.Processor] = [
-        structlog.stdlib.add_logger_name,
-        structlog.stdlib.add_log_level,
-        structlog.stdlib.PositionalArgumentsFormatter(),
-        timestamper,
-        structlog.processors.StackInfoRenderer(),
-        structlog.processors.format_exc_info,
-        structlog.processors.UnicodeDecoder(),
-        structlog.processors.CallsiteParameterAdder(
-            parameters=[
-                structlog.processors.CallsiteParameter.FILENAME,
-                structlog.processors.CallsiteParameter.LINENO,
-                structlog.processors.CallsiteParameter.FUNC_NAME,
-            ]
-        ),
-    ]
-
-    if json_logs or environment == "production":
-        # JSON output for production/analysis
-        processors = shared_processors + [structlog.processors.JSONRenderer()]
-    else:
-        # Human-readable output for development
-        processors = shared_processors + [structlog.dev.ConsoleRenderer(colors=False)]
-
-    structlog.configure(
-        processors=processors,
-        context_class=dict,
-        logger_factory=LoggerFactory(),
-        cache_logger_on_first_use=True,
-    )
-
-    # Setup standard logging
-    log_level_value = getattr(logging, log_level.upper())
-
-    # Console handler
-    console_handler = logging.StreamHandler(sys.stdout)
-    console_handler.setLevel(log_level_value)
-
-    # Configure root logger
-    logging.basicConfig(
-        format="%(message)s",
-        handlers=[console_handler],
-        level=log_level_value,
-    )
-
-    # File handler if specified
-    if log_file:
-        file_handler = logging.handlers.RotatingFileHandler(
-            log_file, maxBytes=10485760, backupCount=5  # 10MB
-        )
-        file_handler.setLevel(log_level_value)
-        logging.getLogger().addHandler(file_handler)
+    # The get_config function already calls logging.config.dictConfig
+    # so we just need to ensure the log directory exists.
+    log_config = config.get("logging_config")
+    if log_config and "file" in log_config.get("handlers", {}):
+        log_file = log_config["handlers"]["file"].get("filename")
+        if log_file:
+            Path(log_file).parent.mkdir(parents=True, exist_ok=True)
 
 
 def get_logger(name: str) -> BoundLogger:
-    """Get a structured logger instance"""
+    """Get a structured logger instance."""
     return cast(BoundLogger, structlog.get_logger(name))
 
 

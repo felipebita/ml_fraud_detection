@@ -19,54 +19,73 @@ The central goal is to develop a machine learning model that maximizes revenue u
 
 ## 3. Installation
 
-To set up the project, you need Python 3.11+ and `uv`.
+This project uses Docker and Docker Compose to create a consistent and isolated development environment.
+
+**Prerequisites:**
+- Docker
+- Docker Compose
 
 1.  **Clone the repository:**
     ```bash
     git clone https://github.com/felipebita/ml_fraud_detection.git
-    cd your-repo
+    cd ml_fraud_detection
     ```
 
-2.  **Create the virtual environment and install dependencies:**
-    ```bash
-    uv venv
-    uv pip install -e .[dev,notebook]
-    ```
-
-3.  **Set up pre-commit hooks:**
-    ```bash
-    pre-commit install
-    ```
-
-4.  **Configure Environment Variables:**
-    Copy the example environment file and fill in your details.
+2.  **Configure Environment Variables:**
+    Copy the example environment file. The default values are suitable for local development.
     ```bash
     cp .env.example .env
     ```
+    *Note: Your local user ID and group ID will be passed to the container to prevent file permission issues. The defaults are `1000:1000`.*
 
-## 4. Quick Start
+3.  **Build and Start the Services:**
+    This command will build the Docker images and start the `app` and `mlflow` services in the background.
+    ```bash
+    docker-compose up --build -d
+    ```
+
+## 4. Project Usage
+
+### Managing the Environment
+
+-   **Starting the environment:** After the initial build, you can start all services in the background with:
+    ```bash
+    docker-compose up -d
+    ```
+
+-   **Stopping the environment:** To stop and remove the containers for a clean shutdown, use:
+    ```bash
+    docker-compose down
+    ```
+
+-   **Checking logs:** To view the real-time logs from all running services, you can use:
+    ```bash
+    docker-compose logs -f
+    ```
+
+### Running Commands
+
+All development commands should be run inside the `app` container to ensure consistency. This is done by prefixing your commands with `docker-compose exec app`.
 
 This project uses a `Makefile` to simplify common commands.
 
 -   **Run all tests:**
     ```bash
-    make test
+    docker-compose exec app make test
     ```
 -   **Format and lint the code:**
     ```bash
-    make format
-    make lint
+    docker-compose exec app make format
+    docker-compose exec app make lint
     ```
--   **Start the MLflow UI:**
+-   **Run the data pipeline:**
     ```bash
-    make dashboard
+    docker-compose exec app make data
     ```
--   **Run the training pipeline:**
-    ```bash
-    make train
-    ```
+-   **Access the MLflow UI:**
+    The MLflow UI is available at [http://localhost:5000](http://localhost:5000) in your browser.
 
-For a full list of commands, run `make help`.
+For a full list of commands, run `docker-compose exec app make help`.
 
 ## 5. Project Structure
 

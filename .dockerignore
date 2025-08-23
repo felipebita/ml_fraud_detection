@@ -1,0 +1,51 @@
+# Git
+.git
+.gitignore
+
+# Docker
+.dockerignore
+Dockerfile
+docker-compose.yml
+
+# Python virtual environment
+.venv
+venv
+env
+
+# Python caches
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+
+# Cache and temp files
+.pytest_cache
+.mypy_cache
+.ruff_cache
+.coverage
+*.egg-info
+
+# IDE and OS specific
+.vscode
+.idea
+.DS_Store
+
+# Local environment files
+.env*
+
+# Build and distribution
+build/
+dist/
+*.egg
+
+# Logs and reports
+logs/
+htmlcov/
+coverage.xml
+
+# MLflow data (managed by volumes)
+mlruns/
+mlflow.duckdb
+
+# Project Data (managed by volumes)
+data/

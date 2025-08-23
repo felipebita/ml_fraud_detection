@@ -9,32 +9,20 @@ on:
       - main
 
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
+      - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Set up Python 3.11
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.11'
+      - name: Build the Docker services
+        # We only need to build the 'app' service as it contains all dev dependencies
+        run: docker-compose build app
 
-      - name: Install uv
-        run: pip install uv
-
-      - name: Create Virtual Environment
-        run: uv venv
-
-      - name: Install dependencies
-        run: uv pip install -e .[dev,notebook]
-
-      - name: Run linter
-        run: make lint
-
-      - name: Run type checker
-        run: make type-check
+      - name: Run pre-commit checks
+        # Use 'run --rm' to start a fresh container for the command and remove it after
+        run: docker-compose run --rm app make pre-commit
 
       - name: Run tests
-        run: make test
+        run: docker-compose run --rm app make test

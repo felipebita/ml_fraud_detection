@@ -1,12 +1,12 @@
 # src/data/data_loader.py
 
-import os
 from pathlib import Path
 
 import pandas as pd
 from pydantic import BaseModel, ValidationError
 
 from src.data.data_validator import DataValidator
+from src.utils.config import get_config
 from src.utils.logger import LoggerContext, get_logger, log_data_info
 
 logger = get_logger(__name__)
@@ -31,13 +31,10 @@ class TransactionSchema(BaseModel):
     isFlaggedFraud: int
 
 
-def load_data(file_name: str = "raw.csv") -> pd.DataFrame:
+def load_data() -> pd.DataFrame:
     """
-    Loads transaction data from a CSV file, validates it against a Pydantic
-    schema, and returns a clean DataFrame.
-
-    Args:
-        file_name (str): The name of the CSV file to load from the raw data path.
+    Loads transaction data from the path specified in the configuration,
+    validates it against a Pydantic schema, and returns a clean DataFrame.
 
     Returns:
         pd.DataFrame: A DataFrame containing the validated transaction data.
@@ -46,19 +43,17 @@ def load_data(file_name: str = "raw.csv") -> pd.DataFrame:
         FileNotFoundError: If the specified file does not exist.
         ValueError: If the file is empty or contains no valid data after validation.
     """
-    with LoggerContext(logger, "load_data", file_name=file_name) as log_context:
-        # 1. Resolve data path from environment variables
-        raw_data_path_str = os.getenv("RAW_DATA_PATH", "./data/raw")
-        file_path = Path(raw_data_path_str) / file_name
-        log_context.context["file_path"] = str(file_path)
+    config = get_config()
+    file_path = Path(config["data"]["raw_path"])
 
-        # 2. Check for file existence
+    with LoggerContext(logger, "load_data", file_path=str(file_path)) as log_context:
+        # 1. Check for file existence
         if not file_path.exists():
             raise FileNotFoundError(f"Data file not found at: {file_path}")
 
         logger.info("File found. Attempting to load into pandas DataFrame.")
 
-        # 3. Load data with basic error handling
+        # 2. Load data with basic error handling
         try:
             df = pd.read_csv(file_path)
             if df.empty:
@@ -69,7 +64,7 @@ def load_data(file_name: str = "raw.csv") -> pd.DataFrame:
             logger.error("Failed to load CSV file.", error=str(e))
             raise
 
-        # 4. Validate data row-by-row using Pydantic
+        # 3. Validate data row-by-row using Pydantic
         valid_records: list[dict] = []
         invalid_row_count = 0
 
@@ -98,7 +93,7 @@ def load_data(file_name: str = "raw.csv") -> pd.DataFrame:
                 "No valid transaction data found in the file after validation."
             )
 
-        # 5. Create final DataFrame and log summary
+        # 4. Create final DataFrame and log summary
         validated_df = pd.DataFrame(valid_records)
         log_data_info(logger, validated_df, dataset_name="pydantic_validated_data")
 
@@ -110,7 +105,7 @@ if __name__ == "__main__":
 
     try:
         # 1. Load data with initial Pydantic validation
-        initial_df = load_data(file_name="raw.csv")
+        initial_df = load_data()
 
         # 2. Perform DataFrame-level validation with Pandera
         validator = DataValidator()
@@ -120,15 +115,14 @@ if __name__ == "__main__":
         standardized_df = validator.standardize(validated_df)
 
         # 4. Save the final, trusted DataFrame
-        processed_data_path_str = os.getenv("PROCESSED_DATA_PATH", "./data/processed")
-        output_path = Path(processed_data_path_str)
-        output_path.mkdir(parents=True, exist_ok=True)
-        output_file = output_path / "transactions.parquet"
+        config = get_config()
+        output_path = Path(config["data"]["processed_path"])
+        output_path.parent.mkdir(parents=True, exist_ok=True)
 
         with LoggerContext(
-            logger, "save_processed_data", output_file=str(output_file)
+            logger, "save_processed_data", output_file=str(output_path)
         ) as log_context:
-            standardized_df.to_parquet(output_file, index=False)
+            standardized_df.to_parquet(output_path, index=False)
             log_data_info(logger, standardized_df, dataset_name="final_processed_data")
             logger.info("Processed data saved successfully.")
 

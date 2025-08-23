@@ -1,0 +1,15 @@
+# General project configuration
+project_name: "ml_fraud_detection"
+environment: "development" # Default environment
+
+# Paths
+data:
+  raw_path: "data/raw/fraud_data.csv"
+  processed_path: "data/processed/processed_transactions.parquet"
+  profiling_results_path: "data/profiling_results.json"
+
+# MLflow configuration
+mlflow:
+  experiment_name: "fraud_detection"
+  tracking_uri: "sqlite:///mlflow.duckdb" # Default local tracking
+  artifact_root: "./mlruns"
