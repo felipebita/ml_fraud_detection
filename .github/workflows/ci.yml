@@ -21,7 +21,11 @@ jobs:
         run: docker compose build app
 
       - name: Run pre-commit checks
+        env:
+          UV_CACHE_DIR: /app/.cache/uv
         run: docker compose run --rm --user "$(id -u):$(id -g)" app make pre-commit
 
       - name: Run tests
+        env:
+          UV_CACHE_DIR: /app/.cache/uv
         run: docker compose run --rm --user "$(id -u):$(id -g)" app make test
