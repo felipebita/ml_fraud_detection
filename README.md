@@ -4,93 +4,73 @@
 [![codecov](https://codecov.io/gh/felipebita/ml_fraud_detection/branch/main/graph/badge.svg)](https://codecov.io/gh/felipebita/ml_fraud_detection)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-This project provides a production-ready machine learning system to power a real-time fraud detection API. The model classifies mobile financial transactions as fraudulent or legitimate, with a primary focus on optimizing for financial performance and demonstrating MLOps best practices.
+This project provides a production-ready machine learning system to power a real-time fraud detection API. It is designed to classify mobile financial transactions as fraudulent or legitimate, with a focus on MLOps best practices.
 
-## 1. Business Context
+## Documentation
 
-"Blocker Fraud Systems" is a B2B SaaS company providing a fraud detection API to e-commerce and fintech clients. The service is designed to reduce clients' fraud-related losses while protecting their customer experience by minimizing the rejection of legitimate transactions. The service operates on a hybrid pricing model, combining a base API fee with a performance incentive based on the value of correctly identified fraud.
+For detailed information on project architecture, business context, and operational guides, please see the **full documentation site**.
+>(Note: The site will be deployed at a later stage. For now, you can serve it locally.)
 
-## 2. Project Goals
-
-The central goal is to develop a machine learning model that maximizes revenue under the defined business model. This involves:
-- Developing a predictive model for fraud risk.
-- Optimizing the classification threshold for profitability.
-- Quantifying the financial impact for both the client and the company.
-
-## 3. Installation
+## Getting Started
 
 This project uses Docker and Docker Compose to create a consistent and isolated development environment.
 
-**Prerequisites:**
+### Prerequisites
+
 - Docker
 - Docker Compose
 
-1.  **Clone the repository:**
-    ```bash
-    git clone https://github.com/felipebita/ml_fraud_detection.git
-    cd ml_fraud_detection
-    ```
+### 1. Clone & Configure
 
-2.  **Configure Environment Variables:**
-    Copy the example environment file. The default values are suitable for local development.
-    ```bash
-    cp .env.example .env
-    ```
+```bash
+# Clone the repository
+git clone https://github.com/felipebita/ml_fraud_detection.git
+cd ml_fraud_detection
 
-3.  **Build and Start the Services:**
-    This command will build the Docker images and start the `app` and `mlflow` services in the background.
-    ```bash
-    docker compose up --build -d
-    ```
+# Copy the example environment file (defaults are fine for local use)
+cp .env.example .env
+```
+*Note: Your local user ID and group ID are passed to the container to prevent file permission issues.*
 
-## 4. Quick Start
+### 2. Build & Run
 
-All development commands should be run inside the `app` container to ensure consistency. This is done by prefixing your commands with `docker compose exec app`.
+This command builds the Docker images and starts the `app` and `mlflow` services in the background.
 
-This project uses a `Makefile` to simplify common commands.
+```bash
+docker compose up --build -d
+```
+*The `--build` flag is only needed when dependencies in `pyproject.toml` change.*
+
+## Basic Usage
+
+All commands should be run inside the `app` container using `docker compose exec app <command>`. A `Makefile` provides shortcuts for common tasks.
 
 -   **Run all tests:**
     ```bash
     docker compose exec app make test
     ```
--   **Format and lint the code:**
+-   **Format and lint code:**
     ```bash
     docker compose exec app make format
-    docker compose exec app make lint
     ```
--   **Access the MLflow UI:**
-    The MLflow UI is available at [http://localhost:5000](http://localhost:5000) in your browser.
+-   **Run the data pipeline:**
+    ```bash
+    docker compose exec app make data
+    ```
+-   **See all available commands:**
+    ```bash
+    docker compose exec app make help
+    ```
 
-For a full list of commands, run `docker compose exec app make help`.
+### Accessing Services
 
-## 5. Project Structure
+-   **MLflow UI:** [http://localhost:5000](http://localhost:5000)
+-   **Documentation Site (Local):** Run `docker compose exec app make docs-serve` and go to [http://localhost:8000](http://localhost:8000)
 
-The repository is organized to support a scalable, production-focused MLOps workflow.
-
-```
-├── configs/            # Configuration files (logging, parameters).
-├── data/               # Raw, processed, and feature data.
-├── docs/               # High-level documentation (testing strategy, architecture).
-├── models/             # Serialized models and artifacts.
-├── notebooks/          # Jupyter notebooks for EDA and analysis.
-├── scripts/            # Standalone scripts for tasks like starting services.
-├── src/                # Main source code for the project.
-│   ├── data/           # Data loading, validation, and processing.
-│   ├── features/       # Feature engineering and transformation.
-│   ├── models/         # Model training and prediction logic.
-│   └── utils/          # Utility functions (logging, config management).
-├── tests/              # Unit and integration tests.
-├── .github/            # CI/CD workflows.
-├── Makefile            # Command shortcuts for development tasks.
-├── mkdocs.yml          # Configuration for the documentation site.
-├── pyproject.toml      # Project metadata and dependencies.
-└── README.md           # This file.
-```
-
-## 6. Contributing
+## Contributing
 
 Contributions are welcome! Please see `CONTRIBUTING.md` for details on how to submit a pull request.
 
-## 7. License
+## License
 
 This project is licensed under the MIT License. See the `LICENSE` file for details.

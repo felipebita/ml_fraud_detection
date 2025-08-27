@@ -333,7 +333,7 @@ This file provides a comprehensive overview of all files in the project, includi
 ## `tests/`
 
 *   **Purpose**: This directory contains all the tests for the project.
-*   **Usage**: For a detailed breakdown of the testing strategy, test suites, and how to run the tests, please see the [**`TESTING.md`**](./TESTING.md) file.
+*   **Usage**: For a detailed breakdown of the testing strategy, test suites, and how to run the tests, please see the [**`testing.md`**](./testing.md) file.
 
 ## `Makefile`
 

@@ -72,8 +72,8 @@ feature-repo-init:
 	uv run feast init
 
 docs-serve:
-	@echo "Starting documentation server at http://127.0.0.1:8000"
-	uv run mkdocs serve
+	@echo "Starting documentation server at http://0.0.0.0:8000"
+	uv run mkdocs serve --dev-addr 0.0.0.0:8000
 
 docs-build:
 	@echo "Building documentation site..."

@@ -1,6 +1,3 @@
-# ml_fraud_detection
-# Project: Real-Time Fraud Detection API
-
 ## 1. Executive Summary
 
 This project details the creation of a machine learning model to power a real-time fraud detection API. The model classifies mobile financial transactions as fraudulent or legitimate, with a primary focus on optimizing for financial performance. The analysis culminates in a quantitative assessment of the model's business value, projecting both client savings and revenue for the service provider.
