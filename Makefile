@@ -1,6 +1,6 @@
 # Makefile for the Fraud Detection project
 
-.PHONY: help setup data train evaluate test serve dashboard feature-repo-init docs-serve docs-build docs-preview
+.PHONY: help setup data train evaluate test serve dashboard feature-repo-init docs-serve docs-build docs-preview archive-session
 
 help:
 	@echo "Commands:"
@@ -20,6 +20,7 @@ help:
 	@echo "  docs-serve     : Serve the documentation site locally (development)"
 	@echo "  docs-build     : Build the documentation site (for deployment)"
 	@echo "  docs-preview   : Serve the built documentation site (for review)"
+	@echo "  archive-session: Archives a copy of the current LAST_SESSION.md."
 
 setup:
 	@echo "Setting up the project..."
@@ -33,6 +34,7 @@ data:
 train:
 	@echo "Training models..."
 	# Add model training commands here
+
 
 evaluate:
 	@echo "Evaluating models..."
@@ -62,6 +64,8 @@ serve:
 	@echo "Starting the model server..."
 	# Add model serving commands here
 
+
+
 dashboard:
 	@echo "Launching MLflow UI..."
 	@./scripts/start_mlflow_duckdb.sh
@@ -82,3 +86,9 @@ docs-build:
 docs-preview:
 	@echo "Serving built documentation site from site/ directory..."
 	@cd site && python -m http.server 8000
+
+archive-session:
+	@echo "Archiving session..."
+	@TIMESTAMP=$$(date +%Y-%m-%d_%H-%M); \
+	cp project_development/LAST_SESSION.md project_development/sessions_log/$$TIMESTAMP-session.md; \
+	echo "Session content archived to project_development/sessions_log/$$TIMESTAMP-session.md"
