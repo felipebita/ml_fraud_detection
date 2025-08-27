@@ -6,6 +6,7 @@ nav:
   - 'Usage Guide': 'usage.md'
   - 'Business': 'business.md'
   - 'Project Files': 'project_files.md'
+  - 'Logging': 'logging.md'
   - 'Testing Strategy': 'testing.md'
 
 theme:
