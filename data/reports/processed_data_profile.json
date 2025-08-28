@@ -1,0 +1,263 @@
+{
+  "basic_info": {
+    "n_rows": 600000,
+    "n_columns": 11,
+    "memory_usage_mb": 114.4211654663086,
+    "column_names": [
+      "step",
+      "type",
+      "amount",
+      "nameOrig",
+      "oldbalanceOrg",
+      "newbalanceOrig",
+      "nameDest",
+      "oldbalanceDest",
+      "newbalanceDest",
+      "isFraud",
+      "isFlaggedFraud"
+    ]
+  },
+  "data_types": {
+    "step": "int64",
+    "type": "category",
+    "amount": "float64",
+    "nameOrig": "object",
+    "oldbalanceOrg": "float64",
+    "newbalanceOrig": "float64",
+    "nameDest": "object",
+    "oldbalanceDest": "float64",
+    "newbalanceDest": "float64",
+    "isFraud": "int64",
+    "isFlaggedFraud": "int64"
+  },
+  "missing_values": {
+    "step": {
+      "n_missing": 0,
+      "pct_missing": 0.0,
+      "is_problematic": "False"
+    },
+    "type": {
+      "n_missing": 0,
+      "pct_missing": 0.0,
+      "is_problematic": "False"
+    },
+    "amount": {
+      "n_missing": 0,
+      "pct_missing": 0.0,
+      "is_problematic": "False"
+    },
+    "nameOrig": {
+      "n_missing": 0,
+      "pct_missing": 0.0,
+      "is_problematic": "False"
+    },
+    "oldbalanceOrg": {
+      "n_missing": 0,
+      "pct_missing": 0.0,
+      "is_problematic": "False"
+    },
+    "newbalanceOrig": {
+      "n_missing": 0,
+      "pct_missing": 0.0,
+      "is_problematic": "False"
+    },
+    "nameDest": {
+      "n_missing": 0,
+      "pct_missing": 0.0,
+      "is_problematic": "False"
+    },
+    "oldbalanceDest": {
+      "n_missing": 0,
+      "pct_missing": 0.0,
+      "is_problematic": "False"
+    },
+    "newbalanceDest": {
+      "n_missing": 0,
+      "pct_missing": 0.0,
+      "is_problematic": "False"
+    },
+    "isFraud": {
+      "n_missing": 0,
+      "pct_missing": 0.0,
+      "is_problematic": "False"
+    },
+    "isFlaggedFraud": {
+      "n_missing": 0,
+      "pct_missing": 0.0,
+      "is_problematic": "False"
+    }
+  },
+  "numerical_stats": {
+    "step": {
+      "mean": 243.6237,
+      "median": 239.0,
+      "std": 142.5906,
+      "min": "1",
+      "max": "742",
+      "q1": 156.0,
+      "q3": 335.0,
+      "iqr": 179.0,
+      "n_outliers": 9719,
+      "n_zeros": 0,
+      "n_negative": 0
+    },
+    "amount": {
+      "mean": 180370.0758,
+      "median": 75112.04,
+      "std": 634894.462,
+      "min": 0.0,
+      "max": 92445516.64,
+      "q1": 13386.7425,
+      "q3": 209044.235,
+      "iqr": 195657.4925,
+      "n_outliers": 31839,
+      "n_zeros": 2,
+      "n_negative": 0
+    },
+    "oldbalanceOrg": {
+      "mean": 837464.6586,
+      "median": 14116.0,
+      "std": 2902108.6528,
+      "min": 0.0,
+      "max": 59585040.37,
+      "q1": 0.0,
+      "q3": 107132.1325,
+      "iqr": 107132.1325,
+      "n_outliers": 104943,
+      "n_zeros": 197882,
+      "n_negative": 0
+    },
+    "newbalanceOrig": {
+      "mean": 858778.2119,
+      "median": 0.0,
+      "std": 2937386.2527,
+      "min": 0.0,
+      "max": 49585040.37,
+      "q1": 0.0,
+      "q3": 144690.055,
+      "iqr": 144690.055,
+      "n_outliers": 99220,
+      "n_zeros": 340268,
+      "n_negative": 0
+    },
+    "oldbalanceDest": {
+      "mean": 1096816.2244,
+      "median": 132465.89,
+      "std": 3353856.0725,
+      "min": 0.0,
+      "max": 300985927.86,
+      "q1": 0.0,
+      "q3": 943983.66,
+      "iqr": 943983.66,
+      "n_outliers": 74121,
+      "n_zeros": 255071,
+      "n_negative": 0
+    },
+    "newbalanceDest": {
+      "mean": 1221589.3261,
+      "median": 215287.575,
+      "std": 3651896.6923,
+      "min": 0.0,
+      "max": 301140972.46,
+      "q1": 0.0,
+      "q3": 1112510.75,
+      "iqr": 1112510.75,
+      "n_outliers": 69602,
+      "n_zeros": 230397,
+      "n_negative": 0
+    },
+    "isFraud": {
+      "mean": 0.0013,
+      "median": 0.0,
+      "std": 0.0364,
+      "min": "0",
+      "max": "1",
+      "q1": 0.0,
+      "q3": 0.0,
+      "iqr": 0.0,
+      "n_outliers": 798,
+      "n_zeros": 599202,
+      "n_negative": 0
+    },
+    "isFlaggedFraud": {
+      "mean": 0.0,
+      "median": 0.0,
+      "std": 0.0026,
+      "min": "0",
+      "max": "1",
+      "q1": 0.0,
+      "q3": 0.0,
+      "iqr": 0.0,
+      "n_outliers": 4,
+      "n_zeros": 599996,
+      "n_negative": 0
+    }
+  },
+  "categorical_stats": {
+    "type": {
+      "n_unique": 5,
+      "top_5_values": {
+        "CASH_OUT": 210764,
+        "PAYMENT": 202987,
+        "CASH_IN": 132219,
+        "TRANSFER": 50157,
+        "DEBIT": 3873
+      },
+      "has_high_cardinality": false
+    },
+    "nameOrig": {
+      "n_unique": 599928,
+      "top_5_values": {
+        "C993304462": 2,
+        "C1510424070": 2,
+        "C1221138730": 2,
+        "C1159603532": 2,
+        "C1501184174": 2
+      },
+      "has_high_cardinality": true
+    },
+    "nameDest": {
+      "n_unique": 436787,
+      "top_5_values": {
+        "C2083562754": 17,
+        "C488044861": 15,
+        "C1899073220": 14,
+        "C1369695156": 13,
+        "C288197656": 13
+      },
+      "has_high_cardinality": true
+    }
+  },
+  "data_quality_issues": [
+    {
+      "type": "balance_inconsistency",
+      "severity": "medium",
+      "description": "Found 338359 transactions with balance inconsistencies",
+      "recommendation": "Investigate balance calculation logic"
+    }
+  ],
+  "class_distribution": {
+    "fraud_column": "isFraud",
+    "fraud_cases": 798,
+    "normal_cases": 599202,
+    "fraud_percentage": 0.13,
+    "imbalance_ratio": 750.88,
+    "is_highly_imbalanced": "True"
+  },
+  "temporal_analysis": {
+    "step_analysis": {
+      "min_step": 1,
+      "max_step": 742,
+      "duration_hours": 741,
+      "duration_days": 30.88,
+      "unique_steps": 641,
+      "total_fraud_cases": 798,
+      "hours_with_fraud": 477
+    },
+    "fraud_temporal_pattern": {
+      "avg_fraud_rate_pct": 0.5078,
+      "note": "Based on hours with 10+ transactions"
+    }
+  },
+  "profiling_timestamp": "2025-08-28T02:49:25.992409"
+}

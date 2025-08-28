@@ -6,7 +6,8 @@ environment: "development" # Default environment
 data:
   raw_path: "data/raw/fraud_data.csv"
   processed_path: "data/processed/processed_transactions.parquet"
-  profiling_results_path: "data/profiling_results.json"
+  raw_profile_path: "data/reports/raw_data_profile.json"
+  processed_profile_path: "data/reports/processed_data_profile.json"
 
 # MLflow configuration
 mlflow:

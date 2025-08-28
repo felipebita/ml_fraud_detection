@@ -27,14 +27,14 @@ setup:
 	uv sync --all-extras
 	uv run pre-commit install
 
-data:
+
+data-load:
 	@echo "Running the data pipeline..."
 	uv run python3 -m src.data.data_loader
 
 train:
 	@echo "Training models..."
 	# Add model training commands here
-
 
 evaluate:
 	@echo "Evaluating models..."
@@ -63,8 +63,6 @@ test:
 serve:
 	@echo "Starting the model server..."
 	# Add model serving commands here
-
-
 
 dashboard:
 	@echo "Launching MLflow UI..."

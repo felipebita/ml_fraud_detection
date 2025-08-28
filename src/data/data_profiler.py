@@ -232,7 +232,7 @@ class DataProfiler:
             if len(significant_hours) > 0:
                 temporal_stats["fraud_temporal_pattern"] = {
                     "avg_fraud_rate_pct": round(
-                        significant_hours["fraud_rate"].mean() * 100, 4
+                        significant_hours["fraud_ratio"].mean() * 100, 4
                     ),
                     "note": "Based on hours with 10+ transactions",
                 }

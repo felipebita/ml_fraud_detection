@@ -9,14 +9,15 @@
 *.key
 *.pem
 credentials/
+project_development/
 
 # ============================================
 # Data - Include samples for portfolio
 # ============================================
 # Ignore large data files
 data/raw/raw.csv
-data/processed/transactions.parquet
-data/processed/validated_raw_data.parquet
+data/processed/processed_transactions.parquet
+
 
 # But INCLUDE sample data
 !data/raw/sample_*.csv

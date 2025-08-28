@@ -5,6 +5,7 @@ from pathlib import Path
 import pandas as pd
 from pydantic import BaseModel, ValidationError
 
+from src.data.data_profiler import quick_profile
 from src.data.data_validator import DataValidator
 from src.utils.config import get_config
 from src.utils.logger import LoggerContext, get_logger, log_data_info
@@ -102,20 +103,30 @@ def load_data() -> pd.DataFrame:
 
 if __name__ == "__main__":
     logger.info("--- Starting Data Ingestion & Validation Pipeline ---")
+    config = get_config()
 
     try:
         # 1. Load data with initial Pydantic validation
         initial_df = load_data()
 
-        # 2. Perform DataFrame-level validation with Pandera
+        # 2. Profile the raw, Pydantic-validated data
+        logger.info("--- Profiling Raw Data ---")
+        raw_profile_path = config["data"]["raw_profile_path"]
+        quick_profile(initial_df, export_path=raw_profile_path)
+
+        # 3. Perform DataFrame-level validation with Pandera
         validator = DataValidator()
         validated_df = validator.validate(initial_df)
 
-        # 3. Standardize the validated data
+        # 4. Standardize the validated data
         standardized_df = validator.standardize(validated_df)
 
-        # 4. Save the final, trusted DataFrame
-        config = get_config()
+        # 5. Profile the final, processed data
+        logger.info("--- Profiling Processed Data ---")
+        processed_profile_path = config["data"]["processed_profile_path"]
+        quick_profile(standardized_df, export_path=processed_profile_path)
+
+        # 6. Save the final, trusted DataFrame
         output_path = Path(config["data"]["processed_path"])
         output_path.parent.mkdir(parents=True, exist_ok=True)
 

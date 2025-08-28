@@ -21,11 +21,11 @@ You are reading it now. This is always your first step.
 ### Step 2: Read the Core Documentation
 To understand the project's context, goals, and structure, read these five files in order:
 
-1.  `docs/business.md` (The "Why")
-2.  `project_development/PROJECT_PLAN.md` (The "What")
-3.  `project_development/LAST_SESSION.md` (The "What's Next")
-4.  `docs/usage.md` (The "How")
-5.  `docs/project_files.md` (The "Where")
+1.  `docs/business.md`
+2.  `project_development/PROJECT_PLAN.md`
+3.  `project_development/LAST_SESSION.md`
+4.  `docs/usage.md`
+5.  `docs/project_files.md`
 
 For any other file, wait for me to explicitly ask you to read it.
 
@@ -37,4 +37,4 @@ Follow this simplified procedure for all coding tasks.
 1.  **Understand the Goal:** Discuss the task with me to ensure you understand the requirements.
 2.  **Locate & Read:** Identify the relevant files to the task. Read them to understand the current implementation.
 3.  **Propose Code Changes:** Based on your understanding, propose the necessary code modifications. Explain your reasoning clearly.
-4.  **Propose Validation Commands:** After providing the code, **always** provide the `make test` and `make lint` commands so I can validate the changes on my end.
+4.  **Propose Validation Commands:** After providing the code, **always** provide the `make test` command so I can validate the changes on my end.
