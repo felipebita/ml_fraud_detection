@@ -1,5 +1,6 @@
 site_name: Real-Time Fraud Detection API
 site_description: Project documentation for the Real-Time Fraud Detection API.
+repo_url: https://github.com/felipebita/ml_fraud_detection
 
 nav:
   - 'Home': 'index.md'
@@ -8,6 +9,7 @@ nav:
   - 'Project Files': 'project_files.md'
   - 'Logging': 'logging.md'
   - 'Testing Strategy': 'testing.md'
+  - 'Code Quality': 'code_quality.md'
 
 theme:
   name: material

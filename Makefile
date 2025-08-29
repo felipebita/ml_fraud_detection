@@ -81,12 +81,16 @@ docs-build:
 	@echo "Building documentation site..."
 	uv run mkdocs build
 
-docs-preview:
-	@echo "Serving built documentation site from site/ directory..."
-	@cd site && python -m http.server 8000
+docs-deploy:
+	@echo "Deploying documentation to GitHub Pages..."
+	uv run mkdocs gh-deploy --force
+
+docs-deploy-workaround:
+	@echo "Deploying documentation using workaround script..."
+	./scripts/deploy_docs.sh
 
 archive-session:
 	@echo "Archiving session..."
-	@TIMESTAMP=$$(date +%Y-%m-%d_%H-%M); \
-	cp project_development/LAST_SESSION.md project_development/sessions_log/$$TIMESTAMP-session.md; \
-	echo "Session content archived to project_development/sessions_log/$$TIMESTAMP-session.md"
+	@TIMESTAMP=$(date +%Y-%m-%d_%H-%M); \
+	cp project_development/LAST_SESSION.md project_development/sessions_log/$TIMESTAMP-session.md; \
+	echo "Session content archived to project_development/sessions_log/$TIMESTAMP-session.md"

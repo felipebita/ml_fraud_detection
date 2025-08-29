@@ -10,10 +10,12 @@ services:
       - "8000:8000"
     volumes:
       - .:/app
+      - ${SSH_AUTH_SOCK}:${SSH_AUTH_SOCK}
     depends_on:
       - mlflow
     environment:
       - MLFLOW_TRACKING_URI=http://mlflow:5000
+      - SSH_AUTH_SOCK=${SSH_AUTH_SOCK}
     command: tail -f /dev/null
 
   mlflow:
