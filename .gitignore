@@ -2,7 +2,7 @@
 
 # ============================================
 # CRITICAL - Never commit these!
-# ============================================
+# # ============================================
 .env
 .env.*
 !.env.example
@@ -66,3 +66,13 @@ mlflow.duckdb
 !reports/figures/*.png
 !reports/model_comparison.html
 !logs/training_example.log
+
+# ============================================
+# Generated Documentation Site
+# ============================================
+site/
+
+# ============================================
+# Nested Git Repositories
+# ============================================
+test-clone/
