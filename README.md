@@ -8,8 +8,7 @@ This project provides a production-ready machine learning system to power a real
 
 ## Documentation
 
-For detailed information on project architecture, business context, and operational guides, please see the **full documentation site**.
->(Note: The site will be deployed at a later stage. For now, you can serve it locally.)
+For detailed information on project architecture, business context, and operational guides, please see the [**full documentation site**](https://felipebita.github.io/ml_fraud_detection/).
 
 ## Getting Started
 
