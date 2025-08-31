@@ -14,8 +14,10 @@ ARG GID=1000
 # 1. Install system dependencies and uv as root
 RUN apt-get update && \
     apt-get install -y git make && \
-    rm -rf /var/lib/apt/lists/* && \
-    pip install uv
+    rm -rf /var/lib/apt/lists/*
+
+# Install uv using the recommended method
+COPY --from=ghcr.io/astral-sh/uv:latest /uv /usr/local/bin/uv
 
 # 2. Install third-party dependencies from pyproject.toml
 # This creates a cached layer that only changes when dependencies change.
@@ -42,5 +44,5 @@ USER appuser
 # Expose the port the app runs on
 EXPOSE 8000
 
-# Define the command to run the application
-CMD ["uv", "run", "python", "-m", "src.utils.logger"]
+# Keep the container running for development
+CMD ["tail", "-f", "/dev/null"]

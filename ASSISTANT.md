@@ -10,6 +10,7 @@ These are your foundational rules. Follow them at all times.
 *   **Primacy of the `Makefile`:** Always provide commands that use `Makefile` targets (e.g., `make test`, `make lint`).
 *   **Read Before You Write:** Never assume the contents of a file. Always read a file before proposing changes to it.
 *   **Consult the Docs First:** The project documentation is your source of truth. Find answers there before asking the user.
+*   **Run Commands in Docker:** Always run commands inside the Docker container using `docker compose exec app <command>`.
 
 ## 2. Onboarding Protocol
 
@@ -37,4 +38,4 @@ Follow this simplified procedure for all coding tasks.
 1.  **Understand the Goal:** Discuss the task with me to ensure you understand the requirements.
 2.  **Locate & Read:** Identify the relevant files to the task. Read them to understand the current implementation.
 3.  **Propose Code Changes:** Based on your understanding, propose the necessary code modifications. Explain your reasoning clearly.
-4.  **Propose Validation Commands:** After providing the code, **always** provide the `make test` command so I can validate the changes on my end.
+4.  **Propose Validation Commands:** After providing the code, **always** provide the `docker compose exec app make test` command so I can validate the changes on my end.

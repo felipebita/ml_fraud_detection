@@ -96,7 +96,7 @@ This file provides a comprehensive overview of all files in the project, includi
 
 *   **Purpose**: The cleaned, validated, and standardized dataset.
 *   **Usage**: It is the primary output of the data ingestion pipeline and serves as the trusted source of truth for all downstream tasks, including feature engineering and model training.
-*   **Key Information**: Stored in Parquet format for efficiency. All records have been validated against Pydantic and Pandera schemas.
+*   **Key Information**: Stored in Parquet format for efficiency. All records have been validated against the Pandera schema in `src/data/data_validator.py`.
 
 ### `data/reports/`
 
@@ -105,8 +105,8 @@ This file provides a comprehensive overview of all files in the project, includi
 
 #### `data/reports/raw_data_profile.json`
 
-*   **Purpose**: A detailed JSON report containing a statistical and structural profile of the raw data, generated after initial loading and Pydantic validation.
-*   **Usage**: Used to understand the quality and characteristics of the incoming source data before advanced validation and cleaning. Essential for diagnosing issues with the source data feed.
+*   **Purpose**: A detailed JSON report containing a statistical and structural profile of the raw data, generated immediately after loading from the source CSV.
+*   **Usage**: Used to understand the quality and characteristics of the incoming source data before any validation or cleaning. Essential for diagnosing issues with the source data feed.
 *   **Key Information**: Generated automatically by the `data_loader.py` script.
 
 #### `data/reports/processed_data_profile.json`
@@ -295,20 +295,18 @@ This file provides a comprehensive overview of all files in the project, includi
 
 ### `src/data/data_loader.py`
 
-*   **Purpose**: This script loads and validates the raw data.
-*   **Usage**: It is used to load the raw data from a CSV file, validate it against a Pydantic schema, and save the validated data to a Parquet file.
+*   **Purpose**: This script is responsible for loading the raw data from its source.
+*   **Usage**: It is used to load the raw data from a CSV file into a pandas DataFrame. It does not perform any validation itself.
 *   **Key Information**:
-    *   **`TransactionSchema` class**: A Pydantic schema for validating the structure and types of a single transaction row.
-    *   **`load_data()`**: Loads transaction data from a CSV file, validates it against the `TransactionSchema`, and returns a clean DataFrame.
-    *   When run as a standalone script, it loads the raw data, validates it, and saves the validated data to a Parquet file in the `data/processed` directory.
+    *   **`load_data()`**: Loads transaction data from a CSV file and returns a raw DataFrame.
 
 ### `src/data/data_validator.py`
 
-*   **Purpose**: This script contains the `DataValidator` class, which is used to perform data quality checks on the loaded data.
-*   **Usage**: It is used to validate the data against a set of rules, such as checking for missing values, duplicate records, and outliers.
+*   **Purpose**: This script contains the `DataValidator` class, which is the single source of truth for data validation.
+*   **Usage**: It uses a comprehensive Pandera schema to validate the entire DataFrame at once, checking data types, value ranges, and structural integrity.
 *   **Key Information**:
-    *   It uses the `pandera` library to define and execute the data validation rules.
-    *   It generates a data quality report that summarizes the validation results.
+    *   It uses the `pandera` library to define and execute all data validation rules.
+    *   It is the primary mechanism for ensuring data quality after loading.
 
 ### `src/data/data_profiler.py`
 
@@ -319,7 +317,6 @@ This file provides a comprehensive overview of all files in the project, includi
     *   **`generate_profile()`**: Generates a comprehensive data profile.
     *   **`export_profile()`**: Exports the profile to a JSON file.
     *   **`get_summary_report()`**: Generates a human-readable summary report.
-    *   **`quick_profile()`**: A convenience function to quickly generate and print a data profile.
 
 ### `src/utils/`
 

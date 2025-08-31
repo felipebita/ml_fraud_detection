@@ -45,7 +45,9 @@ class DataProfiler:
 
     def _get_missing_values(self) -> dict[str, dict[str, Any]]:
         """Analyze missing values."""
-        missing_stats = {}
+        missing_stats: dict[str, dict[str, Any]] = {}
+        if len(self.df) == 0:
+            return missing_stats
         for col in self.df.columns:
             n_missing = self.df[col].isnull().sum()
             missing_stats[col] = {
@@ -173,7 +175,7 @@ class DataProfiler:
         """Analyze class distribution for fraud detection."""
         # Check for both common fraud column names
         fraud_col = None
-        for col in ["isFraud", "is_fraud", "fraud", "label"]:  # Added 'isFraud'
+        for col in ["isFraud", "is_fraud", "fraud", "label"]:
             if col in self.df.columns:
                 fraud_col = col
                 break
@@ -268,7 +270,7 @@ class DataProfiler:
         - Normal Cases: {fraud_info.get('normal_cases', 'N/A')}
         - Imbalance Ratio: 1:{fraud_info.get('imbalance_ratio', 'N/A')}
 
-        Data Quality Issues Found: {len(self.profile['data_quality_issues'])}"""
+        Data Quality Issues Found: {len(self.profile['data_quality_issues'])} """
 
         for issue in self.profile["data_quality_issues"]:
             report += f"\n- [{issue['severity'].upper()}] {issue['description']}"

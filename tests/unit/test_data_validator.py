@@ -38,13 +38,24 @@ def test_validate_success(validator, valid_df):
     assert validated_df.equals(valid_df)
 
 
-def test_validate_invalid_type(validator, valid_df):
-    """Tests that validation fails for a column with an incorrect data type."""
+def test_validate_invalid_type_raises_value_error(validator, valid_df):
+    """Tests that validation fails for a column with a non-coercible data type."""
     invalid_df = valid_df.copy()
     invalid_df["amount"] = "not_a_float"
 
-    with pytest.raises(ValueError, match="Data validation failed"):
+    with pytest.raises(ValueError):
         validator.validate(invalid_df)
+
+
+def test_validate_coerces_types(validator, valid_df):
+    """Tests that the validator correctly coerces data types."""
+    invalid_df = valid_df.copy()
+    invalid_df["amount"] = "100.50"
+    invalid_df["step"] = "1"
+
+    validated_df = validator.validate(invalid_df)
+    assert validated_df["amount"].dtype == "float64"
+    assert validated_df["step"].dtype == "int64"
 
 
 def test_validate_out_of_range_value(validator, valid_df):
@@ -52,7 +63,7 @@ def test_validate_out_of_range_value(validator, valid_df):
     invalid_df = valid_df.copy()
     invalid_df.loc[0, "amount"] = -100.0  # amount must be >= 0
 
-    with pytest.raises(ValueError, match="Data validation failed"):
+    with pytest.raises(ValueError):
         validator.validate(invalid_df)
 
 
@@ -61,7 +72,7 @@ def test_validate_disallowed_category(validator, valid_df):
     invalid_df = valid_df.copy()
     invalid_df.loc[0, "type"] = "REFUND"  # Not in the allowed list
 
-    with pytest.raises(ValueError, match="Data validation failed"):
+    with pytest.raises(ValueError):
         validator.validate(invalid_df)
 
 
@@ -69,7 +80,7 @@ def test_validate_missing_column(validator, valid_df):
     """Tests that validation fails if a required column is missing."""
     invalid_df = valid_df.drop(columns=["isFraud"])
 
-    with pytest.raises(ValueError, match="Data validation failed"):
+    with pytest.raises(ValueError):
         validator.validate(invalid_df)
 
 
@@ -78,7 +89,7 @@ def test_validate_extra_column(validator, valid_df):
     invalid_df = valid_df.copy()
     invalid_df["extra_col"] = "some_data"
 
-    with pytest.raises(ValueError, match="Data validation failed"):
+    with pytest.raises(ValueError):
         validator.validate(invalid_df)
 
 

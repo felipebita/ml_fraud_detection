@@ -1,0 +1,47 @@
+# Use the official Python 3.11 slim image as our base
+FROM python:3.11-slim
+
+# Set the working directory in the container
+WORKDIR /app
+
+# --- VIRTUAL ENVIRONMENT SETUP ---
+# Create a virtual environment and add it to the PATH.
+# This is the key change that solves our uv issues.
+ENV VIRTUAL_ENV=/opt/venv
+RUN python3 -m venv $VIRTUAL_ENV
+ENV PATH="$VIRTUAL_ENV/bin:$PATH"
+
+# --- DEPENDENCY INSTALLATION ---
+# Install uv using the recommended method
+COPY --from=ghcr.io/astral-sh/uv:latest /uv /usr/local/bin/uv
+
+# Copy only the dependency files to leverage Docker's layer caching
+COPY pyproject.toml uv.lock* README.md ./
+
+# Install all dependencies into the virtual environment
+RUN uv sync --all-extras
+
+# --- APPLICATION SETUP ---
+# Copy the rest of the application source code
+COPY . .
+
+# Install our application in EDITABLE mode so code changes are reflected instantly.
+RUN uv pip install --no-deps -e .
+
+# Create a non-root user for better security
+ARG UID=1000
+ARG GID=1000
+RUN apt-get update && \
+    apt-get install -y git make && \
+    rm -rf /var/lib/apt/lists/* && \
+    groupadd -g $GID -o appgroup && \
+    useradd -m -u $UID -g $GID -s /bin/bash appuser
+
+# 6. Change ownership of the entire app directory to the new user
+RUN chown -R appuser:appgroup /app
+
+# 7. Switch to the non-root user
+USER appuser
+
+# Keep the container running for development
+CMD ["tail", "-f", "/dev/null"]

@@ -24,13 +24,13 @@ help:
 
 setup:
 	@echo "Setting up the project..."
-	uv sync --all-extras
-	uv run pre-commit install
+	uv sync --all-extras --active
+	uv run --active pre-commit install
 
 
 data-load:
 	@echo "Running the data pipeline..."
-	uv run python3 -m src.data.data_loader
+	uv run --active python3 -m src.data.data_loader
 
 train:
 	@echo "Training models..."
@@ -42,23 +42,23 @@ evaluate:
 
 lint:
 	@echo "Linting code..."
-	uv run ruff check src/ tests/ --fix
+	uv run --active ruff check src/ tests/ --fix
 
 type-check:
 	@echo "Type-checking code..."
-	uv run mypy src/
+	uv run --active mypy src/
 
 format:
 	@echo "Formating code..."
-	uv run black src/ tests/
+	uv run --active black src/ tests/
 
 pre-commit:
 	@echo "Runnin pre-commit hooks..."
-	uv run pre-commit run --all-files
+	uv run --active pre-commit run --all-files
 
 test:
 	@echo "Running tests..."
-	uv run pytest tests/ -v --cov=src --cov-report=html --cov-report=term-missing
+	uv run --active pytest tests/ -v --cov=src --cov-report=html --cov-report=term-missing
 
 serve:
 	@echo "Starting the model server..."
@@ -71,19 +71,19 @@ dashboard:
 feature-repo-init:
 	@echo "Initializing Feast feature repository..."
 	rm -rf feature_repo
-	uv run feast init
+	uv run --active feast init
 
 docs-serve:
 	@echo "Starting documentation server at http://0.0.0.0:8000"
-	uv run mkdocs serve --dev-addr 0.0.0.0:8000
+	uv run --active mkdocs serve --dev-addr 0.0.0.0:8000
 
 docs-build:
 	@echo "Building documentation site..."
-	uv run mkdocs build
+	uv run --active mkdocs build
 
 docs-deploy:
 	@echo "Deploying documentation to GitHub Pages..."
-	uv run mkdocs gh-deploy --force
+	uv run --active mkdocs gh-deploy --force
 
 docs-deploy-workaround:
 	@echo "Deploying documentation using workaround script..."
@@ -91,6 +91,6 @@ docs-deploy-workaround:
 
 archive-session:
 	@echo "Archiving session..."
-	@TIMESTAMP=$(date +%Y-%m-%d_%H-%M); \
-	cp project_development/LAST_SESSION.md project_development/sessions_log/$TIMESTAMP-session.md; \
-	echo "Session content archived to project_development/sessions_log/$TIMESTAMP-session.md"
+	@TIMESTAMP=$$(date +%Y-%m-%d_%H-%M); \
+	cp project_development/LAST_SESSION.md project_development/sessions_log/$$TIMESTAMP-session.md; \
+	echo "Session content archived to project_development/sessions_log/$$TIMESTAMP-session.md"
