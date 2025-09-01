@@ -17,10 +17,15 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Build the Docker services
-        run: docker compose -f docker-compose.yml -f docker-compose.ci.yml build
+        # We only need to build the 'app' service as it contains all dev dependencies
+        run: docker compose build app
 
       - name: Run pre-commit checks
-        run: docker compose -f docker-compose.yml -f docker-compose.ci.yml run --rm app make pre-commit
+        env:
+          SSH_AUTH_SOCK: /dev/null
+        run: docker compose run --rm --user "$(id -u):$(id -g)" -e HOME=/app app make pre-commit
 
       - name: Run tests
-        run: docker compose -f docker-compose.yml -f docker-compose.ci.yml run --rm app make test
+        env:
+          SSH_AUTH_SOCK: /dev/null
+        run: docker compose run --rm --user "$(id -u):$(id -g)" -e HOME=/app app make test

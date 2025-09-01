@@ -1,4 +1,0 @@
-services:
-  app:
-    volumes:
-      - /dev/null:/app
