@@ -24,31 +24,30 @@ To fix this, run the following commands in your terminal before running `docker 
     ssh-add
     ```
 
-### Permanent Solution
+### Automating `ssh-agent` on Shell Startup
 
-To avoid running the manual commands for every new terminal session, you can add a script to your shell's startup file (e.g., `~/.bashrc` or `~/.zshrc`).
+To avoid running the manual commands every time you open a new terminal, you can add a script to your shell's startup file (e.g., `~/.bashrc` or `~/.zshrc`).
 
-**Automatic Append Command**
+The following script is a robust way to manage your `ssh-agent`. It checks if the agent is running and accessible, and if not, it starts a new one. This avoids issues with stale agent information after a system reboot.
+
+Add the following code to the end of your `~/.bashrc` or `~/.zshrc` file:
 
 ```bash
-cat <<'EOF' >> ~/.bashrc
-
-# Start ssh-agent if it's not running
-if ! pgrep -u "$USER" ssh-agent > /dev/null; then
-    ssh-agent > ~/.ssh-agent-info
-fi
+# ssh-agent configuration
 if [ -f ~/.ssh-agent-info ]; then
     . ~/.ssh-agent-info
 fi
 
-# Add SSH key if it's not already added
-if ! ssh-add -l >/dev/null; then
-  ssh-add
+# Check if the agent is running and accessible
+if ! ssh-add -l >/dev/null 2>&1; then
+    # If not, start a new agent
+    ssh-agent -s | grep -v echo > ~/.ssh-agent-info
+    . ~/.ssh-agent-info
+    ssh-add
 fi
-EOF
 ```
 
-You'll need to restart your terminal or run `source ~/.bashrc` (or `source ~/.zshrc`) to apply the changes.
+After adding the script, you'll need to restart your terminal or run `source ~/.bashrc` (or `source ~/.zshrc`) to apply the changes.
 
 ## Development Workflow
 
