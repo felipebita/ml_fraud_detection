@@ -29,30 +29,3 @@ jobs:
         env:
           SSH_AUTH_SOCK: /dev/null
         run: docker compose run --rm --user "$(id -u):$(id -g)" -e HOME=/app app make test
-
-  deploy-docs:
-    runs-on: ubuntu-latest
-    needs: test
-    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-    permissions:
-      contents: write
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-      - name: Setup Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.11"
-      - name: Setup uv
-        uses: yuzutech/setup-uv@v0.1.2
-        with:
-          version: "0.1.36"
-      - name: Install dependencies
-        run: uv pip install .[dev]
-      - name: Build docs
-        run: uv run mkdocs build
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v4
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./site
