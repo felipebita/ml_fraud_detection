@@ -476,6 +476,30 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#initial-setup-ssh-agent-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Initial Setup: SSH Agent Configuration
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Initial Setup: SSH Agent Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#automating-ssh-agent-on-shell-startup" class="md-nav__link">
+    <span class="md-ellipsis">
+      Automating ssh-agent on Shell Startup
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#development-workflow" class="md-nav__link">
     <span class="md-ellipsis">
       Development Workflow
@@ -665,6 +689,42 @@
 
 <h1 id="project-usage-guide">Project Usage Guide</h1>
 <p>This guide provides a comprehensive overview of how to run, test, and manage this project. All commands are executed via <code>docker compose exec app &lt;command&gt;</code> and are simplified using the <code>Makefile</code>.</p>
+<h2 id="initial-setup-ssh-agent-configuration">Initial Setup: SSH Agent Configuration</h2>
+<p>Before starting the services for the first time, you must ensure your SSH agent is running and configured correctly on your host machine. This is required for the Docker container to access your local SSH keys securely, which is necessary for operations like interacting with private Git repositories and allowing MLflow to track experiment commits.</p>
+<p>If your SSH agent is not configured, you will see this warning when running <code>docker compose up</code>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>WARN[0000] The &quot;SSH_AUTH_SOCK&quot; variable is not set. Defaulting to a blank string.
+</code></pre></div>
+<p>To fix this, run the following commands in your terminal before running <code>docker compose up</code>:</p>
+<ol>
+<li>
+<p><strong>Start the ssh-agent:</strong>
+    <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nb">eval</span><span class="w"> </span><span class="s2">&quot;</span><span class="k">$(</span>ssh-agent<span class="w"> </span>-s<span class="k">)</span><span class="s2">&quot;</span>
+</code></pre></div></p>
+</li>
+<li>
+<p><strong>Add your SSH key:</strong>
+    <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>ssh-add
+</code></pre></div></p>
+</li>
+</ol>
+<h3 id="automating-ssh-agent-on-shell-startup">Automating <code>ssh-agent</code> on Shell Startup</h3>
+<p>To avoid running the manual commands every time you open a new terminal, you can add a script to your shell's startup file (e.g., <code>~/.bashrc</code> or <code>~/.zshrc</code>).</p>
+<p>The following script is a robust way to manage your <code>ssh-agent</code>. It checks if the agent is running and accessible, and if not, it starts a new one. This avoids issues with stale agent information after a system reboot.</p>
+<p>Add the following code to the end of your <code>~/.bashrc</code> or <code>~/.zshrc</code> file:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1"># ssh-agent configuration</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span>-f<span class="w"> </span>~/.ssh-agent-info<span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">    </span>.<span class="w"> </span>~/.ssh-agent-info
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="k">fi</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="c1"># Check if the agent is running and accessible</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="k">if</span><span class="w"> </span>!<span class="w"> </span>ssh-add<span class="w"> </span>-l<span class="w"> </span>&gt;/dev/null<span class="w"> </span><span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="w">    </span><span class="c1"># If not, start a new agent</span>
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="w">    </span>ssh-agent<span class="w"> </span>-s<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-v<span class="w"> </span><span class="nb">echo</span><span class="w"> </span>&gt;<span class="w"> </span>~/.ssh-agent-info
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="w">    </span>.<span class="w"> </span>~/.ssh-agent-info
+<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="w">    </span>ssh-add
+<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="k">fi</span>
+</code></pre></div>
+<p>After adding the script, you'll need to restart your terminal or run <code>source ~/.bashrc</code> (or <code>source ~/.zshrc</code>) to apply the changes.</p>
 <h2 id="development-workflow">Development Workflow</h2>
 <p>These commands are essential for day-to-day development, including managing the environment and ensuring code quality.</p>
 <h3 id="managing-the-environment">Managing the Environment</h3>
@@ -672,23 +732,23 @@
 <ul>
 <li>
 <p><strong>Start all services:</strong>
-    <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>--build<span class="w"> </span>-d
+    <div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>--build<span class="w"> </span>-d
 </code></pre></div>
     <em>(The <code>--build</code> flag is only needed if you change dependencies in <code>pyproject.toml</code>)</em></p>
 </li>
 <li>
 <p><strong>Stop all services:</strong>
-    <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>docker<span class="w"> </span>compose<span class="w"> </span>down
+    <div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>docker<span class="w"> </span>compose<span class="w"> </span>down
 </code></pre></div></p>
 </li>
 <li>
 <p><strong>View logs from all services:</strong>
-    <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>docker<span class="w"> </span>compose<span class="w"> </span>logs<span class="w"> </span>-f
+    <div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>docker<span class="w"> </span>compose<span class="w"> </span>logs<span class="w"> </span>-f
 </code></pre></div></p>
 </li>
 <li>
 <p><strong>Enter an interactive shell in the app container:</strong>
-    <div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>docker<span class="w"> </span>compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>app<span class="w"> </span>bash
+    <div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>docker<span class="w"> </span>compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>app<span class="w"> </span>bash
 </code></pre></div></p>
 </li>
 </ul>
@@ -696,22 +756,22 @@
 <ul>
 <li>
 <p><strong>Run all tests with coverage:</strong>
-    <div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>docker<span class="w"> </span>compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>app<span class="w"> </span>make<span class="w"> </span><span class="nb">test</span>
+    <div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>docker<span class="w"> </span>compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>app<span class="w"> </span>make<span class="w"> </span><span class="nb">test</span>
 </code></pre></div></p>
 </li>
 <li>
 <p><strong>Format code with Black:</strong>
-    <div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>docker<span class="w"> </span>compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>app<span class="w"> </span>make<span class="w"> </span>format
+    <div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>docker<span class="w"> </span>compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>app<span class="w"> </span>make<span class="w"> </span>format
 </code></pre></div></p>
 </li>
 <li>
 <p><strong>Lint code with Ruff:</strong>
-    <div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>docker<span class="w"> </span>compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>app<span class="w"> </span>make<span class="w"> </span>lint
+    <div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>docker<span class="w"> </span>compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>app<span class="w"> </span>make<span class="w"> </span>lint
 </code></pre></div></p>
 </li>
 <li>
 <p><strong>Run static type checking with MyPy:</strong>
-    <div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>docker<span class="w"> </span>compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>app<span class="w"> </span>make<span class="w"> </span>type-check
+    <div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>docker<span class="w"> </span>compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>app<span class="w"> </span>make<span class="w"> </span>type-check
 </code></pre></div></p>
 </li>
 </ul>
@@ -721,19 +781,19 @@
 <li>
 <p><strong>Run the data processing pipeline:</strong>
     This command executes the data loading and validation scripts.
-    <div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>docker<span class="w"> </span>compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>app<span class="w"> </span>make<span class="w"> </span>data
+    <div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>docker<span class="w"> </span>compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>app<span class="w"> </span>make<span class="w"> </span>data
 </code></pre></div></p>
 </li>
 <li>
 <p><strong>Train the model:</strong>
     <em>(This target is not yet implemented)</em>
-    <div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>docker<span class="w"> </span>compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>app<span class="w"> </span>make<span class="w"> </span>train
+    <div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>docker<span class="w"> </span>compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>app<span class="w"> </span>make<span class="w"> </span>train
 </code></pre></div></p>
 </li>
 <li>
 <p><strong>Evaluate the model:</strong>
     <em>(This target is not yet implemented)</em>
-    <div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>docker<span class="w"> </span>compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>app<span class="w"> </span>make<span class="w"> </span>evaluate
+    <div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>docker<span class="w"> </span>compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>app<span class="w"> </span>make<span class="w"> </span>evaluate
 </code></pre></div></p>
 </li>
 <li>
@@ -746,14 +806,14 @@
 <li>
 <p><strong>Serve the documentation site locally:</strong>
     This command starts a live-reloading server for the documentation.
-    <div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>docker<span class="w"> </span>compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>app<span class="w"> </span>make<span class="w"> </span>docs-serve
+    <div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>docker<span class="w"> </span>compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>app<span class="w"> </span>make<span class="w"> </span>docs-serve
 </code></pre></div>
     The site will be available at <a href="http://localhost:8000">http://localhost:8000</a>.</p>
 </li>
 <li>
 <p><strong>Build the static documentation site:</strong>
     This command generates the static HTML files for the documentation site into the <code>site/</code> directory.
-    <div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>docker<span class="w"> </span>compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>app<span class="w"> </span>make<span class="w"> </span>docs-build
+    <div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>docker<span class="w"> </span>compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>app<span class="w"> </span>make<span class="w"> </span>docs-build
 </code></pre></div></p>
 </li>
 </ul>
