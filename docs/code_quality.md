@@ -68,7 +68,7 @@ This is the recommended method, as it is the simplest.
 2.  Run the following command:
 
     ```bash
-    make docs-deploy
+    docker compose exec app make docs-deploy
     ```
 
     When prompted for your username and password, enter your GitHub username and use your personal access token as the password.
@@ -110,3 +110,29 @@ If the `mkdocs gh-deploy` command does not work, you can deploy the documentatio
     ```
 
 5.  After the command has finished, go to your repository's settings on GitHub, navigate to the "Pages" section, and select the `gh-pages` branch as the source for your GitHub Pages site.
+
+## Continuous Integration & Deployment
+
+The project uses GitHub Actions for Continuous Integration and Continuous Deployment (CI/CD). The workflows are defined in the `.github/workflows` directory.
+
+### CI Workflow (`ci.yml`)
+
+The `ci.yml` workflow runs on every push and pull request to the `main` branch. It ensures the quality and correctness of the code by running the following jobs:
+
+1.  **Build Docker services**: It builds the `app` Docker service to ensure the development environment is correctly configured.
+2.  **Run pre-commit checks**: It executes `make pre-commit` to run all the pre-commit hooks, which include checks for formatting (`black`), linting (`ruff`), and static typing (`mypy`).
+3.  **Run tests**: It executes `make test` to run the entire test suite with `pytest`.
+
+This workflow guarantees that any code merged into the `main` branch adheres to the project's quality standards and passes all tests.
+
+### Documentation Deployment Workflow (`docs.yml`)
+
+The `docs.yml` workflow automates the deployment of the project documentation to GitHub Pages. It is triggered on every push to the `main` branch that includes changes in the `docs/` directory or the `mkdocs.yml` file.
+
+The workflow performs the following steps:
+
+1.  **Checkout code**: Checks out the repository.
+2.  **Setup Python and uv**: Sets up the Python environment and the `uv` package manager.
+3.  **Install dependencies**: Installs the project dependencies, including `mkdocs`.
+4.  **Build docs**: Builds the documentation site using `uv run mkdocs build`.
+5.  **Deploy to GitHub Pages**: Deploys the generated `site/` directory to the `gh-pages` branch, making it available as a static website.

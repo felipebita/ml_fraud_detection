@@ -6,6 +6,7 @@ This file provides a comprehensive overview of all files in the project, includi
 
 - `./.github/`
     - `./.github/workflows/ci.yml`
+    - `./.github/workflows/docs.yml`
 - `./configs/`
     - `./configs/config.yaml`
     - `./configs/logging_config.yaml`
@@ -66,6 +67,20 @@ This file provides a comprehensive overview of all files in the project, includi
 - `./pyproject.toml`
 - `./README.md`
 - `./uv.lock`
+
+## `.github/`
+
+This directory contains all the GitHub Actions workflows for the project.
+
+### `.github/workflows/ci.yml`
+
+*   **Purpose**: This workflow defines the Continuous Integration (CI) pipeline for the project.
+*   **Usage**: It is triggered on every push and pull request to the `main` branch. It runs a series of checks to ensure code quality and correctness, including linting, type checking, and running the test suite.
+
+### `.github/workflows/docs.yml`
+
+*   **Purpose**: This workflow automates the deployment of the project documentation to GitHub Pages.
+*   **Usage**: It is triggered on every push to the `main` branch that includes changes in the `docs/` directory or the `mkdocs.yml` file. It builds the documentation and deploys it to the `gh-pages` branch.
 
 
 ## `data/`

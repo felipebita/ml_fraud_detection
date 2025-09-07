@@ -36,6 +36,7 @@ train:
 	@echo "Training models..."
 	# Add model training commands here
 
+
 evaluate:
 	@echo "Evaluating models..."
 	# Add model evaluation commands here
@@ -71,7 +72,8 @@ dashboard:
 feature-repo-init:
 	@echo "Initializing Feast feature repository..."
 	rm -rf feature_repo
-	uv run --active feast init
+	mkdir feature_repo
+	cd feature_repo && uv run --active feast init
 
 docs-serve:
 	@echo "Starting documentation server at http://0.0.0.0:8000"
