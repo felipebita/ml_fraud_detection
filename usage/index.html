@@ -542,6 +542,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#feature-store-workflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      Feature Store Workflow
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#documentation-workflow" class="md-nav__link">
     <span class="md-ellipsis">
       Documentation Workflow
@@ -801,19 +810,26 @@
     The MLflow UI is available at <a href="http://localhost:5000">http://localhost:5000</a> to track experiments.</p>
 </li>
 </ul>
+<h2 id="feature-store-workflow">Feature Store Workflow</h2>
+<ul>
+<li><strong>Apply feature store changes:</strong>
+    This command applies the changes from your feature definitions to the feature store.
+    <div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>docker<span class="w"> </span>compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>app<span class="w"> </span>make<span class="w"> </span>feature-repo-apply
+</code></pre></div></li>
+</ul>
 <h2 id="documentation-workflow">Documentation Workflow</h2>
 <ul>
 <li>
 <p><strong>Serve the documentation site locally:</strong>
     This command starts a live-reloading server for the documentation.
-    <div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>docker<span class="w"> </span>compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>app<span class="w"> </span>make<span class="w"> </span>docs-serve
+    <div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>docker<span class="w"> </span>compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>app<span class="w"> </span>make<span class="w"> </span>docs-serve
 </code></pre></div>
     The site will be available at <a href="http://localhost:8000">http://localhost:8000</a>.</p>
 </li>
 <li>
 <p><strong>Build the static documentation site:</strong>
     This command generates the static HTML files for the documentation site into the <code>site/</code> directory.
-    <div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>docker<span class="w"> </span>compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>app<span class="w"> </span>make<span class="w"> </span>docs-build
+    <div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>docker<span class="w"> </span>compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>app<span class="w"> </span>make<span class="w"> </span>docs-build
 </code></pre></div></p>
 </li>
 </ul>
