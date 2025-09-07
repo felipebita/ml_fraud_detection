@@ -529,6 +529,39 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#github" class="md-nav__link">
+    <span class="md-ellipsis">
+      .github/
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label=".github/">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#githubworkflowsciyml" class="md-nav__link">
+    <span class="md-ellipsis">
+      .github/workflows/ci.yml
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#githubworkflowsdocsyml" class="md-nav__link">
+    <span class="md-ellipsis">
+      .github/workflows/docs.yml
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#data" class="md-nav__link">
     <span class="md-ellipsis">
       data/
@@ -1104,6 +1137,7 @@
 <ul>
 <li><code>./.github/</code><ul>
 <li><code>./.github/workflows/ci.yml</code></li>
+<li><code>./.github/workflows/docs.yml</code></li>
 </ul>
 </li>
 <li><code>./configs/</code><ul>
@@ -1192,6 +1226,18 @@
 <li><code>./pyproject.toml</code></li>
 <li><code>./README.md</code></li>
 <li><code>./uv.lock</code></li>
+</ul>
+<h2 id="github"><code>.github/</code></h2>
+<p>This directory contains all the GitHub Actions workflows for the project.</p>
+<h3 id="githubworkflowsciyml"><code>.github/workflows/ci.yml</code></h3>
+<ul>
+<li><strong>Purpose</strong>: This workflow defines the Continuous Integration (CI) pipeline for the project.</li>
+<li><strong>Usage</strong>: It is triggered on every push and pull request to the <code>main</code> branch. It runs a series of checks to ensure code quality and correctness, including linting, type checking, and running the test suite.</li>
+</ul>
+<h3 id="githubworkflowsdocsyml"><code>.github/workflows/docs.yml</code></h3>
+<ul>
+<li><strong>Purpose</strong>: This workflow automates the deployment of the project documentation to GitHub Pages.</li>
+<li><strong>Usage</strong>: It is triggered on every push to the <code>main</code> branch that includes changes in the <code>docs/</code> directory or the <code>mkdocs.yml</code> file. It builds the documentation and deploys it to the <code>gh-pages</code> branch.</li>
 </ul>
 <h2 id="data"><code>data/</code></h2>
 <ul>

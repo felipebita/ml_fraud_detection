@@ -676,6 +676,39 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#continuous-integration-deployment" class="md-nav__link">
+    <span class="md-ellipsis">
+      Continuous Integration &amp; Deployment
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Continuous Integration &amp; Deployment">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ci-workflow-ciyml" class="md-nav__link">
+    <span class="md-ellipsis">
+      CI Workflow (ci.yml)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#documentation-deployment-workflow-docsyml" class="md-nav__link">
+    <span class="md-ellipsis">
+      Documentation Deployment Workflow (docs.yml)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -762,7 +795,7 @@
 <li>Make sure the <code>repo_url</code> in <code>mkdocs.yml</code> is set to your repository's URL.</li>
 <li>
 <p>Run the following command:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>make<span class="w"> </span>docs-deploy
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>docker<span class="w"> </span>compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>app<span class="w"> </span>make<span class="w"> </span>docs-deploy
 </code></pre></div>
 <p>When prompted for your username and password, enter your GitHub username and use your personal access token as the password.</p>
 </li>
@@ -801,6 +834,26 @@
 <li>
 <p>After the command has finished, go to your repository's settings on GitHub, navigate to the "Pages" section, and select the <code>gh-pages</code> branch as the source for your GitHub Pages site.</p>
 </li>
+</ol>
+<h2 id="continuous-integration-deployment">Continuous Integration &amp; Deployment</h2>
+<p>The project uses GitHub Actions for Continuous Integration and Continuous Deployment (CI/CD). The workflows are defined in the <code>.github/workflows</code> directory.</p>
+<h3 id="ci-workflow-ciyml">CI Workflow (<code>ci.yml</code>)</h3>
+<p>The <code>ci.yml</code> workflow runs on every push and pull request to the <code>main</code> branch. It ensures the quality and correctness of the code by running the following jobs:</p>
+<ol>
+<li><strong>Build Docker services</strong>: It builds the <code>app</code> Docker service to ensure the development environment is correctly configured.</li>
+<li><strong>Run pre-commit checks</strong>: It executes <code>make pre-commit</code> to run all the pre-commit hooks, which include checks for formatting (<code>black</code>), linting (<code>ruff</code>), and static typing (<code>mypy</code>).</li>
+<li><strong>Run tests</strong>: It executes <code>make test</code> to run the entire test suite with <code>pytest</code>.</li>
+</ol>
+<p>This workflow guarantees that any code merged into the <code>main</code> branch adheres to the project's quality standards and passes all tests.</p>
+<h3 id="documentation-deployment-workflow-docsyml">Documentation Deployment Workflow (<code>docs.yml</code>)</h3>
+<p>The <code>docs.yml</code> workflow automates the deployment of the project documentation to GitHub Pages. It is triggered on every push to the <code>main</code> branch that includes changes in the <code>docs/</code> directory or the <code>mkdocs.yml</code> file.</p>
+<p>The workflow performs the following steps:</p>
+<ol>
+<li><strong>Checkout code</strong>: Checks out the repository.</li>
+<li><strong>Setup Python and uv</strong>: Sets up the Python environment and the <code>uv</code> package manager.</li>
+<li><strong>Install dependencies</strong>: Installs the project dependencies, including <code>mkdocs</code>.</li>
+<li><strong>Build docs</strong>: Builds the documentation site using <code>uv run mkdocs build</code>.</li>
+<li><strong>Deploy to GitHub Pages</strong>: Deploys the generated <code>site/</code> directory to the <code>gh-pages</code> branch, making it available as a static website.</li>
 </ol>
 
 
