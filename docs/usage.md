@@ -125,6 +125,14 @@ These commands are used to execute the core ML pipeline steps.
 -   **Access the MLflow UI:**
     The MLflow UI is available at [http://localhost:5000](http://localhost:5000) to track experiments.
 
+## Feature Store Workflow
+
+-   **Apply feature store changes:**
+    This command applies the changes from your feature definitions to the feature store.
+    ```bash
+    docker compose exec app make feature-repo-apply
+    ```
+
 ## Documentation Workflow
 
 -   **Serve the documentation site locally:**

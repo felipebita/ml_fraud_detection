@@ -336,3 +336,6 @@ Will assume non-transactional DDL.
 2025-08-22T03:16:34.006132Z [info     ] mlflow_test_run_logged         [__main__] filename=test_mlflow_setup.py func_name=test_mlflow_connection lineno=29 run_id=723180aab1a443ca93f27724a5dc0420
 2025-08-22T03:16:34.016628Z [info     ] mlflow_setup_successful        [__main__] filename=test_mlflow_setup.py func_name=test_mlflow_connection lineno=31 run_id=723180aab1a443ca93f27724a5dc0420 ui_hint=Check the MLflow UI at http://localhost:5000
 2025-08-22T03:16:34.016825Z [info     ] mlflow_setup_test_succeeded    [__main__] filename=test_mlflow_setup.py func_name=<module> lineno=47
+{"asctime": "2025-09-07 01:17:48,771", "name": "root", "levelname": "WARNING", "message": "Cannot use sqlite_vec for vector search", "pathname": "/app/.venv/lib/python3.11/site-packages/feast/infra/online_stores/sqlite.py", "lineno": 418}
+{"asctime": "2025-09-07 01:17:48,772", "name": "root", "levelname": "WARNING", "message": "Cannot use sqlite_vec for vector search", "pathname": "/app/.venv/lib/python3.11/site-packages/feast/infra/online_stores/sqlite.py", "lineno": 418}
+{"asctime": "2025-09-07 01:17:48,772", "name": "root", "levelname": "WARNING", "message": "Cannot use sqlite_vec for vector search", "pathname": "/app/.venv/lib/python3.11/site-packages/feast/infra/online_stores/sqlite.py", "lineno": 418}

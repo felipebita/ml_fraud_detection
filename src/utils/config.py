@@ -53,6 +53,7 @@ def get_config() -> dict[str, Any]:
     2. Loads the `logging_config.yaml` and merges it under a 'logging' key.
     3. Loads environment variables from a `.env` file (if it exists).
     4. Overrides any configuration with corresponding environment variables.
+    5. Resolves log file paths to be absolute and configures logging.
 
     Returns:
         A dictionary containing the fully merged and overridden configuration.
@@ -77,9 +78,15 @@ def get_config() -> dict[str, Any]:
     # 3. Override with environment variables
     _override_with_env_variables(config)
 
-    # 4. Configure logging
+    # 4. Resolve log file paths and configure logging
     if "logging_config" in config:
-        logging.config.dictConfig(config["logging_config"])
+        log_config = config["logging_config"]
+        project_root = Path(__file__).resolve().parent.parent.parent
+        for handler in log_config.get("handlers", {}).values():
+            if "filename" in handler:
+                handler["filename"] = str(project_root / handler["filename"])
+                Path(handler["filename"]).parent.mkdir(parents=True, exist_ok=True)
+        logging.config.dictConfig(log_config)
 
     # Cache the configuration
     _config = config

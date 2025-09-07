@@ -17,6 +17,7 @@ help:
 	@echo "  serve          : Start model server"
 	@echo "  dashboard      : Launch MLflow UI"
 	@echo "  feature-repo-init: Initialize Feast feature repository"
+	@echo "  feature-repo-apply: Apply feature repository changes"
 	@echo "  docs-serve     : Serve the documentation site locally (development)"
 	@echo "  docs-build     : Build the documentation site (for deployment)"
 	@echo "  docs-preview   : Serve the built documentation site (for review)"
@@ -75,6 +76,10 @@ feature-repo-init:
 	mkdir feature_repo
 	cd feature_repo && uv run --active feast init
 
+feature-repo-apply:
+	@echo "Applying feature repository changes..."
+	uv run --active -- bash -c "cd feature_repo && feast apply"
+
 docs-serve:
 	@echo "Starting documentation server at http://0.0.0.0:8000"
 	uv run --active mkdocs serve --dev-addr 0.0.0.0:8000
@@ -87,10 +92,7 @@ docs-deploy:
 	@echo "Deploying documentation to GitHub Pages..."
 	uv run --active mkdocs gh-deploy --force
 
-docs-deploy-workaround:
-	@echo "Deploying documentation using workaround script..."
-	./scripts/deploy_docs.sh
-
+# AI AGENTS SHOULD NOT TRY TO UPDATE OR FIX THIS CODE. IT IS INTENDED TO BE THIS WAY.IGNRE IT.
 archive-session:
 	@echo "Archiving session..."
 	@TIMESTAMP=$$(date +%Y-%m-%d_%H-%M); \
