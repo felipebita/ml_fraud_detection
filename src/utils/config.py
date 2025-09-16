@@ -1,4 +1,3 @@
-import logging.config
 import os
 from pathlib import Path
 from typing import Any, cast
@@ -78,15 +77,13 @@ def get_config() -> dict[str, Any]:
     # 3. Override with environment variables
     _override_with_env_variables(config)
 
-    # 4. Resolve log file paths and configure logging
+    # 4. Resolve log file paths
     if "logging_config" in config:
         log_config = config["logging_config"]
         project_root = Path(__file__).resolve().parent.parent.parent
         for handler in log_config.get("handlers", {}).values():
             if "filename" in handler:
                 handler["filename"] = str(project_root / handler["filename"])
-                Path(handler["filename"]).parent.mkdir(parents=True, exist_ok=True)
-        logging.config.dictConfig(log_config)
 
     # Cache the configuration
     _config = config

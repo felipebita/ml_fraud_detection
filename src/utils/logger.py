@@ -1,3 +1,7 @@
+import logging
+import logging.config
+import logging.handlers
+import sys
 from datetime import datetime
 from pathlib import Path
 from typing import Any, cast
@@ -9,17 +13,103 @@ from structlog import BoundLogger
 from src.utils.config import get_config
 
 
-def setup_logging() -> None:
-    """Configure logging for the project using the centralized configuration."""
-    config = get_config()
+def setup_logging() -> None:  # pragma: no cover
+    """Configure logging for the project using structlog and standard logging."""
 
-    # The get_config function already calls logging.config.dictConfig
-    # so we just need to ensure the log directory exists.
-    log_config = config.get("logging_config")
-    if log_config and "file" in log_config.get("handlers", {}):
-        log_file = log_config["handlers"]["file"].get("filename")
-        if log_file:
-            Path(log_file).parent.mkdir(parents=True, exist_ok=True)
+    config = get_config()
+    log_config = config.get("logging_config", {})
+    log_level = log_config.get("root", {}).get("level", "INFO").upper()
+
+    shared_processors = [
+        structlog.contextvars.merge_contextvars,
+        structlog.stdlib.add_logger_name,
+        structlog.stdlib.add_log_level,
+        structlog.stdlib.PositionalArgumentsFormatter(),
+        structlog.processors.TimeStamper(fmt="iso"),
+        structlog.processors.format_exc_info,
+        structlog.processors.UnicodeDecoder(),
+    ]
+
+    structlog.configure(
+        processors=shared_processors + [structlog.stdlib.render_to_log_kwargs],
+        logger_factory=structlog.stdlib.LoggerFactory(),
+        wrapper_class=structlog.stdlib.BoundLogger,
+        cache_logger_on_first_use=True,
+    )
+
+    # Define formatters for standard logging
+    console_formatter = structlog.stdlib.ProcessorFormatter(
+        processor=structlog.dev.ConsoleRenderer(colors=True),
+        foreign_pre_chain=shared_processors,
+    )
+
+    json_formatter = structlog.stdlib.ProcessorFormatter(
+        processor=structlog.processors.JSONRenderer(),
+        foreign_pre_chain=shared_processors,
+    )
+
+    # Get the root logger
+    root_logger = logging.getLogger()
+    root_logger.setLevel(log_level)
+    # Clear existing handlers
+    if "pytest" not in sys.modules:
+        root_logger.handlers.clear()
+
+    else:
+        # When running tests, add a handler for pytest.log
+        pytest_handler = logging.FileHandler("logs/pytest.log")
+        pytest_handler.setLevel(logging.DEBUG)
+        pytest_handler.setFormatter(
+            logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(message)s")
+        )
+        root_logger.addHandler(pytest_handler)
+        # Override propagate for all loggers during tests
+        for logger_name in log_config.get("loggers", {}):
+            logging.getLogger(logger_name).propagate = True
+
+    # Create and add handlers from config
+    for handler_config in log_config.get("handlers", {}).values():
+        handler_level = handler_config.get("level", log_level)
+
+        if handler_config["class"] == "logging.StreamHandler":
+            handler: logging.Handler = logging.StreamHandler(sys.stdout)
+            handler.setFormatter(console_formatter)
+        elif handler_config["class"] == "logging.handlers.RotatingFileHandler":
+            filename = Path(handler_config["filename"])
+            filename.parent.mkdir(parents=True, exist_ok=True)
+            handler = logging.handlers.RotatingFileHandler(
+                filename=filename,
+                maxBytes=handler_config.get("maxBytes", 10485760),
+                backupCount=handler_config.get("backupCount", 5),
+                encoding=handler_config.get("encoding", "utf8"),
+            )
+            # Use the appropriate formatter from the config
+            if handler_config.get("formatter") == "json":
+                handler.setFormatter(json_formatter)
+            else:  # Default to console for other file handlers if specified
+                handler.setFormatter(console_formatter)
+        else:
+            continue
+
+        handler.setLevel(handler_level)
+        root_logger.addHandler(handler)
+
+    # Configure other loggers from config
+    for logger_name, logger_config in log_config.get("loggers", {}).items():
+        logger = logging.getLogger(logger_name)
+        logger.propagate = logger_config.get("propagate", False)
+        logger.setLevel(logger_config.get("level", log_level))
+        # Note: Handlers for specific loggers are not being added here
+        # as they will inherit from the root logger. If specific handlers
+        # are needed, that logic would be added here.
+    # At the very end of setup_logging(), add:
+
+    if "pytest" in sys.modules:
+        print(f"AFTER setup: Root logger has {len(root_logger.handlers)} handlers")
+        for i, handler in enumerate(root_logger.handlers):
+            print(
+                f"  Handler {i}: {type(handler).__name__} - {getattr(handler, 'baseFilename', 'no file')}"
+            )
 
 
 def get_logger(name: str) -> BoundLogger:

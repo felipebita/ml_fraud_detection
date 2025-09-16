@@ -1,0 +1,1 @@
+{"event": "THIS IS A TEST ERROR MESSAGE.", "logger": "tests.unit.test_logging_is_working", "level": "error", "timestamp": "2025-09-09T03:51:39.646177Z"}

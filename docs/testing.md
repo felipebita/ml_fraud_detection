@@ -9,6 +9,23 @@ pytest tests/unit/test_mlflow_analytics.py -v
 #### Run with coverage
 pytest --cov=src --cov-report=html
 
+## Test Logging
+
+The project is configured to have separate log files for the application and the tests.
+
+*   **Application Logs:** `logs/fraud_detection.log`
+*   **Test Logs:** `logs/pytest.log`
+
+This is achieved by a special configuration in `src/utils/logger.py` that detects when `pytest` is running and modifies the logging configuration accordingly.
+
+When `pytest` is running, the `setup_logging` function in `src/utils/logger.py` does the following:
+
+1.  It **preserves** any existing logging handlers that `pytest` has configured.
+2.  It adds a **dedicated handler** for the `logs/pytest.log` file.
+3.  It forces all loggers to **propagate** to the root logger, which ensures that all logs (including those from third-party libraries) are captured in the `logs/pytest.log` file.
+
+This setup ensures that the test logs are captured in a separate file without interfering with the application's logging.
+
 ## FILES
 - `./tests/`
     - `./tests/conftest.py`

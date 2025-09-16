@@ -17,6 +17,7 @@ services:
       - MLFLOW_TRACKING_URI=http://mlflow:5000
       - SSH_AUTH_SOCK=${SSH_AUTH_SOCK}
       - UV_SYSTEM_PYTHON=true
+      - UV_LINK_MODE=copy
     command: tail -f /dev/null
 
   mlflow:

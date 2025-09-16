@@ -28,7 +28,6 @@ setup:
 	uv sync --all-extras --active
 	uv run --active pre-commit install
 
-
 data-load:
 	@echo "Running the data pipeline..."
 	uv run --active python3 -m src.data.data_loader
@@ -60,7 +59,7 @@ pre-commit:
 
 test:
 	@echo "Running tests..."
-	uv run --active pytest tests/ -v --cov=src --cov-report=html --cov-report=term-missing
+	uv run --active pytest tests/ -v --cov=src --cov-report=html --cov-report=term-missing --log-cli-level=INFO --log-file=logs/pytest.log
 
 serve:
 	@echo "Starting the model server..."
@@ -95,6 +94,6 @@ docs-deploy:
 # AI AGENTS SHOULD NOT TRY TO UPDATE OR FIX THIS CODE. IT IS INTENDED TO BE THIS WAY.IGNRE IT.
 archive-session:
 	@echo "Archiving session..."
-	@TIMESTAMP=$$(date +%Y-%m-%d_%H-%M); \
-	cp project_development/LAST_SESSION.md project_development/sessions_log/$$TIMESTAMP-session.md; \
-	echo "Session content archived to project_development/sessions_log/$$TIMESTAMP-session.md"
+	@TIMESTAMP=$(date +%Y-%m-%d_%H-%M); \
+	cp project_development/LAST_SESSION.md project_development/sessions_log/$TIMESTAMP-session.md; \
+	echo "Session content archived to project_development/sessions_log/$TIMESTAMP-session.md"
