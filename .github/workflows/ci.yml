@@ -29,3 +29,9 @@ jobs:
         env:
           SSH_AUTH_SOCK: /dev/null
         run: docker compose run --rm --user "$(id -u):$(id -g)" -e HOME=/app app make test
+
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v4
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          slug: ${{ github.repository }}

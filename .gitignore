@@ -17,6 +17,7 @@ project_development/
 # Ignore large data files
 data/raw/raw.csv
 data/processed/processed_transactions.parquet
+data/download/complete_synthetic_financial_dataset.csv
 
 
 # But INCLUDE sample data
@@ -24,10 +25,6 @@ data/processed/processed_transactions.parquet
 !data/raw/synthetic_*.csv
 !data/processed/sample_*.csv
 !data/*/README.md
-
-# File size limits
-*.csv > 100MB
-*.parquet > 100MB
 
 # ============================================
 # Models - Include key models

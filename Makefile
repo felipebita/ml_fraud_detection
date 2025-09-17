@@ -94,6 +94,6 @@ docs-deploy:
 # AI AGENTS SHOULD NOT TRY TO UPDATE OR FIX THIS CODE. IT IS INTENDED TO BE THIS WAY.IGNRE IT.
 archive-session:
 	@echo "Archiving session..."
-	@TIMESTAMP=$(date +%Y-%m-%d_%H-%M); \
-	cp project_development/LAST_SESSION.md project_development/sessions_log/$TIMESTAMP-session.md; \
-	echo "Session content archived to project_development/sessions_log/$TIMESTAMP-session.md"
+	@TIMESTAMP=$$(date +%Y-%m-%d_%H-%M); \
+	cp project_development/LAST_SESSION.md project_development/sessions_log/$$TIMESTAMP-session.md; \
+	echo "Session content archived to project_development/sessions_log/$$TIMESTAMP-session.md"
