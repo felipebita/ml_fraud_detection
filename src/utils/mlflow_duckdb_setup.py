@@ -98,9 +98,9 @@ class MLflowDuckDBManager:
             LoggerContext(logger, "query_duckdb", query=query),
             self.get_connection(read_only=True) as conn,
         ):
-            df = conn.execute(query).fetchdf()
+            df = conn.execute(query).fetch_df()
             logger.info("query_successful", num_rows=len(df))
-            return df
+            return cast(pd.DataFrame, df)
 
     def get_best_models(
         self,

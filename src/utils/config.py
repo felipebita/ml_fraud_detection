@@ -34,10 +34,12 @@ def _override_with_env_variables(config: dict[str, Any], prefix: str = "") -> No
             if env_value is not None:
                 # Attempt to cast env_value to the type of the original value
                 try:
-                    original_type = type(value)
-                    if original_type == bool:
+                    if value is None:
+                        config[key] = env_value
+                    elif isinstance(value, bool):
                         config[key] = env_value.lower() in ("true", "1", "t")
                     else:
+                        original_type = type(value)
                         config[key] = original_type(env_value)
                 except (ValueError, TypeError):
                     config[key] = env_value  # Fallback to string
