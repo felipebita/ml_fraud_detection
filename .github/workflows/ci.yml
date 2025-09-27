@@ -26,9 +26,13 @@ jobs:
         run: docker compose run --rm --user "$(id -u):$(id -g)" -e HOME=/app app make pre-commit
 
       - name: Create dummy data for tests
+        env:
+          SSH_AUTH_SOCK: /dev/null
         run: docker compose run --rm app python scripts/create_dummy_data.py
 
       - name: Run tests
+        env:
+          SSH_AUTH_SOCK: /dev/null
         run: docker compose run --rm app make test
 
       - name: Upload coverage to Codecov
