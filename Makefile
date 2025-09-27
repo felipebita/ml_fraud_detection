@@ -59,6 +59,8 @@ pre-commit:
 test:
 	@echo "Applying feature repository changes before testing..."
 	uv run --active -- bash -c "cd feature_repo && feast apply"
+	@echo "Materializing test features (8 hours of data)..."
+	uv run --active -- bash -c "cd feature_repo && feast materialize 2024-01-01T01:00:00 2024-01-01T09:00:00"
 	@echo "Running tests..."
 	uv run --active pytest tests/ -v --cov=src --cov-report=html --cov-report=term-missing --log-cli-level=INFO --log-file=logs/pytest.log
 
