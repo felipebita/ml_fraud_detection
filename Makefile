@@ -57,6 +57,8 @@ pre-commit:
 	uv run --active pre-commit run --all-files
 
 test:
+	@echo "Applying feature repository changes before testing..."
+	uv run --active -- bash -c "cd feature_repo && feast apply"
 	@echo "Running tests..."
 	uv run --active pytest tests/ -v --cov=src --cov-report=html --cov-report=term-missing --log-cli-level=INFO --log-file=logs/pytest.log
 

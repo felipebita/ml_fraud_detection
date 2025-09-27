@@ -1,6 +1,4 @@
-import sys
 from datetime import timedelta
-from pathlib import Path
 
 from feast import (
     Entity,
@@ -12,22 +10,14 @@ from feast import (
 from feast.data_format import ParquetFormat
 from feast.types import Float64, Int64, String
 
-from src.utils.config import get_config
-
-# Get absolute path to project root
-project_root = Path(__file__).resolve().parent.parent
-sys.path.append(str(project_root))
-
-# Load the configuration
-config = get_config()
-
-# Get the path to the processed data from the config
-processed_data_path = config["data"]["processed_path"]
-
-# Use absolute path - this works regardless of CWD
-file_path = str(project_root / processed_data_path)
-
-print(f"DEBUG: Using file path: {file_path}")  # Temporary debug line
+# The complex path resolution logic that was here previously was causing issues during
+# the Feast Feature Store initialization.
+#
+# Reverting to the simpler, relative path that is known to work as per the summary
+# in `project_development/LAST_SESSION.md`.
+#
+# The path is relative to the project root, which is the context from which `feast`
+# commands are executed.
 
 # Define entities
 origin_customer = Entity(
@@ -39,7 +29,9 @@ destination_customer = Entity(
 
 # Define the data source
 transactions_source = FileSource(
-    path=file_path, timestamp_field="event_timestamp", file_format=ParquetFormat()
+    path="./data/processed/processed_transactions.parquet",
+    timestamp_field="event_timestamp",
+    file_format=ParquetFormat(),
 )
 
 # Define a feature view for transaction features
