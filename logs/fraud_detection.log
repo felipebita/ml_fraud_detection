@@ -212,3 +212,10 @@
 {"event": "Registry cache expired, so refreshing", "logger": "feast.infra.registry.registry", "level": "info", "timestamp": "2025-09-27T17:16:37.848437Z"}
 {"event": "_list_feature_views will make breaking changes. Please use _list_batch_feature_views instead. _list_feature_views will behave like _list_all_feature_views in the future.", "logger": "root", "level": "warning", "timestamp": "2025-09-27T17:16:38.533557Z"}
 {"event": "Cannot use sqlite_vec for vector search", "logger": "root", "level": "warning", "timestamp": "2025-09-27T17:16:38.537768Z"}
+{"event": "Registry cache expired, so refreshing", "logger": "feast.infra.registry.registry", "level": "info", "timestamp": "2025-09-27T17:44:35.987229Z"}
+{"event": "_list_feature_views will make breaking changes. Please use _list_batch_feature_views instead. _list_feature_views will behave like _list_all_feature_views in the future.", "logger": "root", "level": "warning", "timestamp": "2025-09-27T17:44:35.994199Z"}
+{"event": "Registry cache expired, so refreshing", "logger": "feast.infra.registry.registry", "level": "info", "timestamp": "2025-09-27T17:44:35.994699Z"}
+{"event": "Registry cache expired, so refreshing", "logger": "feast.infra.registry.registry", "level": "info", "timestamp": "2025-09-27T17:44:35.997159Z"}
+{"event": "Registry cache expired, so refreshing", "logger": "feast.infra.registry.registry", "level": "info", "timestamp": "2025-09-27T17:44:35.997633Z"}
+{"event": "_list_feature_views will make breaking changes. Please use _list_batch_feature_views instead. _list_feature_views will behave like _list_all_feature_views in the future.", "logger": "root", "level": "warning", "timestamp": "2025-09-27T17:44:36.578524Z"}
+{"event": "Cannot use sqlite_vec for vector search", "logger": "root", "level": "warning", "timestamp": "2025-09-27T17:44:36.582252Z"}

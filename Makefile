@@ -58,9 +58,9 @@ pre-commit:
 
 test:
 	@echo "Applying feature repository changes before testing..."
-	uv run --active -- bash -c "cd feature_repo && feast apply"
+	uv run --active -- feast --chdir feature_repo apply
 	@echo "Materializing test features (8 hours of data)..."
-	uv run --active -- bash -c "cd feature_repo && feast materialize 2024-01-01T01:00:00 2024-01-01T09:00:00"
+	uv run --active -- feast --chdir feature_repo materialize 2024-01-01T01:00:00 2024-01-01T09:00:00
 	@echo "Running tests..."
 	uv run --active pytest tests/ -v --cov=src --cov-report=html --cov-report=term-missing --log-cli-level=INFO --log-file=logs/pytest.log
 
@@ -74,11 +74,11 @@ dashboard:
 
 feature-repo-apply:
 	@echo "Applying feature repository changes..."
-	uv run --active -- bash -c "cd feature_repo && feast apply"
+	uv run --active -- feast --chdir feature_repo apply
 
 feature-repo-materialize-test:
 	@echo "Materializing test features (8 hours of data)..."
-	uv run --active -- bash -c "cd feature_repo && feast materialize 2024-01-01T01:00:00 2024-01-01T09:00:00"
+	uv run --active -- feast --chdir feature_repo materialize 2024-01-01T01:00:00 2024-01-01T09:00:00
 
 docs-serve:
 	@echo "Starting documentation server at http://0.0.0.0:8000"
