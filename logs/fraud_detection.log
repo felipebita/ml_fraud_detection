@@ -75,3 +75,88 @@
 {"event": "Processed data saved successfully.", "logger": "__main__", "level": "info", "timestamp": "2025-09-15T15:56:26.278551Z"}
 {"event": "save_processed_data_completed", "logger": "__main__", "level": "info", "timestamp": "2025-09-15T15:56:26.278863Z"}
 {"event": "--- Data Ingestion & Validation Pipeline Finished ---", "logger": "__main__", "level": "info", "timestamp": "2025-09-15T15:56:26.279139Z"}
+{"event": "Cannot use sqlite_vec for vector search", "logger": "root", "level": "warning", "timestamp": "2025-09-25T23:21:31.991066Z"}
+{"event": "Cannot use sqlite_vec for vector search", "logger": "root", "level": "warning", "timestamp": "2025-09-25T23:21:31.992150Z"}
+{"event": "Cannot use sqlite_vec for vector search", "logger": "root", "level": "warning", "timestamp": "2025-09-25T23:21:31.992731Z"}
+{"event": "--- Starting Data Ingestion & Validation Pipeline ---", "logger": "__main__", "level": "info", "timestamp": "2025-09-25T23:45:17.889769Z"}
+{"event": "load_data_started", "logger": "__main__", "level": "info", "timestamp": "2025-09-25T23:45:17.890215Z"}
+{"event": "File found. Attempting to load into pandas DataFrame.", "logger": "__main__", "level": "info", "timestamp": "2025-09-25T23:45:17.890475Z"}
+{"event": "data_info", "logger": "__main__", "level": "info", "timestamp": "2025-09-25T23:45:18.002569Z"}
+{"event": "load_data_completed", "logger": "__main__", "level": "info", "timestamp": "2025-09-25T23:45:18.002835Z"}
+{"event": "--- Profiling Raw Data ---", "logger": "__main__", "level": "info", "timestamp": "2025-09-25T23:45:18.003070Z"}
+{"event": "\n        Data Quality Summary Report\n        ==========================\n        Generated on: 2025-09-25T23:45:18.181319\n\n        Basic Information:\n        - Rows: 60,000\n        - Columns: 11\n        - Memory Usage: 15.07 MB\n\n        Class Distribution:\n        - Fraud Cases: 104 (0.17%)\n        - Normal Cases: 59896\n        - Imbalance Ratio: 1:575.92\n\n        Data Quality Issues Found: 2 \n- [HIGH] Column 'isFlaggedFraud' has only one unique value\n- [MEDIUM] Found 30804 transactions with balance inconsistencies\n\nTemporal Coverage:\n- Duration: 0.33 days (8 hours)", "logger": "__main__", "level": "info", "timestamp": "2025-09-25T23:45:18.182682Z"}
+{"event": "--- Profiling Processed Data ---", "logger": "__main__", "level": "info", "timestamp": "2025-09-25T23:45:18.268683Z"}
+{"event": "\n        Data Quality Summary Report\n        ==========================\n        Generated on: 2025-09-25T23:45:18.421654\n\n        Basic Information:\n        - Rows: 60,000\n        - Columns: 12\n        - Memory Usage: 11.90 MB\n\n        Class Distribution:\n        - Fraud Cases: 104 (0.17%)\n        - Normal Cases: 59896\n        - Imbalance Ratio: 1:575.92\n\n        Data Quality Issues Found: 2 \n- [HIGH] Column 'isFlaggedFraud' has only one unique value\n- [MEDIUM] Found 30804 transactions with balance inconsistencies\n\nTemporal Coverage:\n- Duration: 0.33 days (8 hours)", "logger": "__main__", "level": "info", "timestamp": "2025-09-25T23:45:18.422770Z"}
+{"event": "save_processed_data_started", "logger": "__main__", "level": "info", "timestamp": "2025-09-25T23:45:18.423101Z"}
+{"event": "data_info", "logger": "__main__", "level": "info", "timestamp": "2025-09-25T23:45:18.538961Z"}
+{"event": "Processed data saved successfully.", "logger": "__main__", "level": "info", "timestamp": "2025-09-25T23:45:18.539196Z"}
+{"event": "save_processed_data_completed", "logger": "__main__", "level": "info", "timestamp": "2025-09-25T23:45:18.539418Z"}
+{"event": "--- Data Ingestion & Validation Pipeline Finished ---", "logger": "__main__", "level": "info", "timestamp": "2025-09-25T23:45:18.539669Z"}
+{"event": "Cannot use sqlite_vec for vector search", "logger": "root", "level": "warning", "timestamp": "2025-09-26T00:02:20.273668Z"}
+{"event": "Cannot use sqlite_vec for vector search", "logger": "root", "level": "warning", "timestamp": "2025-09-26T00:02:20.274486Z"}
+{"event": "Cannot use sqlite_vec for vector search", "logger": "root", "level": "warning", "timestamp": "2025-09-26T00:02:20.275001Z"}
+{"event": "Registry cache expired, so refreshing", "logger": "feast.infra.registry.registry", "level": "info", "timestamp": "2025-09-26T03:47:49.558461Z"}
+{"event": "Registry cache expired, so refreshing", "logger": "feast.infra.registry.registry", "level": "info", "timestamp": "2025-09-26T03:47:49.561641Z"}
+{"event": "Registry cache expired, so refreshing", "logger": "feast.infra.registry.registry", "level": "info", "timestamp": "2025-09-26T03:47:49.563795Z"}
+{"event": "Cannot use sqlite_vec for vector search", "logger": "root", "level": "warning", "timestamp": "2025-09-26T03:47:50.348723Z"}
+{"event": "Registry cache expired, so refreshing", "logger": "feast.infra.registry.registry", "level": "info", "timestamp": "2025-09-26T03:51:22.923809Z"}
+{"event": "Registry cache expired, so refreshing", "logger": "feast.infra.registry.registry", "level": "info", "timestamp": "2025-09-26T03:51:22.926540Z"}
+{"event": "Registry cache expired, so refreshing", "logger": "feast.infra.registry.registry", "level": "info", "timestamp": "2025-09-26T03:51:22.928760Z"}
+{"event": "Cannot use sqlite_vec for vector search", "logger": "root", "level": "warning", "timestamp": "2025-09-26T03:51:23.623511Z"}
+{"event": "Registry cache expired, so refreshing", "logger": "feast.infra.registry.registry", "level": "info", "timestamp": "2025-09-26T03:54:18.659370Z"}
+{"event": "Registry cache expired, so refreshing", "logger": "feast.infra.registry.registry", "level": "info", "timestamp": "2025-09-26T03:54:18.662162Z"}
+{"event": "Registry cache expired, so refreshing", "logger": "feast.infra.registry.registry", "level": "info", "timestamp": "2025-09-26T03:54:18.664338Z"}
+{"event": "Cannot use sqlite_vec for vector search", "logger": "root", "level": "warning", "timestamp": "2025-09-26T03:54:19.346831Z"}
+{"event": "Cannot use sqlite_vec for vector search", "logger": "root", "level": "warning", "timestamp": "2025-09-26T03:54:56.568887Z"}
+{"event": "Cannot use sqlite_vec for vector search", "logger": "root", "level": "warning", "timestamp": "2025-09-26T03:54:56.569519Z"}
+{"event": "Cannot use sqlite_vec for vector search", "logger": "root", "level": "warning", "timestamp": "2025-09-26T03:54:56.569994Z"}
+{"event": "Registry cache expired, so refreshing", "logger": "feast.infra.registry.registry", "level": "info", "timestamp": "2025-09-26T03:58:08.504528Z"}
+{"event": "Registry cache expired, so refreshing", "logger": "feast.infra.registry.registry", "level": "info", "timestamp": "2025-09-26T03:58:08.507291Z"}
+{"event": "Registry cache expired, so refreshing", "logger": "feast.infra.registry.registry", "level": "info", "timestamp": "2025-09-26T03:58:08.509459Z"}
+{"event": "Cannot use sqlite_vec for vector search", "logger": "root", "level": "warning", "timestamp": "2025-09-26T03:58:09.198942Z"}
+{"event": "Registry cache expired, so refreshing", "logger": "feast.infra.registry.registry", "level": "info", "timestamp": "2025-09-26T04:00:41.662887Z"}
+{"event": "Registry cache expired, so refreshing", "logger": "feast.infra.registry.registry", "level": "info", "timestamp": "2025-09-26T04:00:41.665932Z"}
+{"event": "Registry cache expired, so refreshing", "logger": "feast.infra.registry.registry", "level": "info", "timestamp": "2025-09-26T04:00:41.668224Z"}
+{"event": "Cannot use sqlite_vec for vector search", "logger": "root", "level": "warning", "timestamp": "2025-09-26T04:00:42.345733Z"}
+{"event": "Registry cache expired, so refreshing", "logger": "feast.infra.registry.registry", "level": "info", "timestamp": "2025-09-26T04:03:55.699532Z"}
+{"event": "Registry cache expired, so refreshing", "logger": "feast.infra.registry.registry", "level": "info", "timestamp": "2025-09-26T04:03:55.702383Z"}
+{"event": "Registry cache expired, so refreshing", "logger": "feast.infra.registry.registry", "level": "info", "timestamp": "2025-09-26T04:03:55.704693Z"}
+{"event": "Cannot use sqlite_vec for vector search", "logger": "root", "level": "warning", "timestamp": "2025-09-26T04:03:56.245661Z"}
+{"event": "Registry cache expired, so refreshing", "logger": "feast.infra.registry.registry", "level": "info", "timestamp": "2025-09-26T04:06:25.560943Z"}
+{"event": "Registry cache expired, so refreshing", "logger": "feast.infra.registry.registry", "level": "info", "timestamp": "2025-09-26T04:06:25.563870Z"}
+{"event": "Registry cache expired, so refreshing", "logger": "feast.infra.registry.registry", "level": "info", "timestamp": "2025-09-26T04:06:25.566317Z"}
+{"event": "Cannot use sqlite_vec for vector search", "logger": "root", "level": "warning", "timestamp": "2025-09-26T04:06:26.150994Z"}
+{"event": "Registry cache expired, so refreshing", "logger": "feast.infra.registry.registry", "level": "info", "timestamp": "2025-09-26T04:07:58.910505Z"}
+{"event": "Registry cache expired, so refreshing", "logger": "feast.infra.registry.registry", "level": "info", "timestamp": "2025-09-26T04:07:58.913216Z"}
+{"event": "Registry cache expired, so refreshing", "logger": "feast.infra.registry.registry", "level": "info", "timestamp": "2025-09-26T04:07:58.915371Z"}
+{"event": "Cannot use sqlite_vec for vector search", "logger": "root", "level": "warning", "timestamp": "2025-09-26T04:07:59.542065Z"}
+{"event": "Registry cache expired, so refreshing", "logger": "feast.infra.registry.registry", "level": "info", "timestamp": "2025-09-26T04:15:04.637039Z"}
+{"event": "Registry cache expired, so refreshing", "logger": "feast.infra.registry.registry", "level": "info", "timestamp": "2025-09-26T04:15:04.639774Z"}
+{"event": "Registry cache expired, so refreshing", "logger": "feast.infra.registry.registry", "level": "info", "timestamp": "2025-09-26T04:15:04.641978Z"}
+{"event": "Cannot use sqlite_vec for vector search", "logger": "root", "level": "warning", "timestamp": "2025-09-26T04:15:37.177369Z"}
+{"event": "Cannot use sqlite_vec for vector search", "logger": "root", "level": "warning", "timestamp": "2025-09-27T03:12:32.881443Z"}
+{"event": "Cannot use sqlite_vec for vector search", "logger": "root", "level": "warning", "timestamp": "2025-09-27T03:12:32.882774Z"}
+{"event": "Cannot use sqlite_vec for vector search", "logger": "root", "level": "warning", "timestamp": "2025-09-27T03:12:32.883327Z"}
+{"event": "Cannot use sqlite_vec for vector search", "logger": "root", "level": "warning", "timestamp": "2025-09-27T03:33:21.727008Z"}
+{"event": "Cannot use sqlite_vec for vector search", "logger": "root", "level": "warning", "timestamp": "2025-09-27T03:33:21.728272Z"}
+{"event": "Cannot use sqlite_vec for vector search", "logger": "root", "level": "warning", "timestamp": "2025-09-27T03:33:21.728745Z"}
+{"event": "Cannot use sqlite_vec for vector search", "logger": "root", "level": "warning", "timestamp": "2025-09-27T03:35:36.998464Z"}
+{"event": "Cannot use sqlite_vec for vector search", "logger": "root", "level": "warning", "timestamp": "2025-09-27T03:35:36.999414Z"}
+{"event": "Cannot use sqlite_vec for vector search", "logger": "root", "level": "warning", "timestamp": "2025-09-27T03:35:36.999953Z"}
+{"event": "Registry cache expired, so refreshing", "logger": "feast.infra.registry.registry", "level": "info", "timestamp": "2025-09-27T03:36:16.200411Z"}
+{"event": "_list_feature_views will make breaking changes. Please use _list_batch_feature_views instead. _list_feature_views will behave like _list_all_feature_views in the future.", "logger": "root", "level": "warning", "timestamp": "2025-09-27T03:36:16.206800Z"}
+{"event": "Registry cache expired, so refreshing", "logger": "feast.infra.registry.registry", "level": "info", "timestamp": "2025-09-27T03:36:16.207347Z"}
+{"event": "Registry cache expired, so refreshing", "logger": "feast.infra.registry.registry", "level": "info", "timestamp": "2025-09-27T03:36:16.210034Z"}
+{"event": "Registry cache expired, so refreshing", "logger": "feast.infra.registry.registry", "level": "info", "timestamp": "2025-09-27T03:36:16.210548Z"}
+{"event": "_list_feature_views will make breaking changes. Please use _list_batch_feature_views instead. _list_feature_views will behave like _list_all_feature_views in the future.", "logger": "root", "level": "warning", "timestamp": "2025-09-27T03:36:16.822927Z"}
+{"event": "Cannot use sqlite_vec for vector search", "logger": "root", "level": "warning", "timestamp": "2025-09-27T03:36:16.826952Z"}
+{"event": "Cannot use sqlite_vec for vector search", "logger": "root", "level": "warning", "timestamp": "2025-09-27T03:48:43.584884Z"}
+{"event": "Cannot use sqlite_vec for vector search", "logger": "root", "level": "warning", "timestamp": "2025-09-27T03:48:43.586482Z"}
+{"event": "Cannot use sqlite_vec for vector search", "logger": "root", "level": "warning", "timestamp": "2025-09-27T03:48:43.587025Z"}
+{"event": "Registry cache expired, so refreshing", "logger": "feast.infra.registry.registry", "level": "info", "timestamp": "2025-09-27T03:49:26.393528Z"}
+{"event": "_list_feature_views will make breaking changes. Please use _list_batch_feature_views instead. _list_feature_views will behave like _list_all_feature_views in the future.", "logger": "root", "level": "warning", "timestamp": "2025-09-27T03:49:26.399972Z"}
+{"event": "Registry cache expired, so refreshing", "logger": "feast.infra.registry.registry", "level": "info", "timestamp": "2025-09-27T03:49:26.400473Z"}
+{"event": "Registry cache expired, so refreshing", "logger": "feast.infra.registry.registry", "level": "info", "timestamp": "2025-09-27T03:49:26.403207Z"}
+{"event": "Registry cache expired, so refreshing", "logger": "feast.infra.registry.registry", "level": "info", "timestamp": "2025-09-27T03:49:26.403851Z"}
+{"event": "_list_feature_views will make breaking changes. Please use _list_batch_feature_views instead. _list_feature_views will behave like _list_all_feature_views in the future.", "logger": "root", "level": "warning", "timestamp": "2025-09-27T03:49:27.089739Z"}
+{"event": "Cannot use sqlite_vec for vector search", "logger": "root", "level": "warning", "timestamp": "2025-09-27T03:49:27.094225Z"}

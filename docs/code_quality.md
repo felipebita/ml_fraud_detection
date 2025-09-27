@@ -37,6 +37,15 @@ The following tools are configured to run as pre-commit hooks:
 *   **Purpose**: A static type checker for Python.
 *   **Usage**: It analyzes the code to ensure that variables and functions are used with the correct types. This helps to catch type-related errors before the code is even run. The configuration is set to only check the `src/` directory.
 
+### Synchronizing Pre-commit Environments
+
+A key challenge in this project was ensuring consistent behavior of the pre-commit hooks across different environments. We discovered that the `pre-commit` hooks can run in two distinct contexts:
+
+1.  **The Local `git commit` Hook:** When you run `git commit`, `pre-commit` creates and manages its own isolated Python environment to run the hooks. This environment is cached locally on your machine.
+2.  **The Dockerized `make pre-commit` Command:** When you run `make pre-commit`, the hooks are executed inside the project's Docker container, using the `uv` environment defined in `pyproject.toml`.
+
+These two environments were found to have different dependencies and package versions, which caused `mypy` to report conflicting errors. To solve this, we synchronized the environments by modifying the `.pre-commit-config.yaml` to ensure the `mypy` hook uses the same dependencies as the main project. This was achieved by explicitly listing the required type-stub packages in the `additional_dependencies` section of the `mypy` hook, ensuring consistent and predictable behavior everywhere.
+
 ## Usage
 
 While the pre-commit hooks run automatically, you can also run the tools manually. This is useful if you want to check your code before committing, or if you want to apply formatting and linting to the entire codebase.

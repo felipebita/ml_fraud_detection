@@ -82,7 +82,8 @@ class DataValidator:
     def standardize(self, df: pd.DataFrame) -> pd.DataFrame:
         """
         Standardizes columns in the DataFrame.
-        (Placeholder for future standardization logic).
+        - Converts 'type' to a categorical type for efficiency.
+        - Creates an 'event_timestamp' from the 'step' column.
 
         Args:
             df (pd.DataFrame): The DataFrame to standardize.
@@ -91,7 +92,17 @@ class DataValidator:
             pd.DataFrame: The standardized DataFrame.
         """
         logger.info("Data standardization started...")
-        # Example placeholder: Convert 'type' to a categorical type for efficiency
-        df["type"] = df["type"].astype("category")
+        df_copy = df.copy()
+
+        # Convert 'type' to a categorical type for efficiency
+        df_copy["type"] = df_copy["type"].astype("category")
+
+        # Create event_timestamp from 'step'
+        # We assume 'step' represents hours from a starting point.
+        start_date = pd.Timestamp("2024-01-01")
+        df_copy["event_timestamp"] = start_date + pd.to_timedelta(
+            df_copy["step"], unit="h"
+        )
+
         logger.info("Data standardization completed.")
-        return df
+        return df_copy

@@ -93,7 +93,25 @@ def test_validate_extra_column(validator, valid_df):
         validator.validate(invalid_df)
 
 
-def test_standardize_type_conversion(validator, valid_df):
-    """Tests that the standardize method correctly converts column types."""
+def test_standardize_converts_type_and_adds_timestamp(validator, valid_df):
+    """
+    Tests that the standardize method correctly converts column types
+    and adds the 'event_timestamp' column.
+    """
     standardized_df = validator.standardize(valid_df)
+
+    # Test type conversion
     assert isinstance(standardized_df["type"].dtype, pd.CategoricalDtype)
+
+    # Test for 'event_timestamp' column
+    assert "event_timestamp" in standardized_df.columns
+    assert pd.api.types.is_datetime64_any_dtype(standardized_df["event_timestamp"])
+
+    # Test timestamp calculation
+    start_date = pd.Timestamp("2024-01-01")
+    expected_timestamps = start_date + pd.to_timedelta(valid_df["step"], unit="h")
+    pd.testing.assert_series_equal(
+        standardized_df["event_timestamp"],
+        expected_timestamps,
+        check_names=False,
+    )

@@ -9,11 +9,12 @@ from feast import (
     FileSource,
     ValueType,
 )
+from feast.data_format import ParquetFormat
 from feast.types import Float64, Int64, String
 
 from src.utils.config import get_config
 
-# Add the project root to the Python path
+# Get absolute path to project root
 project_root = Path(__file__).resolve().parent.parent
 sys.path.append(str(project_root))
 
@@ -23,11 +24,10 @@ config = get_config()
 # Get the path to the processed data from the config
 processed_data_path = config["data"]["processed_path"]
 
-# The path in FileSource is relative to the feature_repo directory.
-# The path in the config is relative to the project root.
-# So, we need to construct the relative path from feature_repo to the processed data.
-file_path = f"../{processed_data_path}"
+# Use absolute path - this works regardless of CWD
+file_path = str(project_root / processed_data_path)
 
+print(f"DEBUG: Using file path: {file_path}")  # Temporary debug line
 
 # Define entities
 origin_customer = Entity(
@@ -39,8 +39,7 @@ destination_customer = Entity(
 
 # Define the data source
 transactions_source = FileSource(
-    path=file_path,
-    timestamp_field="step",  # Using 'step' as a proxy for timestamp for now
+    path=file_path, timestamp_field="event_timestamp", file_format=ParquetFormat()
 )
 
 # Define a feature view for transaction features

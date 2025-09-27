@@ -1,35 +1,0 @@
-
-Q
-1
-origin_customer"nameOrigJml_fraud_detection
-ƒ¯óÅ€´ßšƒ¯óÅ€´ßš
-I
-)
-__dummy"
-__dummy_idJml_fraud_detection
-ƒ¯óÅøôæšƒ¯óÅøôæš
-V
-6
-destination_customer"nameDestJml_fraud_detection
-ƒ¯óÅ˜ÿíšƒ¯óÅ˜ÿíš1"$1e31722b-256c-4a16-99e3-c66c3cd94625*Ö¿şÅ¸½¨2Ã
-¢
-transaction_featuresml_fraud_detectionorigin_customerdestination_customer"
-type"
-
-amount"
-oldbalanceOrg"
-newbalanceOrig"
-oldbalanceDest"
-newbalanceDest"
-isFraud"
-isFlaggedFraud2€ç„:£stepZ20../data/processed/processed_transactions.parquetŠ1feast.infra.offline_stores.file_source.FileSource¢0../data/processed/processed_transactions.parquet@b
-nameOrigb
-nameDest
-ƒ¯óÅ˜êôšƒ¯óÅ˜êôšR„
-
-,feast.infra.online_stores.sqlite.SqliteTable"Q
-&/app/feature_repo/data/online_store.db'ml_fraud_detection_transaction_featuresb¸stepZ20../data/processed/processed_transactions.parquetŠ1feast.infra.offline_stores.file_source.FileSource¢0../data/processed/processed_transactions.parquetªml_fraud_detectionz:
-ml_fraud_detection$c08b3c74-b5d5-46d2-ad5b-8e0a7b3d0adcŠ4
-
-ml_fraud_detection
-ƒ¯óÅ¨á²ƒ¯óÅ¨á²

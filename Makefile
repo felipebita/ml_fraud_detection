@@ -16,7 +16,6 @@ help:
 	@echo "  evaluate       : Evaluate models"
 	@echo "  serve          : Start model server"
 	@echo "  dashboard      : Launch MLflow UI"
-	@echo "  feature-repo-init: Initialize Feast feature repository"
 	@echo "  feature-repo-apply: Apply feature repository changes"
 	@echo "  docs-serve     : Serve the documentation site locally (development)"
 	@echo "  docs-build     : Build the documentation site (for deployment)"
@@ -69,15 +68,13 @@ dashboard:
 	@echo "Launching MLflow UI..."
 	@./scripts/start_mlflow_duckdb.sh
 
-feature-repo-init:
-	@echo "Initializing Feast feature repository..."
-	rm -rf feature_repo
-	mkdir feature_repo
-	cd feature_repo && uv run --active feast init
-
 feature-repo-apply:
 	@echo "Applying feature repository changes..."
 	uv run --active -- bash -c "cd feature_repo && feast apply"
+
+feature-repo-materialize-test:
+	@echo "Materializing test features (8 hours of data)..."
+	uv run --active -- bash -c "cd feature_repo && feast materialize 2024-01-01T01:00:00 2024-01-01T09:00:00"
 
 docs-serve:
 	@echo "Starting documentation server at http://0.0.0.0:8000"

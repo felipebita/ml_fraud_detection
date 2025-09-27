@@ -1,6 +1,7 @@
 # tests/unit/test_mlflow_duckdb_setup.py
 from unittest.mock import Mock, patch
 
+import pandas as pd
 import pytest
 
 from src.utils.mlflow_duckdb_setup import MLflowDuckDBManager
@@ -96,7 +97,7 @@ class TestMLflowDuckDBManager:
 
         mock_conn = Mock()
         mock_connect.return_value.__enter__.return_value = mock_conn
-        mock_conn.execute.return_value.fetchdf.return_value = []
+        mock_conn.execute.return_value.fetch_df.return_value = pd.DataFrame()
 
         # Execute
         _ = manager.query_experiments("SELECT * FROM runs")
