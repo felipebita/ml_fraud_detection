@@ -2,6 +2,7 @@ from datetime import timedelta
 
 from feast import (
     Entity,
+    FeatureService,
     FeatureView,
     Field,
     FileSource,
@@ -50,4 +51,10 @@ transaction_features = FeatureView(
         Field(name="isFlaggedFraud", dtype=Int64),
     ],
     source=transactions_source,
+)
+
+# Define a feature service for the fraud detection model
+fraud_detection_service = FeatureService(
+    name="fraud_detection_service",
+    features=[transaction_features],
 )
