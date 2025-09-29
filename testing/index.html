@@ -634,6 +634,21 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="tests/integration/">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#testsintegrationtest_feast_basicpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      tests/integration/test_feast_basic.py
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
           <li class="md-nav__item">
@@ -766,12 +781,17 @@
 <ul>
 <li><code>./tests/</code><ul>
 <li><code>./tests/conftest.py</code></li>
-<li><code>./tests/integration/</code></li>
-<li><code>./tests/unit/</code></li>
+<li><code>./tests/integration/</code><ul>
+<li><code>./tests/integration/test_feast_basic.py</code></li>
+</ul>
+</li>
+<li><code>./tests/unit/</code><ul>
 <li><code>./tests/unit/test_data_loader.py</code></li>
 <li><code>./tests/unit/test_data_validator.py</code></li>
 <li><code>./tests/unit/test_mlflow_analytics.py</code></li>
 <li><code>./tests/unit/test_mlflow_duckdb_setup.py</code></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -802,6 +822,18 @@
 <li><strong>Usage</strong>: It is used to test the interaction between different components of the application.</li>
 <li><strong>Key Information</strong>:<ul>
 <li>Tests are organized by the workflow they are testing.</li>
+</ul>
+</li>
+</ul>
+<h4 id="testsintegrationtest_feast_basicpy"><code>tests/integration/test_feast_basic.py</code></h4>
+<ul>
+<li><strong>Purpose</strong>: This file contains integration tests for the Feast feature store.</li>
+<li><strong>Usage</strong>: It verifies that the feature store is correctly configured and that features can be retrieved from both the online and offline stores.</li>
+<li><strong>Key Information</strong>:<ul>
+<li>It tests the loading of feature definitions.</li>
+<li>It tests the retrieval of historical features from the offline store.</li>
+<li>It tests the retrieval of online features from the online store.</li>
+<li>It tests for consistency between the online and offline stores.</li>
 </ul>
 </li>
 </ul>

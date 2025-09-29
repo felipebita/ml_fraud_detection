@@ -572,6 +572,15 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#datadownloadcomplete_synthetic_financial_datasetcsv" class="md-nav__link">
+    <span class="md-ellipsis">
+      data/download/complete_synthetic_financial_dataset.csv
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#dataraw" class="md-nav__link">
     <span class="md-ellipsis">
       data/raw/
@@ -661,12 +670,69 @@
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#dataprofiling_resultsjson" class="md-nav__link">
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#feature_repo" class="md-nav__link">
     <span class="md-ellipsis">
-      data/profiling_results.json
+      feature_repo/
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="feature_repo/">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#feature_repofeature_storeyaml" class="md-nav__link">
+    <span class="md-ellipsis">
+      feature_repo/feature_store.yaml
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#feature_repodefinitionspy" class="md-nav__link">
+    <span class="md-ellipsis">
+      feature_repo/definitions.py
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#feature_repodata" class="md-nav__link">
+    <span class="md-ellipsis">
+      feature_repo/data/
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="feature_repo/data/">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#feature_repodataonline_storedb" class="md-nav__link">
+    <span class="md-ellipsis">
+      feature_repo/data/online_store.db
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#feature_repodataregistrydb" class="md-nav__link">
+    <span class="md-ellipsis">
+      feature_repo/data/registry.db
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
@@ -810,6 +876,24 @@
   
     <nav class="md-nav" aria-label="scripts/">
       <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#scriptscreate_dummy_datapy" class="md-nav__link">
+    <span class="md-ellipsis">
+      scripts/create_dummy_data.py
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scriptsget_timestamp_rangepy" class="md-nav__link">
+    <span class="md-ellipsis">
+      scripts/get_timestamp_range.py
+    </span>
+  </a>
+  
+</li>
         
           <li class="md-nav__item">
   <a href="#scriptstest_mlflow_setuppy" class="md-nav__link">
@@ -1029,15 +1113,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#docslast_sessionmd" class="md-nav__link">
-    <span class="md-ellipsis">
-      docs/LAST_SESSION.md
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -1146,6 +1221,10 @@
 </ul>
 </li>
 <li><code>./data/</code><ul>
+<li><code>./data/download/</code><ul>
+<li><code>./data/download/complete_synthetic_financial_dataset.csv</code></li>
+</ul>
+</li>
 <li><code>./data/features/</code></li>
 <li><code>./data/processed/</code><ul>
 <li><code>./data/processed/processed_transactions.parquet</code></li>
@@ -1164,17 +1243,23 @@
 </li>
 <li><code>./docs/</code><ul>
 <li><code>./docs/business.md</code></li>
-<li><code>./docs/index.md</code></li>
 <li><code>./docs/project_files.md</code></li>
-<li><code>./docs/PROJECT_PLAN.md</code></li>
-<li><code>./docs/TESTING.md</code></li>
-<li><code>./docs/LAST_SESSION.md</code></li>
 </ul>
 </li>
-<li><code>./duckdb:</code> ?</li>
+<li><code>./feature_repo/</code><ul>
+<li><code>./definitions.py</code></li>
+<li><code>./feature_store.yaml</code></li>
+<li><code>./feature_repo/data/</code><ul>
+<li><code>./feature_repo/data/online_store.db</code></li>
+<li><code>./feature_repo/data/registry.db</code></li>
+</ul>
+</li>
+</ul>
+</li>
 <li><code>./dhtmlcov/</code></li>
 <li><code>./logs/</code><ul>
 <li><code>./logs/fraud_detection.log</code></li>
+<li><code>./logs/pytest.log</code></li>
 </ul>
 </li>
 <li><code>./models/</code></li>
@@ -1183,6 +1268,8 @@
 </ul>
 </li>
 <li><code>./scripts/</code><ul>
+<li><code>./scripts/create_dummy_data.py</code></li>
+<li><code>./scripts/get_timestamp_range.py</code></li>
 <li><code>./scripts/test_mlflow_setup.py</code></li>
 <li><code>./scripts/test_profiler.py</code></li>
 </ul>
@@ -1206,11 +1293,18 @@
 </li>
 <li><code>./tests/</code><ul>
 <li><code>./tests/conftest.py</code></li>
-<li><code>./tests/integration</code></li>
+<li><code>./tests/integration</code><ul>
+<li><code>./tests/integration/test_feast_basic.py</code></li>
+</ul>
+</li>
+<li><code>./tests/unit/</code><ul>
 <li><code>./tests/unit/test_data_loader.py</code></li>
+<li><code>./tests/unit/test_data_profiler.py</code></li>
 <li><code>./tests/unit/test_data_validator.py</code></li>
 <li><code>./tests/unit/test_mlflow_analytics.py</code></li>
 <li><code>./tests/unit/test_duckdb_setup.py</code></li>
+</ul>
+</li>
 </ul>
 </li>
 <li><code>./.env</code></li>
@@ -1248,6 +1342,11 @@
 <li><code>features</code>: Contains the engineered features.</li>
 </ul>
 </li>
+</ul>
+<h3 id="datadownloadcomplete_synthetic_financial_datasetcsv"><code>data/download/complete_synthetic_financial_dataset.csv</code></h3>
+<ul>
+<li><strong>Purpose</strong>: The original, unmodified source data for the project, downloaded from Kaggle.</li>
+<li><strong>Usage</strong>: It serves as the input for the data ingestion pipeline (<code>src/data/data_loader.py</code>) and should be treated as immutable.</li>
 </ul>
 <h3 id="dataraw"><code>data/raw/</code></h3>
 <ul>
@@ -1293,10 +1392,33 @@
 <li><strong>Purpose</strong>: This directory contains the engineered features.</li>
 <li><strong>Usage</strong>: The data in this directory is the result of the feature engineering process. It is the input for the model training.</li>
 </ul>
-<h3 id="dataprofiling_resultsjson"><code>data/profiling_results.json</code></h3>
+<h2 id="feature_repo"><code>feature_repo/</code></h2>
 <ul>
-<li><strong>Purpose</strong>: This file contains the results of the data profiling.</li>
-<li><strong>Usage</strong>: It is used to store the data profile report in a JSON format.</li>
+<li><strong>Purpose</strong>: This directory contains all the definitions and configurations for the Feast feature repository.</li>
+</ul>
+<h3 id="feature_repofeature_storeyaml"><code>feature_repo/feature_store.yaml</code></h3>
+<ul>
+<li><strong>Purpose</strong>: The main configuration file for the feature store.</li>
+<li><strong>Usage</strong>: It defines the project name, registry path, provider (local), and online store configuration.</li>
+</ul>
+<h3 id="feature_repodefinitionspy"><code>feature_repo/definitions.py</code></h3>
+<ul>
+<li><strong>Purpose</strong>: This file contains the Python-based definitions for all features.</li>
+<li><strong>Usage</strong>: It defines the entities, feature views, and feature services that comprise the feature store.</li>
+</ul>
+<h3 id="feature_repodata"><code>feature_repo/data/</code></h3>
+<ul>
+<li><strong>Purpose</strong>: This directory holds the local data files generated by Feast for the local development environment.</li>
+</ul>
+<h4 id="feature_repodataonline_storedb"><code>feature_repo/data/online_store.db</code></h4>
+<ul>
+<li><strong>Purpose</strong>: This is the SQLite database file that acts as the online store during local development.</li>
+<li><strong>Usage</strong>: It stores features that have been materialized from the offline store, providing low-latency access for serving.</li>
+</ul>
+<h4 id="feature_repodataregistrydb"><code>feature_repo/data/registry.db</code></h4>
+<ul>
+<li><strong>Purpose</strong>: This is the SQLite database that stores the feature registry.</li>
+<li><strong>Usage</strong>: It keeps track of all the registered feature definitions, entities, and their metadata.</li>
 </ul>
 <h2 id="gitignore"><code>.gitignore</code></h2>
 <ul>
@@ -1441,6 +1563,16 @@
 <h2 id="scripts"><code>scripts/</code></h2>
 <ul>
 <li><strong>Purpose</strong>: This directory contains standalone scripts for various tasks, such as starting services or running tests.</li>
+</ul>
+<h3 id="scriptscreate_dummy_datapy"><code>scripts/create_dummy_data.py</code></h3>
+<ul>
+<li><strong>Purpose</strong>: This script creates a small, version-controlled dummy dataset for use in CI/CD pipelines.</li>
+<li><strong>Usage</strong>: It is run during the CI workflow to generate a minimal dataset for tests, avoiding the need to store the full dataset in the repository.</li>
+</ul>
+<h3 id="scriptsget_timestamp_rangepy"><code>scripts/get_timestamp_range.py</code></h3>
+<ul>
+<li><strong>Purpose</strong>: An auxiliary script to get the minimum and maximum timestamp from the processed data.</li>
+<li><strong>Usage</strong>: It is used to determine the time range of the data in the processed Parquet file, which can be useful for setting <code>materialize</code> windows.</li>
 </ul>
 <h3 id="scriptstest_mlflow_setuppy"><code>scripts/test_mlflow_setup.py</code></h3>
 <ul>
@@ -1639,18 +1771,6 @@
 <li>The command starts the MLflow server using <code>uv run</code>, configured with a DuckDB backend and the appropriate artifact root.</li>
 </ul>
 </li>
-</ul>
-</li>
-</ul>
-<h2 id="docslast_sessionmd"><code>docs/LAST_SESSION.md</code></h2>
-<ul>
-<li><strong>Purpose</strong>: This file provides a summary of the previous development session to ensure continuity.</li>
-<li><strong>Usage</strong>: It is read at the beginning of a new session to quickly understand the project's current state, what was accomplished, and what the next steps are.</li>
-<li><strong>Key Information</strong>:<ul>
-<li><strong>Session Date</strong>: Records the date of the last session.</li>
-<li><strong>Objective</strong>: Briefly describes the goal of the previous session.</li>
-<li><strong>Issues &amp; Solutions</strong>: Details any problems encountered and how they were resolved.</li>
-<li><strong>Status &amp; Next Steps</strong>: Summarizes the state of the project at the end of the session and outlines the goals for the current session.</li>
 </ul>
 </li>
 </ul>
