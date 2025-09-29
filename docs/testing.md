@@ -30,11 +30,12 @@ This setup ensures that the test logs are captured in a separate file without in
 - `./tests/`
     - `./tests/conftest.py`
     - `./tests/integration/`
+        - `./tests/integration/test_feast_basic.py`
     - `./tests/unit/`
-    - `./tests/unit/test_data_loader.py`
-    - `./tests/unit/test_data_validator.py`
-    - `./tests/unit/test_mlflow_analytics.py`
-    - `./tests/unit/test_mlflow_duckdb_setup.py`
+        - `./tests/unit/test_data_loader.py`
+        - `./tests/unit/test_data_validator.py`
+        - `./tests/unit/test_mlflow_analytics.py`
+        - `./tests/unit/test_mlflow_duckdb_setup.py`
 
 ## `tests/`
 
@@ -59,6 +60,16 @@ This setup ensures that the test logs are captured in a separate file without in
 *   **Usage**: It is used to test the interaction between different components of the application.
 *   **Key Information**:
     *   Tests are organized by the workflow they are testing.
+
+#### `tests/integration/test_feast_basic.py`
+
+*   **Purpose**: This file contains integration tests for the Feast feature store.
+*   **Usage**: It verifies that the feature store is correctly configured and that features can be retrieved from both the online and offline stores.
+*   **Key Information**:
+    *   It tests the loading of feature definitions.
+    *   It tests the retrieval of historical features from the offline store.
+    *   It tests the retrieval of online features from the online store.
+    *   It tests for consistency between the online and offline stores.
 
 ### `tests/unit/`
 
