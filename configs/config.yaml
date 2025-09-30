@@ -8,9 +8,21 @@ data:
   processed_path: "data/processed/processed_transactions.parquet"
   raw_profile_path: "data/reports/raw_data_profile.json"
   processed_profile_path: "data/reports/processed_data_profile.json"
+  train_dataset_path: "data/processed/train_dataset.parquet"
+  test_dataset_path: "data/processed/test_dataset.parquet"
 
 # MLflow configuration
 mlflow:
   experiment_name: "fraud_detection"
   tracking_uri: "sqlite:///mlflow.duckdb" # Default local tracking
   artifact_root: "./mlruns"
+
+# Data splitting configuration
+data_splitting:
+  test_size: 0.2 # The 20% for the final hold-out validation set
+  timestamp_col: "step"
+
+# Model training configuration
+model_training:
+  cv_strategy: "TimeSeriesSplit"
+  cv_folds: 5

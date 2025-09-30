@@ -47,6 +47,7 @@ This file provides a comprehensive overview of all files in the project, includi
     - `./src/data/`
         - `./src/data/data_loader.py`
         - `./src/data/data_profiler.py`
+        - `./src/data/data_spliter.py`
         - `./src/data/data_validator.py`
     - `./src/utils/`
         - `./src/utils/config.py`
@@ -379,6 +380,14 @@ This directory contains all the GitHub Actions workflows for the project.
     *   **`generate_profile()`**: Generates a comprehensive data profile.
     *   **`export_profile()`**: Exports the profile to a JSON file.
     *   **`get_summary_report()`**: Generates a human-readable summary report.
+
+### `src/data/data_splitter.py`
+
+*   **Purpose**: This script is responsible for splitting the processed data into a final training and test set.
+*   **Usage**: It performs a chronological split based on the timestamp column (`step`) to ensure that the test set contains data from a time period after the training set. This prevents data leakage and provides a realistic evaluation scenario. The size of the test set is configurable via `configs/config.yaml`.
+*   **Key Information**:
+    *   **Input**: `data/processed/processed_transactions.parquet`.
+    *   **Outputs**: `data/processed/train_dataset.parquet` (e.g., the first 80% of the data) and `data/processed/test_dataset.parquet` (e.g., the last 20% of the data). These files are the definitive inputs for the entire model training and evaluation pipeline.
 
 ### `src/utils/`
 

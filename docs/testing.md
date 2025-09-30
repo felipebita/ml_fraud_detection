@@ -33,6 +33,8 @@ This setup ensures that the test logs are captured in a separate file without in
         - `./tests/integration/test_feast_basic.py`
     - `./tests/unit/`
         - `./tests/unit/test_data_loader.py`
+        - `./tests/unit/test_data_profiler.py`
+        - `./tests/unit/test_data_splitter.py`
         - `./tests/unit/test_data_validator.py`
         - `./tests/unit/test_mlflow_analytics.py`
         - `./tests/unit/test_mlflow_duckdb_setup.py`
@@ -90,6 +92,17 @@ This setup ensures that the test logs are captured in a separate file without in
     *   It tests that an error is raised if no rows are valid.
     *   It directly tests the `TransactionSchema` Pydantic schema.
 
+#### `tests/unit/test_data_profiler.py`
+
+*   **Purpose**: This file contains a comprehensive suite of unit tests for the `DataProfiler` class from `src/data/data_profiler.py`.
+*   **Usage**: It verifies that the data profiling and report generation logic is correct under a wide variety of conditions.
+*   **Key Information**:
+    *   It uses `pytest` fixtures to create a sample DataFrame and a `DataProfiler` instance for testing.
+    *   It tests the successful generation of the main profile, ensuring all expected statistical sections (`numerical_stats`, `categorical_stats`, etc.) are present.
+    *   It verifies that the profile can be correctly exported to a JSON file.
+    *   It includes numerous tests for specific data quality checks, such as the detection of high missing values, constant columns, and transaction balance inconsistencies.
+    *   It tests edge cases for the temporal and class distribution analyses, such as when the relevant columns (`step`, `isFraud`) are missing or contain no positive cases.
+
 #### `tests/unit/test_data_validator.py`
 
 *   **Purpose**: This file contains unit tests for the data validator.
@@ -98,6 +111,16 @@ This setup ensures that the test logs are captured in a separate file without in
     *   It tests for successful validation of a valid DataFrame.
     *   It tests that validation fails for incorrect data types, out-of-range values, disallowed categories, missing columns, and extra columns.
     *   It tests the standardization of column types.
+
+#### `tests/unit/test_data_splitter.py`
+
+*   **Purpose**: This file contains unit tests for the `DataSplitter` class.
+*   **Usage**: It verifies the core logic of the chronological data split without depending on the actual file system.
+*   **Key Information**:
+    *   It uses a mock configuration and an in-memory sample DataFrame to ensure the test is isolated.
+    *   It patches `pandas.read_parquet` and `pandas.to_parquet` to prevent any actual file I/O.
+    *   It verifies that the data is split according to the configured ratio (e.g., 80/20).
+    *   Most importantly, it asserts that all data in the training set is chronologically earlier than any data in the test set, confirming the integrity of the time-based split.
 
 #### `tests/unit/test_mlflow_analytics.py`
 
