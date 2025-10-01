@@ -671,6 +671,15 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#testsunittest_data_processingpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      tests/unit/test_data_processing.py
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#testsunittest_data_profilerpy" class="md-nav__link">
     <span class="md-ellipsis">
       tests/unit/test_data_profiler.py
@@ -880,6 +889,18 @@
 </ul>
 </li>
 </ul>
+<h4 id="testsunittest_data_processingpy"><code>tests/unit/test_data_processing.py</code></h4>
+<ul>
+<li><strong>Purpose</strong>: This file contains unit tests for the <code>DataProcessor</code> class from <code>src/data/data_processing.py</code>.</li>
+<li><strong>Usage</strong>: It verifies the correctness of each data transformation step.</li>
+<li><strong>Key Information</strong>:<ul>
+<li>It uses <code>pytest</code> fixtures to create a <code>DataProcessor</code> instance and a sample DataFrame.</li>
+<li><code>test_standardize_converts_type_and_adds_timestamp</code>: Verifies that the <code>standardize</code> method correctly converts the <code>type</code> column to a categorical dtype and creates the <code>event_timestamp</code> column with the correct values.</li>
+<li><code>test_filter_transaction_types</code>: Ensures that the <code>filter_transaction_types</code> method correctly filters the DataFrame to only include <code>CASH_OUT</code> and <code>TRANSFER</code> types.</li>
+<li><code>test_encode_transaction_type</code>: Checks that the <code>encode_transaction_type</code> method correctly encodes the <code>type</code> column into a binary (0/1) format.</li>
+</ul>
+</li>
+</ul>
 <h4 id="testsunittest_data_profilerpy"><code>tests/unit/test_data_profiler.py</code></h4>
 <ul>
 <li><strong>Purpose</strong>: This file contains a comprehensive suite of unit tests for the <code>DataProfiler</code> class from <code>src/data/data_profiler.py</code>.</li>
@@ -900,7 +921,6 @@
 <li><strong>Key Information</strong>:<ul>
 <li>It tests for successful validation of a valid DataFrame.</li>
 <li>It tests that validation fails for incorrect data types, out-of-range values, disallowed categories, missing columns, and extra columns.</li>
-<li>It tests the standardization of column types.</li>
 </ul>
 </li>
 </ul>
