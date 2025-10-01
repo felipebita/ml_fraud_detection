@@ -1,61 +1,122 @@
-2025-09-30 21:22:37,769 - faker.factory - DEBUG - Looking for locale `en_US` in provider `faker.providers.address`.
-2025-09-30 21:22:37,771 - faker.factory - DEBUG - Provider `faker.providers.address` has been localized to `en_US`.
-2025-09-30 21:22:37,774 - faker.factory - DEBUG - Looking for locale `en_US` in provider `faker.providers.automotive`.
-2025-09-30 21:22:37,775 - faker.factory - DEBUG - Provider `faker.providers.automotive` has been localized to `en_US`.
-2025-09-30 21:22:37,776 - faker.factory - DEBUG - Looking for locale `en_US` in provider `faker.providers.bank`.
-2025-09-30 21:22:37,778 - faker.factory - DEBUG - Specified locale `en_US` is not available for provider `faker.providers.bank`. Locale reset to `en_GB` for this provider.
-2025-09-30 21:22:37,778 - faker.factory - DEBUG - Looking for locale `en_US` in provider `faker.providers.barcode`.
-2025-09-30 21:22:37,779 - faker.factory - DEBUG - Provider `faker.providers.barcode` has been localized to `en_US`.
-2025-09-30 21:22:37,781 - faker.factory - DEBUG - Looking for locale `en_US` in provider `faker.providers.color`.
-2025-09-30 21:22:37,782 - faker.factory - DEBUG - Provider `faker.providers.color` has been localized to `en_US`.
-2025-09-30 21:22:37,783 - faker.factory - DEBUG - Looking for locale `en_US` in provider `faker.providers.company`.
-2025-09-30 21:22:37,785 - faker.factory - DEBUG - Provider `faker.providers.company` has been localized to `en_US`.
-2025-09-30 21:22:37,786 - faker.factory - DEBUG - Looking for locale `en_US` in provider `faker.providers.credit_card`.
-2025-09-30 21:22:37,786 - faker.factory - DEBUG - Provider `faker.providers.credit_card` has been localized to `en_US`.
-2025-09-30 21:22:37,787 - faker.factory - DEBUG - Looking for locale `en_US` in provider `faker.providers.currency`.
-2025-09-30 21:22:37,788 - faker.factory - DEBUG - Provider `faker.providers.currency` has been localized to `en_US`.
-2025-09-30 21:22:37,789 - faker.factory - DEBUG - Looking for locale `en_US` in provider `faker.providers.date_time`.
-2025-09-30 21:22:37,791 - faker.factory - DEBUG - Provider `faker.providers.date_time` has been localized to `en_US`.
-2025-09-30 21:22:37,792 - faker.factory - DEBUG - Provider `faker.providers.doi` does not feature localization. Specified locale `en_US` is not utilized for this provider.
-2025-09-30 21:22:37,792 - faker.factory - DEBUG - Provider `faker.providers.emoji` does not feature localization. Specified locale `en_US` is not utilized for this provider.
-2025-09-30 21:22:37,792 - faker.factory - DEBUG - Provider `faker.providers.file` does not feature localization. Specified locale `en_US` is not utilized for this provider.
-2025-09-30 21:22:37,792 - faker.factory - DEBUG - Looking for locale `en_US` in provider `faker.providers.geo`.
-2025-09-30 21:22:37,793 - faker.factory - DEBUG - Provider `faker.providers.geo` has been localized to `en_US`.
-2025-09-30 21:22:37,794 - faker.factory - DEBUG - Looking for locale `en_US` in provider `faker.providers.internet`.
-2025-09-30 21:22:37,795 - faker.factory - DEBUG - Provider `faker.providers.internet` has been localized to `en_US`.
-2025-09-30 21:22:37,796 - faker.factory - DEBUG - Looking for locale `en_US` in provider `faker.providers.isbn`.
-2025-09-30 21:22:37,797 - faker.factory - DEBUG - Provider `faker.providers.isbn` has been localized to `en_US`.
-2025-09-30 21:22:37,797 - faker.factory - DEBUG - Looking for locale `en_US` in provider `faker.providers.job`.
-2025-09-30 21:22:37,799 - faker.factory - DEBUG - Provider `faker.providers.job` has been localized to `en_US`.
-2025-09-30 21:22:37,800 - faker.factory - DEBUG - Looking for locale `en_US` in provider `faker.providers.lorem`.
-2025-09-30 21:22:37,801 - faker.factory - DEBUG - Provider `faker.providers.lorem` has been localized to `en_US`.
-2025-09-30 21:22:37,801 - faker.factory - DEBUG - Looking for locale `en_US` in provider `faker.providers.misc`.
-2025-09-30 21:22:37,802 - faker.factory - DEBUG - Provider `faker.providers.misc` has been localized to `en_US`.
-2025-09-30 21:22:37,802 - faker.factory - DEBUG - Looking for locale `en_US` in provider `faker.providers.passport`.
-2025-09-30 21:22:37,803 - faker.factory - DEBUG - Provider `faker.providers.passport` has been localized to `en_US`.
-2025-09-30 21:22:37,804 - faker.factory - DEBUG - Looking for locale `en_US` in provider `faker.providers.person`.
-2025-09-30 21:22:37,806 - faker.factory - DEBUG - Provider `faker.providers.person` has been localized to `en_US`.
-2025-09-30 21:22:37,811 - faker.factory - DEBUG - Looking for locale `en_US` in provider `faker.providers.phone_number`.
-2025-09-30 21:22:37,814 - faker.factory - DEBUG - Provider `faker.providers.phone_number` has been localized to `en_US`.
-2025-09-30 21:22:37,815 - faker.factory - DEBUG - Provider `faker.providers.profile` does not feature localization. Specified locale `en_US` is not utilized for this provider.
-2025-09-30 21:22:37,815 - faker.factory - DEBUG - Provider `faker.providers.python` does not feature localization. Specified locale `en_US` is not utilized for this provider.
-2025-09-30 21:22:37,815 - faker.factory - DEBUG - Provider `faker.providers.sbn` does not feature localization. Specified locale `en_US` is not utilized for this provider.
-2025-09-30 21:22:37,815 - faker.factory - DEBUG - Looking for locale `en_US` in provider `faker.providers.ssn`.
-2025-09-30 21:22:37,817 - faker.factory - DEBUG - Provider `faker.providers.ssn` has been localized to `en_US`.
-2025-09-30 21:22:37,818 - faker.factory - DEBUG - Provider `faker.providers.user_agent` does not feature localization. Specified locale `en_US` is not utilized for this provider.
-2025-09-30 21:22:38,162 - feast.infra.registry.registry - INFO - Registry cache expired, so refreshing
-2025-09-30 21:22:38,167 - root - WARNING - list_feature_views will make breaking changes. Please use list_batch_feature_views instead. list_feature_views will behave like list_all_feature_views in the future.
-2025-09-30 21:22:38,167 - root - WARNING - _list_feature_views will make breaking changes. Please use _list_batch_feature_views instead. _list_feature_views will behave like _list_all_feature_views in the future.
-2025-09-30 21:22:38,168 - feast.infra.registry.registry - INFO - Registry cache expired, so refreshing
-2025-09-30 21:22:38,170 - feast.infra.registry.registry - INFO - Registry cache expired, so refreshing
-2025-09-30 21:22:38,175 - root - WARNING - _list_feature_views will make breaking changes. Please use _list_batch_feature_views instead. _list_feature_views will behave like _list_all_feature_views in the future.
-2025-09-30 21:22:38,175 - feast.infra.registry.registry - INFO - Registry cache expired, so refreshing
-2025-09-30 21:22:38,177 - feast.infra.registry.registry - INFO - Registry cache expired, so refreshing
-2025-09-30 21:22:38,178 - feast.infra.registry.registry - INFO - Registry cache expired, so refreshing
-2025-09-30 21:22:38,753 - root - WARNING - _list_feature_views will make breaking changes. Please use _list_batch_feature_views instead. _list_feature_views will behave like _list_all_feature_views in the future.
-2025-09-30 21:22:38,757 - root - WARNING - Cannot use sqlite_vec for vector search
-2025-09-30 21:22:38,760 - root - WARNING - _list_feature_views will make breaking changes. Please use _list_batch_feature_views instead. _list_feature_views will behave like _list_all_feature_views in the future.
-2025-09-30 21:22:38,762 - root - WARNING - _list_feature_views will make breaking changes. Please use _list_batch_feature_views instead. _list_feature_views will behave like _list_all_feature_views in the future.
-2025-09-30 21:22:38,762 - feast.infra.registry.registry - INFO - Registry cache expired, so refreshing
-2025-09-30 21:22:38,765 - feast.infra.registry.registry - INFO - Registry cache expired, so refreshing
-2025-09-30 21:22:38,765 - feast.infra.registry.registry - INFO - Registry cache expired, so refreshing
+2025-10-01 03:42:27,228 - src - INFO - fraud_detection_package_initialized
+2025-10-01 03:42:28,844 - faker.factory - DEBUG - Looking for locale `en_US` in provider `faker.providers.address`.
+2025-10-01 03:42:28,846 - faker.factory - DEBUG - Provider `faker.providers.address` has been localized to `en_US`.
+2025-10-01 03:42:28,848 - faker.factory - DEBUG - Looking for locale `en_US` in provider `faker.providers.automotive`.
+2025-10-01 03:42:28,850 - faker.factory - DEBUG - Provider `faker.providers.automotive` has been localized to `en_US`.
+2025-10-01 03:42:28,851 - faker.factory - DEBUG - Looking for locale `en_US` in provider `faker.providers.bank`.
+2025-10-01 03:42:28,852 - faker.factory - DEBUG - Specified locale `en_US` is not available for provider `faker.providers.bank`. Locale reset to `en_GB` for this provider.
+2025-10-01 03:42:28,853 - faker.factory - DEBUG - Looking for locale `en_US` in provider `faker.providers.barcode`.
+2025-10-01 03:42:28,854 - faker.factory - DEBUG - Provider `faker.providers.barcode` has been localized to `en_US`.
+2025-10-01 03:42:28,856 - faker.factory - DEBUG - Looking for locale `en_US` in provider `faker.providers.color`.
+2025-10-01 03:42:28,858 - faker.factory - DEBUG - Provider `faker.providers.color` has been localized to `en_US`.
+2025-10-01 03:42:28,858 - faker.factory - DEBUG - Looking for locale `en_US` in provider `faker.providers.company`.
+2025-10-01 03:42:28,860 - faker.factory - DEBUG - Provider `faker.providers.company` has been localized to `en_US`.
+2025-10-01 03:42:28,861 - faker.factory - DEBUG - Looking for locale `en_US` in provider `faker.providers.credit_card`.
+2025-10-01 03:42:28,861 - faker.factory - DEBUG - Provider `faker.providers.credit_card` has been localized to `en_US`.
+2025-10-01 03:42:28,862 - faker.factory - DEBUG - Looking for locale `en_US` in provider `faker.providers.currency`.
+2025-10-01 03:42:28,863 - faker.factory - DEBUG - Provider `faker.providers.currency` has been localized to `en_US`.
+2025-10-01 03:42:28,864 - faker.factory - DEBUG - Looking for locale `en_US` in provider `faker.providers.date_time`.
+2025-10-01 03:42:28,866 - faker.factory - DEBUG - Provider `faker.providers.date_time` has been localized to `en_US`.
+2025-10-01 03:42:28,866 - faker.factory - DEBUG - Provider `faker.providers.doi` does not feature localization. Specified locale `en_US` is not utilized for this provider.
+2025-10-01 03:42:28,867 - faker.factory - DEBUG - Provider `faker.providers.emoji` does not feature localization. Specified locale `en_US` is not utilized for this provider.
+2025-10-01 03:42:28,867 - faker.factory - DEBUG - Provider `faker.providers.file` does not feature localization. Specified locale `en_US` is not utilized for this provider.
+2025-10-01 03:42:28,867 - faker.factory - DEBUG - Looking for locale `en_US` in provider `faker.providers.geo`.
+2025-10-01 03:42:28,868 - faker.factory - DEBUG - Provider `faker.providers.geo` has been localized to `en_US`.
+2025-10-01 03:42:28,869 - faker.factory - DEBUG - Looking for locale `en_US` in provider `faker.providers.internet`.
+2025-10-01 03:42:28,870 - faker.factory - DEBUG - Provider `faker.providers.internet` has been localized to `en_US`.
+2025-10-01 03:42:28,871 - faker.factory - DEBUG - Looking for locale `en_US` in provider `faker.providers.isbn`.
+2025-10-01 03:42:28,871 - faker.factory - DEBUG - Provider `faker.providers.isbn` has been localized to `en_US`.
+2025-10-01 03:42:28,872 - faker.factory - DEBUG - Looking for locale `en_US` in provider `faker.providers.job`.
+2025-10-01 03:42:28,874 - faker.factory - DEBUG - Provider `faker.providers.job` has been localized to `en_US`.
+2025-10-01 03:42:28,874 - faker.factory - DEBUG - Looking for locale `en_US` in provider `faker.providers.lorem`.
+2025-10-01 03:42:28,875 - faker.factory - DEBUG - Provider `faker.providers.lorem` has been localized to `en_US`.
+2025-10-01 03:42:28,876 - faker.factory - DEBUG - Looking for locale `en_US` in provider `faker.providers.misc`.
+2025-10-01 03:42:28,876 - faker.factory - DEBUG - Provider `faker.providers.misc` has been localized to `en_US`.
+2025-10-01 03:42:28,877 - faker.factory - DEBUG - Looking for locale `en_US` in provider `faker.providers.passport`.
+2025-10-01 03:42:28,877 - faker.factory - DEBUG - Provider `faker.providers.passport` has been localized to `en_US`.
+2025-10-01 03:42:28,878 - faker.factory - DEBUG - Looking for locale `en_US` in provider `faker.providers.person`.
+2025-10-01 03:42:28,881 - faker.factory - DEBUG - Provider `faker.providers.person` has been localized to `en_US`.
+2025-10-01 03:42:28,886 - faker.factory - DEBUG - Looking for locale `en_US` in provider `faker.providers.phone_number`.
+2025-10-01 03:42:28,888 - faker.factory - DEBUG - Provider `faker.providers.phone_number` has been localized to `en_US`.
+2025-10-01 03:42:28,889 - faker.factory - DEBUG - Provider `faker.providers.profile` does not feature localization. Specified locale `en_US` is not utilized for this provider.
+2025-10-01 03:42:28,889 - faker.factory - DEBUG - Provider `faker.providers.python` does not feature localization. Specified locale `en_US` is not utilized for this provider.
+2025-10-01 03:42:28,890 - faker.factory - DEBUG - Provider `faker.providers.sbn` does not feature localization. Specified locale `en_US` is not utilized for this provider.
+2025-10-01 03:42:28,890 - faker.factory - DEBUG - Looking for locale `en_US` in provider `faker.providers.ssn`.
+2025-10-01 03:42:28,892 - faker.factory - DEBUG - Provider `faker.providers.ssn` has been localized to `en_US`.
+2025-10-01 03:42:28,893 - faker.factory - DEBUG - Provider `faker.providers.user_agent` does not feature localization. Specified locale `en_US` is not utilized for this provider.
+2025-10-01 03:42:28,897 - src.data.data_loader - INFO - load_data_started
+2025-10-01 03:42:28,897 - src.data.data_loader - INFO - File found. Attempting to load into pandas DataFrame.
+2025-10-01 03:42:28,905 - src.data.data_loader - INFO - data_info
+2025-10-01 03:42:28,905 - src.data.data_loader - INFO - load_data_completed
+2025-10-01 03:42:28,908 - src.data.data_loader - INFO - load_data_started
+2025-10-01 03:42:28,908 - src.data.data_loader - ERROR - load_data_failed
+2025-10-01 03:42:28,912 - src.data.data_loader - INFO - load_data_started
+2025-10-01 03:42:28,913 - src.data.data_loader - INFO - File found. Attempting to load into pandas DataFrame.
+2025-10-01 03:42:28,914 - src.data.data_loader - ERROR - load_data_failed
+2025-10-01 03:42:28,917 - src.data.data_processing - INFO - Data standardization started...
+2025-10-01 03:42:28,919 - src.data.data_processing - INFO - Data standardization completed.
+2025-10-01 03:42:28,923 - src.data.data_processing - INFO - Filtering transaction types...
+2025-10-01 03:42:28,924 - src.data.data_processing - INFO - Data filtered to include only: ['CASH_OUT', 'TRANSFER']
+2025-10-01 03:42:28,926 - src.data.data_processing - INFO - Encoding transaction type...
+2025-10-01 03:42:28,927 - src.data.data_processing - INFO - Transaction type encoded successfully.
+2025-10-01 03:42:29,219 - src.data.data_splitter - INFO - Loading processed data from 'dummy/processed.parquet'...
+2025-10-01 03:42:29,220 - src.data.data_splitter - INFO - Sorting data by timestamp to ensure chronological order.
+2025-10-01 03:42:29,221 - src.data.data_splitter - INFO - Training set size: 8 (80.00%)
+2025-10-01 03:42:29,222 - src.data.data_splitter - INFO - Test set size: 2 (20.00%)
+2025-10-01 03:42:29,222 - src.data.data_splitter - INFO - Saving training set to 'dummy/train.parquet'...
+2025-10-01 03:42:29,223 - src.data.data_splitter - INFO - Saving test set to 'dummy/test.parquet'...
+2025-10-01 03:42:29,223 - src.data.data_splitter - INFO - Data splitting process completed successfully.
+2025-10-01 03:42:29,227 - src.data.data_validator - INFO - data_validation_started
+2025-10-01 03:42:29,287 - src.data.data_validator - INFO - Pandera validation completed successfully.
+2025-10-01 03:42:29,287 - src.data.data_validator - INFO - data_validation_completed
+2025-10-01 03:42:29,291 - src.data.data_validator - INFO - data_validation_started
+2025-10-01 03:42:29,305 - src.data.data_validator - ERROR - Pandera validation failed.
+2025-10-01 03:42:29,306 - src.data.data_validator - ERROR - data_validation_failed
+2025-10-01 03:42:29,309 - src.data.data_validator - INFO - data_validation_started
+2025-10-01 03:42:29,326 - src.data.data_validator - INFO - Pandera validation completed successfully.
+2025-10-01 03:42:29,326 - src.data.data_validator - INFO - data_validation_completed
+2025-10-01 03:42:29,329 - src.data.data_validator - INFO - data_validation_started
+2025-10-01 03:42:29,347 - src.data.data_validator - ERROR - Pandera validation failed.
+2025-10-01 03:42:29,348 - src.data.data_validator - ERROR - data_validation_failed
+2025-10-01 03:42:29,351 - src.data.data_validator - INFO - data_validation_started
+2025-10-01 03:42:29,369 - src.data.data_validator - ERROR - Pandera validation failed.
+2025-10-01 03:42:29,370 - src.data.data_validator - ERROR - data_validation_failed
+2025-10-01 03:42:29,373 - src.data.data_validator - INFO - data_validation_started
+2025-10-01 03:42:29,379 - src.data.data_validator - ERROR - Pandera validation failed.
+2025-10-01 03:42:29,380 - src.data.data_validator - ERROR - data_validation_failed
+2025-10-01 03:42:29,383 - src.data.data_validator - INFO - data_validation_started
+2025-10-01 03:42:29,384 - src.data.data_validator - ERROR - Pandera validation failed.
+2025-10-01 03:42:29,385 - src.data.data_validator - ERROR - data_validation_failed
+2025-10-01 03:42:29,387 - src.utils.mlflow_analytics - INFO - mlflow_analytics_initialized
+2025-10-01 03:42:29,390 - src.utils.mlflow_analytics - INFO - mlflow_analytics_initialized
+2025-10-01 03:42:29,391 - src.utils.mlflow_analytics - INFO - get_model_comparison_started
+2025-10-01 03:42:29,392 - src.utils.mlflow_analytics - INFO - model_comparison_retrieved
+2025-10-01 03:42:29,392 - src.utils.mlflow_analytics - INFO - get_model_comparison_completed
+2025-10-01 03:42:29,395 - src.utils.mlflow_analytics - INFO - mlflow_analytics_initialized
+2025-10-01 03:42:29,396 - src.utils.mlflow_analytics - INFO - get_experiment_timeline_started
+2025-10-01 03:42:29,396 - src.utils.mlflow_analytics - INFO - experiment_timeline_retrieved
+2025-10-01 03:42:29,397 - src.utils.mlflow_analytics - INFO - get_experiment_timeline_completed
+2025-10-01 03:42:29,400 - src.utils.mlflow_analytics - INFO - mlflow_analytics_initialized
+2025-10-01 03:42:29,400 - src.utils.mlflow_analytics - INFO - find_best_hyperparameters_started
+2025-10-01 03:42:29,401 - src.utils.mlflow_analytics - INFO - best_hyperparameters_found
+2025-10-01 03:42:29,402 - src.utils.mlflow_analytics - INFO - find_best_hyperparameters_completed
+2025-10-01 03:42:29,406 - src.utils.mlflow_duckdb_setup - INFO - initializing_mlflow_manager
+2025-10-01 03:42:29,411 - src.utils.mlflow_duckdb_setup - INFO - initializing_mlflow_manager
+2025-10-01 03:42:29,411 - src.utils.mlflow_duckdb_setup - INFO - setup_mlflow_backend_started
+2025-10-01 03:42:29,412 - src.utils.mlflow_duckdb_setup - INFO - mlflow_experiment_found
+2025-10-01 03:42:29,413 - src.utils.mlflow_duckdb_setup - INFO - setup_mlflow_backend_completed
+2025-10-01 03:42:29,419 - src.utils.mlflow_duckdb_setup - INFO - initializing_mlflow_manager
+2025-10-01 03:42:29,419 - src.utils.mlflow_duckdb_setup - INFO - setup_mlflow_backend_started
+2025-10-01 03:42:29,420 - src.utils.mlflow_duckdb_setup - INFO - mlflow_experiment_not_found
+2025-10-01 03:42:29,420 - src.utils.mlflow_duckdb_setup - INFO - mlflow_experiment_created
+2025-10-01 03:42:29,421 - src.utils.mlflow_duckdb_setup - INFO - setup_mlflow_backend_completed
+2025-10-01 03:42:29,426 - src.utils.mlflow_duckdb_setup - INFO - initializing_mlflow_manager
+2025-10-01 03:42:29,426 - src.utils.mlflow_duckdb_setup - DEBUG - connecting_to_duckdb
+2025-10-01 03:42:29,427 - src.utils.mlflow_duckdb_setup - DEBUG - connecting_to_duckdb
+2025-10-01 03:42:29,431 - src.utils.mlflow_duckdb_setup - INFO - initializing_mlflow_manager
+2025-10-01 03:42:29,433 - src.utils.mlflow_duckdb_setup - INFO - query_duckdb_started
+2025-10-01 03:42:29,433 - src.utils.mlflow_duckdb_setup - DEBUG - connecting_to_duckdb
+2025-10-01 03:42:29,434 - src.utils.mlflow_duckdb_setup - INFO - query_successful
+2025-10-01 03:42:29,434 - src.utils.mlflow_duckdb_setup - INFO - query_duckdb_completed
+2025-10-01 03:42:29,438 - src.utils.mlflow_duckdb_setup - INFO - initializing_mlflow_manager
+2025-10-01 03:42:29,439 - src.utils.mlflow_duckdb_setup - DEBUG - connecting_to_duckdb

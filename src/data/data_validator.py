@@ -78,31 +78,3 @@ class DataValidator:
                 raise ValueError(
                     "Data validation failed. Check logs for details."
                 ) from e
-
-    def standardize(self, df: pd.DataFrame) -> pd.DataFrame:
-        """
-        Standardizes columns in the DataFrame.
-        - Converts 'type' to a categorical type for efficiency.
-        - Creates an 'event_timestamp' from the 'step' column.
-
-        Args:
-            df (pd.DataFrame): The DataFrame to standardize.
-
-        Returns:
-            pd.DataFrame: The standardized DataFrame.
-        """
-        logger.info("Data standardization started...")
-        df_copy = df.copy()
-
-        # Convert 'type' to a categorical type for efficiency
-        df_copy["type"] = df_copy["type"].astype("category")
-
-        # Create event_timestamp from 'step'
-        # We assume 'step' represents hours from a starting point.
-        start_date = pd.Timestamp("2024-01-01")
-        df_copy["event_timestamp"] = start_date + pd.to_timedelta(
-            df_copy["step"], unit="h"
-        )
-
-        logger.info("Data standardization completed.")
-        return df_copy

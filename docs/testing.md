@@ -92,6 +92,16 @@ This setup ensures that the test logs are captured in a separate file without in
     *   It tests that an error is raised if no rows are valid.
     *   It directly tests the `TransactionSchema` Pydantic schema.
 
+#### `tests/unit/test_data_processing.py`
+
+*   **Purpose**: This file contains unit tests for the `DataProcessor` class from `src/data/data_processing.py`.
+*   **Usage**: It verifies the correctness of each data transformation step.
+*   **Key Information**:
+    *   It uses `pytest` fixtures to create a `DataProcessor` instance and a sample DataFrame.
+    *   `test_standardize_converts_type_and_adds_timestamp`: Verifies that the `standardize` method correctly converts the `type` column to a categorical dtype and creates the `event_timestamp` column with the correct values.
+    *   `test_filter_transaction_types`: Ensures that the `filter_transaction_types` method correctly filters the DataFrame to only include `CASH_OUT` and `TRANSFER` types.
+    *   `test_encode_transaction_type`: Checks that the `encode_transaction_type` method correctly encodes the `type` column into a binary (0/1) format.
+
 #### `tests/unit/test_data_profiler.py`
 
 *   **Purpose**: This file contains a comprehensive suite of unit tests for the `DataProfiler` class from `src/data/data_profiler.py`.
@@ -110,7 +120,6 @@ This setup ensures that the test logs are captured in a separate file without in
 *   **Key Information**:
     *   It tests for successful validation of a valid DataFrame.
     *   It tests that validation fails for incorrect data types, out-of-range values, disallowed categories, missing columns, and extra columns.
-    *   It tests the standardization of column types.
 
 #### `tests/unit/test_data_splitter.py`
 

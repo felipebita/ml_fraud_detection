@@ -29,6 +29,8 @@ htmlcov/
 # Ignore large data files
 data/raw/raw.csv
 data/processed/processed_transactions.parquet
+data/processed/test_dataset.parquet
+data/processed/train_dataset.parquet
 data/download/complete_synthetic_financial_dataset.csv
 
 site/

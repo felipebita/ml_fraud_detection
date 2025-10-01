@@ -358,18 +358,28 @@ This directory contains all the GitHub Actions workflows for the project.
 
 ### `src/data/data_loader.py`
 
-*   **Purpose**: This script is responsible for loading the raw data from its source.
-*   **Usage**: It is used to load the raw data from a CSV file into a pandas DataFrame. It does not perform any validation itself.
+*   **Purpose**: This script serves as the main entry point for the data ingestion and processing pipeline.
+*   **Usage**: When run as the main script, it orchestrates the loading of raw data, profiling, validation, processing (standardization, filtering, encoding), and finally saves the cleaned and processed data to a Parquet file.
 *   **Key Information**:
     *   **`load_data()`**: Loads transaction data from a CSV file and returns a raw DataFrame.
 
+### `src/data/data_processing.py`
+
+*   **Purpose**: This script contains the `DataProcessor` class, which encapsulates all data transformation and feature engineering logic.
+*   **Usage**: It is called by `data_loader.py` after the data has been validated. It contains methods for cleaning, transforming, and preparing the data for modeling.
+*   **Key Information**:
+    *   **`DataProcessor` class**: A class that contains methods for data processing.
+    *   **`standardize()`**: Converts column types and creates the `event_timestamp`.
+    *   **`filter_transaction_types()`**: Filters the data to only include `CASH_OUT` and `TRANSFER` types.
+    *   **`encode_transaction_type()`**: Encodes the `type` column into a binary (0/1) format.
+
 ### `src/data/data_validator.py`
 
-*   **Purpose**: This script contains the `DataValidator` class, which is the single source of truth for data validation.
-*   **Usage**: It uses a comprehensive Pandera schema to validate the entire DataFrame at once, checking data types, value ranges, and structural integrity.
+*   **Purpose**: This script contains the `DataValidator` class, which is the single source of truth for data schema validation.
+*   **Usage**: It uses a comprehensive Pandera schema to validate the entire DataFrame at once, checking data types, value ranges, and structural integrity. It is called by `data_loader.py` after the raw data is loaded.
 *   **Key Information**:
     *   It uses the `pandera` library to define and execute all data validation rules.
-    *   It is the primary mechanism for ensuring data quality after loading.
+    *   It is the primary mechanism for ensuring data quality before any processing takes place.
 
 ### `src/data/data_profiler.py`
 

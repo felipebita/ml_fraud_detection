@@ -12,7 +12,8 @@ help:
 	@echo "  test           : Run all tests"
 	@echo "  coverage       : Run all tests and generate coverage report"
 	@echo "  data           : Run data pipeline"
-	@echo "  train          : Train models"
+	@echo "  experiment     : Run model experiments"
+	@echo "  train          : Train the final model"
 	@echo "  evaluate       : Evaluate models"
 	@echo "  serve          : Start model server"
 	@echo "  dashboard      : Launch MLflow UI"
@@ -31,10 +32,13 @@ data-load:
 	@echo "Running the data pipeline..."
 	uv run --active python3 -m src.data.data_loader
 
-train:
-	@echo "Training models..."
-	# Add model training commands here
+experiment:
+	@echo "Running model experiments..."
+	uv run python src/model/training.py
 
+train:
+	@echo "Training the final model..."
+	# Add final model training commands here
 
 evaluate:
 	@echo "Evaluating models..."

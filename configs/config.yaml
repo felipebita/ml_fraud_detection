@@ -26,3 +26,7 @@ data_splitting:
 model_training:
   cv_strategy: "TimeSeriesSplit"
   cv_folds: 5
+  models_to_compare:
+    - "xgboost"
+    - "randomforest"
+    - "lightgbm"

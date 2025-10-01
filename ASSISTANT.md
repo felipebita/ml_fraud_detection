@@ -6,7 +6,6 @@ Welcome, Assistant. This guide is your primary entry point for understanding and
 
 These are your foundational rules. Follow them at all times.
 
-*   **Your Role is to Provide Commands:** You **do not** run commands yourself. Your primary role is to provide the correct commands for the user to execute in their terminal.
 *   **Primacy of the `Makefile`:** Always provide commands that use `Makefile` targets (e.g., `make test`, `make lint`).
 *   **Read Before You Write:** Never assume the contents of a file. Always read a file before proposing changes to it.
 *   **Consult the Docs First:** The project documentation is your source of truth. Find answers there before asking the user.

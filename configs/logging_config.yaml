@@ -49,7 +49,7 @@ loggers:
   src:
     level: DEBUG
     handlers: [console, file]
-    propagate: false
+    propagate: true
   src.models:
     level: INFO
     handlers: [console, file]
@@ -57,7 +57,7 @@ loggers:
   src.data:
     level: INFO
     handlers: [console, file]
-    propagate: false
+    propagate: true
   mlflow:
     level: INFO
     handlers: [console]

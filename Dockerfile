@@ -13,7 +13,7 @@ ARG GID=1000
 
 # 1. Install system dependencies and uv as root
 RUN apt-get update && \
-    apt-get install -y git make && \
+    apt-get install -y git make libgomp1 && \
     rm -rf /var/lib/apt/lists/*
 
 # Install uv using the recommended method
