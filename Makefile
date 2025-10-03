@@ -11,7 +11,9 @@ help:
 	@echo "  pre-commit     : Run pre-commit hooks"
 	@echo "  test           : Run all tests"
 	@echo "  coverage       : Run all tests and generate coverage report"
-	@echo "  data           : Run data pipeline"
+	@echo "  data           : Run the entire data pipeline (load and split)"
+	@echo "  data-load      : Run the data loading pipeline"
+	@echo "  data-split     : Run the data splitting pipeline"
 	@echo "  experiment     : Run model experiments"
 	@echo "  train          : Train the final model"
 	@echo "  evaluate       : Evaluate models"
@@ -28,9 +30,15 @@ setup:
 	uv sync --all-extras --active
 	uv run --active pre-commit install
 
+data: data-load data-split
+
 data-load:
-	@echo "Running the data pipeline..."
+	@echo "Running the data loading pipeline..."
 	uv run --active python3 -m src.data.data_loader
+
+data-split:
+	@echo "Running the data splitting pipeline..."
+	uv run --active python3 -m src.data.data_splitter
 
 experiment:
 	@echo "Running model experiments..."

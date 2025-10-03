@@ -21,8 +21,8 @@ COPY --from=ghcr.io/astral-sh/uv:latest /uv /usr/local/bin/uv
 
 # 2. Install third-party dependencies from pyproject.toml
 # This creates a cached layer that only changes when dependencies change.
-COPY pyproject.toml uv.lock ./
-RUN uv pip install --system -r <(uv pip compile pyproject.toml --all-extras)
+COPY pyproject.toml uv.lock README.md ./
+RUN uv sync --all-extras
 
 # 3. Copy the rest of the application code
 COPY . .

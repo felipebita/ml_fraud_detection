@@ -71,11 +71,12 @@ if __name__ == "__main__":
         standardized_df = processor.standardize(validated_df)
         filtered_df = processor.filter_transaction_types(standardized_df)
         encoded_df = processor.encode_transaction_type(filtered_df)
+        final_df = processor.convert_int_to_float(encoded_df)
 
         # 5. Profile the final, processed data
         logger.info("--- Profiling Processed Data ---")
         processed_profile_path = config["data"]["processed_profile_path"]
-        processed_profiler = DataProfiler(encoded_df)
+        processed_profiler = DataProfiler(final_df)
         processed_profiler.generate_profile()
         processed_profiler.export_profile(processed_profile_path)
 
@@ -86,8 +87,8 @@ if __name__ == "__main__":
         with LoggerContext(
             logger, "save_processed_data", output_file=str(output_path)
         ) as log_context:
-            encoded_df.to_parquet(output_path, index=False)
-            log_data_info(logger, encoded_df, dataset_name="final_processed_data")
+            final_df.to_parquet(output_path, index=False)
+            log_data_info(logger, final_df, dataset_name="final_processed_data")
             logger.info("Processed data saved successfully.")
 
     except (FileNotFoundError, ValueError) as e:

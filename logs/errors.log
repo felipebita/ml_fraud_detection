@@ -25,3 +25,17 @@
 {"event": "data_validation_failed", "logger": "src.data.data_validator", "level": "error", "timestamp": "2025-10-01T03:42:29.380691Z"}
 {"event": "Pandera validation failed.", "logger": "src.data.data_validator", "level": "error", "timestamp": "2025-10-01T03:42:29.385205Z"}
 {"event": "data_validation_failed", "logger": "src.data.data_validator", "level": "error", "timestamp": "2025-10-01T03:42:29.385879Z"}
+{"event": "Fold 1/5_failed", "logger": "ModelTraining", "level": "error", "timestamp": "2025-10-02T15:12:48.027245Z"}
+{"event": "Training model: xgboost_failed", "logger": "ModelTraining", "level": "error", "timestamp": "2025-10-02T15:12:48.027889Z"}
+{"event": "Fold 1/5_failed", "logger": "ModelTraining", "level": "error", "timestamp": "2025-10-02T15:17:46.037984Z"}
+{"event": "Training model: xgboost_failed", "logger": "ModelTraining", "level": "error", "timestamp": "2025-10-02T15:17:46.038330Z"}
+{"event": "Fold 1/3_failed", "logger": "ModelTraining", "level": "error", "timestamp": "2025-10-02T16:41:33.633196Z"}
+{"event": "Training model: xgboost_failed", "logger": "ModelTraining", "level": "error", "timestamp": "2025-10-02T16:41:33.634080Z"}
+{"event": "Fold 1/5_failed", "logger": "ModelTraining", "level": "error", "timestamp": "2025-10-02T16:45:25.120470Z"}
+{"event": "Training model: xgboost_failed", "logger": "ModelTraining", "level": "error", "timestamp": "2025-10-02T16:45:25.121301Z"}
+{"event": "Fold 1/5_failed", "logger": "ModelTraining", "level": "error", "timestamp": "2025-10-02T16:49:58.277086Z"}
+{"event": "Training model: xgboost_failed", "logger": "ModelTraining", "level": "error", "timestamp": "2025-10-02T16:49:58.277772Z"}
+{"event": "Training model: xgboost_failed", "logger": "ModelTraining", "level": "error", "timestamp": "2025-10-02T20:29:07.937000Z"}
+{"event": "Training model: xgboost_failed", "logger": "ModelTraining", "level": "error", "timestamp": "2025-10-02T20:30:48.722378Z"}
+{"event": "Training model: xgboost_failed", "logger": "ModelTraining", "level": "error", "timestamp": "2025-10-02T20:32:33.564519Z"}
+{"event": "Training model: xgboost_failed", "logger": "ModelTraining", "level": "error", "timestamp": "2025-10-02T20:57:32.788124Z"}

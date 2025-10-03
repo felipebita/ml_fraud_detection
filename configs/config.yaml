@@ -25,8 +25,15 @@ data_splitting:
 # Model training configuration
 model_training:
   cv_strategy: "TimeSeriesSplit"
-  cv_folds: 5
+  cv_folds: 2
   models_to_compare:
     - "xgboost"
     - "randomforest"
     - "lightgbm"
+  target_variable: "isFraud"
+  features_to_drop:
+    - "step"
+    - "nameOrig"
+    - "nameDest"
+    - "event_timestamp"
+  categorical_features: []

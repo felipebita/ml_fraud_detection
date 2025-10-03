@@ -71,3 +71,20 @@ class DataProcessor:
         df_copy["type"] = df_copy["type"].apply(lambda x: 1 if x == "TRANSFER" else 0)
         logger.info("Transaction type encoded successfully.")
         return df_copy
+
+    def convert_int_to_float(self, df: pd.DataFrame) -> pd.DataFrame:
+        """
+        Converts integer columns to float.
+
+        Args:
+            df (pd.DataFrame): The DataFrame to process.
+
+        Returns:
+            pd.DataFrame: The DataFrame with integer columns converted to float.
+        """
+        logger.info("Converting integer columns to float...")
+        df_copy = df.copy()
+        for col in df_copy.select_dtypes(include="integer").columns:
+            df_copy[col] = df_copy[col].astype(float)
+        logger.info("Integer columns converted to float successfully.")
+        return df_copy

@@ -38,3 +38,9 @@ Follow this simplified procedure for all coding tasks.
 2.  **Locate & Read:** Identify the relevant files to the task. Read them to understand the current implementation.
 3.  **Propose Code Changes:** Based on your understanding, propose the necessary code modifications. Explain your reasoning clearly.
 4.  **Propose Validation Commands:** After providing the code, **always** provide the `docker compose exec app make test` command so I can validate the changes on my end.
+
+### SPO-02: Code Quality and Logging
+*   **MLOps Best Practices:** Always write code following best practices for MLOps.
+*   **Class-Oriented:** Use class-oriented programming.
+*   **Type Hints:** Use type hints for all function signatures.
+*   **Logging:** Always use the project's logging setup for logging messages.
