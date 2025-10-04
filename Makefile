@@ -1,10 +1,11 @@
 # Makefile for the Fraud Detection project
 
-.PHONY: help setup data train evaluate test serve dashboard feature-repo-init docs-serve docs-build docs-preview archive-session
+.PHONY: help setup data-setup data train evaluate test serve dashboard feature-repo-init docs-serve docs-build docs-preview archive-session
 
 help:
 	@echo "Commands:"
 	@echo "  setup          : Initial project setup"
+	@echo "  data-setup     : Downloads and prepares the initial raw dataset"
 	@echo "  lint           : Run linting checks (ruff)"
 	@echo "  type-check     : Run type checking (mypy)"
 	@echo "  format         : Format code (black)"
@@ -29,6 +30,10 @@ setup:
 	@echo "Setting up the project..."
 	uv sync --all-extras --active
 	uv run --active pre-commit install
+
+data-setup:
+	@echo "Downloading and preparing the initial raw dataset..."
+	uv run --active python3 -m scripts.data_setup
 
 data: data-load data-split
 

@@ -1,8 +1,8 @@
 {
   "basic_info": {
-    "n_rows": 60000,
+    "n_rows": 600000,
     "n_columns": 11,
-    "memory_usage_mb": 15.067538261413574,
+    "memory_usage_mb": 150.70947170257568,
     "column_names": [
       "step",
       "type",
@@ -89,94 +89,94 @@
   },
   "numerical_stats": {
     "step": {
-      "mean": 7.7115,
-      "median": 8.0,
-      "std": 1.9639,
+      "mean": 15.5793,
+      "median": 15.0,
+      "std": 5.4824,
       "min": "1",
-      "max": "9",
-      "q1": 8.0,
-      "q3": 9.0,
-      "iqr": 1.0,
-      "n_outliers": 7164,
+      "max": "34",
+      "q1": 12.0,
+      "q3": 19.0,
+      "iqr": 7.0,
+      "n_outliers": 26366,
       "n_zeros": 0,
       "n_negative": 0
     },
     "amount": {
-      "mean": 161165.7762,
-      "median": 38872.82,
-      "std": 329029.6155,
-      "min": 0.63,
+      "mean": 161094.8446,
+      "median": 75509.225,
+      "std": 269160.3468,
+      "min": 0.1,
       "max": 10000000.0,
-      "q1": 8412.3025,
-      "q3": 194570.8725,
-      "iqr": 186158.57,
-      "n_outliers": 4076,
+      "q1": 12319.885,
+      "q3": 215071.4625,
+      "iqr": 202751.5775,
+      "n_outliers": 31518,
       "n_zeros": 0,
       "n_negative": 0
     },
     "oldbalanceOrg": {
-      "mean": 763426.8167,
-      "median": 17887.775,
-      "std": 2335323.8994,
+      "mean": 887916.0682,
+      "median": 17763.39,
+      "std": 2955237.5429,
       "min": 0.0,
-      "max": 28547237.16,
+      "max": 38939424.03,
       "q1": 0.0,
-      "q3": 144471.0175,
-      "iqr": 144471.0175,
-      "n_outliers": 10921,
-      "n_zeros": 18719,
+      "q3": 156772.25,
+      "iqr": 156772.25,
+      "n_outliers": 104933,
+      "n_zeros": 194301,
       "n_negative": 0
     },
     "newbalanceOrig": {
-      "mean": 777757.4102,
+      "mean": 907720.3847,
       "median": 0.0,
-      "std": 2372770.4067,
+      "std": 2992303.127,
       "min": 0.0,
-      "max": 28617396.21,
+      "max": 38946233.02,
       "q1": 0.0,
-      "q3": 158877.5375,
-      "iqr": 158877.5375,
-      "n_outliers": 10697,
-      "n_zeros": 31039,
+      "q3": 195668.28,
+      "iqr": 195668.28,
+      "n_outliers": 97957,
+      "n_zeros": 326691,
       "n_negative": 0
     },
     "oldbalanceDest": {
-      "mean": 844629.7689,
-      "median": 8912.755,
-      "std": 2407857.8557,
+      "mean": 973253.7406,
+      "median": 112710.35,
+      "std": 2315886.7554,
       "min": 0.0,
-      "max": 30179778.13,
+      "max": 41482697.12,
       "q1": 0.0,
-      "q3": 488851.07,
-      "iqr": 488851.07,
-      "n_outliers": 8924,
-      "n_zeros": 28601,
+      "q3": 890003.63,
+      "iqr": 890003.63,
+      "n_outliers": 72966,
+      "n_zeros": 248773,
       "n_negative": 0
     },
     "newbalanceDest": {
-      "mean": 1180392.9764,
-      "median": 8186.935,
-      "std": 2898104.5974,
+      "mean": 1136523.2884,
+      "median": 205794.075,
+      "std": 2474045.8779,
       "min": 0.0,
-      "max": 31976992.09,
+      "max": 41482697.12,
       "q1": 0.0,
-      "q3": 926737.45,
-      "iqr": 926737.45,
-      "n_outliers": 8079,
-      "n_zeros": 29541,
+      "q3": 1168897.16,
+      "iqr": 1168897.16,
+      "n_outliers": 66222,
+      "n_zeros": 236566,
       "n_negative": 0
     },
     "isFraud": {
-      "mean": 0.0017,
+      "mean": 0.0006,
       "median": 0.0,
-      "std": 0.0416,
+      "std": 0.0245,
       "min": "0",
       "max": "1",
       "q1": 0.0,
       "q3": 0.0,
       "iqr": 0.0,
-      "n_outliers": 104,
-      "n_zeros": 59896,
+      "n_outliers": 361,
+      "n_zeros": 599639,
       "n_negative": 0
     },
     "isFlaggedFraud": {
@@ -189,7 +189,7 @@
       "q3": 0.0,
       "iqr": 0.0,
       "n_outliers": 0,
-      "n_zeros": 60000,
+      "n_zeros": 600000,
       "n_negative": 0
     }
   },
@@ -197,33 +197,33 @@
     "type": {
       "n_unique": 5,
       "top_5_values": {
-        "PAYMENT": 25464,
-        "CASH_OUT": 17202,
-        "CASH_IN": 11098,
-        "TRANSFER": 5522,
-        "DEBIT": 714
+        "CASH_OUT": 212756,
+        "PAYMENT": 203602,
+        "CASH_IN": 130073,
+        "TRANSFER": 48949,
+        "DEBIT": 4620
       },
       "has_high_cardinality": false
     },
     "nameOrig": {
-      "n_unique": 60000,
+      "n_unique": 599918,
       "top_5_values": {
-        "C1231006815": 1,
-        "C832260918": 1,
-        "C1134700201": 1,
-        "C1795321824": 1,
-        "C173231233": 1
+        "C18060993": 2,
+        "C1081326121": 2,
+        "C553945398": 2,
+        "C1467095135": 2,
+        "C77405061": 2
       },
       "has_high_cardinality": true
     },
     "nameDest": {
-      "n_unique": 33657,
+      "n_unique": 260482,
       "top_5_values": {
-        "C985934102": 75,
-        "C1286084959": 68,
-        "C1590550415": 64,
-        "C2083562754": 63,
-        "C248609774": 62
+        "C985934102": 95,
+        "C1286084959": 89,
+        "C248609774": 87,
+        "C2083562754": 85,
+        "C665576141": 84
       },
       "has_high_cardinality": true
     }
@@ -238,32 +238,32 @@
     {
       "type": "balance_inconsistency",
       "severity": "medium",
-      "description": "Found 30804 transactions with balance inconsistencies",
+      "description": "Found 325017 transactions with balance inconsistencies",
       "recommendation": "Investigate balance calculation logic"
     }
   ],
   "class_distribution": {
     "fraud_column": "isFraud",
-    "fraud_cases": 104,
-    "normal_cases": 59896,
-    "fraud_percentage": 0.17,
-    "imbalance_ratio": 575.92,
+    "fraud_cases": 361,
+    "normal_cases": 599639,
+    "fraud_percentage": 0.06,
+    "imbalance_ratio": 1661.05,
     "is_highly_imbalanced": "True"
   },
   "temporal_analysis": {
     "step_analysis": {
       "min_step": 1,
-      "max_step": 9,
-      "duration_hours": 8,
-      "duration_days": 0.33,
-      "unique_steps": 9,
-      "total_fraud_cases": 104,
-      "hours_with_fraud": 9
+      "max_step": 34,
+      "duration_hours": 33,
+      "duration_days": 1.38,
+      "unique_steps": 34,
+      "total_fraud_cases": 361,
+      "hours_with_fraud": 33
     },
     "fraud_temporal_pattern": {
-      "avg_fraud_rate_pct": 0.7101,
+      "avg_fraud_rate_pct": 7.4365,
       "note": "Based on hours with 10+ transactions"
     }
   },
-  "profiling_timestamp": "2025-10-02T21:17:49.134491"
+  "profiling_timestamp": "2025-10-03T20:23:34.091104"
 }

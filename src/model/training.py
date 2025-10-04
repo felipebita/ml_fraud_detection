@@ -42,26 +42,28 @@ class ModelTrainer:
         mlflow.set_experiment(self.config["mlflow"]["experiment_name"])
 
     def get_model_pipeline(
-        self, model_name: str, scale_pos_weight: float | None = None
+        self,
+        model_name: str,
+        model_params: dict[str, Any],
+        scale_pos_weight: float | None = None,
     ) -> Pipeline:
         """
         Creates a scikit-learn pipeline with a preprocessor and a model.
 
         Args:
             model_name (str): The name of the model to use.
+            model_params (dict[str, Any]): The parameters for the model.
             scale_pos_weight (float, optional): The scale_pos_weight for XGBoost. Defaults to None.
 
         Returns:
             Pipeline: The scikit-learn pipeline.
         """
         if model_name == "randomforest":
-            model = RandomForestClassifier(random_state=42, class_weight="balanced")
+            model = RandomForestClassifier(**model_params)
         elif model_name == "xgboost":
-            model = xgb.XGBClassifier(
-                random_state=42, scale_pos_weight=scale_pos_weight
-            )
+            model = xgb.XGBClassifier(scale_pos_weight=scale_pos_weight, **model_params)
         elif model_name == "lightgbm":
-            model = lgb.LGBMClassifier(random_state=42, class_weight="balanced")
+            model = lgb.LGBMClassifier(**model_params)
         else:
             raise ValueError(f"Model {model_name} not supported.")
 
@@ -85,15 +87,29 @@ class ModelTrainer:
         tscv = TimeSeriesSplit(n_splits=self.config["model_training"]["cv_folds"])
 
         for model_name in self.config["model_training"]["models_to_compare"]:
+            exp_name_prefix = self.config["model_training"].get("exp_name_prefix", "")
+            run_name = (
+                f"{exp_name_prefix}_{model_name}_cross_validation"
+                if exp_name_prefix
+                else f"{model_name}_cross_validation"
+            )
             with (
-                mlflow.start_run(run_name=f"{model_name}_cross_validation"),
+                mlflow.start_run(run_name=run_name),
                 LoggerContext(self.logger, f"Training model: {model_name}"),
             ):
                 mlflow.log_param("model_name", model_name)
                 mlflow.log_param("cv_folds", self.config["model_training"]["cv_folds"])
 
-                pipeline = self.get_model_pipeline(model_name, scale_pos_weight)
+                model_params = self.config["model_training"]["model_params"].get(
+                    model_name, {}
+                )
+                mlflow.log_params(model_params)
 
+                pipeline = self.get_model_pipeline(
+                    model_name, model_params, scale_pos_weight
+                )
+
+                fold_metrics_storage = {}
                 for fold, (train_index, val_index) in enumerate(tscv.split(X), 1):
                     with LoggerContext(
                         self.logger,
@@ -101,6 +117,16 @@ class ModelTrainer:
                     ):
                         X_train, X_val = X.iloc[train_index], X.iloc[val_index]
                         y_train, y_val = y.iloc[train_index], y.iloc[val_index]
+
+                        # Log class distribution for each fold
+                        train_dist = y_train.value_counts(normalize=True).to_dict()
+                        val_dist = y_val.value_counts(normalize=True).to_dict()
+                        mlflow.log_metrics(
+                            {
+                                f"train_fraud_ratio_fold_{fold}": train_dist.get(1, 0),
+                                f"val_fraud_ratio_fold_{fold}": val_dist.get(1, 0),
+                            }
+                        )
 
                         pipeline.fit(X_train, y_train)
                         y_pred = pipeline.predict(X_val)
@@ -120,6 +146,7 @@ class ModelTrainer:
                             f"balanced_accuracy_fold_{fold}": balanced_accuracy,
                         }
                         mlflow.log_metrics(metrics)
+                        fold_metrics_storage.update(metrics)
                         self.logger.info(f"Fold {fold} metrics: {metrics}")
 
                 signature = infer_signature(X_train, y_pred)
@@ -128,6 +155,22 @@ class ModelTrainer:
                     .decode("utf-8")
                     .split("\n")
                 )
+                # Calculate average metrics across folds
+                avg_metrics = {}
+                for metric in [
+                    "precision",
+                    "recall",
+                    "f1",
+                    "roc_auc",
+                    "balanced_accuracy",
+                ]:
+                    fold_values = [
+                        fold_metrics_storage[f"{metric}_fold_{i}"]
+                        for i in range(1, self.config["model_training"]["cv_folds"] + 1)
+                    ]
+                    avg_metrics[f"avg_{metric}"] = sum(fold_values) / len(fold_values)
+                    avg_metrics[f"std_{metric}"] = pd.Series(fold_values).std()
+                mlflow.log_metrics(avg_metrics)
 
                 mlflow.sklearn.log_model(
                     sk_model=pipeline,

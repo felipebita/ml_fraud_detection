@@ -1,8 +1,8 @@
 {
   "basic_info": {
-    "n_rows": 22724,
+    "n_rows": 261705,
     "n_columns": 12,
-    "memory_usage_mb": 4.832070350646973,
+    "memory_usage_mb": 55.64708137512207,
     "column_names": [
       "step",
       "type",
@@ -96,107 +96,107 @@
   },
   "numerical_stats": {
     "step": {
-      "mean": 8.0748,
-      "median": 8.0,
-      "std": 1.6037,
+      "mean": 15.6208,
+      "median": 15.0,
+      "std": 5.2452,
       "min": 1.0,
-      "max": 9.0,
-      "q1": 8.0,
-      "q3": 9.0,
-      "iqr": 1.0,
-      "n_outliers": 1482,
+      "max": 34.0,
+      "q1": 12.0,
+      "q3": 19.0,
+      "iqr": 7.0,
+      "n_outliers": 10788,
       "n_zeros": 0,
       "n_negative": 0
     },
     "type": {
-      "mean": 0.243,
+      "mean": 0.187,
       "median": 0.0,
-      "std": 0.4289,
+      "std": 0.3899,
       "min": 0.0,
       "max": 1.0,
       "q1": 0.0,
       "q3": 0.0,
       "iqr": 0.0,
-      "n_outliers": 5522,
-      "n_zeros": 17202,
+      "n_outliers": 48949,
+      "n_zeros": 212756,
       "n_negative": 0
     },
     "amount": {
-      "mean": 331671.2666,
-      "median": 187913.495,
-      "std": 471055.5249,
-      "min": 11.83,
+      "mean": 275334.1597,
+      "median": 178717.76,
+      "std": 355830.3765,
+      "min": 0.37,
       "max": 10000000.0,
-      "q1": 88228.085,
-      "q3": 355527.92,
-      "iqr": 267299.835,
-      "n_outliers": 2219,
+      "q1": 86420.43,
+      "q3": 320701.88,
+      "iqr": 234281.45,
+      "n_outliers": 19751,
       "n_zeros": 0,
       "n_negative": 0
     },
     "oldbalanceOrg": {
-      "mean": 84585.6483,
-      "median": 0.0,
-      "std": 391724.4778,
+      "mean": 65635.3344,
+      "median": 252.0,
+      "std": 239818.1108,
       "min": 0.0,
-      "max": 16333133.1,
+      "max": 19887819.06,
       "q1": 0.0,
-      "q3": 30586.5,
-      "iqr": 30586.5,
-      "n_outliers": 3563,
-      "n_zeros": 11810,
+      "q3": 35317.0,
+      "iqr": 35317.0,
+      "n_outliers": 40588,
+      "n_zeros": 125135,
       "n_negative": 0
     },
     "newbalanceOrig": {
-      "mean": 47040.9372,
+      "mean": 30838.0433,
       "median": 0.0,
-      "std": 329602.679,
+      "std": 188220.7532,
       "min": 0.0,
       "max": 13796061.54,
       "q1": 0.0,
       "q3": 0.0,
       "iqr": 0.0,
-      "n_outliers": 2337,
-      "n_zeros": 20387,
+      "n_outliers": 29785,
+      "n_zeros": 231920,
       "n_negative": 0
     },
     "oldbalanceDest": {
-      "mean": 1504567.849,
-      "median": 362546.45,
-      "std": 3077402.5343,
+      "mean": 1490315.37,
+      "median": 533463.08,
+      "std": 2730245.1278,
       "min": 0.0,
-      "max": 30143200.51,
-      "q1": 52204.59,
-      "q3": 1324891.635,
-      "iqr": 1272687.045,
-      "n_outliers": 2771,
-      "n_zeros": 2286,
+      "max": 41383645.15,
+      "q1": 111547.96,
+      "q3": 1626261.44,
+      "iqr": 1514713.48,
+      "n_outliers": 26125,
+      "n_zeros": 31850,
       "n_negative": 0
     },
     "newbalanceDest": {
-      "mean": 2297261.097,
-      "median": 905142.44,
-      "std": 3700076.4027,
+      "mean": 1882173.5693,
+      "median": 885133.94,
+      "std": 2915544.7401,
       "min": 0.0,
-      "max": 31976992.09,
-      "q1": 233966.1475,
-      "q3": 2489006.65,
-      "iqr": 2255040.5025,
-      "n_outliers": 2470,
-      "n_zeros": 1459,
+      "max": 41482697.12,
+      "q1": 332595.14,
+      "q3": 2171506.61,
+      "iqr": 1838911.47,
+      "n_outliers": 23555,
+      "n_zeros": 6901,
       "n_negative": 0
     },
     "isFraud": {
-      "mean": 0.0046,
+      "mean": 0.0014,
       "median": 0.0,
-      "std": 0.0675,
+      "std": 0.0371,
       "min": 0.0,
       "max": 1.0,
       "q1": 0.0,
       "q3": 0.0,
       "iqr": 0.0,
-      "n_outliers": 104,
-      "n_zeros": 22620,
+      "n_outliers": 361,
+      "n_zeros": 261344,
       "n_negative": 0
     },
     "isFlaggedFraud": {
@@ -209,30 +209,30 @@
       "q3": 0.0,
       "iqr": 0.0,
       "n_outliers": 0,
-      "n_zeros": 22724,
+      "n_zeros": 261705,
       "n_negative": 0
     }
   },
   "categorical_stats": {
     "nameOrig": {
-      "n_unique": 22724,
+      "n_unique": 261691,
       "top_5_values": {
-        "C1305486145": 1,
-        "C1323887078": 1,
-        "C258714691": 1,
-        "C994619259": 1,
-        "C736991068": 1
+        "C24957224": 2,
+        "C494623691": 2,
+        "C1823562588": 2,
+        "C189326840": 2,
+        "C213801919": 2
       },
       "has_high_cardinality": true
     },
     "nameDest": {
-      "n_unique": 6650,
+      "n_unique": 50790,
       "top_5_values": {
-        "C1360767589": 43,
-        "C248609774": 42,
-        "C1286084959": 42,
-        "C2083562754": 39,
-        "C985934102": 39
+        "C1286084959": 58,
+        "C2083562754": 56,
+        "C248609774": 56,
+        "C1360767589": 56,
+        "C306206744": 52
       },
       "has_high_cardinality": true
     }
@@ -247,26 +247,26 @@
   ],
   "class_distribution": {
     "fraud_column": "isFraud",
-    "fraud_cases": 104,
-    "normal_cases": 22620,
-    "fraud_percentage": 0.46,
-    "imbalance_ratio": 217.5,
+    "fraud_cases": 361,
+    "normal_cases": 261344,
+    "fraud_percentage": 0.14,
+    "imbalance_ratio": 723.94,
     "is_highly_imbalanced": "True"
   },
   "temporal_analysis": {
     "step_analysis": {
       "min_step": 1,
-      "max_step": 9,
-      "duration_hours": 8,
-      "duration_days": 0.33,
-      "unique_steps": 9,
-      "total_fraud_cases": 104,
-      "hours_with_fraud": 9
+      "max_step": 34,
+      "duration_hours": 33,
+      "duration_days": 1.38,
+      "unique_steps": 34,
+      "total_fraud_cases": 361,
+      "hours_with_fraud": 33
     },
     "fraud_temporal_pattern": {
-      "avg_fraud_rate_pct": 3.7531,
+      "avg_fraud_rate_pct": 9.5517,
       "note": "Based on hours with 10+ transactions"
     }
   },
-  "profiling_timestamp": "2025-10-02T21:17:49.422005"
+  "profiling_timestamp": "2025-10-03T20:23:35.515248"
 }

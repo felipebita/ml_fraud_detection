@@ -987,6 +987,7 @@ dependencies = [
     { name = "fastparquet" },
     { name = "feast", extra = ["duckdb"] },
     { name = "feature-engine" },
+    { name = "gdown" },
     { name = "great-expectations" },
     { name = "httpx" },
     { name = "ibis-framework", extra = ["duckdb"] },
@@ -1111,6 +1112,7 @@ requires-dist = [
     { name = "feast", extras = ["duckdb"], specifier = ">=0.36,<1.0" },
     { name = "feature-engine", specifier = ">=1.6.0,<2.0.0" },
     { name = "fraud-detection", extras = ["dev", "notebook", "monitoring"], marker = "extra == 'all'" },
+    { name = "gdown", specifier = ">=4.7.1,<5.0.0" },
     { name = "great-expectations", specifier = ">=0.18.0,<1.0.0" },
     { name = "httpx", specifier = ">=0.27.0,<1.0.0" },
     { name = "hypothesis", marker = "extra == 'dev'", specifier = ">=6.98.0,<7.0.0" },
@@ -1183,6 +1185,22 @@ source = { registry = "https://pypi.org/simple" }
 sdist = { url = "https://files.pythonhosted.org/packages/8b/02/0835e6ab9cfc03916fe3f78c0956cfcdb6ff2669ffa6651065d5ebf7fc98/fsspec-2025.7.0.tar.gz", hash = "sha256:786120687ffa54b8283d942929540d8bc5ccfa820deb555a2b5d0ed2b737bf58", size = 304432, upload-time = "2025-07-15T16:05:21.19Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/2f/e0/014d5d9d7a4564cf1c40b5039bc882db69fd881111e03ab3657ac0b218e2/fsspec-2025.7.0-py3-none-any.whl", hash = "sha256:8b012e39f63c7d5f10474de957f3ab793b47b45ae7d39f2fb735f8bbe25c0e21", size = 199597, upload-time = "2025-07-15T16:05:19.529Z" },
+]
+
+[[package]]
+name = "gdown"
+version = "4.7.3"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "beautifulsoup4" },
+    { name = "filelock" },
+    { name = "requests", extra = ["socks"] },
+    { name = "six" },
+    { name = "tqdm" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/a5/4a/d15226eeabd5f4fb724d40cf504d4b62794b8562b0ef36933063baf1e767/gdown-4.7.3.tar.gz", hash = "sha256:37edc3a0edda1a7fe5ebcc631c3aad0612582766460630ee52f481ba1ec7aefe", size = 16004, upload-time = "2024-01-16T13:22:04.462Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/55/2e/abfb9226a0aaf7dd333f9475335a1d9522155307d69220d751c89fc0b85d/gdown-4.7.3-py3-none-any.whl", hash = "sha256:aeb7b979b35efd007d0c12fee17350f007aeb5fa84a9def09381d765075ba9ce", size = 16146, upload-time = "2024-01-16T13:22:01.625Z" },
 ]
 
 [[package]]
@@ -3281,6 +3299,15 @@ wheels = [
 ]
 
 [[package]]
+name = "pysocks"
+version = "1.7.1"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/bd/11/293dd436aea955d45fc4e8a35b6ae7270f5b8e00b53cf6c024c83b657a11/PySocks-1.7.1.tar.gz", hash = "sha256:3f8804571ebe159c380ac6de37643bb4685970655d3bba243530d6558b799aa0", size = 284429, upload-time = "2019-09-20T02:07:35.714Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/8d/59/b4572118e098ac8e46e399a1dd0f2d85403ce8bbaad9ec79373ed6badaf9/PySocks-1.7.1-py3-none-any.whl", hash = "sha256:2725bd0a9925919b9b51739eea5f9e2bae91e83288108a9ad338b2e3a4435ee5", size = 16725, upload-time = "2019-09-20T02:06:22.938Z" },
+]
+
+[[package]]
 name = "pytest"
 version = "8.4.1"
 source = { registry = "https://pypi.org/simple" }
@@ -3519,6 +3546,11 @@ dependencies = [
 sdist = { url = "https://files.pythonhosted.org/packages/e1/0a/929373653770d8a0d7ea76c37de6e41f11eb07559b103b1c02cafb3f7cf8/requests-2.32.4.tar.gz", hash = "sha256:27d0316682c8a29834d3264820024b62a36942083d52caf2f14c0591336d3422", size = 135258, upload-time = "2025-06-09T16:43:07.34Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/7c/e4/56027c4a6b4ae70ca9de302488c5ca95ad4a39e190093d6c1a8ace08341b/requests-2.32.4-py3-none-any.whl", hash = "sha256:27babd3cda2a6d50b30443204ee89830707d396671944c998b5975b031ac2b2c", size = 64847, upload-time = "2025-06-09T16:43:05.728Z" },
+]
+
+[package.optional-dependencies]
+socks = [
+    { name = "pysocks" },
 ]
 
 [[package]]

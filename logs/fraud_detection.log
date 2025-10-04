@@ -1218,3 +1218,353 @@
 {"event": "Fold 2/2_completed", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-03T00:21:49.174127Z"}
 {"event": "Finished training and validation for model: lightgbm", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-03T00:21:49.269997Z"}
 {"event": "Training model: lightgbm_completed", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-03T00:21:49.270228Z"}
+{"event": "fraud_detection_package_initialized", "logger": "src", "level": "info", "timestamp": "2025-10-03T04:13:36.837861Z"}
+{"event": "--- Starting Data Ingestion & Validation Pipeline ---", "logger": "__main__", "level": "info", "timestamp": "2025-10-03T04:13:37.121075Z"}
+{"event": "load_data_started", "logger": "__main__", "level": "info", "timestamp": "2025-10-03T04:13:37.121376Z"}
+{"event": "File found. Attempting to load into pandas DataFrame.", "logger": "__main__", "level": "info", "timestamp": "2025-10-03T04:13:37.121697Z"}
+{"event": "data_info", "logger": "__main__", "level": "info", "timestamp": "2025-10-03T04:13:37.237869Z"}
+{"event": "load_data_completed", "logger": "__main__", "level": "info", "timestamp": "2025-10-03T04:13:37.238118Z"}
+{"event": "--- Profiling Raw Data ---", "logger": "__main__", "level": "info", "timestamp": "2025-10-03T04:13:37.238405Z"}
+{"event": "data_validation_started", "logger": "src.data.data_validator", "level": "info", "timestamp": "2025-10-03T04:13:37.415740Z"}
+{"event": "Pandera validation completed successfully.", "logger": "src.data.data_validator", "level": "info", "timestamp": "2025-10-03T04:13:37.599021Z"}
+{"event": "data_validation_completed", "logger": "src.data.data_validator", "level": "info", "timestamp": "2025-10-03T04:13:37.599281Z"}
+{"event": "Data standardization started...", "logger": "src.data.data_processing", "level": "info", "timestamp": "2025-10-03T04:13:37.599629Z"}
+{"event": "Data standardization completed.", "logger": "src.data.data_processing", "level": "info", "timestamp": "2025-10-03T04:13:37.613214Z"}
+{"event": "Filtering transaction types...", "logger": "src.data.data_processing", "level": "info", "timestamp": "2025-10-03T04:13:37.613442Z"}
+{"event": "Data filtered to include only: ['CASH_OUT', 'TRANSFER']", "logger": "src.data.data_processing", "level": "info", "timestamp": "2025-10-03T04:13:37.616365Z"}
+{"event": "Encoding transaction type...", "logger": "src.data.data_processing", "level": "info", "timestamp": "2025-10-03T04:13:37.616605Z"}
+{"event": "Transaction type encoded successfully.", "logger": "src.data.data_processing", "level": "info", "timestamp": "2025-10-03T04:13:37.617426Z"}
+{"event": "Converting integer columns to float...", "logger": "src.data.data_processing", "level": "info", "timestamp": "2025-10-03T04:13:37.617651Z"}
+{"event": "Integer columns converted to float successfully.", "logger": "src.data.data_processing", "level": "info", "timestamp": "2025-10-03T04:13:37.619667Z"}
+{"event": "--- Profiling Processed Data ---", "logger": "__main__", "level": "info", "timestamp": "2025-10-03T04:13:37.619902Z"}
+{"event": "save_processed_data_started", "logger": "__main__", "level": "info", "timestamp": "2025-10-03T04:13:37.711591Z"}
+{"event": "data_info", "logger": "__main__", "level": "info", "timestamp": "2025-10-03T04:13:37.776601Z"}
+{"event": "Processed data saved successfully.", "logger": "__main__", "level": "info", "timestamp": "2025-10-03T04:13:37.776835Z"}
+{"event": "save_processed_data_completed", "logger": "__main__", "level": "info", "timestamp": "2025-10-03T04:13:37.777081Z"}
+{"event": "--- Data Ingestion & Validation Pipeline Finished ---", "logger": "__main__", "level": "info", "timestamp": "2025-10-03T04:13:37.777397Z"}
+{"event": "fraud_detection_package_initialized", "logger": "src", "level": "info", "timestamp": "2025-10-03T20:21:09.663763Z"}
+{"event": "Downloading dataset from Google Drive (ID: 1oR8ZVcF_ifwKiyzRXlre1nZMM0WVp57E) to data/download/dataset.zip...", "logger": "root", "level": "info", "timestamp": "2025-10-03T20:21:09.664327Z"}
+{"event": "Dataset downloaded successfully.", "logger": "root", "level": "info", "timestamp": "2025-10-03T20:21:24.477321Z"}
+{"event": "Unzipping data/download/dataset.zip to data/download...", "logger": "root", "level": "info", "timestamp": "2025-10-03T20:21:24.477557Z"}
+{"event": "Unzipped successfully.", "logger": "root", "level": "info", "timestamp": "2025-10-03T20:21:26.911646Z"}
+{"event": "Processing data/download/complete_synthetic_financial_kaggle.csv...", "logger": "root", "level": "info", "timestamp": "2025-10-03T20:21:26.911895Z"}
+{"event": "Read 6362620 rows from the original dataset.", "logger": "root", "level": "info", "timestamp": "2025-10-03T20:21:39.076822Z"}
+{"event": "Selected the first 600000 rows.", "logger": "root", "level": "info", "timestamp": "2025-10-03T20:21:39.077841Z"}
+{"event": "Saved processed data to data/raw/fraud_data.csv", "logger": "root", "level": "info", "timestamp": "2025-10-03T20:21:41.217253Z"}
+{"event": "fraud_detection_package_initialized", "logger": "src", "level": "info", "timestamp": "2025-10-03T20:23:31.225400Z"}
+{"event": "--- Starting Data Ingestion & Validation Pipeline ---", "logger": "__main__", "level": "info", "timestamp": "2025-10-03T20:23:31.510116Z"}
+{"event": "load_data_started", "logger": "__main__", "level": "info", "timestamp": "2025-10-03T20:23:31.510392Z"}
+{"event": "File found. Attempting to load into pandas DataFrame.", "logger": "__main__", "level": "info", "timestamp": "2025-10-03T20:23:31.510703Z"}
+{"event": "data_info", "logger": "__main__", "level": "info", "timestamp": "2025-10-03T20:23:32.470133Z"}
+{"event": "load_data_completed", "logger": "__main__", "level": "info", "timestamp": "2025-10-03T20:23:32.470405Z"}
+{"event": "--- Profiling Raw Data ---", "logger": "__main__", "level": "info", "timestamp": "2025-10-03T20:23:32.470688Z"}
+{"event": "data_validation_started", "logger": "src.data.data_validator", "level": "info", "timestamp": "2025-10-03T20:23:34.092258Z"}
+{"event": "Pandera validation completed successfully.", "logger": "src.data.data_validator", "level": "info", "timestamp": "2025-10-03T20:23:34.632721Z"}
+{"event": "data_validation_completed", "logger": "src.data.data_validator", "level": "info", "timestamp": "2025-10-03T20:23:34.632996Z"}
+{"event": "Data standardization started...", "logger": "src.data.data_processing", "level": "info", "timestamp": "2025-10-03T20:23:34.633318Z"}
+{"event": "Data standardization completed.", "logger": "src.data.data_processing", "level": "info", "timestamp": "2025-10-03T20:23:34.758790Z"}
+{"event": "Filtering transaction types...", "logger": "src.data.data_processing", "level": "info", "timestamp": "2025-10-03T20:23:34.759037Z"}
+{"event": "Data filtered to include only: ['CASH_OUT', 'TRANSFER']", "logger": "src.data.data_processing", "level": "info", "timestamp": "2025-10-03T20:23:34.788060Z"}
+{"event": "Encoding transaction type...", "logger": "src.data.data_processing", "level": "info", "timestamp": "2025-10-03T20:23:34.788363Z"}
+{"event": "Transaction type encoded successfully.", "logger": "src.data.data_processing", "level": "info", "timestamp": "2025-10-03T20:23:34.794942Z"}
+{"event": "Converting integer columns to float...", "logger": "src.data.data_processing", "level": "info", "timestamp": "2025-10-03T20:23:34.795170Z"}
+{"event": "Integer columns converted to float successfully.", "logger": "src.data.data_processing", "level": "info", "timestamp": "2025-10-03T20:23:34.814730Z"}
+{"event": "--- Profiling Processed Data ---", "logger": "__main__", "level": "info", "timestamp": "2025-10-03T20:23:34.815016Z"}
+{"event": "save_processed_data_started", "logger": "__main__", "level": "info", "timestamp": "2025-10-03T20:23:35.516196Z"}
+{"event": "data_info", "logger": "__main__", "level": "info", "timestamp": "2025-10-03T20:23:35.805081Z"}
+{"event": "Processed data saved successfully.", "logger": "__main__", "level": "info", "timestamp": "2025-10-03T20:23:35.805334Z"}
+{"event": "save_processed_data_completed", "logger": "__main__", "level": "info", "timestamp": "2025-10-03T20:23:35.805562Z"}
+{"event": "--- Data Ingestion & Validation Pipeline Finished ---", "logger": "__main__", "level": "info", "timestamp": "2025-10-03T20:23:35.805777Z"}
+{"event": "fraud_detection_package_initialized", "logger": "src", "level": "info", "timestamp": "2025-10-03T20:23:36.439819Z"}
+{"event": "--- Starting Data Splitting Pipeline ---", "logger": "__main__", "level": "info", "timestamp": "2025-10-03T20:23:36.441277Z"}
+{"event": "Loading processed data from 'data/processed/processed_transactions.parquet'...", "logger": "__main__", "level": "info", "timestamp": "2025-10-03T20:23:36.441542Z"}
+{"event": "Sorting data by timestamp to ensure chronological order.", "logger": "__main__", "level": "info", "timestamp": "2025-10-03T20:23:36.574946Z"}
+{"event": "Training set size: 209364 (80.00%)", "logger": "__main__", "level": "info", "timestamp": "2025-10-03T20:23:36.620051Z"}
+{"event": "Test set size: 52341 (20.00%)", "logger": "__main__", "level": "info", "timestamp": "2025-10-03T20:23:36.620357Z"}
+{"event": "Saving training set to 'data/processed/train_dataset.parquet'...", "logger": "__main__", "level": "info", "timestamp": "2025-10-03T20:23:36.620799Z"}
+{"event": "Saving test set to 'data/processed/test_dataset.parquet'...", "logger": "__main__", "level": "info", "timestamp": "2025-10-03T20:23:36.773351Z"}
+{"event": "Data splitting process completed successfully.", "logger": "__main__", "level": "info", "timestamp": "2025-10-03T20:23:36.818823Z"}
+{"event": "--- Data Splitting Pipeline Finished ---", "logger": "__main__", "level": "info", "timestamp": "2025-10-03T20:23:36.827621Z"}
+{"event": "fraud_detection_package_initialized", "logger": "src", "level": "info", "timestamp": "2025-10-03T20:24:29.137596Z"}
+{"event": "Data Loading_started", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-03T20:24:29.505030Z"}
+{"event": "Data Loading_completed", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-03T20:24:29.629695Z"}
+{"event": "Training model: xgboost_started", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-03T20:24:29.723975Z"}
+{"event": "Fold 1/5_started", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-03T20:24:29.756825Z"}
+{"event": "Fold 1 metrics: {'precision_fold_1': 0.3333333333333333, 'recall_fold_1': 0.5714285714285714, 'f1_fold_1': 0.42105263157894735, 'roc_auc_fold_1': 0.9624951856495482, 'balanced_accuracy_fold_1': 0.7852553859265268}", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-03T20:24:30.139716Z"}
+{"event": "Fold 1/5_completed", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-03T20:24:30.139971Z"}
+{"event": "Fold 2/5_started", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-03T20:24:30.140225Z"}
+{"event": "Fold 2 metrics: {'precision_fold_2': 0.3953488372093023, 'recall_fold_2': 0.7083333333333334, 'f1_fold_2': 0.5074626865671642, 'roc_auc_fold_2': 0.9892212742567632, 'balanced_accuracy_fold_2': 0.8537938533600995}", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-03T20:24:30.384622Z"}
+{"event": "Fold 2/5_completed", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-03T20:24:30.384854Z"}
+{"event": "Fold 3/5_started", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-03T20:24:30.385111Z"}
+{"event": "Fold 3 metrics: {'precision_fold_3': 0.32653061224489793, 'recall_fold_3': 0.5333333333333333, 'f1_fold_3': 0.4050632911392405, 'roc_auc_fold_3': 0.9520847674774361, 'balanced_accuracy_fold_3': 0.7661933991127429}", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-03T20:24:30.724387Z"}
+{"event": "Fold 3/5_completed", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-03T20:24:30.724623Z"}
+{"event": "Fold 4/5_started", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-03T20:24:30.724931Z"}
+{"event": "Fold 4 metrics: {'precision_fold_4': 0.17142857142857143, 'recall_fold_4': 0.6, 'f1_fold_4': 0.26666666666666666, 'roc_auc_fold_4': 0.8408783396399496, 'balanced_accuracy_fold_4': 0.79958433665864}", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-03T20:24:31.285764Z"}
+{"event": "Fold 4/5_completed", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-03T20:24:31.286062Z"}
+{"event": "Fold 5/5_started", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-03T20:24:31.286350Z"}
+{"event": "Fold 5 metrics: {'precision_fold_5': 0.35185185185185186, 'recall_fold_5': 0.7916666666666666, 'f1_fold_5': 0.48717948717948717, 'roc_auc_fold_5': 0.993455453589523, 'balanced_accuracy_fold_5': 0.8953314692668004}", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-03T20:24:31.646179Z"}
+{"event": "Fold 5/5_completed", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-03T20:24:31.646446Z"}
+{"event": "Finished training and validation for model: xgboost", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-03T20:24:33.773025Z"}
+{"event": "Training model: xgboost_completed", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-03T20:24:33.773239Z"}
+{"event": "Training model: randomforest_started", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-03T20:24:33.821062Z"}
+{"event": "Fold 1/5_started", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-03T20:24:33.850791Z"}
+{"event": "Fold 1 metrics: {'precision_fold_1': 0.7857142857142857, 'recall_fold_1': 0.39285714285714285, 'f1_fold_1': 0.5238095238095238, 'roc_auc_fold_1': 0.8866184617023543, 'balanced_accuracy_fold_1': 0.696385549573469}", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-03T20:24:35.908926Z"}
+{"event": "Fold 1/5_completed", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-03T20:24:35.909163Z"}
+{"event": "Fold 2/5_started", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-03T20:24:35.909407Z"}
+{"event": "Fold 2 metrics: {'precision_fold_2': 0.9375, 'recall_fold_2': 0.625, 'f1_fold_2': 0.75, 'roc_auc_fold_2': 0.8719302647930408, 'balanced_accuracy_fold_2': 0.8124856610266704}", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-03T20:24:40.317471Z"}
+{"event": "Fold 2/5_completed", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-03T20:24:40.317758Z"}
+{"event": "Fold 3/5_started", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-03T20:24:40.318101Z"}
+{"event": "Fold 3 metrics: {'precision_fold_3': 0.8666666666666667, 'recall_fold_3': 0.43333333333333335, 'f1_fold_3': 0.5777777777777777, 'roc_auc_fold_3': 0.8290194278721126, 'balanced_accuracy_fold_3': 0.7166379837846106}", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-03T20:24:47.242841Z"}
+{"event": "Fold 3/5_completed", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-03T20:24:47.243098Z"}
+{"event": "Fold 4/5_started", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-03T20:24:47.243332Z"}
+{"event": "Fold 4 metrics: {'precision_fold_4': 1.0, 'recall_fold_4': 0.6, 'f1_fold_4': 0.75, 'roc_auc_fold_4': 0.7966460268317853, 'balanced_accuracy_fold_4': 0.8}", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-03T20:25:00.926758Z"}
+{"event": "Fold 4/5_completed", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-03T20:25:00.926994Z"}
+{"event": "Fold 5/5_started", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-03T20:25:00.927300Z"}
+{"event": "Fold 5 metrics: {'precision_fold_5': 0.875, 'recall_fold_5': 0.5833333333333334, 'f1_fold_5': 0.7, 'roc_auc_fold_5': 0.9354752174744289, 'balanced_accuracy_fold_5': 0.7916379887200077}", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-03T20:25:14.262966Z"}
+{"event": "Fold 5/5_completed", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-03T20:25:14.263258Z"}
+{"event": "Finished training and validation for model: randomforest", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-03T20:25:15.102570Z"}
+{"event": "Training model: randomforest_completed", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-03T20:25:15.102824Z"}
+{"event": "Training model: lightgbm_started", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-03T20:25:15.143056Z"}
+{"event": "Fold 1/5_started", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-03T20:25:15.168311Z"}
+{"event": "Fold 1 metrics: {'precision_fold_1': 0.30612244897959184, 'recall_fold_1': 0.5357142857142857, 'f1_fold_1': 0.38961038961038963, 'roc_auc_fold_1': 0.9482216608894461, 'balanced_accuracy_fold_1': 0.767369561832649}", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-03T20:25:15.382338Z"}
+{"event": "Fold 1/5_completed", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-03T20:25:15.382618Z"}
+{"event": "Fold 2/5_started", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-03T20:25:15.382995Z"}
+{"event": "Fold 2 metrics: {'precision_fold_2': 0.32727272727272727, 'recall_fold_2': 0.75, 'f1_fold_2': 0.45569620253164556, 'roc_auc_fold_2': 0.9834247442883088, 'balanced_accuracy_fold_2': 0.8744694579868082}", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-03T20:25:15.643001Z"}
+{"event": "Fold 2/5_completed", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-03T20:25:15.643234Z"}
+{"event": "Fold 3/5_started", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-03T20:25:15.643499Z"}
+{"event": "Fold 3 metrics: {'precision_fold_3': 0.17894736842105263, 'recall_fold_3': 0.5666666666666667, 'f1_fold_3': 0.272, 'roc_auc_fold_3': 0.9631630526235276, 'balanced_accuracy_fold_3': 0.7822147009331497}", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-03T20:25:15.953271Z"}
+{"event": "Fold 3/5_completed", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-03T20:25:15.953504Z"}
+{"event": "Fold 4/5_started", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-03T20:25:15.953736Z"}
+{"event": "Fold 4 metrics: {'precision_fold_4': 0.08108108108108109, 'recall_fold_4': 0.6, 'f1_fold_4': 0.14285714285714285, 'roc_auc_fold_4': 0.8535747047356954, 'balanced_accuracy_fold_4': 0.7990253411306043}", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-03T20:25:16.313515Z"}
+{"event": "Fold 4/5_completed", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-03T20:25:16.313783Z"}
+{"event": "Fold 5/5_started", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-03T20:25:16.314118Z"}
+{"event": "Fold 5 metrics: {'precision_fold_5': 0.1693548387096774, 'recall_fold_5': 0.875, 'f1_fold_5': 0.28378378378378377, 'roc_auc_fold_5': 0.9806555300640474, 'balanced_accuracy_fold_5': 0.9360230857470605}", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-03T20:25:16.750600Z"}
+{"event": "Fold 5/5_completed", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-03T20:25:16.750840Z"}
+{"event": "Finished training and validation for model: lightgbm", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-03T20:25:17.591238Z"}
+{"event": "Training model: lightgbm_completed", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-03T20:25:17.591473Z"}
+{"event": "fraud_detection_package_initialized", "logger": "src", "level": "info", "timestamp": "2025-10-03T21:12:45.232028Z"}
+{"event": "Data Loading_started", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-03T21:12:45.577798Z"}
+{"event": "Data Loading_completed", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-03T21:12:45.731925Z"}
+{"event": "Training model: xgboost_started", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-03T21:12:45.824579Z"}
+{"event": "Fold 1/2_started", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-03T21:12:45.846708Z"}
+{"event": "Fold 1 metrics: {'precision_fold_1': 0.34408602150537637, 'recall_fold_1': 0.5925925925925926, 'f1_fold_1': 0.43537414965986393, 'roc_auc_fold_1': 0.9639330514154847, 'balanced_accuracy_fold_1': 0.7958589199805823}", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-03T21:12:46.295947Z"}
+{"event": "Fold 1/2_completed", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-03T21:12:46.296189Z"}
+{"event": "Fold 2/2_started", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-03T21:12:46.296492Z"}
+{"event": "Fold 2 metrics: {'precision_fold_2': 0.25, 'recall_fold_2': 0.6764705882352942, 'f1_fold_2': 0.36507936507936506, 'roc_auc_fold_2': 0.9283926791463782, 'balanced_accuracy_fold_2': 0.8377406988256209}", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-03T21:12:46.618791Z"}
+{"event": "Fold 2/2_completed", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-03T21:12:46.619124Z"}
+{"event": "Finished training and validation for model: xgboost", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-03T21:12:48.224373Z"}
+{"event": "Training model: xgboost_completed", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-03T21:12:48.224607Z"}
+{"event": "Training model: randomforest_started", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-03T21:12:48.250723Z"}
+{"event": "Fold 1/2_started", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-03T21:12:48.267654Z"}
+{"event": "Fold 1 metrics: {'precision_fold_1': 0.8787878787878788, 'recall_fold_1': 0.5370370370370371, 'f1_fold_1': 0.6666666666666666, 'roc_auc_fold_1': 0.847909755483536, 'balanced_accuracy_fold_1': 0.7684898381043734}", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-03T21:12:52.911583Z"}
+{"event": "Fold 1/2_completed", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-03T21:12:52.911881Z"}
+{"event": "Fold 2/2_started", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-03T21:12:52.912211Z"}
+{"event": "Fold 2 metrics: {'precision_fold_2': 0.9130434782608695, 'recall_fold_2': 0.6176470588235294, 'f1_fold_2': 0.7368421052631579, 'roc_auc_fold_2': 0.8800003457528895, 'balanced_accuracy_fold_2': 0.8088091933163437}", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-03T21:13:03.453268Z"}
+{"event": "Fold 2/2_completed", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-03T21:13:03.453505Z"}
+{"event": "Finished training and validation for model: randomforest", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-03T21:13:04.123468Z"}
+{"event": "Training model: randomforest_completed", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-03T21:13:04.123747Z"}
+{"event": "Training model: lightgbm_started", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-03T21:13:04.157887Z"}
+{"event": "Fold 1/2_started", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-03T21:13:04.173507Z"}
+{"event": "Fold 1 metrics: {'precision_fold_1': 0.265625, 'recall_fold_1': 0.6296296296296297, 'f1_fold_1': 0.37362637362637363, 'roc_auc_fold_1': 0.9778798322514444, 'balanced_accuracy_fold_1': 0.8141408250824032}", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-03T21:13:04.504933Z"}
+{"event": "Fold 1/2_completed", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-03T21:13:04.505169Z"}
+{"event": "Fold 2/2_started", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-03T21:13:04.505457Z"}
+{"event": "Fold 2 metrics: {'precision_fold_2': 0.14705882352941177, 'recall_fold_2': 0.7352941176470589, 'f1_fold_2': 0.24509803921568626, 'roc_auc_fold_2': 0.9425152089106422, 'balanced_accuracy_fold_2': 0.8666076919055032}", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-03T21:13:04.941079Z"}
+{"event": "Fold 2/2_completed", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-03T21:13:04.941315Z"}
+{"event": "Finished training and validation for model: lightgbm", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-03T21:13:05.629279Z"}
+{"event": "Training model: lightgbm_completed", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-03T21:13:05.629607Z"}
+{"event": "fraud_detection_package_initialized", "logger": "src", "level": "info", "timestamp": "2025-10-03T21:27:46.017110Z"}
+{"event": "Data Loading_started", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-03T21:27:46.347248Z"}
+{"event": "Data Loading_completed", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-03T21:27:46.499800Z"}
+{"event": "Training model: xgboost_started", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-03T21:27:46.584867Z"}
+{"event": "Fold 1/3_started", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-03T21:27:46.603145Z"}
+{"event": "Fold 1 metrics: {'precision_fold_1': 0.37333333333333335, 'recall_fold_1': 0.7368421052631579, 'f1_fold_1': 0.49557522123893805, 'roc_auc_fold_1': 0.9773480840889675, 'balanced_accuracy_fold_1': 0.8679717476203941}", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-03T21:27:46.863500Z"}
+{"event": "Fold 1/3_completed", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-03T21:27:46.863746Z"}
+{"event": "Fold 2/3_started", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-03T21:27:46.864022Z"}
+{"event": "Fold 2 metrics: {'precision_fold_2': 0.31746031746031744, 'recall_fold_2': 0.5405405405405406, 'f1_fold_2': 0.4, 'roc_auc_fold_2': 0.9516041354906452, 'balanced_accuracy_fold_2': 0.7698592118426166}", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-03T21:27:47.129231Z"}
+{"event": "Fold 2/3_completed", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-03T21:27:47.129526Z"}
+{"event": "Fold 3/3_started", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-03T21:27:47.129828Z"}
+{"event": "Fold 3 metrics: {'precision_fold_3': 0.29411764705882354, 'recall_fold_3': 0.7407407407407407, 'f1_fold_3': 0.42105263157894735, 'roc_auc_fold_3': 0.9610992171205498, 'balanced_accuracy_fold_3': 0.8699116021630071}", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-03T21:27:47.494360Z"}
+{"event": "Fold 3/3_completed", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-03T21:27:47.494599Z"}
+{"event": "Training model: xgboost_failed", "logger": "ModelTraining", "level": "error", "timestamp": "2025-10-03T21:27:48.203570Z"}
+{"event": "fraud_detection_package_initialized", "logger": "src", "level": "info", "timestamp": "2025-10-03T21:29:47.094013Z"}
+{"event": "Data Loading_started", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-03T21:29:47.428234Z"}
+{"event": "Data Loading_completed", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-03T21:29:47.572226Z"}
+{"event": "Training model: xgboost_started", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-03T21:29:47.658604Z"}
+{"event": "Fold 1/3_started", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-03T21:29:47.676229Z"}
+{"event": "Fold 1 metrics: {'precision_fold_1': 0.37333333333333335, 'recall_fold_1': 0.7368421052631579, 'f1_fold_1': 0.49557522123893805, 'roc_auc_fold_1': 0.9773480840889675, 'balanced_accuracy_fold_1': 0.8679717476203941}", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-03T21:29:48.306363Z"}
+{"event": "Fold 1/3_completed", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-03T21:29:48.306618Z"}
+{"event": "Fold 2/3_started", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-03T21:29:48.306854Z"}
+{"event": "Fold 2 metrics: {'precision_fold_2': 0.31746031746031744, 'recall_fold_2': 0.5405405405405406, 'f1_fold_2': 0.4, 'roc_auc_fold_2': 0.9516041354906452, 'balanced_accuracy_fold_2': 0.7698592118426166}", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-03T21:29:48.558174Z"}
+{"event": "Fold 2/3_completed", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-03T21:29:48.558409Z"}
+{"event": "Fold 3/3_started", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-03T21:29:48.558646Z"}
+{"event": "Fold 3 metrics: {'precision_fold_3': 0.29411764705882354, 'recall_fold_3': 0.7407407407407407, 'f1_fold_3': 0.42105263157894735, 'roc_auc_fold_3': 0.9610992171205498, 'balanced_accuracy_fold_3': 0.8699116021630071}", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-03T21:29:48.939189Z"}
+{"event": "Fold 3/3_completed", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-03T21:29:48.939421Z"}
+{"event": "Finished training and validation for model: xgboost", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-03T21:29:50.475187Z"}
+{"event": "Training model: xgboost_completed", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-03T21:29:50.475420Z"}
+{"event": "Training model: randomforest_started", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-03T21:29:50.506594Z"}
+{"event": "Fold 1/3_started", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-03T21:29:50.520667Z"}
+{"event": "Fold 1 metrics: {'precision_fold_1': 0.8947368421052632, 'recall_fold_1': 0.4473684210526316, 'f1_fold_1': 0.5964912280701754, 'roc_auc_fold_1': 0.8910503271926639, 'balanced_accuracy_fold_1': 0.7236650911641377}", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-03T21:29:53.741181Z"}
+{"event": "Fold 1/3_completed", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-03T21:29:53.741412Z"}
+{"event": "Fold 2/3_started", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-03T21:29:53.741649Z"}
+{"event": "Fold 2 metrics: {'precision_fold_2': 0.8947368421052632, 'recall_fold_2': 0.4594594594594595, 'f1_fold_2': 0.6071428571428571, 'roc_auc_fold_2': 0.8199933548568453, 'balanced_accuracy_fold_2': 0.7297106107330947}", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-03T21:30:00.788253Z"}
+{"event": "Fold 2/3_completed", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-03T21:30:00.788494Z"}
+{"event": "Fold 3/3_started", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-03T21:30:00.788775Z"}
+{"event": "Fold 3 metrics: {'precision_fold_3': 0.8421052631578947, 'recall_fold_3': 0.5925925925925926, 'f1_fold_3': 0.6956521739130435, 'roc_auc_fold_3': 0.9231821663771046, 'balanced_accuracy_fold_3': 0.7962676232833361}", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-03T21:30:16.996922Z"}
+{"event": "Fold 3/3_completed", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-03T21:30:16.997179Z"}
+{"event": "Finished training and validation for model: randomforest", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-03T21:30:17.760570Z"}
+{"event": "Training model: randomforest_completed", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-03T21:30:17.760820Z"}
+{"event": "Training model: lightgbm_started", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-03T21:30:17.793974Z"}
+{"event": "Fold 1/3_started", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-03T21:30:17.809763Z"}
+{"event": "Fold 1 metrics: {'precision_fold_1': 0.28, 'recall_fold_1': 0.7368421052631579, 'f1_fold_1': 0.4057971014492754, 'roc_auc_fold_1': 0.9828984852433743, 'balanced_accuracy_fold_1': 0.8677327555931682}", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-03T21:30:18.064118Z"}
+{"event": "Fold 1/3_completed", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-03T21:30:18.064381Z"}
+{"event": "Fold 2/3_started", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-03T21:30:18.064676Z"}
+{"event": "Fold 2 metrics: {'precision_fold_2': 0.1721311475409836, 'recall_fold_2': 0.5675675675675675, 'f1_fold_2': 0.2641509433962264, 'roc_auc_fold_2': 0.9481348126958405, 'balanced_accuracy_fold_2': 0.7828182744537134}", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-03T21:30:18.398357Z"}
+{"event": "Fold 2/3_completed", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-03T21:30:18.398588Z"}
+{"event": "Fold 3/3_started", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-03T21:30:18.398863Z"}
+{"event": "Fold 3 metrics: {'precision_fold_3': 0.12299465240641712, 'recall_fold_3': 0.8518518518518519, 'f1_fold_3': 0.21495327102803738, 'roc_auc_fold_3': 0.9577122617131028, 'balanced_accuracy_fold_3': 0.9243584678841016}", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-03T21:30:18.806109Z"}
+{"event": "Fold 3/3_completed", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-03T21:30:18.806342Z"}
+{"event": "Finished training and validation for model: lightgbm", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-03T21:30:19.580462Z"}
+{"event": "Training model: lightgbm_completed", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-03T21:30:19.580691Z"}
+{"event": "fraud_detection_package_initialized", "logger": "src", "level": "info", "timestamp": "2025-10-03T21:46:10.656734Z"}
+{"event": "Data Loading_started", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-03T21:46:10.986827Z"}
+{"event": "Data Loading_completed", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-03T21:46:11.144250Z"}
+{"event": "Training model: randomforest_started", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-03T21:46:11.230175Z"}
+{"event": "Fold 1/5_started", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-03T21:46:11.247671Z"}
+{"event": "Fold 1 metrics: {'precision_fold_1': 0.7857142857142857, 'recall_fold_1': 0.39285714285714285, 'f1_fold_1': 0.5238095238095238, 'roc_auc_fold_1': 0.8866184617023543, 'balanced_accuracy_fold_1': 0.696385549573469}", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-03T21:46:13.348934Z"}
+{"event": "Fold 1/5_completed", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-03T21:46:13.349173Z"}
+{"event": "Fold 2/5_started", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-03T21:46:13.349428Z"}
+{"event": "Fold 2 metrics: {'precision_fold_2': 0.9375, 'recall_fold_2': 0.625, 'f1_fold_2': 0.75, 'roc_auc_fold_2': 0.8719302647930408, 'balanced_accuracy_fold_2': 0.8124856610266704}", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-03T21:46:17.835423Z"}
+{"event": "Fold 2/5_completed", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-03T21:46:17.835658Z"}
+{"event": "Fold 3/5_started", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-03T21:46:17.835936Z"}
+{"event": "Fold 3 metrics: {'precision_fold_3': 0.8666666666666667, 'recall_fold_3': 0.43333333333333335, 'f1_fold_3': 0.5777777777777777, 'roc_auc_fold_3': 0.8290194278721126, 'balanced_accuracy_fold_3': 0.7166379837846106}", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-03T21:46:24.928674Z"}
+{"event": "Fold 3/5_completed", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-03T21:46:24.928934Z"}
+{"event": "Fold 4/5_started", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-03T21:46:24.929158Z"}
+{"event": "Fold 4 metrics: {'precision_fold_4': 1.0, 'recall_fold_4': 0.6, 'f1_fold_4': 0.75, 'roc_auc_fold_4': 0.7966460268317853, 'balanced_accuracy_fold_4': 0.8}", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-03T21:46:38.571508Z"}
+{"event": "Fold 4/5_completed", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-03T21:46:38.571764Z"}
+{"event": "Fold 5/5_started", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-03T21:46:38.571991Z"}
+{"event": "Fold 5 metrics: {'precision_fold_5': 0.875, 'recall_fold_5': 0.5833333333333334, 'f1_fold_5': 0.7, 'roc_auc_fold_5': 0.9354752174744289, 'balanced_accuracy_fold_5': 0.7916379887200077}", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-03T21:46:51.998529Z"}
+{"event": "Fold 5/5_completed", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-03T21:46:51.998784Z"}
+{"event": "Finished training and validation for model: randomforest", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-03T21:46:53.631041Z"}
+{"event": "Training model: randomforest_completed", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-03T21:46:53.631310Z"}
+{"event": "fraud_detection_package_initialized", "logger": "src", "level": "info", "timestamp": "2025-10-04T03:30:03.919337Z"}
+{"event": "Data Loading_started", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-04T03:30:04.704401Z"}
+{"event": "Data Loading_completed", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-04T03:30:04.876672Z"}
+{"event": "Training model: xgboost_started", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-04T03:30:04.974581Z"}
+{"event": "Fold 1/2_started", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-04T03:30:05.445059Z"}
+{"event": "Fold 1/2_failed", "logger": "ModelTraining", "level": "error", "timestamp": "2025-10-04T03:30:05.529126Z"}
+{"event": "Training model: xgboost_failed", "logger": "ModelTraining", "level": "error", "timestamp": "2025-10-04T03:30:05.529995Z"}
+{"event": "fraud_detection_package_initialized", "logger": "src", "level": "info", "timestamp": "2025-10-04T03:30:36.198749Z"}
+{"event": "Data Loading_started", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-04T03:30:36.871432Z"}
+{"event": "Data Loading_completed", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-04T03:30:37.039333Z"}
+{"event": "Training model: xgboost_started", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-04T03:30:37.114028Z"}
+{"event": "Fold 1/2_started", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-04T03:30:37.145736Z"}
+{"event": "Fold 1 metrics: {'precision_fold_1': 0.675, 'recall_fold_1': 0.5, 'f1_fold_1': 0.574468085106383, 'roc_auc_fold_1': 0.9612801131070555, 'balanced_accuracy_fold_1': 0.7499067886540282}", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-04T03:30:37.511400Z"}
+{"event": "Fold 1/2_completed", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-04T03:30:37.511645Z"}
+{"event": "Fold 2/2_started", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-04T03:30:37.511917Z"}
+{"event": "Fold 2 metrics: {'precision_fold_2': 0.8636363636363636, 'recall_fold_2': 0.5588235294117647, 'f1_fold_2': 0.6785714285714286, 'roc_auc_fold_2': 0.9506650683325772, 'balanced_accuracy_fold_2': 0.7793902605627507}", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-04T03:30:39.263410Z"}
+{"event": "Fold 2/2_completed", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-04T03:30:39.263649Z"}
+{"event": "Finished training and validation for model: xgboost", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-04T03:30:41.078478Z"}
+{"event": "Training model: xgboost_completed", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-04T03:30:41.078749Z"}
+{"event": "Training model: randomforest_started", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-04T03:30:41.112755Z"}
+{"event": "Fold 1/2_started", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-04T03:30:41.145931Z"}
+{"event": "Fold 1 metrics: {'precision_fold_1': 0.8787878787878788, 'recall_fold_1': 0.5370370370370371, 'f1_fold_1': 0.6666666666666666, 'roc_auc_fold_1': 0.847909755483536, 'balanced_accuracy_fold_1': 0.7684898381043734}", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-04T03:30:45.983540Z"}
+{"event": "Fold 1/2_completed", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-04T03:30:45.983844Z"}
+{"event": "Fold 2/2_started", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-04T03:30:45.984156Z"}
+{"event": "Fold 2 metrics: {'precision_fold_2': 0.9130434782608695, 'recall_fold_2': 0.6176470588235294, 'f1_fold_2': 0.7368421052631579, 'roc_auc_fold_2': 0.8800003457528895, 'balanced_accuracy_fold_2': 0.8088091933163437}", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-04T03:30:59.975447Z"}
+{"event": "Fold 2/2_completed", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-04T03:30:59.975692Z"}
+{"event": "Finished training and validation for model: randomforest", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-04T03:31:00.718219Z"}
+{"event": "Training model: randomforest_completed", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-04T03:31:00.718454Z"}
+{"event": "Training model: lightgbm_started", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-04T03:31:00.749722Z"}
+{"event": "Fold 1/2_started", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-04T03:31:00.774954Z"}
+{"event": "Fold 1 metrics: {'precision_fold_1': 0.265625, 'recall_fold_1': 0.6296296296296297, 'f1_fold_1': 0.37362637362637363, 'roc_auc_fold_1': 0.9778798322514444, 'balanced_accuracy_fold_1': 0.8141408250824032}", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-04T03:31:01.227386Z"}
+{"event": "Fold 1/2_completed", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-04T03:31:01.227641Z"}
+{"event": "Fold 2/2_started", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-04T03:31:01.227941Z"}
+{"event": "Fold 2 metrics: {'precision_fold_2': 0.14705882352941177, 'recall_fold_2': 0.7352941176470589, 'f1_fold_2': 0.24509803921568626, 'roc_auc_fold_2': 0.9425152089106422, 'balanced_accuracy_fold_2': 0.8666076919055032}", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-04T03:31:01.682377Z"}
+{"event": "Fold 2/2_completed", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-04T03:31:01.682689Z"}
+{"event": "Finished training and validation for model: lightgbm", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-04T03:31:02.384349Z"}
+{"event": "Training model: lightgbm_completed", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-04T03:31:02.384590Z"}
+{"event": "fraud_detection_package_initialized", "logger": "src", "level": "info", "timestamp": "2025-10-04T03:42:15.300722Z"}
+{"event": "Data Loading_started", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-04T03:42:15.545554Z"}
+{"event": "Data Loading_completed", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-04T03:42:15.699817Z"}
+{"event": "Training model: randomforest_started", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-04T03:42:15.765094Z"}
+{"event": "Fold 1/2_started", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-04T03:42:15.795016Z"}
+{"event": "Fold 1 metrics: {'precision_fold_1': 0.6326530612244898, 'recall_fold_1': 0.5740740740740741, 'f1_fold_1': 0.6019417475728155, 'roc_auc_fold_1': 0.9122300987137365, 'balanced_accuracy_fold_1': 0.7869079751733837}", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-04T03:42:27.987098Z"}
+{"event": "Fold 1/2_completed", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-04T03:42:27.987519Z"}
+{"event": "Fold 2/2_started", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-04T03:42:27.987841Z"}
+{"event": "Fold 2 metrics: {'precision_fold_2': 0.7096774193548387, 'recall_fold_2': 0.6470588235294118, 'f1_fold_2': 0.676923076923077, 'roc_auc_fold_2': 0.898500444418958, 'balanced_accuracy_fold_2': 0.8234648993353112}", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-04T03:42:50.140894Z"}
+{"event": "Fold 2/2_completed", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-04T03:42:50.141166Z"}
+{"event": "Finished training and validation for model: randomforest", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-04T03:42:51.697345Z"}
+{"event": "Training model: randomforest_completed", "logger": "ModelTraining", "level": "info", "timestamp": "2025-10-04T03:42:51.697587Z"}
+{"event": "fraud_detection_package_initialized", "logger": "src", "level": "info", "timestamp": "2025-10-04T04:19:09.536385Z"}
+{"event": "load_data_started", "logger": "src.data.data_loader", "level": "info", "timestamp": "2025-10-04T04:19:11.573252Z"}
+{"event": "File found. Attempting to load into pandas DataFrame.", "logger": "src.data.data_loader", "level": "info", "timestamp": "2025-10-04T04:19:11.573878Z"}
+{"event": "data_info", "logger": "src.data.data_loader", "level": "info", "timestamp": "2025-10-04T04:19:11.582701Z"}
+{"event": "load_data_completed", "logger": "src.data.data_loader", "level": "info", "timestamp": "2025-10-04T04:19:11.583179Z"}
+{"event": "load_data_started", "logger": "src.data.data_loader", "level": "info", "timestamp": "2025-10-04T04:19:11.585508Z"}
+{"event": "load_data_failed", "logger": "src.data.data_loader", "level": "error", "timestamp": "2025-10-04T04:19:11.586093Z"}
+{"event": "load_data_started", "logger": "src.data.data_loader", "level": "info", "timestamp": "2025-10-04T04:19:11.590215Z"}
+{"event": "File found. Attempting to load into pandas DataFrame.", "logger": "src.data.data_loader", "level": "info", "timestamp": "2025-10-04T04:19:11.591006Z"}
+{"event": "load_data_failed", "logger": "src.data.data_loader", "level": "error", "timestamp": "2025-10-04T04:19:11.591779Z"}
+{"event": "Data standardization started...", "logger": "src.data.data_processing", "level": "info", "timestamp": "2025-10-04T04:19:11.594547Z"}
+{"event": "Data standardization completed.", "logger": "src.data.data_processing", "level": "info", "timestamp": "2025-10-04T04:19:11.598911Z"}
+{"event": "Filtering transaction types...", "logger": "src.data.data_processing", "level": "info", "timestamp": "2025-10-04T04:19:11.602128Z"}
+{"event": "Data filtered to include only: ['CASH_OUT', 'TRANSFER']", "logger": "src.data.data_processing", "level": "info", "timestamp": "2025-10-04T04:19:11.604159Z"}
+{"event": "Encoding transaction type...", "logger": "src.data.data_processing", "level": "info", "timestamp": "2025-10-04T04:19:11.606546Z"}
+{"event": "Transaction type encoded successfully.", "logger": "src.data.data_processing", "level": "info", "timestamp": "2025-10-04T04:19:11.607579Z"}
+{"event": "Loading processed data from 'dummy/processed.parquet'...", "logger": "src.data.data_splitter", "level": "info", "timestamp": "2025-10-04T04:19:11.822932Z"}
+{"event": "Sorting data by timestamp to ensure chronological order.", "logger": "src.data.data_splitter", "level": "info", "timestamp": "2025-10-04T04:19:11.823584Z"}
+{"event": "Training set size: 8 (80.00%)", "logger": "src.data.data_splitter", "level": "info", "timestamp": "2025-10-04T04:19:11.824576Z"}
+{"event": "Test set size: 2 (20.00%)", "logger": "src.data.data_splitter", "level": "info", "timestamp": "2025-10-04T04:19:11.825090Z"}
+{"event": "Saving training set to 'dummy/train.parquet'...", "logger": "src.data.data_splitter", "level": "info", "timestamp": "2025-10-04T04:19:11.825578Z"}
+{"event": "Saving test set to 'dummy/test.parquet'...", "logger": "src.data.data_splitter", "level": "info", "timestamp": "2025-10-04T04:19:11.826373Z"}
+{"event": "Data splitting process completed successfully.", "logger": "src.data.data_splitter", "level": "info", "timestamp": "2025-10-04T04:19:11.826824Z"}
+{"event": "data_validation_started", "logger": "src.data.data_validator", "level": "info", "timestamp": "2025-10-04T04:19:11.830083Z"}
+{"event": "Pandera validation completed successfully.", "logger": "src.data.data_validator", "level": "info", "timestamp": "2025-10-04T04:19:11.894934Z"}
+{"event": "data_validation_completed", "logger": "src.data.data_validator", "level": "info", "timestamp": "2025-10-04T04:19:11.895443Z"}
+{"event": "data_validation_started", "logger": "src.data.data_validator", "level": "info", "timestamp": "2025-10-04T04:19:11.899171Z"}
+{"event": "Pandera validation failed.", "logger": "src.data.data_validator", "level": "error", "timestamp": "2025-10-04T04:19:11.913335Z"}
+{"event": "data_validation_failed", "logger": "src.data.data_validator", "level": "error", "timestamp": "2025-10-04T04:19:11.913989Z"}
+{"event": "data_validation_started", "logger": "src.data.data_validator", "level": "info", "timestamp": "2025-10-04T04:19:11.917147Z"}
+{"event": "Pandera validation completed successfully.", "logger": "src.data.data_validator", "level": "info", "timestamp": "2025-10-04T04:19:11.932903Z"}
+{"event": "data_validation_completed", "logger": "src.data.data_validator", "level": "info", "timestamp": "2025-10-04T04:19:11.933357Z"}
+{"event": "data_validation_started", "logger": "src.data.data_validator", "level": "info", "timestamp": "2025-10-04T04:19:11.936591Z"}
+{"event": "Pandera validation failed.", "logger": "src.data.data_validator", "level": "error", "timestamp": "2025-10-04T04:19:11.953760Z"}
+{"event": "data_validation_failed", "logger": "src.data.data_validator", "level": "error", "timestamp": "2025-10-04T04:19:11.954412Z"}
+{"event": "data_validation_started", "logger": "src.data.data_validator", "level": "info", "timestamp": "2025-10-04T04:19:11.957595Z"}
+{"event": "Pandera validation failed.", "logger": "src.data.data_validator", "level": "error", "timestamp": "2025-10-04T04:19:11.975484Z"}
+{"event": "data_validation_failed", "logger": "src.data.data_validator", "level": "error", "timestamp": "2025-10-04T04:19:11.976160Z"}
+{"event": "data_validation_started", "logger": "src.data.data_validator", "level": "info", "timestamp": "2025-10-04T04:19:11.979508Z"}
+{"event": "Pandera validation failed.", "logger": "src.data.data_validator", "level": "error", "timestamp": "2025-10-04T04:19:11.984932Z"}
+{"event": "data_validation_failed", "logger": "src.data.data_validator", "level": "error", "timestamp": "2025-10-04T04:19:11.985640Z"}
+{"event": "data_validation_started", "logger": "src.data.data_validator", "level": "info", "timestamp": "2025-10-04T04:19:11.988885Z"}
+{"event": "Pandera validation failed.", "logger": "src.data.data_validator", "level": "error", "timestamp": "2025-10-04T04:19:11.989908Z"}
+{"event": "data_validation_failed", "logger": "src.data.data_validator", "level": "error", "timestamp": "2025-10-04T04:19:11.990570Z"}
+{"event": "mlflow_analytics_initialized", "logger": "src.utils.mlflow_analytics", "level": "info", "timestamp": "2025-10-04T04:19:11.993162Z"}
+{"event": "mlflow_analytics_initialized", "logger": "src.utils.mlflow_analytics", "level": "info", "timestamp": "2025-10-04T04:19:11.996338Z"}
+{"event": "get_model_comparison_started", "logger": "src.utils.mlflow_analytics", "level": "info", "timestamp": "2025-10-04T04:19:11.997191Z"}
+{"event": "model_comparison_retrieved", "logger": "src.utils.mlflow_analytics", "level": "info", "timestamp": "2025-10-04T04:19:11.997745Z"}
+{"event": "get_model_comparison_completed", "logger": "src.utils.mlflow_analytics", "level": "info", "timestamp": "2025-10-04T04:19:11.998300Z"}
+{"event": "mlflow_analytics_initialized", "logger": "src.utils.mlflow_analytics", "level": "info", "timestamp": "2025-10-04T04:19:12.001678Z"}
+{"event": "get_experiment_timeline_started", "logger": "src.utils.mlflow_analytics", "level": "info", "timestamp": "2025-10-04T04:19:12.002233Z"}
+{"event": "experiment_timeline_retrieved", "logger": "src.utils.mlflow_analytics", "level": "info", "timestamp": "2025-10-04T04:19:12.002768Z"}
+{"event": "get_experiment_timeline_completed", "logger": "src.utils.mlflow_analytics", "level": "info", "timestamp": "2025-10-04T04:19:12.003248Z"}
+{"event": "mlflow_analytics_initialized", "logger": "src.utils.mlflow_analytics", "level": "info", "timestamp": "2025-10-04T04:19:12.006090Z"}
+{"event": "find_best_hyperparameters_started", "logger": "src.utils.mlflow_analytics", "level": "info", "timestamp": "2025-10-04T04:19:12.006673Z"}
+{"event": "best_hyperparameters_found", "logger": "src.utils.mlflow_analytics", "level": "info", "timestamp": "2025-10-04T04:19:12.007191Z"}
+{"event": "find_best_hyperparameters_completed", "logger": "src.utils.mlflow_analytics", "level": "info", "timestamp": "2025-10-04T04:19:12.007632Z"}
+{"event": "initializing_mlflow_manager", "logger": "src.utils.mlflow_duckdb_setup", "level": "info", "timestamp": "2025-10-04T04:19:12.011714Z"}
+{"event": "initializing_mlflow_manager", "logger": "src.utils.mlflow_duckdb_setup", "level": "info", "timestamp": "2025-10-04T04:19:12.016486Z"}
+{"event": "setup_mlflow_backend_started", "logger": "src.utils.mlflow_duckdb_setup", "level": "info", "timestamp": "2025-10-04T04:19:12.017271Z"}
+{"event": "mlflow_experiment_found", "logger": "src.utils.mlflow_duckdb_setup", "level": "info", "timestamp": "2025-10-04T04:19:12.018200Z"}
+{"event": "setup_mlflow_backend_completed", "logger": "src.utils.mlflow_duckdb_setup", "level": "info", "timestamp": "2025-10-04T04:19:12.019256Z"}
+{"event": "initializing_mlflow_manager", "logger": "src.utils.mlflow_duckdb_setup", "level": "info", "timestamp": "2025-10-04T04:19:12.024266Z"}
+{"event": "setup_mlflow_backend_started", "logger": "src.utils.mlflow_duckdb_setup", "level": "info", "timestamp": "2025-10-04T04:19:12.024831Z"}
+{"event": "mlflow_experiment_not_found", "logger": "src.utils.mlflow_duckdb_setup", "level": "info", "timestamp": "2025-10-04T04:19:12.025612Z"}
+{"event": "mlflow_experiment_created", "logger": "src.utils.mlflow_duckdb_setup", "level": "info", "timestamp": "2025-10-04T04:19:12.026082Z"}
+{"event": "setup_mlflow_backend_completed", "logger": "src.utils.mlflow_duckdb_setup", "level": "info", "timestamp": "2025-10-04T04:19:12.027040Z"}
+{"event": "initializing_mlflow_manager", "logger": "src.utils.mlflow_duckdb_setup", "level": "info", "timestamp": "2025-10-04T04:19:12.030839Z"}
+{"event": "initializing_mlflow_manager", "logger": "src.utils.mlflow_duckdb_setup", "level": "info", "timestamp": "2025-10-04T04:19:12.035773Z"}
+{"event": "query_duckdb_started", "logger": "src.utils.mlflow_duckdb_setup", "level": "info", "timestamp": "2025-10-04T04:19:12.037979Z"}
+{"event": "query_successful", "logger": "src.utils.mlflow_duckdb_setup", "level": "info", "timestamp": "2025-10-04T04:19:12.039208Z"}
+{"event": "query_duckdb_completed", "logger": "src.utils.mlflow_duckdb_setup", "level": "info", "timestamp": "2025-10-04T04:19:12.039698Z"}
+{"event": "initializing_mlflow_manager", "logger": "src.utils.mlflow_duckdb_setup", "level": "info", "timestamp": "2025-10-04T04:19:12.043760Z"}

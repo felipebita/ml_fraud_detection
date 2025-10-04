@@ -11,6 +11,12 @@ data:
   train_dataset_path: "data/processed/train_dataset.parquet"
   test_dataset_path: "data/processed/test_dataset.parquet"
 
+# Data setup configuration
+data_setup:
+  gdrive_file_id: "1oR8ZVcF_ifwKiyzRXlre1nZMM0WVp57E"
+  download_path: "data/download"
+  num_rows_to_select: 600000
+
 # MLflow configuration
 mlflow:
   experiment_name: "fraud_detection"
@@ -24,16 +30,62 @@ data_splitting:
 
 # Model training configuration
 model_training:
+  exp_name_prefix: ""
   cv_strategy: "TimeSeriesSplit"
   cv_folds: 2
   models_to_compare:
-    - "xgboost"
+#    - "xgboost"
     - "randomforest"
-    - "lightgbm"
+#    - "lightgbm"
   target_variable: "isFraud"
   features_to_drop:
     - "step"
     - "nameOrig"
     - "nameDest"
     - "event_timestamp"
-  categorical_features: []
+  model_params:
+    randomforest:
+      random_state: 42
+      class_weight: "balanced"
+      n_estimators: 200 # 100
+      criterion: "gini" # "gini"
+      max_depth: 20 # null
+      min_samples_split: 10 # 2
+      min_samples_leaf: 4 # 1
+      min_weight_fraction_leaf: 0.0 # 0.0
+      max_features: "sqrt" # "sqrt"
+      max_leaf_nodes: null # null
+      min_impurity_decrease: 0.0 # 0.0
+      bootstrap: True # True
+      oob_score: False # False
+    xgboost:
+      random_state: 42
+      eval_metric: "logloss"
+      n_estimators: 100 # 100
+      max_depth: 6 # 6
+      learning_rate: 0.3 # 0.3
+      min_child_weight: 1 # 1
+      gamma: 0.0 # 0
+      subsample: 1.0 # 1
+      colsample_bytree: 1.0 # 1
+      colsample_bylevel: 1 # 1
+      colsample_bynode: 1 # 1
+      reg_alpha: 0.0 # 0
+      reg_lambda: 1.0 # 1
+      max_delta_step: 0 # 0
+    lightgbm:
+      random_state: 42
+      class_weight: "balanced"
+      boosting_type: "gbdt" # "gbdt"
+      n_estimators: 100 # 100
+      max_depth: -1 # -1
+      learning_rate: 0.1 # 0.1
+      num_leaves: 31 # 31
+      min_child_samples: 20 # 20
+      min_split_gain: 0.0 # 0.0
+      min_child_weight: 0.001 # 0.001
+      subsample: 1.0 # 1.0
+      subsample_freq: 0 # 0
+      colsample_bytree: 1.0 # 1.0
+      reg_alpha: 0.0 # 0.0
+      reg_lambda: 0.0 # 0.0
