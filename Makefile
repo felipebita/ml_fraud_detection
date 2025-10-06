@@ -45,9 +45,13 @@ data-split:
 	@echo "Running the data splitting pipeline..."
 	uv run --active python3 -m src.data.data_splitter
 
-experiment:
-	@echo "Running model experiments..."
-	uv run python src/model/training.py
+quick-experiment:
+	@echo "Running quick experiment..."
+	uv run python src/model/validation.py --experiment quick
+
+gs-experiment:
+	@echo "Running grid search experiment..."
+	uv run python src/model/validation.py --experiment grid
 
 train:
 	@echo "Training the final model..."

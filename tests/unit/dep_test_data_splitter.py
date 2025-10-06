@@ -8,7 +8,7 @@ from typing import Any
 import pandas as pd
 import pytest
 
-from src.data.data_splitter import DataSplitter
+from src.data.dep_data_splitter import DataSplitter
 
 
 @pytest.fixture

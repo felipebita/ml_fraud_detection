@@ -19,7 +19,7 @@ data_setup:
 
 # MLflow configuration
 mlflow:
-  experiment_name: "fraud_detection"
+  experiment_name: "100525_random_forest_gs" # Change this for each experiment
   tracking_uri: "sqlite:///mlflow.duckdb" # Default local tracking
   artifact_root: "./mlruns"
 
@@ -30,13 +30,16 @@ data_splitting:
 
 # Model training configuration
 model_training:
-  exp_name_prefix: ""
+  exp_name_prefix: "test"
+  run_name_prefix: "test"
   cv_strategy: "TimeSeriesSplit"
-  cv_folds: 2
+  cv_folds: 5
+  skip_folds: 4
+  number_of_rows: null
   models_to_compare:
-#    - "xgboost"
+    - "xgboost"
     - "randomforest"
-#    - "lightgbm"
+    - "lightgbm"
   target_variable: "isFraud"
   features_to_drop:
     - "step"
@@ -47,11 +50,11 @@ model_training:
     randomforest:
       random_state: 42
       class_weight: "balanced"
-      n_estimators: 200 # 100
+      n_estimators: 100 # 100
       criterion: "gini" # "gini"
-      max_depth: 20 # null
-      min_samples_split: 10 # 2
-      min_samples_leaf: 4 # 1
+      max_depth: null # null
+      min_samples_split: 2 # 2
+      min_samples_leaf: 1 # 1
       min_weight_fraction_leaf: 0.0 # 0.0
       max_features: "sqrt" # "sqrt"
       max_leaf_nodes: null # null
@@ -89,3 +92,21 @@ model_training:
       colsample_bytree: 1.0 # 1.0
       reg_alpha: 0.0 # 0.0
       reg_lambda: 0.0 # 0.0
+
+# Grid Search training configuration
+  model_gs: "randomforest" # Model to use for Grid Search: "randomforest", "xgboost", "lightgbm"
+  param_grid:
+    n_estimators: [100, 200]
+    max_depth: [10, 20, null]
+    learning_rate: [0.05, 0.1, 0.2]  # XGBoost, LightGBM
+    min_child_weight: [1, 5]         # XGBoost, LightGBM
+    subsample: [0.8, 1.0]            # XGBoost, LightGBM
+    colsample_bytree: [0.8, 1.0]     # XGBoost, LightGBM
+    reg_alpha: [0.0, 0.1]            # XGBoost, LightGBM
+    reg_lambda: [0.0, 0.1]           # XGBoost, LightGBM
+    min_samples_split: [2, 5]        # RandomForest
+    min_samples_leaf: [1, 2]         # RandomForest
+    max_features: ["sqrt", "log2"]   # RandomForest
+    gamma: [0.0, 0.1]                # XGBoost
+    num_leaves: [31, 50]             # LightGBM
+    min_child_samples: [20, 50]      # LightGBM

@@ -54,3 +54,18 @@
 {"event": "data_validation_failed", "logger": "src.data.data_validator", "level": "error", "timestamp": "2025-10-04T04:19:11.985802Z"}
 {"event": "Pandera validation failed.", "logger": "src.data.data_validator", "level": "error", "timestamp": "2025-10-04T04:19:11.990088Z"}
 {"event": "data_validation_failed", "logger": "src.data.data_validator", "level": "error", "timestamp": "2025-10-04T04:19:11.990748Z"}
+{"event": "Data Loading_failed", "logger": "QuickExperiment", "level": "error", "timestamp": "2025-10-05T15:51:19.977547Z"}
+{"event": "Fold 2/5_failed", "logger": "ModelValidation", "level": "error", "timestamp": "2025-10-05T20:30:25.414720Z"}
+{"event": "Running GridSearch for randomforest with {'max_depth': 10, 'max_features': 'sqrt', 'min_samples_leaf': 1, 'min_samples_split': 2, 'n_estimators': 100}_failed", "logger": "ModelValidation", "level": "error", "timestamp": "2025-10-05T20:30:25.415691Z"}
+{"event": "load_data_failed", "logger": "src.data.data_loader", "level": "error", "timestamp": "2025-10-06T00:20:35.065584Z"}
+{"event": "load_data_failed", "logger": "src.data.data_loader", "level": "error", "timestamp": "2025-10-06T00:20:35.071089Z"}
+{"event": "Pandera validation failed.", "logger": "src.data.data_validator", "level": "error", "timestamp": "2025-10-06T00:20:35.382165Z"}
+{"event": "data_validation_failed", "logger": "src.data.data_validator", "level": "error", "timestamp": "2025-10-06T00:20:35.382806Z"}
+{"event": "Pandera validation failed.", "logger": "src.data.data_validator", "level": "error", "timestamp": "2025-10-06T00:20:35.423025Z"}
+{"event": "data_validation_failed", "logger": "src.data.data_validator", "level": "error", "timestamp": "2025-10-06T00:20:35.423666Z"}
+{"event": "Pandera validation failed.", "logger": "src.data.data_validator", "level": "error", "timestamp": "2025-10-06T00:20:35.443749Z"}
+{"event": "data_validation_failed", "logger": "src.data.data_validator", "level": "error", "timestamp": "2025-10-06T00:20:35.444373Z"}
+{"event": "Pandera validation failed.", "logger": "src.data.data_validator", "level": "error", "timestamp": "2025-10-06T00:20:35.453291Z"}
+{"event": "data_validation_failed", "logger": "src.data.data_validator", "level": "error", "timestamp": "2025-10-06T00:20:35.453911Z"}
+{"event": "Pandera validation failed.", "logger": "src.data.data_validator", "level": "error", "timestamp": "2025-10-06T00:20:35.458031Z"}
+{"event": "data_validation_failed", "logger": "src.data.data_validator", "level": "error", "timestamp": "2025-10-06T00:20:35.458669Z"}
