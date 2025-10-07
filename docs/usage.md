@@ -110,6 +110,18 @@ These commands are used to execute the core ML pipeline steps.
     docker compose exec app make data
     ```
 
+-   **Run a quick model comparison experiment:**
+    This command runs a quick experiment to compare the performance of multiple models with their default hyperparameters.
+    ```bash
+    docker compose exec app make quick-experiment
+    ```
+
+-   **Run a hyperparameter grid search experiment:**
+    This command runs a grid search experiment for a single model to find the best hyperparameter combination.
+    ```bash
+    docker compose exec app make gs-experiment
+    ```
+
 -   **Train the model:**
     *(This target is not yet implemented)*
     ```bash

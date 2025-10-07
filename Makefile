@@ -83,7 +83,7 @@ test:
 	@echo "Materializing test features (8 hours of data)..."
 	uv run --active -- feast --chdir feature_repo materialize 2024-01-01T01:00:00 2024-01-01T01:00:00
 	@echo "Running tests..."
-	uv run --active pytest tests/ -v --cov=src --cov-report=html --cov-report=term-missing --log-file=logs/pytest.log
+	uv run --active pytest tests/ -v --cov=src --cov-report=html --cov-report=term-missing --log-file=logs/pytest.log --log-cli-level=WARNING
 
 serve:
 	@echo "Starting the model server..."

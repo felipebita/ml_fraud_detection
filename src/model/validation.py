@@ -4,14 +4,17 @@ from logging import Logger
 from typing import Any
 
 import lightgbm as lgb
+import matplotlib.pyplot as plt
 import mlflow
 import mlflow.sklearn
 import pandas as pd
+import seaborn as sns
 import xgboost as xgb
 from mlflow.models.signature import infer_signature
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import (
     balanced_accuracy_score,
+    confusion_matrix,
     f1_score,
     precision_score,
     recall_score,
@@ -97,6 +100,18 @@ class BaseExperiment(ABC):
                 for k, v in metrics.items():
                     fold_metrics_storage.setdefault(k, []).append(v)
                 self.logger.info(f"Fold {fold} metrics: {metrics}")
+
+                if fold == self.cv_folds:
+                    cm = confusion_matrix(y_val, y_pred)
+                    plt.figure(figsize=(8, 6))
+                    sns.heatmap(cm, annot=True, fmt="d", cmap="Blues")
+                    plt.title(f"Confusion Matrix - Fold {fold}")
+                    plt.ylabel("Actual")
+                    plt.xlabel("Predicted")
+                    confusion_matrix_path = "confusion_matrix.png"
+                    plt.savefig(confusion_matrix_path)
+                    plt.close()
+                    mlflow.log_artifact(confusion_matrix_path, "confusion_matrices")
 
         avg_metrics = {
             f"avg_{metric}": sum(values) / len(values)

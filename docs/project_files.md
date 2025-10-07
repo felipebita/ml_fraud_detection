@@ -49,6 +49,8 @@ This file provides a comprehensive overview of all files in the project, includi
         - `./src/data/data_profiler.py`
         - `./src/data/data_spliter.py`
         - `./src/data/data_validator.py`
+    - `./src/model/`
+        - `./src/model/validation.py`
     - `./src/utils/`
         - `./src/utils/config.py`
         - `./src/utils/logger.py`
@@ -398,6 +400,15 @@ This directory contains all the GitHub Actions workflows for the project.
 *   **Key Information**:
     *   **Input**: `data/processed/processed_transactions.parquet`.
     *   **Outputs**: `data/processed/train_dataset.parquet` (e.g., the first 80% of the data) and `data/processed/test_dataset.parquet` (e.g., the last 20% of the data). These files are the definitive inputs for the entire model training and evaluation pipeline.
+
+### `src/model/validation.py`
+
+*   **Purpose**: This script contains the classes and logic for running model validation experiments, including quick comparisons and hyperparameter grid searches.
+*   **Usage**: It is designed to be run as a script to execute different experiment types. It uses MLflow to log all experiment parameters, metrics, and artifacts.
+*   **Key Classes**:
+    *   **`BaseExperiment`**: An abstract base class that defines the common structure and utility methods for all experiments, including model pipeline creation, metric calculation, and the cross-validation loop.
+    *   **`QuickExperiment`**: A concrete experiment class that runs a quick comparison of multiple models using a predefined set of hyperparameters.
+    *   **`GridSearchExperiment`**: A concrete experiment class that performs a hyperparameter grid search for a single model to find the best parameter combination.
 
 ### `src/utils/`
 

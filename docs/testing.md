@@ -33,11 +33,12 @@ This setup ensures that the test logs are captured in a separate file without in
         - `./tests/integration/test_feast_basic.py`
     - `./tests/unit/`
         - `./tests/unit/test_data_loader.py`
+        - `./tests/unit/test_data_processing.py`
         - `./tests/unit/test_data_profiler.py`
-        - `./tests/unit/test_data_splitter.py`
         - `./tests/unit/test_data_validator.py`
         - `./tests/unit/test_mlflow_analytics.py`
         - `./tests/unit/test_mlflow_duckdb_setup.py`
+        - `./tests/unit/test_validation.py`
 
 ## `tests/`
 
@@ -121,16 +122,6 @@ This setup ensures that the test logs are captured in a separate file without in
     *   It tests for successful validation of a valid DataFrame.
     *   It tests that validation fails for incorrect data types, out-of-range values, disallowed categories, missing columns, and extra columns.
 
-#### `tests/unit/test_data_splitter.py`
-
-*   **Purpose**: This file contains unit tests for the `DataSplitter` class.
-*   **Usage**: It verifies the core logic of the chronological data split without depending on the actual file system.
-*   **Key Information**:
-    *   It uses a mock configuration and an in-memory sample DataFrame to ensure the test is isolated.
-    *   It patches `pandas.read_parquet` and `pandas.to_parquet` to prevent any actual file I/O.
-    *   It verifies that the data is split according to the configured ratio (e.g., 80/20).
-    *   Most importantly, it asserts that all data in the training set is chronologically earlier than any data in the test set, confirming the integrity of the time-based split.
-
 #### `tests/unit/test_mlflow_analytics.py`
 
 *   **Purpose**: This file contains unit tests for the MLflow analytics.
@@ -152,3 +143,15 @@ This setup ensures that the test logs are captured in a separate file without in
     *   It tests the `get_connection()` method for both read-write and read-only connections.
     *   It tests the `query_experiments()` method.
     *   It tests the handling of connection failures.
+
+#### `tests/unit/test_validation.py`
+
+*   **Purpose**: This file contains unit tests for the model validation classes (`BaseExperiment`, `QuickExperiment`, `GridSearchExperiment`) from `src/model/validation.py`.
+*   **Usage**: It verifies the correctness of the experiment logic in isolation from external services like MLflow and the actual machine learning models.
+*   **Key Information**:
+    *   It uses `pytest` fixtures to create mock configurations and sample data.
+    *   It heavily uses `patch` from `unittest.mock` to mock MLflow, model classes, and other dependencies.
+    *   **`TestBaseExperiment`**: Tests the core logic of the base class, including model pipeline creation and metric calculation. It uses a concrete subclass for instantiation to avoid `TypeError` with the abstract class.
+    *   **`TestQuickExperiment`**: Tests that the quick experiment runner correctly iterates through models and calls the cross-validation logic with the expected arguments.
+    *   **`TestGridSearchExperiment`**: Tests that the grid search runner correctly iterates through the hyperparameter grid and calls the cross-validation logic accordingly.
+    *   It verifies that warnings are correctly logged when all cross-validation folds are skipped.
