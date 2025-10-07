@@ -698,15 +698,6 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#testsunittest_data_splitterpy" class="md-nav__link">
-    <span class="md-ellipsis">
-      tests/unit/test_data_splitter.py
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#testsunittest_mlflow_analyticspy" class="md-nav__link">
     <span class="md-ellipsis">
       tests/unit/test_mlflow_analytics.py
@@ -719,6 +710,15 @@
   <a href="#testsunittest_mlflow_duckdb_setuppy" class="md-nav__link">
     <span class="md-ellipsis">
       tests/unit/test_mlflow_duckdb_setup.py
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#testsunittest_validationpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      tests/unit/test_validation.py
     </span>
   </a>
   
@@ -814,11 +814,12 @@
 </li>
 <li><code>./tests/unit/</code><ul>
 <li><code>./tests/unit/test_data_loader.py</code></li>
+<li><code>./tests/unit/test_data_processing.py</code></li>
 <li><code>./tests/unit/test_data_profiler.py</code></li>
-<li><code>./tests/unit/test_data_splitter.py</code></li>
 <li><code>./tests/unit/test_data_validator.py</code></li>
 <li><code>./tests/unit/test_mlflow_analytics.py</code></li>
 <li><code>./tests/unit/test_mlflow_duckdb_setup.py</code></li>
+<li><code>./tests/unit/test_validation.py</code></li>
 </ul>
 </li>
 </ul>
@@ -924,18 +925,6 @@
 </ul>
 </li>
 </ul>
-<h4 id="testsunittest_data_splitterpy"><code>tests/unit/test_data_splitter.py</code></h4>
-<ul>
-<li><strong>Purpose</strong>: This file contains unit tests for the <code>DataSplitter</code> class.</li>
-<li><strong>Usage</strong>: It verifies the core logic of the chronological data split without depending on the actual file system.</li>
-<li><strong>Key Information</strong>:<ul>
-<li>It uses a mock configuration and an in-memory sample DataFrame to ensure the test is isolated.</li>
-<li>It patches <code>pandas.read_parquet</code> and <code>pandas.to_parquet</code> to prevent any actual file I/O.</li>
-<li>It verifies that the data is split according to the configured ratio (e.g., 80/20).</li>
-<li>Most importantly, it asserts that all data in the training set is chronologically earlier than any data in the test set, confirming the integrity of the time-based split.</li>
-</ul>
-</li>
-</ul>
 <h4 id="testsunittest_mlflow_analyticspy"><code>tests/unit/test_mlflow_analytics.py</code></h4>
 <ul>
 <li><strong>Purpose</strong>: This file contains unit tests for the MLflow analytics.</li>
@@ -959,6 +948,20 @@
 <li>It tests the <code>get_connection()</code> method for both read-write and read-only connections.</li>
 <li>It tests the <code>query_experiments()</code> method.</li>
 <li>It tests the handling of connection failures.</li>
+</ul>
+</li>
+</ul>
+<h4 id="testsunittest_validationpy"><code>tests/unit/test_validation.py</code></h4>
+<ul>
+<li><strong>Purpose</strong>: This file contains unit tests for the model validation classes (<code>BaseExperiment</code>, <code>QuickExperiment</code>, <code>GridSearchExperiment</code>) from <code>src/model/validation.py</code>.</li>
+<li><strong>Usage</strong>: It verifies the correctness of the experiment logic in isolation from external services like MLflow and the actual machine learning models.</li>
+<li><strong>Key Information</strong>:<ul>
+<li>It uses <code>pytest</code> fixtures to create mock configurations and sample data.</li>
+<li>It heavily uses <code>patch</code> from <code>unittest.mock</code> to mock MLflow, model classes, and other dependencies.</li>
+<li><strong><code>TestBaseExperiment</code></strong>: Tests the core logic of the base class, including model pipeline creation and metric calculation. It uses a concrete subclass for instantiation to avoid <code>TypeError</code> with the abstract class.</li>
+<li><strong><code>TestQuickExperiment</code></strong>: Tests that the quick experiment runner correctly iterates through models and calls the cross-validation logic with the expected arguments.</li>
+<li><strong><code>TestGridSearchExperiment</code></strong>: Tests that the grid search runner correctly iterates through the hyperparameter grid and calls the cross-validation logic accordingly.</li>
+<li>It verifies that warnings are correctly logged when all cross-validation folds are skipped.</li>
 </ul>
 </li>
 </ul>

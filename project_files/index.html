@@ -1016,6 +1016,15 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#srcmodelvalidationpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      src/model/validation.py
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#srcutils" class="md-nav__link">
     <span class="md-ellipsis">
       src/utils/
@@ -1299,6 +1308,10 @@
 <li><code>./src/data/data_profiler.py</code></li>
 <li><code>./src/data/data_spliter.py</code></li>
 <li><code>./src/data/data_validator.py</code></li>
+</ul>
+</li>
+<li><code>./src/model/</code><ul>
+<li><code>./src/model/validation.py</code></li>
 </ul>
 </li>
 <li><code>./src/utils/</code><ul>
@@ -1698,6 +1711,17 @@
 <li><strong>Key Information</strong>:<ul>
 <li><strong>Input</strong>: <code>data/processed/processed_transactions.parquet</code>.</li>
 <li><strong>Outputs</strong>: <code>data/processed/train_dataset.parquet</code> (e.g., the first 80% of the data) and <code>data/processed/test_dataset.parquet</code> (e.g., the last 20% of the data). These files are the definitive inputs for the entire model training and evaluation pipeline.</li>
+</ul>
+</li>
+</ul>
+<h3 id="srcmodelvalidationpy"><code>src/model/validation.py</code></h3>
+<ul>
+<li><strong>Purpose</strong>: This script contains the classes and logic for running model validation experiments, including quick comparisons and hyperparameter grid searches.</li>
+<li><strong>Usage</strong>: It is designed to be run as a script to execute different experiment types. It uses MLflow to log all experiment parameters, metrics, and artifacts.</li>
+<li><strong>Key Classes</strong>:<ul>
+<li><strong><code>BaseExperiment</code></strong>: An abstract base class that defines the common structure and utility methods for all experiments, including model pipeline creation, metric calculation, and the cross-validation loop.</li>
+<li><strong><code>QuickExperiment</code></strong>: A concrete experiment class that runs a quick comparison of multiple models using a predefined set of hyperparameters.</li>
+<li><strong><code>GridSearchExperiment</code></strong>: A concrete experiment class that performs a hyperparameter grid search for a single model to find the best parameter combination.</li>
 </ul>
 </li>
 </ul>
