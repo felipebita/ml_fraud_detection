@@ -12,10 +12,11 @@ This project details the creation of a machine learning model to power a real-ti
 
 The service operates on a performance-based hybrid pricing model:
 
-*   **Base API Fee:** A fixed fee of **$0.02** per transaction analyzed.
-*   **Performance Incentive Fee:** A commission of **8%** on the monetary value of each transaction correctly identified as fraudulent (True Positive).
+*   **Base API Fee:**  A fixed fee of $0.02 per transaction analyzed.
+*   **Performance Incentive Fee:** A commission of 8% on the monetary value of each transaction correctly identified as fraudulent (True Positive).
+*   **False Positive Penalty:** A penalty of 2% on the monetary value of each legitimate transaction incorrectly flagged as fraudulent (False Positive).
 
-This model directly ties revenue to the model's ability to accurately detect fraud without disrupting legitimate business.
+This balanced model directly ties revenue to the model's ability to accurately detect fraud while protecting client relationships. The commission structure incentivizes fraud detection, but the false positive penalty ensures we maintain high precision and don't disrupt legitimate business. This creates a sustainable partnership where Blocker Fraud Systems only succeeds when delivering real value - catching fraud without alienating good customers.
 
 ## 3. Project Goals & Objectives
 

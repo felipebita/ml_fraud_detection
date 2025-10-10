@@ -25,11 +25,12 @@ mlflow:
 
 # Model training configuration
 model_training:
-  exp_name_prefix: ""   # Prefix for experiment names, use it if you want to create a new Experiment in MLflow
+  exp_name_prefix: "10-09-gs"   # Prefix for experiment names, use it if you want to create a new Experiment in MLflow
   run_name_prefix: ""   # Prefix for run names, useful for grouping runs within an experiment
   cv_strategy: "TimeSeriesSplit"
   cv_folds: 5
-  skip_folds: 4
+  th_weights: [0.1, 0.15, 0.2, 0.25, 0.3]
+  skip_folds: 0
   number_of_rows: null
   models_to_compare:
     - "xgboost"
@@ -41,6 +42,7 @@ model_training:
     - "nameOrig"
     - "nameDest"
     - "event_timestamp"
+    - "isFlaggedFraud"
   model_params:
     randomforest:
       random_state: 42
@@ -89,19 +91,25 @@ model_training:
       reg_lambda: 0.0 # 0.0
 
 # Grid Search training configuration
-  model_gs: "randomforest" # Model to use for Grid Search: "randomforest", "xgboost", "lightgbm"
-  param_grid:
-    n_estimators: [100, 200]
-    max_depth: [10, 20, null]
-    learning_rate: [0.05, 0.1, 0.2]  # XGBoost, LightGBM
-    min_child_weight: [1, 5]         # XGBoost, LightGBM
-    subsample: [0.8, 1.0]            # XGBoost, LightGBM
-    colsample_bytree: [0.8, 1.0]     # XGBoost, LightGBM
-    reg_alpha: [0.0, 0.1]            # XGBoost, LightGBM
-    reg_lambda: [0.0, 0.1]           # XGBoost, LightGBM
-    min_samples_split: [2, 5]        # RandomForest
-    min_samples_leaf: [1, 2]         # RandomForest
-    max_features: ["sqrt", "log2"]   # RandomForest
-    gamma: [0.0, 0.1]                # XGBoost
-    num_leaves: [31, 50]             # LightGBM
-    min_child_samples: [20, 50]      # LightGBM
+  param_grids:
+    randomforest:
+      n_estimators: [100, 200]
+      max_depth: [10, 20, null]
+      min_samples_split: [2, 5]
+      min_samples_leaf: [1, 2]
+      max_features: ["sqrt", "log2"]
+    xgboost:
+      n_estimators: [100, 200]
+      max_depth: [6, 10]
+      learning_rate: [0.05, 0.1, 0.2]
+      min_child_weight: [1, 5]
+      subsample: [0.8, 1.0]
+      colsample_bytree: [0.8, 1.0]
+      reg_alpha: [0.0, 0.1]
+      reg_lambda: [0.0, 0.1]
+      gamma: [0.0, 0.1]
+    lightgbm:
+      n_estimators: [100, 200]
+      num_leaves: [31, 50]
+      learning_rate: [0.05, 0.1]
+      min_child_samples: [20, 50]
