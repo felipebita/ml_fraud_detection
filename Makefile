@@ -93,7 +93,7 @@ feature-repo-apply:
 
 feature-repo-materialize-test:
 	@echo "Materializing test features (8 hours of data)..."
-	uv run --active -- feast --chdir feature_repo materialize 2024-01-01T01:00:00 2024-01-01T09:00:00
+	uv run --active -- feast --chdir feature_repo materialize 2024-01-01T01:00:00 2024-01-01T02:00:00
 
 docs-serve:
 	@echo "Starting documentation server at http://0.0.0.0:8000"

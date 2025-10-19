@@ -388,3 +388,15 @@
 {"event": "data_validation_failed", "logger": "src.data.data_validator", "level": "error", "timestamp": "2025-10-19T20:01:20.236952Z"}
 {"event": "Pandera validation failed.", "logger": "src.data.data_validator", "level": "error", "timestamp": "2025-10-19T20:01:20.241275Z"}
 {"event": "data_validation_failed", "logger": "src.data.data_validator", "level": "error", "timestamp": "2025-10-19T20:01:20.242005Z"}
+{"event": "load_data_failed", "logger": "src.data.data_loader", "level": "error", "timestamp": "2025-10-19T20:48:39.747459Z"}
+{"event": "load_data_failed", "logger": "src.data.data_loader", "level": "error", "timestamp": "2025-10-19T20:48:39.753678Z"}
+{"event": "Pandera validation failed.", "logger": "src.data.data_validator", "level": "error", "timestamp": "2025-10-19T20:48:40.085655Z"}
+{"event": "data_validation_failed", "logger": "src.data.data_validator", "level": "error", "timestamp": "2025-10-19T20:48:40.086358Z"}
+{"event": "Pandera validation failed.", "logger": "src.data.data_validator", "level": "error", "timestamp": "2025-10-19T20:48:40.127981Z"}
+{"event": "data_validation_failed", "logger": "src.data.data_validator", "level": "error", "timestamp": "2025-10-19T20:48:40.128764Z"}
+{"event": "Pandera validation failed.", "logger": "src.data.data_validator", "level": "error", "timestamp": "2025-10-19T20:48:40.149302Z"}
+{"event": "data_validation_failed", "logger": "src.data.data_validator", "level": "error", "timestamp": "2025-10-19T20:48:40.150195Z"}
+{"event": "Pandera validation failed.", "logger": "src.data.data_validator", "level": "error", "timestamp": "2025-10-19T20:48:40.159245Z"}
+{"event": "data_validation_failed", "logger": "src.data.data_validator", "level": "error", "timestamp": "2025-10-19T20:48:40.159994Z"}
+{"event": "Pandera validation failed.", "logger": "src.data.data_validator", "level": "error", "timestamp": "2025-10-19T20:48:40.164170Z"}
+{"event": "data_validation_failed", "logger": "src.data.data_validator", "level": "error", "timestamp": "2025-10-19T20:48:40.165061Z"}

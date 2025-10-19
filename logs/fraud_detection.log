@@ -19697,3 +19697,71 @@
 {"event": "initializing_mlflow_manager", "logger": "src.utils.mlflow_duckdb_setup", "level": "info", "timestamp": "2025-10-19T20:01:20.295494Z"}
 {"event": "Context impl SQLiteImpl.", "logger": "alembic.runtime.migration", "level": "info", "timestamp": "2025-10-19T20:01:22.271678Z"}
 {"event": "Will assume non-transactional DDL.", "logger": "alembic.runtime.migration", "level": "info", "timestamp": "2025-10-19T20:01:22.272115Z"}
+{"event": "fraud_detection_package_initialized", "logger": "src", "level": "info", "timestamp": "2025-10-19T20:48:33.810443Z"}
+{"event": "load_data_started", "logger": "src.data.data_loader", "level": "info", "timestamp": "2025-10-19T20:48:39.733995Z"}
+{"event": "File found. Attempting to load into pandas DataFrame.", "logger": "src.data.data_loader", "level": "info", "timestamp": "2025-10-19T20:48:39.734415Z"}
+{"event": "data_info", "logger": "src.data.data_loader", "level": "info", "timestamp": "2025-10-19T20:48:39.743644Z"}
+{"event": "load_data_completed", "logger": "src.data.data_loader", "level": "info", "timestamp": "2025-10-19T20:48:39.744147Z"}
+{"event": "load_data_started", "logger": "src.data.data_loader", "level": "info", "timestamp": "2025-10-19T20:48:39.746809Z"}
+{"event": "load_data_failed", "logger": "src.data.data_loader", "level": "error", "timestamp": "2025-10-19T20:48:39.747278Z"}
+{"event": "load_data_started", "logger": "src.data.data_loader", "level": "info", "timestamp": "2025-10-19T20:48:39.752346Z"}
+{"event": "File found. Attempting to load into pandas DataFrame.", "logger": "src.data.data_loader", "level": "info", "timestamp": "2025-10-19T20:48:39.752821Z"}
+{"event": "load_data_failed", "logger": "src.data.data_loader", "level": "error", "timestamp": "2025-10-19T20:48:39.753489Z"}
+{"event": "Data standardization started...", "logger": "src.data.data_processing", "level": "info", "timestamp": "2025-10-19T20:48:39.756668Z"}
+{"event": "Data standardization completed.", "logger": "src.data.data_processing", "level": "info", "timestamp": "2025-10-19T20:48:39.761532Z"}
+{"event": "Filtering transaction types...", "logger": "src.data.data_processing", "level": "info", "timestamp": "2025-10-19T20:48:39.764998Z"}
+{"event": "Data filtered to include only: ['CASH_OUT', 'TRANSFER']", "logger": "src.data.data_processing", "level": "info", "timestamp": "2025-10-19T20:48:39.767039Z"}
+{"event": "Encoding transaction type...", "logger": "src.data.data_processing", "level": "info", "timestamp": "2025-10-19T20:48:39.769980Z"}
+{"event": "Transaction type encoded successfully.", "logger": "src.data.data_processing", "level": "info", "timestamp": "2025-10-19T20:48:39.770812Z"}
+{"event": "data_validation_started", "logger": "src.data.data_validator", "level": "info", "timestamp": "2025-10-19T20:48:39.993759Z"}
+{"event": "Pandera validation completed successfully.", "logger": "src.data.data_validator", "level": "info", "timestamp": "2025-10-19T20:48:40.064671Z"}
+{"event": "data_validation_completed", "logger": "src.data.data_validator", "level": "info", "timestamp": "2025-10-19T20:48:40.065216Z"}
+{"event": "data_validation_started", "logger": "src.data.data_validator", "level": "info", "timestamp": "2025-10-19T20:48:40.069407Z"}
+{"event": "Pandera validation failed.", "logger": "src.data.data_validator", "level": "error", "timestamp": "2025-10-19T20:48:40.085461Z"}
+{"event": "data_validation_failed", "logger": "src.data.data_validator", "level": "error", "timestamp": "2025-10-19T20:48:40.086230Z"}
+{"event": "data_validation_started", "logger": "src.data.data_validator", "level": "info", "timestamp": "2025-10-19T20:48:40.089804Z"}
+{"event": "Pandera validation completed successfully.", "logger": "src.data.data_validator", "level": "info", "timestamp": "2025-10-19T20:48:40.106308Z"}
+{"event": "data_validation_completed", "logger": "src.data.data_validator", "level": "info", "timestamp": "2025-10-19T20:48:40.106719Z"}
+{"event": "data_validation_started", "logger": "src.data.data_validator", "level": "info", "timestamp": "2025-10-19T20:48:40.110219Z"}
+{"event": "Pandera validation failed.", "logger": "src.data.data_validator", "level": "error", "timestamp": "2025-10-19T20:48:40.127797Z"}
+{"event": "data_validation_failed", "logger": "src.data.data_validator", "level": "error", "timestamp": "2025-10-19T20:48:40.128600Z"}
+{"event": "data_validation_started", "logger": "src.data.data_validator", "level": "info", "timestamp": "2025-10-19T20:48:40.132076Z"}
+{"event": "Pandera validation failed.", "logger": "src.data.data_validator", "level": "error", "timestamp": "2025-10-19T20:48:40.149129Z"}
+{"event": "data_validation_failed", "logger": "src.data.data_validator", "level": "error", "timestamp": "2025-10-19T20:48:40.149966Z"}
+{"event": "data_validation_started", "logger": "src.data.data_validator", "level": "info", "timestamp": "2025-10-19T20:48:40.153587Z"}
+{"event": "Pandera validation failed.", "logger": "src.data.data_validator", "level": "error", "timestamp": "2025-10-19T20:48:40.159053Z"}
+{"event": "data_validation_failed", "logger": "src.data.data_validator", "level": "error", "timestamp": "2025-10-19T20:48:40.159831Z"}
+{"event": "data_validation_started", "logger": "src.data.data_validator", "level": "info", "timestamp": "2025-10-19T20:48:40.163211Z"}
+{"event": "Pandera validation failed.", "logger": "src.data.data_validator", "level": "error", "timestamp": "2025-10-19T20:48:40.164001Z"}
+{"event": "data_validation_failed", "logger": "src.data.data_validator", "level": "error", "timestamp": "2025-10-19T20:48:40.164889Z"}
+{"event": "mlflow_analytics_initialized", "logger": "src.utils.mlflow_analytics", "level": "info", "timestamp": "2025-10-19T20:48:40.167353Z"}
+{"event": "mlflow_analytics_initialized", "logger": "src.utils.mlflow_analytics", "level": "info", "timestamp": "2025-10-19T20:48:40.170453Z"}
+{"event": "get_model_comparison_started", "logger": "src.utils.mlflow_analytics", "level": "info", "timestamp": "2025-10-19T20:48:40.170891Z"}
+{"event": "model_comparison_retrieved", "logger": "src.utils.mlflow_analytics", "level": "info", "timestamp": "2025-10-19T20:48:40.171423Z"}
+{"event": "get_model_comparison_completed", "logger": "src.utils.mlflow_analytics", "level": "info", "timestamp": "2025-10-19T20:48:40.171827Z"}
+{"event": "mlflow_analytics_initialized", "logger": "src.utils.mlflow_analytics", "level": "info", "timestamp": "2025-10-19T20:48:40.174918Z"}
+{"event": "get_experiment_timeline_started", "logger": "src.utils.mlflow_analytics", "level": "info", "timestamp": "2025-10-19T20:48:40.175349Z"}
+{"event": "experiment_timeline_retrieved", "logger": "src.utils.mlflow_analytics", "level": "info", "timestamp": "2025-10-19T20:48:40.175843Z"}
+{"event": "get_experiment_timeline_completed", "logger": "src.utils.mlflow_analytics", "level": "info", "timestamp": "2025-10-19T20:48:40.176238Z"}
+{"event": "mlflow_analytics_initialized", "logger": "src.utils.mlflow_analytics", "level": "info", "timestamp": "2025-10-19T20:48:40.179114Z"}
+{"event": "find_best_hyperparameters_started", "logger": "src.utils.mlflow_analytics", "level": "info", "timestamp": "2025-10-19T20:48:40.179559Z"}
+{"event": "best_hyperparameters_found", "logger": "src.utils.mlflow_analytics", "level": "info", "timestamp": "2025-10-19T20:48:40.180213Z"}
+{"event": "find_best_hyperparameters_completed", "logger": "src.utils.mlflow_analytics", "level": "info", "timestamp": "2025-10-19T20:48:40.180684Z"}
+{"event": "initializing_mlflow_manager", "logger": "src.utils.mlflow_duckdb_setup", "level": "info", "timestamp": "2025-10-19T20:48:40.185341Z"}
+{"event": "initializing_mlflow_manager", "logger": "src.utils.mlflow_duckdb_setup", "level": "info", "timestamp": "2025-10-19T20:48:40.191053Z"}
+{"event": "setup_mlflow_backend_started", "logger": "src.utils.mlflow_duckdb_setup", "level": "info", "timestamp": "2025-10-19T20:48:40.191824Z"}
+{"event": "mlflow_experiment_found", "logger": "src.utils.mlflow_duckdb_setup", "level": "info", "timestamp": "2025-10-19T20:48:40.192598Z"}
+{"event": "setup_mlflow_backend_completed", "logger": "src.utils.mlflow_duckdb_setup", "level": "info", "timestamp": "2025-10-19T20:48:40.193350Z"}
+{"event": "initializing_mlflow_manager", "logger": "src.utils.mlflow_duckdb_setup", "level": "info", "timestamp": "2025-10-19T20:48:40.198772Z"}
+{"event": "setup_mlflow_backend_started", "logger": "src.utils.mlflow_duckdb_setup", "level": "info", "timestamp": "2025-10-19T20:48:40.199500Z"}
+{"event": "mlflow_experiment_not_found", "logger": "src.utils.mlflow_duckdb_setup", "level": "info", "timestamp": "2025-10-19T20:48:40.200406Z"}
+{"event": "mlflow_experiment_created", "logger": "src.utils.mlflow_duckdb_setup", "level": "info", "timestamp": "2025-10-19T20:48:40.200855Z"}
+{"event": "setup_mlflow_backend_completed", "logger": "src.utils.mlflow_duckdb_setup", "level": "info", "timestamp": "2025-10-19T20:48:40.201646Z"}
+{"event": "initializing_mlflow_manager", "logger": "src.utils.mlflow_duckdb_setup", "level": "info", "timestamp": "2025-10-19T20:48:40.205793Z"}
+{"event": "initializing_mlflow_manager", "logger": "src.utils.mlflow_duckdb_setup", "level": "info", "timestamp": "2025-10-19T20:48:40.211520Z"}
+{"event": "query_duckdb_started", "logger": "src.utils.mlflow_duckdb_setup", "level": "info", "timestamp": "2025-10-19T20:48:40.213685Z"}
+{"event": "query_successful", "logger": "src.utils.mlflow_duckdb_setup", "level": "info", "timestamp": "2025-10-19T20:48:40.215188Z"}
+{"event": "query_duckdb_completed", "logger": "src.utils.mlflow_duckdb_setup", "level": "info", "timestamp": "2025-10-19T20:48:40.215648Z"}
+{"event": "initializing_mlflow_manager", "logger": "src.utils.mlflow_duckdb_setup", "level": "info", "timestamp": "2025-10-19T20:48:40.219867Z"}
+{"event": "Context impl SQLiteImpl.", "logger": "alembic.runtime.migration", "level": "info", "timestamp": "2025-10-19T20:48:41.074095Z"}
+{"event": "Will assume non-transactional DDL.", "logger": "alembic.runtime.migration", "level": "info", "timestamp": "2025-10-19T20:48:41.074546Z"}
