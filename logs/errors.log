@@ -336,3 +336,43 @@
 {"event": "data_validation_failed", "logger": "src.data.data_validator", "level": "error", "timestamp": "2025-10-10T03:32:00.822034Z"}
 {"event": "Pandera validation failed.", "logger": "src.data.data_validator", "level": "error", "timestamp": "2025-10-10T03:32:00.828155Z"}
 {"event": "data_validation_failed", "logger": "src.data.data_validator", "level": "error", "timestamp": "2025-10-10T03:32:00.828994Z"}
+{"event": "load_data_failed", "logger": "src.data.data_loader", "level": "error", "timestamp": "2025-10-13T22:26:19.272782Z"}
+{"event": "load_data_failed", "logger": "src.data.data_loader", "level": "error", "timestamp": "2025-10-13T22:26:19.277500Z"}
+{"event": "Pandera validation failed.", "logger": "src.data.data_validator", "level": "error", "timestamp": "2025-10-13T22:26:19.637721Z"}
+{"event": "data_validation_failed", "logger": "src.data.data_validator", "level": "error", "timestamp": "2025-10-13T22:26:19.638514Z"}
+{"event": "Pandera validation failed.", "logger": "src.data.data_validator", "level": "error", "timestamp": "2025-10-13T22:26:19.681623Z"}
+{"event": "data_validation_failed", "logger": "src.data.data_validator", "level": "error", "timestamp": "2025-10-13T22:26:19.682421Z"}
+{"event": "Pandera validation failed.", "logger": "src.data.data_validator", "level": "error", "timestamp": "2025-10-13T22:26:19.702963Z"}
+{"event": "data_validation_failed", "logger": "src.data.data_validator", "level": "error", "timestamp": "2025-10-13T22:26:19.703760Z"}
+{"event": "Pandera validation failed.", "logger": "src.data.data_validator", "level": "error", "timestamp": "2025-10-13T22:26:19.712916Z"}
+{"event": "data_validation_failed", "logger": "src.data.data_validator", "level": "error", "timestamp": "2025-10-13T22:26:19.713669Z"}
+{"event": "Pandera validation failed.", "logger": "src.data.data_validator", "level": "error", "timestamp": "2025-10-13T22:26:19.718167Z"}
+{"event": "data_validation_failed", "logger": "src.data.data_validator", "level": "error", "timestamp": "2025-10-13T22:26:19.719154Z"}
+{"event": "Saving model_failed", "logger": "ModelTraining", "level": "error", "timestamp": "2025-10-13T23:42:34.158735Z"}
+{"event": "Starting model training_failed", "logger": "ModelTraining", "level": "error", "timestamp": "2025-10-13T23:42:34.159536Z"}
+{"event": "Saving model_failed", "logger": "ModelTraining", "level": "error", "timestamp": "2025-10-13T23:57:37.273292Z"}
+{"event": "Starting model training_failed", "logger": "ModelTraining", "level": "error", "timestamp": "2025-10-13T23:57:37.274463Z"}
+{"event": "load_data_failed", "logger": "src.data.data_loader", "level": "error", "timestamp": "2025-10-19T17:34:05.942982Z"}
+{"event": "load_data_failed", "logger": "src.data.data_loader", "level": "error", "timestamp": "2025-10-19T17:34:05.949799Z"}
+{"event": "Pandera validation failed.", "logger": "src.data.data_validator", "level": "error", "timestamp": "2025-10-19T17:34:06.320465Z"}
+{"event": "data_validation_failed", "logger": "src.data.data_validator", "level": "error", "timestamp": "2025-10-19T17:34:06.321224Z"}
+{"event": "Pandera validation failed.", "logger": "src.data.data_validator", "level": "error", "timestamp": "2025-10-19T17:34:06.361787Z"}
+{"event": "data_validation_failed", "logger": "src.data.data_validator", "level": "error", "timestamp": "2025-10-19T17:34:06.362557Z"}
+{"event": "Pandera validation failed.", "logger": "src.data.data_validator", "level": "error", "timestamp": "2025-10-19T17:34:06.388903Z"}
+{"event": "data_validation_failed", "logger": "src.data.data_validator", "level": "error", "timestamp": "2025-10-19T17:34:06.389701Z"}
+{"event": "Pandera validation failed.", "logger": "src.data.data_validator", "level": "error", "timestamp": "2025-10-19T17:34:06.400892Z"}
+{"event": "data_validation_failed", "logger": "src.data.data_validator", "level": "error", "timestamp": "2025-10-19T17:34:06.401808Z"}
+{"event": "Pandera validation failed.", "logger": "src.data.data_validator", "level": "error", "timestamp": "2025-10-19T17:34:06.407687Z"}
+{"event": "data_validation_failed", "logger": "src.data.data_validator", "level": "error", "timestamp": "2025-10-19T17:34:06.408491Z"}
+{"event": "load_data_failed", "logger": "src.data.data_loader", "level": "error", "timestamp": "2025-10-19T17:47:07.632162Z"}
+{"event": "load_data_failed", "logger": "src.data.data_loader", "level": "error", "timestamp": "2025-10-19T17:47:07.636887Z"}
+{"event": "Pandera validation failed.", "logger": "src.data.data_validator", "level": "error", "timestamp": "2025-10-19T17:47:08.165282Z"}
+{"event": "data_validation_failed", "logger": "src.data.data_validator", "level": "error", "timestamp": "2025-10-19T17:47:08.166404Z"}
+{"event": "Pandera validation failed.", "logger": "src.data.data_validator", "level": "error", "timestamp": "2025-10-19T17:47:08.231007Z"}
+{"event": "data_validation_failed", "logger": "src.data.data_validator", "level": "error", "timestamp": "2025-10-19T17:47:08.232030Z"}
+{"event": "Pandera validation failed.", "logger": "src.data.data_validator", "level": "error", "timestamp": "2025-10-19T17:47:08.260779Z"}
+{"event": "data_validation_failed", "logger": "src.data.data_validator", "level": "error", "timestamp": "2025-10-19T17:47:08.261824Z"}
+{"event": "Pandera validation failed.", "logger": "src.data.data_validator", "level": "error", "timestamp": "2025-10-19T17:47:08.273542Z"}
+{"event": "data_validation_failed", "logger": "src.data.data_validator", "level": "error", "timestamp": "2025-10-19T17:47:08.274589Z"}
+{"event": "Pandera validation failed.", "logger": "src.data.data_validator", "level": "error", "timestamp": "2025-10-19T17:47:08.280167Z"}
+{"event": "data_validation_failed", "logger": "src.data.data_validator", "level": "error", "timestamp": "2025-10-19T17:47:08.281201Z"}

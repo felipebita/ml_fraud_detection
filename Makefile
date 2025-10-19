@@ -55,7 +55,7 @@ gs-experiment:
 
 train:
 	@echo "Training the final model..."
-	uv run python src/model/training.py --experiment_name $(experiment_name) --run_name $(run_name)
+	uv run python src/model/training.py
 
 evaluate:
 	@echo "Evaluating models..."

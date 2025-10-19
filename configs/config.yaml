@@ -113,3 +113,11 @@ model_training:
       num_leaves: [31, 50]
       learning_rate: [0.05, 0.1]
       min_child_samples: [20, 50]
+
+# Final model training configuration
+final_model_train:
+  experiment_name: "10-09-gs_fraud_detection" # final experiment name in MLflow
+  run_name: "BEST"
+  best_run_metric: "avg_f1"
+  registered_model_name: "fraud_detection" # final model name in MLflow Model Registry
+  prefix: ""

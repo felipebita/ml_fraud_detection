@@ -35,6 +35,7 @@ data/download/dataset.zip
 data/download/complete_synthetic_financial_kaggle.csv
 
 site/
+temp_mlops/
 
 # ============================================
 # MLflow - Include key artifacts

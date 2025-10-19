@@ -404,11 +404,43 @@ This directory contains all the GitHub Actions workflows for the project.
 ### `src/model/validation.py`
 
 *   **Purpose**: This script contains the classes and logic for running model validation experiments, including quick comparisons and hyperparameter grid searches.
-*   **Usage**: It is designed to be run as a script to execute different experiment types. It uses MLflow to log all experiment parameters, metrics, and artifacts.
+*   **Usage**: It is designed to be run as a script to execute different experiment types (`quick` or `grid`). It uses MLflow to log all experiment parameters, metrics, and artifacts.
+    *   `make quick-experiment`: Runs a quick comparison of models.
+    *   `make gs-experiment`: Runs a hyperparameter grid search.
+*   **Key Information**:
+    *   **Time-Series Cross-Validation**: It uses `TimeSeriesSplit` to ensure that the validation data always comes after the training data, which is crucial for time-dependent financial data.
+    *   **Financial-Based Thresholding**: Instead of using a default 0.5 threshold, it calculates an `optimal_threshold` for each fold based on maximizing a profit function defined in `src/model/financial_metrics.py`. It also calculates a `weighted_threshold` across all folds.
+    *   **Comprehensive MLflow Logging**: For each run, it logs:
+        *   Model parameters.
+        *   Average and standard deviation of performance metrics (e.g., F1-score, ROC AUC) across all CV folds.
+        *   The profit-maximizing threshold and maximum profit for each fold.
+        *   Artifacts, including a confusion matrix and a precision-recall curve for each fold.
+    *   **Automated Experiment Naming**: It automatically creates and versions experiment names in MLflow to avoid name collisions (e.g., if `my_experiment` exists, it will create `my_experiment_v2`).
 *   **Key Classes**:
-    *   **`BaseExperiment`**: An abstract base class that defines the common structure and utility methods for all experiments, including model pipeline creation, metric calculation, and the cross-validation loop.
-    *   **`QuickExperiment`**: A concrete experiment class that runs a quick comparison of multiple models using a predefined set of hyperparameters.
-    *   **`GridSearchExperiment`**: A concrete experiment class that performs a hyperparameter grid search for a single model to find the best parameter combination.
+    *   **`BaseExperiment`**: An abstract base class that defines the common structure for all experiments. It handles the cross-validation loop, metric calculation, and MLflow logging.
+    *   **`QuickExperiment`**: A concrete experiment class that runs a quick comparison of multiple models using a predefined set of hyperparameters from `configs/config.yaml`.
+    *   **`GridSearchExperiment`**: A concrete experiment class that performs a hyperparameter grid search for a single model using the parameter grids defined in `configs/config.yaml`.
+
+### `src/model/training.py`
+
+*   **Purpose**: This script is responsible for training the final production-ready model.
+*   **Usage**: It is run via the `make train` command. The script fetches the best hyperparameters from a specified MLflow experiment, trains a new model on the entire dataset, and registers the final model in the MLflow Model Registry.
+*   **Key Information**:
+    *   **Best Model Selection**: It identifies the best run from a source experiment (defined in `configs/config.yaml`) based on a specified metric.
+    *   **Final Model Training**: It retrains the best model on the full `processed_transactions.parquet` dataset.
+    *   **Profit-Optimized Threshold**: It includes a profit-maximizing threshold in the final saved model, which is wrapped in a custom `ModelWithThreshold` class.
+    *   **MLflow Logging**:
+        *   It creates a new run in the `final_models` experiment.
+        *   The run name is formatted as `final_{source_experiment_name}_{best_run_name}` for clear traceability (e.g., `final_100525_random_forest_gs_randomforest_grid_search_21`).
+        *   It logs the `run_id` of the best run from the source experiment as the `best_run_id` tag.
+        *   It logs the git commit hash as the `git_commit` tag for reproducibility.
+    *   **Model Registration**:
+        *   It registers the trained model in the MLflow Model Registry under a consistent name (e.g., `fraud_detection`), allowing MLflow to handle versioning automatically (e.g., `version 1`, `version 2`).
+*   **Key Classes**:
+    *   **`ModelTrainer`**: The main class that encapsulates the training logic.
+    *   **`ModelWithThreshold`**: A wrapper class that combines a trained model with a specific threshold for making predictions.
+*   **Key Functions**:
+    *   **`get_git_commit_hash()`**: A helper function to get the current git commit hash for reproducibility.
 
 ### `src/utils/`
 

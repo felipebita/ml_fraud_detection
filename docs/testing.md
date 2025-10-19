@@ -38,6 +38,7 @@ This setup ensures that the test logs are captured in a separate file without in
         - `./tests/unit/test_data_validator.py`
         - `./tests/unit/test_mlflow_analytics.py`
         - `./tests/unit/test_mlflow_duckdb_setup.py`
+        - `./tests/unit/test_training.py`
         - `./tests/unit/test_validation.py`
 
 ## `tests/`
@@ -144,6 +145,22 @@ This setup ensures that the test logs are captured in a separate file without in
     *   It tests the `query_experiments()` method.
     *   It tests the handling of connection failures.
 
+#### `tests/unit/test_training.py`
+
+*   **Purpose**: This file contains unit tests for the `ModelTrainer` class from `src/model/training.py`.
+*   **Usage**: It verifies the correctness of the model training and registration logic in isolation from external services like MLflow and the actual machine learning models.
+*   **Key Information**:
+    *   It uses `pytest` fixtures to create mock configurations, loggers, and sample data.
+    *   It heavily uses `patch` from `unittest.mock` to mock MLflow, `pandas.read_parquet`, and other dependencies.
+    *   **`test_train_with_best_run`**: Tests the main success path of the `train` method when `run_name` is "BEST".
+    *   **`test_model_with_threshold`**: Tests the `ModelWithThreshold` class to ensure it correctly applies the threshold to the model's probability predictions.
+    *   **`test_train_raises_experiment_not_found`**: Tests that a `ValueError` is raised when the experiment is not found.
+    *   **`test_train_raises_run_not_found`**: Tests that a `ValueError` is raised when the run is not found.
+    *   **`test_get_model_pipeline_raises_value_error`**: Tests that a `ValueError` is raised for an unsupported model.
+    *   **`test_convert_param_types`**: Tests the `_convert_param_types` method with different types of parameters.
+    *   **`test_get_git_commit_hash_fails`**: Tests the `get_git_commit_hash` function when the git command fails.
+    *   **`test_train_with_no_threshold`**: Tests the `train` method when no threshold is found in the MLflow run.
+
 #### `tests/unit/test_validation.py`
 
 *   **Purpose**: This file contains unit tests for the model validation classes (`BaseExperiment`, `QuickExperiment`, `GridSearchExperiment`) from `src/model/validation.py`.
@@ -151,7 +168,17 @@ This setup ensures that the test logs are captured in a separate file without in
 *   **Key Information**:
     *   It uses `pytest` fixtures to create mock configurations and sample data.
     *   It heavily uses `patch` from `unittest.mock` to mock MLflow, model classes, and other dependencies.
-    *   **`TestBaseExperiment`**: Tests the core logic of the base class, including model pipeline creation and metric calculation. It uses a concrete subclass for instantiation to avoid `TypeError` with the abstract class.
-    *   **`TestQuickExperiment`**: Tests that the quick experiment runner correctly iterates through models and calls the cross-validation logic with the expected arguments.
-    *   **`TestGridSearchExperiment`**: Tests that the grid search runner correctly iterates through the hyperparameter grid and calls the cross-validation logic accordingly.
-    *   It verifies that warnings are correctly logged when all cross-validation folds are skipped.
+    *   **`BaseExperiment` Tests**:
+        *   Tests the initialization logic for different MLflow experiment states (new, active, deleted).
+        *   Verifies that the correct model pipeline is created based on the configuration.
+        *   Ensures that an error is raised for unsupported model types.
+        *   Checks that performance metrics are calculated correctly.
+        *   Tests the main cross-validation execution loop (`_execute_cv`), including metric and artifact logging.
+    *   **`QuickExperiment` Tests**:
+        *   Tests that the quick experiment runner correctly iterates through the specified models.
+        *   Verifies that the cross-validation logic is called with the expected arguments for each model.
+        *   Ensures that a warning is logged if all cross-validation folds are configured to be skipped.
+    *   **`GridSearchExperiment` Tests**:
+        *   Tests that the grid search runner correctly iterates through all hyperparameter combinations.
+        *   Verifies that the cross-validation logic is called for each parameter set.
+        *   Ensures that a warning is logged if all cross-validation folds are skipped.

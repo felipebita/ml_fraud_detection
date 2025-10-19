@@ -1,12 +1,14 @@
-import argparse
+import subprocess
 from logging import Logger
 from typing import Any
 
 import lightgbm as lgb
 import mlflow
+import numpy as np
 import pandas as pd
 import xgboost as xgb
 from mlflow.models import infer_signature
+from mlflow.tracking import MlflowClient
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.pipeline import Pipeline
 
@@ -14,22 +16,43 @@ from src.utils.config import get_config
 from src.utils.logger import LoggerContext, get_logger
 
 
+class ModelWithThreshold(mlflow.pyfunc.PythonModel):
+    def __init__(self, model: Pipeline, threshold: float):
+        self.model = model
+        self.threshold = threshold
+
+    def predict(self, _context: Any, model_input: pd.DataFrame) -> np.ndarray:
+        probabilities = self.model.predict_proba(model_input)[:, 1]
+        return np.array((probabilities >= self.threshold), dtype=int)
+
+
+def get_git_commit_hash() -> str | None:
+    """Gets the current git commit hash."""
+    try:
+        return (
+            subprocess.check_output(["git", "rev-parse", "HEAD"])
+            .strip()
+            .decode("utf-8")
+        )
+    except (subprocess.CalledProcessError, FileNotFoundError):
+        return None
+
+
 class ModelTrainer:
     """
     Trains and saves the final model.
     """
 
-    def __init__(
-        self,
-        config: dict[str, Any],
-        logger: Logger,
-        experiment_name: str,
-        run_name: str,
-    ):
+    def __init__(self, config: dict[str, Any], logger: Logger):
         self.config = config
         self.logger = logger
-        self.experiment_name = experiment_name
-        self.run_name = run_name
+        self.experiment_name = self.config["final_model_train"]["experiment_name"]
+        self.run_name = self.config["final_model_train"]["run_name"]
+        self.best_run_metric = self.config["final_model_train"]["best_run_metric"]
+        self.model_prefix = self.config["final_model_train"]["prefix"]
+        self.registered_model_name = self.config["final_model_train"][
+            "registered_model_name"
+        ]
         self.target = self.config["model_training"]["target_variable"]
         self.features_to_drop = self.config["model_training"]["features_to_drop"] + [
             self.target
@@ -68,7 +91,9 @@ class ModelTrainer:
                     converted_params[k] = v
         return converted_params
 
-    def get_params_from_mlflow(self) -> tuple[str, dict[str, Any], dict[str, Any]]:
+    def get_params_from_mlflow(
+        self,
+    ) -> tuple[str, dict[str, Any], dict[str, Any], float | None, str, str]:
         """
         Fetches model parameters and metrics from an MLflow run.
         """
@@ -85,7 +110,7 @@ class ModelTrainer:
             if self.run_name == "BEST":
                 runs = mlflow.search_runs(
                     experiment_ids=[experiment.experiment_id],
-                    order_by=["metrics.avg_f1 DESC"],
+                    order_by=[f"metrics.{self.best_run_metric} DESC"],
                     max_results=1,
                 )
                 if not runs.empty:
@@ -108,20 +133,45 @@ class ModelTrainer:
 
             run = mlflow.get_run(run_id)
             model_name = run.data.params["model_name"]
+            best_run_name = run.data.tags["mlflow.runName"]
             params = {
                 k: v
                 for k, v in run.data.params.items()
                 if k not in ["model_name", "cv_folds"]
             }
             metrics = {k: v for k, v in run.data.metrics.items() if "avg" in k}
-            return model_name, self._convert_param_types(params), metrics
+            if "weighted_threshold" in run.data.metrics:
+                threshold = run.data.metrics.get("weighted_threshold")
+            else:
+                threshold = run.data.metrics.get("avg_optimal_threshold")
+            return (
+                model_name,
+                self._convert_param_types(params),
+                metrics,
+                threshold,
+                run_id,
+                best_run_name,
+            )
 
     def train(self) -> None:
         """
         Trains the final model.
         """
         with LoggerContext(self.logger, "Starting model training"):
-            model_name, params, metrics = self.get_params_from_mlflow()
+            (
+                model_name,
+                params,
+                metrics,
+                threshold,
+                best_run_id,
+                best_run_name,
+            ) = self.get_params_from_mlflow()
+
+            if threshold is None:
+                self.logger.warning(
+                    "No threshold found in the MLflow run. Using 0.5 as default."
+                )
+                threshold = 0.5
 
             with LoggerContext(self.logger, "Loading data"):
                 df = pd.read_parquet(self.config["data"]["processed_path"])
@@ -137,45 +187,57 @@ class ModelTrainer:
                 )
                 pipeline.fit(X, y)
 
+            client = MlflowClient()
+            final_models_experiment = client.get_experiment_by_name("final_models")
+            if (
+                final_models_experiment
+                and final_models_experiment.lifecycle_stage == "deleted"
+            ):
+                client.restore_experiment(final_models_experiment.experiment_id)
+                self.logger.info("Restored deleted experiment 'final_models'.")
+
             with LoggerContext(self.logger, "Saving model"):
                 mlflow.set_experiment("final_models")
-                with mlflow.start_run(run_name=f"final_{model_name}"):
+
+                registered_model_name = (
+                    f"{self.model_prefix}_{self.registered_model_name}"
+                    if self.model_prefix
+                    else self.registered_model_name
+                )
+
+                run_name = f"final_{self.experiment_name}_{best_run_name}"
+                with mlflow.start_run(run_name=run_name):
                     mlflow.log_params(params)
                     mlflow.log_metrics(metrics)
-                    signature = infer_signature(X, pipeline.predict(X))
-                    mlflow.sklearn.log_model(
-                        pipeline,
+                    mlflow.log_metric("profit_threshold", threshold)
+                    mlflow.set_tag("best_run_id", best_run_id)
+
+                    git_commit = get_git_commit_hash()
+                    if git_commit:
+                        mlflow.set_tag("git_commit", git_commit)
+
+                    model_with_threshold = ModelWithThreshold(
+                        model=pipeline, threshold=threshold
+                    )
+
+                    signature = infer_signature(
+                        X, model_with_threshold.predict(None, X)
+                    )
+                    mlflow.pyfunc.log_model(
                         "model",
-                        registered_model_name=self.config["mlflow"]["experiment_name"],
+                        python_model=model_with_threshold,
+                        registered_model_name=registered_model_name,
                         signature=signature,
                     )
 
-                self.logger.info("Model trained and saved to MLflow.")
+                self.logger.info(
+                    f"Model trained and saved to MLflow as {registered_model_name}."
+                )
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Train a model.")
-    parser.add_argument(
-        "--experiment_name",
-        type=str,
-        required=True,
-        help="Name of the MLflow experiment.",
-    )
-    parser.add_argument(
-        "--run_name",
-        type=str,
-        required=True,
-        help="Name of the MLflow run or 'BEST'.",
-    )
-    args = parser.parse_args()
-
     main_logger = get_logger("ModelTraining")
     config = get_config()
 
-    trainer = ModelTrainer(
-        config=config,
-        logger=main_logger,
-        experiment_name=args.experiment_name,
-        run_name=args.run_name,
-    )
+    trainer = ModelTrainer(config=config, logger=main_logger)
     trainer.train()
