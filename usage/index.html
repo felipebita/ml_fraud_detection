@@ -476,19 +476,94 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#initial-setup-ssh-agent-configuration" class="md-nav__link">
+  <a href="#local-development-setup" class="md-nav__link">
     <span class="md-ellipsis">
-      Initial Setup: SSH Agent Configuration
+      Local Development Setup
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Initial Setup: SSH Agent Configuration">
+    <nav class="md-nav" aria-label="Local Development Setup">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-install-uv" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Install uv
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-create-and-sync-your-virtual-environment" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Create and Sync your Virtual Environment
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-install-pre-commit-hooks" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Install Pre-commit Hooks
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#container-environment-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      Container Environment Setup
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Container Environment Setup">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-ssh-agent-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. SSH Agent Configuration
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. SSH Agent Configuration">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#automating-ssh-agent-on-shell-startup" class="md-nav__link">
     <span class="md-ellipsis">
       Automating ssh-agent on Shell Startup
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-environment-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Environment Setup
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-initial-data-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Initial Data Setup
     </span>
   </a>
   
@@ -510,15 +585,6 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#managing-the-environment" class="md-nav__link">
-    <span class="md-ellipsis">
-      Managing the Environment
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#code-quality-testing" class="md-nav__link">
     <span class="md-ellipsis">
       Code Quality &amp; Testing
@@ -527,12 +593,7 @@
   
 </li>
         
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
+          <li class="md-nav__item">
   <a href="#machine-learning-workflow" class="md-nav__link">
     <span class="md-ellipsis">
       Machine Learning Workflow
@@ -540,8 +601,8 @@
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#feature-store-workflow" class="md-nav__link">
     <span class="md-ellipsis">
       Feature Store Workflow
@@ -549,13 +610,27 @@
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#documentation-workflow" class="md-nav__link">
     <span class="md-ellipsis">
       Documentation Workflow
     </span>
   </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#session-archiving" class="md-nav__link">
+    <span class="md-ellipsis">
+      Session Archiving
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -697,124 +772,173 @@
 
 
 <h1 id="project-usage-guide">Project Usage Guide</h1>
-<p>This guide provides a comprehensive overview of how to run, test, and manage this project. All commands are executed via <code>docker compose exec app &lt;command&gt;</code> and are simplified using the <code>Makefile</code>.</p>
-<h2 id="initial-setup-ssh-agent-configuration">Initial Setup: SSH Agent Configuration</h2>
+<p>This guide provides a comprehensive overview of how to run, test, and manage this project.</p>
+<h2 id="local-development-setup">Local Development Setup</h2>
+<p>To ensure consistency between your local development environment and the containerized environment used for CI/CD, it is crucial to use the same versions of dev dependencies, including <code>pre-commit</code> and its hooks. This project uses <code>uv</code> to manage dependencies and <code>uv.lock</code> as the single source of truth for pinned versions.</p>
+<p>Follow these steps to set up your local environment:</p>
+<h3 id="1-install-uv">1. Install <code>uv</code></h3>
+<p>If you don't have <code>uv</code> installed on your local machine, you can install it by following the official instructions: <a href="https://github.com/astral-sh/uv#installation">https://github.com/astral-sh/uv#installation</a></p>
+<h3 id="2-create-and-sync-your-virtual-environment">2. Create and Sync your Virtual Environment</h3>
+<ol>
+<li>
+<p>Create a virtual environment in the project's root directory:
+    <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>python3<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>.venv
+</code></pre></div></p>
+</li>
+<li>
+<p>Activate the virtual environment:
+    <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nb">source</span><span class="w"> </span>.venv/bin/activate
+</code></pre></div></p>
+</li>
+<li>
+<p>Sync your environment with the locked dependencies:
+    <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>uv<span class="w"> </span>sync<span class="w"> </span>--extra<span class="w"> </span>dev
+</code></pre></div>
+    This command will install the exact versions of all development dependencies specified in the <code>uv.lock</code> file, which are needed to run the pre-commit hooks.</p>
+</li>
+</ol>
+<h3 id="3-install-pre-commit-hooks">3. Install Pre-commit Hooks</h3>
+<p>Now that you have the correct version of <code>pre-commit</code> installed in your virtual environment, you can install the Git hooks:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>pre-commit<span class="w"> </span>install
+</code></pre></div>
+<p>By following these steps, you ensure that the pre-commit hooks running on your local machine use the same library versions as the CI pipeline, preventing any discrepancies.</p>
+<h2 id="container-environment-setup">Container Environment Setup</h2>
+<h3 id="1-ssh-agent-configuration">1. SSH Agent Configuration</h3>
 <p>Before starting the services for the first time, you must ensure your SSH agent is running and configured correctly on your host machine. This is required for the Docker container to access your local SSH keys securely, which is necessary for operations like interacting with private Git repositories and allowing MLflow to track experiment commits.</p>
 <p>If your SSH agent is not configured, you will see this warning when running <code>docker compose up</code>:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>WARN[0000] The &quot;SSH_AUTH_SOCK&quot; variable is not set. Defaulting to a blank string.
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>WARN[0000] The &quot;SSH_AUTH_SOCK&quot; variable is not set. Defaulting to a blank string.
 </code></pre></div>
 <p>To fix this, run the following commands in your terminal before running <code>docker compose up</code>:</p>
 <ol>
 <li>
 <p><strong>Start the ssh-agent:</strong>
-    <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nb">eval</span><span class="w"> </span><span class="s2">&quot;</span><span class="k">$(</span>ssh-agent<span class="w"> </span>-s<span class="k">)</span><span class="s2">&quot;</span>
+    <div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="nb">eval</span><span class="w"> </span><span class="s2">&quot;</span><span class="k">$(</span>ssh-agent<span class="w"> </span>-s<span class="k">)</span><span class="s2">&quot;</span>
 </code></pre></div></p>
 </li>
 <li>
 <p><strong>Add your SSH key:</strong>
-    <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>ssh-add
+    <div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>ssh-add
 </code></pre></div></p>
 </li>
 </ol>
-<h3 id="automating-ssh-agent-on-shell-startup">Automating <code>ssh-agent</code> on Shell Startup</h3>
+<h4 id="automating-ssh-agent-on-shell-startup">Automating <code>ssh-agent</code> on Shell Startup</h4>
 <p>To avoid running the manual commands every time you open a new terminal, you can add a script to your shell's startup file (e.g., <code>~/.bashrc</code> or <code>~/.zshrc</code>).</p>
 <p>The following script is a robust way to manage your <code>ssh-agent</code>. It checks if the agent is running and accessible, and if not, it starts a new one. This avoids issues with stale agent information after a system reboot.</p>
 <p>Add the following code to the end of your <code>~/.bashrc</code> or <code>~/.zshrc</code> file:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1"># ssh-agent configuration</span>
-<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span>-f<span class="w"> </span>~/.ssh-agent-info<span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
-<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">    </span>.<span class="w"> </span>~/.ssh-agent-info
-<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="k">fi</span>
-<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>
-<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="c1"># Check if the agent is running and accessible</span>
-<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="k">if</span><span class="w"> </span>!<span class="w"> </span>ssh-add<span class="w"> </span>-l<span class="w"> </span>&gt;/dev/null<span class="w"> </span><span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
-<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="w">    </span><span class="c1"># If not, start a new agent</span>
-<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="w">    </span>ssh-agent<span class="w"> </span>-s<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-v<span class="w"> </span><span class="nb">echo</span><span class="w"> </span>&gt;<span class="w"> </span>~/.ssh-agent-info
-<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="w">    </span>.<span class="w"> </span>~/.ssh-agent-info
-<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="w">    </span>ssh-add
-<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="k">fi</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="c1"># ssh-agent configuration</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span>-f<span class="w"> </span>~/.ssh-agent-info<span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="w">    </span>.<span class="w"> </span>~/.ssh-agent-info
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="k">fi</span>
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>
+<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="c1"># Check if the agent is running and accessible</span>
+<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="k">if</span><span class="w"> </span>!<span class="w"> </span>ssh-add<span class="w"> </span>-l<span class="w"> </span>&gt;/dev/null<span class="w"> </span><span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="w">    </span><span class="c1"># If not, start a new agent</span>
+<a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a><span class="w">    </span>ssh-agent<span class="w"> </span>-s<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-v<span class="w"> </span><span class="nb">echo</span><span class="w"> </span>&gt;<span class="w"> </span>~/.ssh-agent-info
+<a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a><span class="w">    </span>.<span class="w"> </span>~/.ssh-agent-info
+<a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a><span class="w">    </span>ssh-add
+<a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a><span class="k">fi</span>
 </code></pre></div>
 <p>After adding the script, you'll need to restart your terminal or run <code>source ~/.bashrc</code> (or <code>source ~/.zshrc</code>) to apply the changes.</p>
-<h2 id="development-workflow">Development Workflow</h2>
-<p>These commands are essential for day-to-day development, including managing the environment and ensuring code quality.</p>
-<h3 id="managing-the-environment">Managing the Environment</h3>
+<h3 id="2-environment-setup">2. Environment Setup</h3>
 <p>The development environment is managed by Docker Compose.</p>
 <ul>
 <li>
 <p><strong>Start all services:</strong>
-    <div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>--build<span class="w"> </span>-d
+    <div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>--build<span class="w"> </span>-d
 </code></pre></div>
     <em>(The <code>--build</code> flag is only needed if you change dependencies in <code>pyproject.toml</code>)</em></p>
 </li>
 <li>
 <p><strong>Stop all services:</strong>
-    <div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>docker<span class="w"> </span>compose<span class="w"> </span>down
+    <div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>docker<span class="w"> </span>compose<span class="w"> </span>down
 </code></pre></div></p>
 </li>
 <li>
 <p><strong>View logs from all services:</strong>
-    <div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>docker<span class="w"> </span>compose<span class="w"> </span>logs<span class="w"> </span>-f
+    <div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>docker<span class="w"> </span>compose<span class="w"> </span>logs<span class="w"> </span>-f
 </code></pre></div></p>
 </li>
 <li>
 <p><strong>Enter an interactive shell in the app container:</strong>
-    <div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>docker<span class="w"> </span>compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>app<span class="w"> </span>bash
+    <div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>docker<span class="w"> </span>compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>app<span class="w"> </span>bash
+</code></pre></div></p>
+</li>
+<li>
+<p><strong>Update the environment without rebuilding:</strong>
+    If you have updated the <code>pyproject.toml</code> file with new dependencies, you can update the environment inside the container without rebuilding it by running:
+    <div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>docker<span class="w"> </span>compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>app<span class="w"> </span>make<span class="w"> </span>setup
 </code></pre></div></p>
 </li>
 </ul>
+<h3 id="3-initial-data-setup">3. Initial Data Setup</h3>
+<ul>
+<li><strong>Download and prepare the initial raw dataset:</strong>
+    <div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>docker<span class="w"> </span>compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>app<span class="w"> </span>make<span class="w"> </span>data-setup
+</code></pre></div></li>
+</ul>
+<h2 id="development-workflow">Development Workflow</h2>
+<p>These commands are essential for day-to-day development, including managing the environment and ensuring code quality.</p>
 <h3 id="code-quality-testing">Code Quality &amp; Testing</h3>
 <ul>
 <li>
 <p><strong>Run all tests with coverage:</strong>
-    <div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>docker<span class="w"> </span>compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>app<span class="w"> </span>make<span class="w"> </span><span class="nb">test</span>
+    <div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>docker<span class="w"> </span>compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>app<span class="w"> </span>make<span class="w"> </span><span class="nb">test</span>
 </code></pre></div></p>
 </li>
 <li>
 <p><strong>Format code with Black:</strong>
-    <div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>docker<span class="w"> </span>compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>app<span class="w"> </span>make<span class="w"> </span>format
+    <div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>docker<span class="w"> </span>compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>app<span class="w"> </span>make<span class="w"> </span>format
 </code></pre></div></p>
 </li>
 <li>
 <p><strong>Lint code with Ruff:</strong>
-    <div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>docker<span class="w"> </span>compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>app<span class="w"> </span>make<span class="w"> </span>lint
+    <div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>docker<span class="w"> </span>compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>app<span class="w"> </span>make<span class="w"> </span>lint
 </code></pre></div></p>
 </li>
 <li>
 <p><strong>Run static type checking with MyPy:</strong>
-    <div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>docker<span class="w"> </span>compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>app<span class="w"> </span>make<span class="w"> </span>type-check
+    <div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>docker<span class="w"> </span>compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>app<span class="w"> </span>make<span class="w"> </span>type-check
+</code></pre></div></p>
+</li>
+<li>
+<p><strong>Run pre-commit hooks:</strong>
+    <div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>docker<span class="w"> </span>compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>app<span class="w"> </span>make<span class="w"> </span>pre-commit
 </code></pre></div></p>
 </li>
 </ul>
-<h2 id="machine-learning-workflow">Machine Learning Workflow</h2>
+<h3 id="machine-learning-workflow">Machine Learning Workflow</h3>
 <p>These commands are used to execute the core ML pipeline steps.</p>
 <ul>
 <li>
-<p><strong>Run the data processing pipeline:</strong>
-    This command executes the data loading and validation scripts.
-    <div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>docker<span class="w"> </span>compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>app<span class="w"> </span>make<span class="w"> </span>data
+<p><strong>Run the data loading pipeline:</strong>
+    <div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>docker<span class="w"> </span>compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>app<span class="w"> </span>make<span class="w"> </span>data-load
+</code></pre></div></p>
+</li>
+<li>
+<p><strong>Run the data splitting pipeline:</strong>
+    <div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>docker<span class="w"> </span>compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>app<span class="w"> </span>make<span class="w"> </span>data-split
+</code></pre></div></p>
+</li>
+<li>
+<p><strong>Run the entire data pipeline (load and split):</strong>
+    <div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>docker<span class="w"> </span>compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>app<span class="w"> </span>make<span class="w"> </span>data
 </code></pre></div></p>
 </li>
 <li>
 <p><strong>Run a quick model comparison experiment:</strong>
     This command runs a quick experiment to compare the performance of multiple models with their default hyperparameters.
-    <div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>docker<span class="w"> </span>compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>app<span class="w"> </span>make<span class="w"> </span>quick-experiment
+    <div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>docker<span class="w"> </span>compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>app<span class="w"> </span>make<span class="w"> </span>quick-experiment
 </code></pre></div></p>
 </li>
 <li>
 <p><strong>Run a hyperparameter grid search experiment:</strong>
     This command runs a grid search experiment for a single model to find the best hyperparameter combination.
-    <div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>docker<span class="w"> </span>compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>app<span class="w"> </span>make<span class="w"> </span>gs-experiment
+    <div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>docker<span class="w"> </span>compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>app<span class="w"> </span>make<span class="w"> </span>gs-experiment
 </code></pre></div></p>
 </li>
 <li>
-<p><strong>Train the model:</strong>
-    <em>(This target is not yet implemented)</em>
-    <div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>docker<span class="w"> </span>compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>app<span class="w"> </span>make<span class="w"> </span>train
-</code></pre></div></p>
-</li>
-<li>
-<p><strong>Evaluate the model:</strong>
-    <em>(This target is not yet implemented)</em>
-    <div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>docker<span class="w"> </span>compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>app<span class="w"> </span>make<span class="w"> </span>evaluate
+<p><strong>Train the final model:</strong>
+    <div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>docker<span class="w"> </span>compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>app<span class="w"> </span>make<span class="w"> </span>train
 </code></pre></div></p>
 </li>
 <li>
@@ -822,28 +946,40 @@
     The MLflow UI is available at <a href="http://localhost:5000">http://localhost:5000</a> to track experiments.</p>
 </li>
 </ul>
-<h2 id="feature-store-workflow">Feature Store Workflow</h2>
+<h3 id="feature-store-workflow">Feature Store Workflow</h3>
 <ul>
 <li><strong>Apply feature store changes:</strong>
     This command applies the changes from your feature definitions to the feature store.
-    <div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>docker<span class="w"> </span>compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>app<span class="w"> </span>make<span class="w"> </span>feature-repo-apply
+    <div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a>docker<span class="w"> </span>compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>app<span class="w"> </span>make<span class="w"> </span>feature-repo-apply
 </code></pre></div></li>
 </ul>
-<h2 id="documentation-workflow">Documentation Workflow</h2>
+<h3 id="documentation-workflow">Documentation Workflow</h3>
 <ul>
 <li>
 <p><strong>Serve the documentation site locally:</strong>
     This command starts a live-reloading server for the documentation.
-    <div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>docker<span class="w"> </span>compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>app<span class="w"> </span>make<span class="w"> </span>docs-serve
+    <div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a>docker<span class="w"> </span>compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>app<span class="w"> </span>make<span class="w"> </span>docs-serve
 </code></pre></div>
     The site will be available at <a href="http://localhost:8000">http://localhost:8000</a>.</p>
 </li>
 <li>
 <p><strong>Build the static documentation site:</strong>
     This command generates the static HTML files for the documentation site into the <code>site/</code> directory.
-    <div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>docker<span class="w"> </span>compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>app<span class="w"> </span>make<span class="w"> </span>docs-build
+    <div class="highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a>docker<span class="w"> </span>compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>app<span class="w"> </span>make<span class="w"> </span>docs-build
 </code></pre></div></p>
 </li>
+<li>
+<p><strong>Deploy the documentation to GitHub Pages:</strong>
+    <div class="highlight"><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a>docker<span class="w"> </span>compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>app<span class="w"> </span>make<span class="w"> </span>docs-deploy
+</code></pre></div></p>
+</li>
+</ul>
+<h3 id="session-archiving">Session Archiving</h3>
+<ul>
+<li><strong>Archive the current session:</strong>
+    This command archives a copy of the current <code>LAST_SESSION.md</code> file.
+    <div class="highlight"><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a>docker<span class="w"> </span>compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>app<span class="w"> </span>make<span class="w"> </span>archive-session
+</code></pre></div></li>
 </ul>
 
 
