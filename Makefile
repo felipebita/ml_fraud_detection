@@ -6,36 +6,36 @@ help:
 	@echo "Commands:"
 	@echo "  setup          : Initial project setup"
 	@echo "  data-setup     : Downloads and prepares the initial raw dataset"
+
+	@echo "  data-load      : Run the data loading pipeline"
+	@echo "  data-split     : Run the data splitting pipeline"
+	@echo "  data           : Run the entire data pipeline (load and split)"
+	@echo "  feature-repo-apply: Apply feature repository changes"
+
+	@echo "  quick-experiment: Run a quick model experiment"
+	@echo "  gs-experiment  : Run a grid search model experiment"
+	@echo "  train          : Train the final model"
+	@echo "  dashboard      : Launch MLflow UI"
+
 	@echo "  lint           : Run linting checks (ruff)"
 	@echo "  type-check     : Run type checking (mypy)"
 	@echo "  format         : Format code (black)"
 	@echo "  pre-commit     : Run pre-commit hooks"
 	@echo "  test           : Run all tests"
-	@echo "  coverage       : Run all tests and generate coverage report"
-	@echo "  data           : Run the entire data pipeline (load and split)"
-	@echo "  data-load      : Run the data loading pipeline"
-	@echo "  data-split     : Run the data splitting pipeline"
-	@echo "  experiment     : Run model experiments"
-	@echo "  train          : Train the final model"
-	@echo "  evaluate       : Evaluate models"
-	@echo "  serve          : Start model server"
-	@echo "  dashboard      : Launch MLflow UI"
-	@echo "  feature-repo-apply: Apply feature repository changes"
+
 	@echo "  docs-serve     : Serve the documentation site locally (development)"
 	@echo "  docs-build     : Build the documentation site (for deployment)"
 	@echo "  docs-preview   : Serve the built documentation site (for review)"
+
 	@echo "  archive-session: Archives a copy of the current LAST_SESSION.md."
 
 setup:
 	@echo "Setting up the project..."
 	uv sync --all-extras --active
-	uv run --active pre-commit install
 
 data-setup:
 	@echo "Downloading and preparing the initial raw dataset..."
 	uv run --active python3 -m scripts.data_setup
-
-data: data-load data-split
 
 data-load:
 	@echo "Running the data loading pipeline..."
@@ -44,6 +44,8 @@ data-load:
 data-split:
 	@echo "Running the data splitting pipeline..."
 	uv run --active python3 -m src.data.data_splitter
+
+data: data-load data-split
 
 quick-experiment:
 	@echo "Running quick experiment..."
@@ -56,10 +58,6 @@ gs-experiment:
 train:
 	@echo "Training the final model..."
 	uv run python src/model/training.py
-
-evaluate:
-	@echo "Evaluating models..."
-	# Add model evaluation commands here
 
 lint:
 	@echo "Linting code..."
@@ -84,10 +82,6 @@ test:
 	uv run --active -- feast --chdir feature_repo materialize 2024-01-01T01:00:00 2024-01-01T01:00:00
 	@echo "Running tests..."
 	uv run --active pytest tests/ -v --cov=src --cov-report=html --cov-report=term-missing --log-file=logs/pytest.log --log-cli-level=WARNING
-
-serve:
-	@echo "Starting the model server..."
-	# Add model serving commands here
 
 dashboard:
 	@echo "Launching MLflow UI..."

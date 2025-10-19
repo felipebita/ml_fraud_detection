@@ -40,31 +40,88 @@ docker compose up --build -d
 ```
 *The `--build` flag is only needed when dependencies in `pyproject.toml` change.*
 
-## Basic Usage
+### 3. Local Environment Setup (Optional)
+
+If you want to run pre-commit hooks locally to ensure code quality before committing, you can set up a local virtual environment:
+
+1.  **Install `uv`:** Follow the official instructions at [https://github.com/astral-sh/uv#installation](https://github.com/astral-sh/uv#installation).
+2.  **Create and sync your virtual environment:**
+    ```bash
+    python3 -m venv .venv
+    source .venv/bin/activate
+    uv sync --extra dev
+    ```
+3.  **Install pre-commit hooks:**
+    ```bash
+    pre-commit install
+    ```
+
+## Usage
+
+### Running Commands
 
 All commands should be run inside the `app` container using `docker compose exec app <command>`. A `Makefile` provides shortcuts for common tasks.
 
--   **Run all tests:**
+-   **See all available commands:**
+    ```bash
+    docker compose exec app make help
+    ```
+
+### Code Quality
+
+-   **Run all tests with coverage:**
     ```bash
     docker compose exec app make test
     ```
--   **Format and lint code:**
+-   **Format code:**
     ```bash
     docker compose exec app make format
     ```
+-   **Lint code:**
+    ```bash
+    docker compose exec app make lint
+    ```
+-   **Run static type checking:**
+    ```bash
+    docker compose exec app make type-check
+    ```
+
+### Machine Learning Workflow
+
 -   **Run the data pipeline:**
     ```bash
     docker compose exec app make data
     ```
--   **See all available commands:**
+-   **Run a quick model experiment:**
     ```bash
-    docker compose exec app make help
+    docker compose exec app make quick-experiment
+    ```
+-   **Run a grid search experiment:**
+    ```bash
+    docker compose exec app make gs-experiment
+    ```
+-   **Train the final model:**
+    ```bash
+    docker compose exec app make train
     ```
 
 ### Accessing Services
 
 -   **MLflow UI:** [http://localhost:5000](http://localhost:5000)
 -   **Documentation Site (Local):** Run `docker compose exec app make docs-serve` and go to [http://localhost:8000](http://localhost:8000)
+
+## Project Structure
+
+The project is organized into the following key directories:
+
+-   `src/`: Main source code for the application.
+-   `data/`: Data files, organized into `raw`, `processed`, and `reports`.
+-   `configs/`: Configuration files for the application and logging.
+-   `tests/`: Unit and integration tests.
+-   `docs/`: Project documentation.
+-   `feature_repo/`: Feast feature store definitions.
+
+For a detailed explanation of each file and directory, please see the [**Project File Documentation**](./docs/project_files.md).
 
 ## Contributing
 
