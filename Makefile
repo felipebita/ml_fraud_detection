@@ -79,7 +79,7 @@ test:
 	@echo "Applying feature repository changes before testing..."
 	uv run --active -- feast --chdir feature_repo apply
 	@echo "Materializing test features (8 hours of data)..."
-	uv run --active -- feast --chdir feature_repo materialize 2024-01-01T01:00:00 2024-01-01T01:00:00
+	uv run --active -- feast --chdir feature_repo materialize 2024-01-01T01:00:00 2024-01-01T02:00:00
 	@echo "Running tests..."
 	uv run --active pytest tests/ -v --cov=src --cov-report=html --cov-report=term-missing --log-file=logs/pytest.log --log-cli-level=WARNING
 
