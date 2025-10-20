@@ -58,11 +58,18 @@ def mock_model():
     return model
 
 
+@patch("src.model.training.MlflowClient")
 @patch("src.model.training.pd.read_parquet")
 @patch("src.model.training.mlflow")
 @patch("src.model.training.get_git_commit_hash", return_value="test_hash")
 def test_train_with_best_run(
-    mock_get_hash, mock_mlflow, mock_read_parquet, mock_config, mock_logger, sample_df
+    mock_get_hash,
+    mock_mlflow,
+    mock_read_parquet,
+    mock_mlflow_client,
+    mock_config,
+    mock_logger,
+    sample_df,
 ):
     """Tests the training process when selecting the BEST run."""
     # Arrange
@@ -189,11 +196,18 @@ def test_get_git_commit_hash_fails(mock_subprocess):
     assert commit_hash is None
 
 
+@patch("src.model.training.MlflowClient")
 @patch("src.model.training.pd.read_parquet")
 @patch("src.model.training.mlflow")
 @patch("src.model.training.get_git_commit_hash", return_value="test_hash")
 def test_train_with_no_threshold(
-    mock_get_hash, mock_mlflow, mock_read_parquet, mock_config, mock_logger, sample_df
+    mock_get_hash,
+    mock_mlflow,
+    mock_read_parquet,
+    mock_mlflow_client,
+    mock_config,
+    mock_logger,
+    sample_df,
 ):
     """Tests the training process when no threshold is found in the MLflow run."""
     # Arrange
