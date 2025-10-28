@@ -575,23 +575,14 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#development-workflow" class="md-nav__link">
+  <a href="#application-usage" class="md-nav__link">
     <span class="md-ellipsis">
-      Development Workflow
+      Application Usage
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Development Workflow">
+    <nav class="md-nav" aria-label="Application Usage">
       <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#code-quality-testing" class="md-nav__link">
-    <span class="md-ellipsis">
-      Code Quality &amp; Testing
-    </span>
-  </a>
-  
-</li>
         
           <li class="md-nav__item">
   <a href="#machine-learning-workflow" class="md-nav__link">
@@ -606,6 +597,15 @@
   <a href="#feature-store-workflow" class="md-nav__link">
     <span class="md-ellipsis">
       Feature Store Workflow
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#code-quality-testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Code Quality &amp; Testing
     </span>
   </a>
   
@@ -876,69 +876,40 @@
     <div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>docker<span class="w"> </span>compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>app<span class="w"> </span>make<span class="w"> </span>data-setup
 </code></pre></div></li>
 </ul>
-<h2 id="development-workflow">Development Workflow</h2>
-<p>These commands are essential for day-to-day development, including managing the environment and ensuring code quality.</p>
-<h3 id="code-quality-testing">Code Quality &amp; Testing</h3>
-<ul>
-<li>
-<p><strong>Run all tests with coverage:</strong>
-    <div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>docker<span class="w"> </span>compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>app<span class="w"> </span>make<span class="w"> </span><span class="nb">test</span>
-</code></pre></div></p>
-</li>
-<li>
-<p><strong>Format code with Black:</strong>
-    <div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>docker<span class="w"> </span>compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>app<span class="w"> </span>make<span class="w"> </span>format
-</code></pre></div></p>
-</li>
-<li>
-<p><strong>Lint code with Ruff:</strong>
-    <div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>docker<span class="w"> </span>compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>app<span class="w"> </span>make<span class="w"> </span>lint
-</code></pre></div></p>
-</li>
-<li>
-<p><strong>Run static type checking with MyPy:</strong>
-    <div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>docker<span class="w"> </span>compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>app<span class="w"> </span>make<span class="w"> </span>type-check
-</code></pre></div></p>
-</li>
-<li>
-<p><strong>Run pre-commit hooks:</strong>
-    <div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>docker<span class="w"> </span>compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>app<span class="w"> </span>make<span class="w"> </span>pre-commit
-</code></pre></div></p>
-</li>
-</ul>
+<h2 id="application-usage">Application Usage</h2>
 <h3 id="machine-learning-workflow">Machine Learning Workflow</h3>
-<p>These commands are used to execute the core ML pipeline steps.</p>
+<p>These commands are used to execute the core ML pipeline steps and the configuration parameters can be found in <code>configs/config.yaml</code>.</p>
 <ul>
 <li>
 <p><strong>Run the data loading pipeline:</strong>
-    <div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>docker<span class="w"> </span>compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>app<span class="w"> </span>make<span class="w"> </span>data-load
+    <div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>docker<span class="w"> </span>compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>app<span class="w"> </span>make<span class="w"> </span>data-load
 </code></pre></div></p>
 </li>
 <li>
 <p><strong>Run the data splitting pipeline:</strong>
-    <div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>docker<span class="w"> </span>compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>app<span class="w"> </span>make<span class="w"> </span>data-split
+    <div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>docker<span class="w"> </span>compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>app<span class="w"> </span>make<span class="w"> </span>data-split
 </code></pre></div></p>
 </li>
 <li>
 <p><strong>Run the entire data pipeline (load and split):</strong>
-    <div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>docker<span class="w"> </span>compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>app<span class="w"> </span>make<span class="w"> </span>data
+    <div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>docker<span class="w"> </span>compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>app<span class="w"> </span>make<span class="w"> </span>data
 </code></pre></div></p>
 </li>
 <li>
 <p><strong>Run a quick model comparison experiment:</strong>
     This command runs a quick experiment to compare the performance of multiple models with their default hyperparameters.
-    <div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>docker<span class="w"> </span>compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>app<span class="w"> </span>make<span class="w"> </span>quick-experiment
+    <div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>docker<span class="w"> </span>compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>app<span class="w"> </span>make<span class="w"> </span>quick-experiment
 </code></pre></div></p>
 </li>
 <li>
 <p><strong>Run a hyperparameter grid search experiment:</strong>
     This command runs a grid search experiment for a single model to find the best hyperparameter combination.
-    <div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>docker<span class="w"> </span>compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>app<span class="w"> </span>make<span class="w"> </span>gs-experiment
+    <div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>docker<span class="w"> </span>compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>app<span class="w"> </span>make<span class="w"> </span>gs-experiment
 </code></pre></div></p>
 </li>
 <li>
 <p><strong>Train the final model:</strong>
-    <div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>docker<span class="w"> </span>compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>app<span class="w"> </span>make<span class="w"> </span>train
+    <div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>docker<span class="w"> </span>compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>app<span class="w"> </span>make<span class="w"> </span>train
 </code></pre></div></p>
 </li>
 <li>
@@ -950,8 +921,36 @@
 <ul>
 <li><strong>Apply feature store changes:</strong>
     This command applies the changes from your feature definitions to the feature store.
-    <div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a>docker<span class="w"> </span>compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>app<span class="w"> </span>make<span class="w"> </span>feature-repo-apply
+    <div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>docker<span class="w"> </span>compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>app<span class="w"> </span>make<span class="w"> </span>feature-repo-apply
 </code></pre></div></li>
+</ul>
+<h3 id="code-quality-testing">Code Quality &amp; Testing</h3>
+<ul>
+<li>
+<p><strong>Run all tests with coverage:</strong>
+    <div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>docker<span class="w"> </span>compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>app<span class="w"> </span>make<span class="w"> </span><span class="nb">test</span>
+</code></pre></div></p>
+</li>
+<li>
+<p><strong>Format code with Black:</strong>
+    <div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>docker<span class="w"> </span>compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>app<span class="w"> </span>make<span class="w"> </span>format
+</code></pre></div></p>
+</li>
+<li>
+<p><strong>Lint code with Ruff:</strong>
+    <div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>docker<span class="w"> </span>compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>app<span class="w"> </span>make<span class="w"> </span>lint
+</code></pre></div></p>
+</li>
+<li>
+<p><strong>Run static type checking with MyPy:</strong>
+    <div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>docker<span class="w"> </span>compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>app<span class="w"> </span>make<span class="w"> </span>type-check
+</code></pre></div></p>
+</li>
+<li>
+<p><strong>Run pre-commit hooks:</strong>
+    <div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a>docker<span class="w"> </span>compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>app<span class="w"> </span>make<span class="w"> </span>pre-commit
+</code></pre></div></p>
+</li>
 </ul>
 <h3 id="documentation-workflow">Documentation Workflow</h3>
 <ul>
