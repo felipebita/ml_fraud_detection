@@ -8,107 +8,18 @@ This project provides a production-ready machine learning system to power a real
 
 ## Documentation
 
-For detailed information on project architecture, business context, and operational guides, please see the [**full documentation site**](https://felipebita.github.io/ml_fraud_detection/).
+This project is extensively documented to guide you through its architecture, usage, and development processes. For a comprehensive understanding, please visit the [**full documentation site**](https://felipebita.github.io/ml_fraud_detection/).
 
-## Getting Started
+Key sections of the documentation include:
 
-This project uses Docker and Docker Compose to create a consistent and isolated development environment.
+-   **[Usage Guide](docs/usage.md):** Detailed instructions on how to set up the development environment, run the ML pipeline, use the feature store, and execute code quality checks. This is the best place to start.
+-   **[Business Context](docs/business.md):** An overview of the business problem, the monetization model, and the project's goals.
+-   **[Project Files](docs/project_files.md):** A complete reference for every significant file and directory in the project, explaining its purpose and usage.
+-   **[Testing Strategy](docs/testing.md):** A guide to the project's testing philosophy, including how to run tests and understand the different types of tests.
+-   **[Code Quality](docs/code_quality.md):** Information on the tools and standards used to maintain high code quality, including linting, formatting, and type checking.
+-   **[Logging](docs/logging.md):** An explanation of the structured logging system used throughout the project.
 
-### Prerequisites
-
-- Docker
-- Docker Compose
-
-### 1. Clone & Configure
-
-```bash
-# Clone the repository
-git clone https://github.com/felipebita/ml_fraud_detection.git
-cd ml_fraud_detection
-
-# Copy the example environment file (defaults are fine for local use)
-cp .env.example .env
-```
-*Note: Your local user ID and group ID are passed to the container to prevent file permission issues.*
-
-### 2. Build & Run
-
-This command builds the Docker images and starts the `app` and `mlflow` services in the background.
-
-```bash
-docker compose up --build -d
-```
-*The `--build` flag is only needed when dependencies in `pyproject.toml` change.*
-
-### 3. Local Environment Setup (Optional)
-
-If you want to run pre-commit hooks locally to ensure code quality before committing, you can set up a local virtual environment:
-
-1.  **Install `uv`:** Follow the official instructions at [https://github.com/astral-sh/uv#installation](https://github.com/astral-sh/uv#installation).
-2.  **Create and sync your virtual environment:**
-    ```bash
-    python3 -m venv .venv
-    source .venv/bin/activate
-    uv sync --extra dev
-    ```
-3.  **Install pre-commit hooks:**
-    ```bash
-    pre-commit install
-    ```
-
-## Usage
-
-### Running Commands
-
-All commands should be run inside the `app` container using `docker compose exec app <command>`. A `Makefile` provides shortcuts for common tasks.
-
--   **See all available commands:**
-    ```bash
-    docker compose exec app make help
-    ```
-
-### Code Quality
-
--   **Run all tests with coverage:**
-    ```bash
-    docker compose exec app make test
-    ```
--   **Format code:**
-    ```bash
-    docker compose exec app make format
-    ```
--   **Lint code:**
-    ```bash
-    docker compose exec app make lint
-    ```
--   **Run static type checking:**
-    ```bash
-    docker compose exec app make type-check
-    ```
-
-### Machine Learning Workflow
-
--   **Run the data pipeline:**
-    ```bash
-    docker compose exec app make data
-    ```
--   **Run a quick model experiment:**
-    ```bash
-    docker compose exec app make quick-experiment
-    ```
--   **Run a grid search experiment:**
-    ```bash
-    docker compose exec app make gs-experiment
-    ```
--   **Train the final model:**
-    ```bash
-    docker compose exec app make train
-    ```
-
-### Accessing Services
-
--   **MLflow UI:** [http://localhost:5000](http://localhost:5000)
--   **Documentation Site (Local):** Run `docker compose exec app make docs-serve` and go to [http://localhost:8000](http://localhost:8000)
+You can also serve the documentation locally by running `docker compose exec app make docs-serve` and navigating to [http://localhost:8000](http://localhost:8000).
 
 ## Project Structure
 
@@ -122,10 +33,6 @@ The project is organized into the following key directories:
 -   `feature_repo/`: Feast feature store definitions.
 
 For a detailed explanation of each file and directory, please see the [**Project File Documentation**](./docs/project_files.md).
-
-## Contributing
-
-Contributions are welcome! Please see `CONTRIBUTING.md` for details on how to submit a pull request.
 
 ## License
 

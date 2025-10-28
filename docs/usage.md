@@ -127,40 +127,11 @@ The development environment is managed by Docker Compose.
     docker compose exec app make data-setup
     ```
 
-## Development Workflow
-
-These commands are essential for day-to-day development, including managing the environment and ensuring code quality.
-
-### Code Quality & Testing
-
--   **Run all tests with coverage:**
-    ```bash
-    docker compose exec app make test
-    ```
-
--   **Format code with Black:**
-    ```bash
-    docker compose exec app make format
-    ```
-
--   **Lint code with Ruff:**
-    ```bash
-    docker compose exec app make lint
-    ```
-
--   **Run static type checking with MyPy:**
-    ```bash
-    docker compose exec app make type-check
-    ```
-
--   **Run pre-commit hooks:**
-    ```bash
-    docker compose exec app make pre-commit
-    ```
+## Application Usage
 
 ### Machine Learning Workflow
 
-These commands are used to execute the core ML pipeline steps.
+These commands are used to execute the core ML pipeline steps and the configuration parameters can be found in `configs/config.yaml`.
 
 -   **Run the data loading pipeline:**
     ```bash
@@ -203,6 +174,34 @@ These commands are used to execute the core ML pipeline steps.
     This command applies the changes from your feature definitions to the feature store.
     ```bash
     docker compose exec app make feature-repo-apply
+
+    ```
+
+### Code Quality & Testing
+
+-   **Run all tests with coverage:**
+    ```bash
+    docker compose exec app make test
+    ```
+
+-   **Format code with Black:**
+    ```bash
+    docker compose exec app make format
+    ```
+
+-   **Lint code with Ruff:**
+    ```bash
+    docker compose exec app make lint
+    ```
+
+-   **Run static type checking with MyPy:**
+    ```bash
+    docker compose exec app make type-check
+    ```
+
+-   **Run pre-commit hooks:**
+    ```bash
+    docker compose exec app make pre-commit
     ```
 
 ### Documentation Workflow
