@@ -16,35 +16,57 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Build the Docker services
-        run: docker compose build
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
 
-      - name: Start services
-        run: SSH_AUTH_SOCK=/dev/null docker compose up -d
+      - name: Install uv
+        run: |
+          curl -LsSf https://astral.sh/uv/install.sh | sh
+          echo "$HOME/.local/bin" >> $GITHUB_PATH
 
-      - name: Prepare directories and permissions
-        run: docker compose exec -u root app sh -c "chown -R appuser:appgroup /app && mkdir -p /tmp/uv-cache /app/.venv /app/.cache /app/.pytest_cache /app/.ruff_cache"
+      - name: Cache uv dependencies
+        uses: actions/cache@v3
+        with:
+          path: ~/.cache/uv
+          key: ${{ runner.os }}-uv-${{ hashFiles('**/uv.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-uv-
 
-      - name: Configure Git safe directory
-        run: docker compose exec -e HOME=/tmp -e UV_CACHE_DIR=/tmp/uv-cache app git config --global --add safe.directory /app
-
-      - name: Set up the project
-        run: docker compose exec -e HOME=/app -e UV_CACHE_DIR=/tmp/uv-cache app make setup
-
-      - name: Debug git in container
-        run: docker compose exec -e HOME=/tmp -e UV_CACHE_DIR=/tmp/uv-cache app git status
+      - name: Install dependencies
+        run: uv sync --extra app --extra dev
 
       - name: Run pre-commit checks
-        run: docker compose exec -e HOME=/tmp -e UV_CACHE_DIR=/tmp/uv-cache app pre-commit run --all-files
+        run: |
+          uv run pre-commit install
+          uv run pre-commit run --all-files
 
       - name: Create dummy data for tests
-        run: docker compose exec -e HOME=/app -e UV_CACHE_DIR=/tmp/uv-cache app uv run python scripts/create_dummy_data.py
+        run: uv run python scripts/create_dummy_data.py
 
       - name: Run tests
-        run: docker compose exec -e HOME=/app -e UV_CACHE_DIR=/tmp/uv-cache app make test
+        run: uv run pytest tests/ --cov=fraud_detection --cov-report=xml
 
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v4
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           slug: ${{ github.repository }}
+
+  docker-build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Build Docker images
+        run: |
+          docker compose build
+
+      - name: Test Docker images start correctly
+        run: |
+          docker compose up -d
+          sleep 5
+          docker compose ps
+          docker compose down
