@@ -23,7 +23,7 @@ jobs:
         run: SSH_AUTH_SOCK=/dev/null docker compose up -d
 
       - name: Prepare directories
-        run: docker compose exec -u root app sh -c "mkdir -p /tmp/uv-cache /app/.venv && chown -R appuser:appgroup /tmp/uv-cache /app/.venv"
+        run: docker compose exec -u root app sh -c "mkdir -p /tmp/uv-cache /app/.venv /app/.cache /app/.pytest_cache && chown -R appuser:appgroup /tmp/uv-cache /app/.venv /app/.cache /app/.pytest_cache"
 
       - name: Set up the project
         run: docker compose exec -e HOME=/app -e UV_CACHE_DIR=/tmp/uv-cache app make setup
