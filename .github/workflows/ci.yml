@@ -23,16 +23,16 @@ jobs:
         run: SSH_AUTH_SOCK=/dev/null docker compose up -d
 
       - name: Set up the project
-        run: docker compose exec -e HOME=/app app make setup
+        run: docker compose exec -e HOME=/app -e UV_CACHE_DIR=/tmp/uv-cache app make setup
 
       - name: Run pre-commit checks
-        run: docker compose exec -e HOME=/app app make pre-commit
+        run: docker compose exec -e HOME=/app -e UV_CACHE_DIR=/tmp/uv-cache app make pre-commit
 
       - name: Create dummy data for tests
-        run: docker compose exec -e HOME=/app app uv run python scripts/create_dummy_data.py
+        run: docker compose exec -e HOME=/app -e UV_CACHE_DIR=/tmp/uv-cache app uv run python scripts/create_dummy_data.py
 
       - name: Run tests
-        run: docker compose exec -e HOME=/app app make test
+        run: docker compose exec -e HOME=/app -e UV_CACHE_DIR=/tmp/uv-cache app make test
 
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v4
