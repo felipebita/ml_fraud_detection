@@ -20,7 +20,7 @@ jobs:
         run: docker compose build
 
       - name: Start services
-        run: docker compose up -d
+        run: SSH_AUTH_SOCK=/dev/null docker compose up -d
 
       - name: Set up the project
         run: docker compose exec -e HOME=/app app make setup
