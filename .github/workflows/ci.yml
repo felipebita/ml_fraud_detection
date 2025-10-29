@@ -26,16 +26,16 @@ jobs:
         run: docker compose exec -u root app sh -c "mkdir -p /tmp/uv-cache /app/.venv /app/.cache /app/.pytest_cache && chown -R appuser:appgroup /tmp/uv-cache /app/.venv /app/.cache /app/.pytest_cache"
 
       - name: Configure Git safe directory
-        run: docker compose exec -e HOME=/app -e UV_CACHE_DIR=/tmp/uv-cache app git config --global --add safe.directory /app
+        run: docker compose exec -e HOME=/tmp -e UV_CACHE_DIR=/tmp/uv-cache app git config --global --add safe.directory /app
 
       - name: Set up the project
         run: docker compose exec -e HOME=/app -e UV_CACHE_DIR=/tmp/uv-cache app make setup
 
       - name: Debug git in container
-        run: docker compose exec -e HOME=/app -e UV_CACHE_DIR=/tmp/uv-cache app git status
+        run: docker compose exec -e HOME=/tmp -e UV_CACHE_DIR=/tmp/uv-cache app git status
 
       - name: Run pre-commit checks
-        run: docker compose exec -e HOME=/app -e UV_CACHE_DIR=/tmp/uv-cache app pre-commit run --all-files
+        run: docker compose exec -e HOME=/tmp -e UV_CACHE_DIR=/tmp/uv-cache app pre-commit run --all-files
 
       - name: Create dummy data for tests
         run: docker compose exec -e HOME=/app -e UV_CACHE_DIR=/tmp/uv-cache app uv run python scripts/create_dummy_data.py
