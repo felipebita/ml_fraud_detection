@@ -476,6 +476,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      Prerequisites
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#local-development-setup" class="md-nav__link">
     <span class="md-ellipsis">
       Local Development Setup
@@ -773,6 +782,12 @@
 
 <h1 id="project-usage-guide">Project Usage Guide</h1>
 <p>This guide provides a comprehensive overview of how to run, test, and manage this project.</p>
+<h2 id="prerequisites">Prerequisites</h2>
+<p>This project relies on Docker and Docker Compose to create a consistent and reproducible development environment. Before you begin, please ensure you have the following installed:</p>
+<ul>
+<li><strong>Docker:</strong> <a href="https://docs.docker.com/get-docker/">Get Docker</a></li>
+<li><strong>Docker Compose:</strong> <a href="https://docs.docker.com/compose/install/">Install Docker Compose</a></li>
+</ul>
 <h2 id="local-development-setup">Local Development Setup</h2>
 <p>To ensure consistency between your local development environment and the containerized environment used for CI/CD, it is crucial to use the same versions of dev dependencies, including <code>pre-commit</code> and its hooks. This project uses <code>uv</code> to manage dependencies and <code>uv.lock</code> as the single source of truth for pinned versions.</p>
 <p>Follow these steps to set up your local environment:</p>
