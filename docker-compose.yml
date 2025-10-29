@@ -11,7 +11,7 @@ services:
       - "8000:8000"
     volumes:
       - .:/app
-      - ${SSH_AUTH_SOCK}:${SSH_AUTH_SOCK}
+      - ${SSH_AUTH_SOCK:-/dev/null}:${SSH_AUTH_SOCK:-/dev/null}
     depends_on:
       - mlflow
     environment:
