@@ -22,8 +22,8 @@ jobs:
       - name: Start services
         run: SSH_AUTH_SOCK=/dev/null docker compose up -d
 
-      - name: Prepare directories
-        run: docker compose exec -u root app sh -c "mkdir -p /tmp/uv-cache /app/.venv /app/.cache /app/.pytest_cache && chown -R appuser:appgroup /tmp/uv-cache /app/.venv /app/.cache /app/.pytest_cache"
+      - name: Prepare directories and permissions
+        run: docker compose exec -u root app sh -c "chown -R appuser:appgroup /app && mkdir -p /tmp/uv-cache /app/.venv /app/.cache /app/.pytest_cache /app/.ruff_cache"
 
       - name: Configure Git safe directory
         run: docker compose exec -e HOME=/tmp -e UV_CACHE_DIR=/tmp/uv-cache app git config --global --add safe.directory /app
