@@ -28,6 +28,9 @@ jobs:
       - name: Set up the project
         run: docker compose exec -e HOME=/app -e UV_CACHE_DIR=/tmp/uv-cache app make setup
 
+      - name: Debug git in container
+        run: docker compose exec -e HOME=/app -e UV_CACHE_DIR=/tmp/uv-cache app git status
+
       - name: Run pre-commit checks
         run: docker compose exec -e HOME=/app -e UV_CACHE_DIR=/tmp/uv-cache app pre-commit run --all-files
 
