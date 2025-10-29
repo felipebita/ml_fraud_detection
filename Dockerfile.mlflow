@@ -1,0 +1,23 @@
+# Use an official Python runtime as a parent image
+FROM python:3.11-slim
+
+# Set the working directory in the container
+WORKDIR /app
+
+# Install uv
+COPY --from=ghcr.io/astral-sh/uv:latest /uv /usr/local/bin/uv
+
+# Copy only the dependency files
+COPY pyproject.toml uv.lock README.md ./
+
+# Install only the mlflow-server dependencies
+RUN uv sync --extra mlflow-server
+
+# Add the virtual environment's bin directory to the PATH
+ENV PATH="/app/.venv/bin:$PATH"
+
+# Expose the MLflow port
+EXPOSE 5000
+
+# The command to run the server will be provided by docker-compose
+CMD ["mlflow", "server"]

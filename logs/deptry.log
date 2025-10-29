@@ -1,0 +1,350 @@
+[
+    {
+        "error": {
+            "code": "DEP002",
+            "message": "'imbalanced-learn' defined as a dependency but not used in the codebase"
+        },
+        "module": "imbalanced-learn",
+        "location": {
+            "file": "pyproject.toml",
+            "line": null,
+            "column": null
+        }
+    },
+    {
+        "error": {
+            "code": "DEP002",
+            "message": "'optuna' defined as a dependency but not used in the codebase"
+        },
+        "module": "optuna",
+        "location": {
+            "file": "pyproject.toml",
+            "line": null,
+            "column": null
+        }
+    },
+    {
+        "error": {
+            "code": "DEP002",
+            "message": "'optuna-integration' defined as a dependency but not used in the codebase"
+        },
+        "module": "optuna-integration",
+        "location": {
+            "file": "pyproject.toml",
+            "line": null,
+            "column": null
+        }
+    },
+    {
+        "error": {
+            "code": "DEP002",
+            "message": "'sqlalchemy' defined as a dependency but not used in the codebase"
+        },
+        "module": "sqlalchemy",
+        "location": {
+            "file": "pyproject.toml",
+            "line": null,
+            "column": null
+        }
+    },
+    {
+        "error": {
+            "code": "DEP002",
+            "message": "'duckdb-engine' defined as a dependency but not used in the codebase"
+        },
+        "module": "duckdb-engine",
+        "location": {
+            "file": "pyproject.toml",
+            "line": null,
+            "column": null
+        }
+    },
+    {
+        "error": {
+            "code": "DEP002",
+            "message": "'pydantic' defined as a dependency but not used in the codebase"
+        },
+        "module": "pydantic",
+        "location": {
+            "file": "pyproject.toml",
+            "line": null,
+            "column": null
+        }
+    },
+    {
+        "error": {
+            "code": "DEP002",
+            "message": "'pydantic-settings' defined as a dependency but not used in the codebase"
+        },
+        "module": "pydantic-settings",
+        "location": {
+            "file": "pyproject.toml",
+            "line": null,
+            "column": null
+        }
+    },
+    {
+        "error": {
+            "code": "DEP002",
+            "message": "'great-expectations' defined as a dependency but not used in the codebase"
+        },
+        "module": "great-expectations",
+        "location": {
+            "file": "pyproject.toml",
+            "line": null,
+            "column": null
+        }
+    },
+    {
+        "error": {
+            "code": "DEP002",
+            "message": "'ibis-framework' defined as a dependency but not used in the codebase"
+        },
+        "module": "ibis-framework",
+        "location": {
+            "file": "pyproject.toml",
+            "line": null,
+            "column": null
+        }
+    },
+    {
+        "error": {
+            "code": "DEP002",
+            "message": "'feature-engine' defined as a dependency but not used in the codebase"
+        },
+        "module": "feature-engine",
+        "location": {
+            "file": "pyproject.toml",
+            "line": null,
+            "column": null
+        }
+    },
+    {
+        "error": {
+            "code": "DEP002",
+            "message": "'category-encoders' defined as a dependency but not used in the codebase"
+        },
+        "module": "category-encoders",
+        "location": {
+            "file": "pyproject.toml",
+            "line": null,
+            "column": null
+        }
+    },
+    {
+        "error": {
+            "code": "DEP002",
+            "message": "'shap' defined as a dependency but not used in the codebase"
+        },
+        "module": "shap",
+        "location": {
+            "file": "pyproject.toml",
+            "line": null,
+            "column": null
+        }
+    },
+    {
+        "error": {
+            "code": "DEP002",
+            "message": "'lime' defined as a dependency but not used in the codebase"
+        },
+        "module": "lime",
+        "location": {
+            "file": "pyproject.toml",
+            "line": null,
+            "column": null
+        }
+    },
+    {
+        "error": {
+            "code": "DEP002",
+            "message": "'plotly' defined as a dependency but not used in the codebase"
+        },
+        "module": "plotly",
+        "location": {
+            "file": "pyproject.toml",
+            "line": null,
+            "column": null
+        }
+    },
+    {
+        "error": {
+            "code": "DEP002",
+            "message": "'rich' defined as a dependency but not used in the codebase"
+        },
+        "module": "rich",
+        "location": {
+            "file": "pyproject.toml",
+            "line": null,
+            "column": null
+        }
+    },
+    {
+        "error": {
+            "code": "DEP002",
+            "message": "'joblib' defined as a dependency but not used in the codebase"
+        },
+        "module": "joblib",
+        "location": {
+            "file": "pyproject.toml",
+            "line": null,
+            "column": null
+        }
+    },
+    {
+        "error": {
+            "code": "DEP002",
+            "message": "'pyarrow' defined as a dependency but not used in the codebase"
+        },
+        "module": "pyarrow",
+        "location": {
+            "file": "pyproject.toml",
+            "line": null,
+            "column": null
+        }
+    },
+    {
+        "error": {
+            "code": "DEP002",
+            "message": "'fastparquet' defined as a dependency but not used in the codebase"
+        },
+        "module": "fastparquet",
+        "location": {
+            "file": "pyproject.toml",
+            "line": null,
+            "column": null
+        }
+    },
+    {
+        "error": {
+            "code": "DEP002",
+            "message": "'fastapi' defined as a dependency but not used in the codebase"
+        },
+        "module": "fastapi",
+        "location": {
+            "file": "pyproject.toml",
+            "line": null,
+            "column": null
+        }
+    },
+    {
+        "error": {
+            "code": "DEP002",
+            "message": "'uvicorn' defined as a dependency but not used in the codebase"
+        },
+        "module": "uvicorn",
+        "location": {
+            "file": "pyproject.toml",
+            "line": null,
+            "column": null
+        }
+    },
+    {
+        "error": {
+            "code": "DEP002",
+            "message": "'httpx' defined as a dependency but not used in the codebase"
+        },
+        "module": "httpx",
+        "location": {
+            "file": "pyproject.toml",
+            "line": null,
+            "column": null
+        }
+    },
+    {
+        "error": {
+            "code": "DEP002",
+            "message": "'click' defined as a dependency but not used in the codebase"
+        },
+        "module": "click",
+        "location": {
+            "file": "pyproject.toml",
+            "line": null,
+            "column": null
+        }
+    },
+    {
+        "error": {
+            "code": "DEP002",
+            "message": "'tqdm' defined as a dependency but not used in the codebase"
+        },
+        "module": "tqdm",
+        "location": {
+            "file": "pyproject.toml",
+            "line": null,
+            "column": null
+        }
+    },
+    {
+        "error": {
+            "code": "DEP002",
+            "message": "'python-dateutil' defined as a dependency but not used in the codebase"
+        },
+        "module": "python-dateutil",
+        "location": {
+            "file": "pyproject.toml",
+            "line": null,
+            "column": null
+        }
+    },
+    {
+        "error": {
+            "code": "DEP002",
+            "message": "'prometheus-client' defined as a dependency but not used in the codebase"
+        },
+        "module": "prometheus-client",
+        "location": {
+            "file": "pyproject.toml",
+            "line": null,
+            "column": null
+        }
+    },
+    {
+        "error": {
+            "code": "DEP002",
+            "message": "'opentelemetry-api' defined as a dependency but not used in the codebase"
+        },
+        "module": "opentelemetry-api",
+        "location": {
+            "file": "pyproject.toml",
+            "line": null,
+            "column": null
+        }
+    },
+    {
+        "error": {
+            "code": "DEP002",
+            "message": "'opentelemetry-sdk' defined as a dependency but not used in the codebase"
+        },
+        "module": "opentelemetry-sdk",
+        "location": {
+            "file": "pyproject.toml",
+            "line": null,
+            "column": null
+        }
+    },
+    {
+        "error": {
+            "code": "DEP002",
+            "message": "'opentelemetry-instrumentation-fastapi' defined as a dependency but not used in the codebase"
+        },
+        "module": "opentelemetry-instrumentation-fastapi",
+        "location": {
+            "file": "pyproject.toml",
+            "line": null,
+            "column": null
+        }
+    },
+    {
+        "error": {
+            "code": "DEP002",
+            "message": "'evidently' defined as a dependency but not used in the codebase"
+        },
+        "module": "evidently",
+        "location": {
+            "file": "pyproject.toml",
+            "line": null,
+            "column": null
+        }
+    }
+]

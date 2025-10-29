@@ -16,43 +16,32 @@ classifiers = [
   "Topic :: Scientific/Engineering :: Artificial Intelligence",
 ]
 
-dependencies = [
+dependencies = []
+
+[project.optional-dependencies]
+# Application dependencies
+app = [
   # Core ML Libraries
   "numpy>=1.26.0,<2.0.0",
   "pandas>=2.2.0,<3.0.0",
   "scikit-learn>=1.4.0,<2.0.0",
   "xgboost>=2.0.0,<3.0.0",
   "lightgbm>=4.3.0,<5.0.0",
-  "imbalanced-learn>=0.12.0,<1.0.0",
 
   # MLOps & Experiment Tracking
   "mlflow>=2.12.0,<3.0.0",
-  "optuna>=3.5.0,<4.0.0",
-  "optuna-integration>=3.5.0,<4.0.0",
-  "duckdb>=0.10.0,<1.0.0",
-  "sqlalchemy>=2.0.0,<3.0.0",
-  "duckdb-engine>=0.12.0,<1.0.0",
 
   # Data Validation & Quality
   "pydantic>=2.6.0,<3.0.0",
   "pydantic-settings>=2.2.0,<3.0.0",
   "pandera>=0.18.0,<1.0.0",
-  "great-expectations>=0.18.0,<1.0.0",
 
   # Feature Engineering
   "feast[duckdb]>=0.36,<1.0",
-  "ibis-framework[duckdb]>=8.0.0,<9.0.0",
-  "feature-engine>=1.6.0,<2.0.0",
-  "category-encoders>=2.6.0,<3.0.0",
-
-  # Model Interpretability
-  "shap>=0.44.0,<1.0.0",
-  "lime>=0.2.0,<1.0.0",
 
   # Visualization
   "matplotlib>=3.8.0,<4.0.0",
   "seaborn>=0.13.0,<1.0.0",
-  "plotly>=5.19.0,<6.0.0",
 
   # Configuration & Logging
   "python-dotenv>=1.0.0,<2.0.0",
@@ -65,23 +54,26 @@ dependencies = [
   "pyarrow>=15.0.0,<16.0.0",
   "fastparquet>=2024.2.0",
 
-  # API & Serving (for future use)
-  "fastapi>=0.110.0,<1.0.0",
-  "uvicorn>=0.27.0,<1.0.0",
-  "httpx>=0.27.0,<1.0.0",
-
   # Utilities
   "click>=8.1.0,<9.0.0",
   "gdown>=4.7.1,<5.0.0",
   "tqdm>=4.66.0,<5.0.0",
   "python-dateutil>=2.9.0,<3.0.0",
-  "codecov>=2.1.13,<3.0.0",
+
+  # Core packaging tools for MLflow
   "pip==24.0",
-  "setuptools==65.5.1",
+  "setuptools==79.0.1",
   "wheel==0.45.1",
 ]
 
-[project.optional-dependencies]
+# MLflow server dependencies
+mlflow-server = [
+  "mlflow>=2.12.0,<3.0.0",
+  "duckdb>=0.10.0,<1.0.0",
+  "sqlalchemy>=2.0.0,<3.0.0",
+  "duckdb-engine>=0.12.0,<1.0.0",
+]
+
 # Development dependencies
 dev = [
   # Testing
@@ -115,6 +107,9 @@ dev = [
   # Security
   "bandit>=1.7.0,<2.0.0",
   "safety>=3.0.0,<4.0.0",
+
+  # Dependency Management
+  "deptry>=0.16.0,<1.0.0",
 ]
 
 # Notebook dependencies
@@ -128,18 +123,9 @@ notebook = [
   "jupyterlab-code-formatter>=2.2.0,<3.0.0",
 ]
 
-# Monitoring dependencies (for production)
-monitoring = [
-  "prometheus-client>=0.19.0,<1.0.0",
-  "opentelemetry-api>=1.22.0,<2.0.0",
-  "opentelemetry-sdk>=1.22.0,<2.0.0",
-  "opentelemetry-instrumentation-fastapi>=0.43b0",
-  "evidently>=0.4.0,<1.0.0",
-]
-
 # All dependencies
 all = [
-  "fraud-detection[dev,notebook,monitoring]",
+  "fraud-detection[dev,notebook]",
 ]
 
 [project.urls]
@@ -306,3 +292,40 @@ force_grid_wrap = 0
 [tool.bandit]
 targets = ["src"]
 skips = ["B101", "B301"]
+
+[tool.deptry]
+per_rule_ignores = { DEP002 = [
+  "pytest",
+  "pytest-cov",
+  "pytest-xdist",
+  "pytest-mock",
+  "pytest-asyncio",
+  "hypothesis",
+  "black",
+  "ruff",
+  "mypy",
+  "isort",
+  "pandas-stubs",
+  "types-PyYAML",
+  "types-requests",
+  "types-python-dateutil",
+  "mkdocs",
+  "mkdocs-material",
+  "mkdocstrings",
+  "pre-commit",
+  "bandit",
+  "safety",
+  "deptry",
+  "codecov",
+  "pip",
+  "setuptools",
+  "wheel",
+  "jupyter",
+  "jupyterlab",
+  "ipykernel",
+  "ipywidgets",
+  "nbformat",
+  "nbconvert",
+  "jupyterlab-code-formatter",
+  "fraud-detection"
+] }

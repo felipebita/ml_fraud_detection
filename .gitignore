@@ -56,3 +56,6 @@ online_store.db
 # Notebooks - KEEP OUTPUTS!
 # ============================================
 .ipynb_checkpoints/
+
+# Virtual Environment
+.venv

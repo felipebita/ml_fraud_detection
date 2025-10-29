@@ -5,6 +5,7 @@ import numpy as np
 import pandas as pd
 import pytest
 
+from src.data.data_processing import DataProcessor
 from src.model.validation import (
     BaseExperiment,
     GridSearchExperiment,
@@ -45,7 +46,10 @@ def mock_config():
 
 @pytest.fixture
 def sample_df():
-    """Returns a sample DataFrame for testing."""
+    """
+    Returns a sample DataFrame for testing, with integer columns converted to float
+    to avoid MLflow schema warnings.
+    """
     data = {
         "feature1": range(100),
         "feature2": range(100),
@@ -53,7 +57,9 @@ def sample_df():
         "isFraud": ([0, 1] * 50),
         "amount": [10] * 100,
     }
-    return pd.DataFrame(data)
+    df = pd.DataFrame(data)
+    processor = DataProcessor()
+    return processor.convert_int_to_float(df)
 
 
 @pytest.fixture

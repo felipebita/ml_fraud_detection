@@ -32,7 +32,7 @@ class DataProcessor:
 
         # Create event_timestamp from 'step'
         # We assume 'step' represents hours from a starting point.
-        start_date = pd.Timestamp("2024-01-01")
+        start_date = pd.Timestamp("2024-01-01", tz="UTC")
         df_copy["event_timestamp"] = start_date + pd.to_timedelta(
             df_copy["step"], unit="h"
         )

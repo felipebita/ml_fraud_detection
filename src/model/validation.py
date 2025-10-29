@@ -1,4 +1,6 @@
+import os
 import subprocess
+import tempfile
 from abc import ABC, abstractmethod
 from logging import Logger
 from typing import Any
@@ -130,26 +132,35 @@ class BaseExperiment(ABC):
                     fold_metrics_storage.setdefault(k, []).append(v)
                 self.logger.info(f"Fold {fold} metrics: {metrics}")
 
-                # Confusion Matrix
-                fig_cm, ax_cm = plt.subplots(figsize=(8, 6))
-                cm = confusion_matrix(y_val, y_pred)
-                sns.heatmap(cm, annot=True, fmt="d", cmap="Blues", ax=ax_cm)
-                ax_cm.set_title(f"Confusion Matrix - Fold {fold}")
-                ax_cm.set_ylabel("Actual")
-                ax_cm.set_xlabel("Predicted")
-                confusion_matrix_path = f"confusion_matrix_fold_{fold}.png"
-                fig_cm.savefig(confusion_matrix_path)
-                plt.close(fig_cm)
-                mlflow.log_artifact(confusion_matrix_path, "confusion_matrices")
+                with tempfile.TemporaryDirectory() as temp_dir:
+                    # Confusion Matrix
+                    fig_cm, ax_cm = plt.subplots(figsize=(8, 6))
+                    cm = confusion_matrix(y_val, y_pred)
+                    sns.heatmap(cm, annot=True, fmt="d", cmap="Blues", ax=ax_cm)
+                    ax_cm.set_title(f"Confusion Matrix - Fold {fold}")
+                    ax_cm.set_ylabel("Actual")
+                    ax_cm.set_xlabel("Predicted")
+                    confusion_matrix_path = os.path.join(
+                        temp_dir, f"confusion_matrix_fold_{fold}.png"
+                    )
+                    fig_cm.savefig(confusion_matrix_path)
+                    plt.close(fig_cm)
+                    mlflow.log_artifact(confusion_matrix_path, "confusion_matrices")
 
-                # Precision-Recall Curve
-                fig_pr, ax_pr = plt.subplots(figsize=(8, 6))
-                PrecisionRecallDisplay.from_estimator(pipeline, X_val, y_val, ax=ax_pr)
-                ax_pr.set_title(f"Precision-Recall Curve - Fold {fold}")
-                precision_recall_path = f"precision_recall_fold_{fold}.png"
-                fig_pr.savefig(precision_recall_path)
-                plt.close(fig_pr)
-                mlflow.log_artifact(precision_recall_path, "precision_recall_curves")
+                    # Precision-Recall Curve
+                    fig_pr, ax_pr = plt.subplots(figsize=(8, 6))
+                    PrecisionRecallDisplay.from_estimator(
+                        pipeline, X_val, y_val, ax=ax_pr
+                    )
+                    ax_pr.set_title(f"Precision-Recall Curve - Fold {fold}")
+                    precision_recall_path = os.path.join(
+                        temp_dir, f"precision_recall_fold_{fold}.png"
+                    )
+                    fig_pr.savefig(precision_recall_path)
+                    plt.close(fig_pr)
+                    mlflow.log_artifact(
+                        precision_recall_path, "precision_recall_curves"
+                    )
 
         avg_metrics = {
             f"avg_{metric}": sum(values) / len(values)

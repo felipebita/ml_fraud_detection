@@ -2,6 +2,7 @@ services:
   app:
     build:
       context: .
+      dockerfile: Dockerfile.app
       args:
         UID: ${UID:-1000}
         GID: ${GID:-1000}
@@ -21,7 +22,9 @@ services:
     command: tail -f /dev/null
 
   mlflow:
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile.mlflow
     ports:
       - "5000:5000"
     environment:

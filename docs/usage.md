@@ -2,6 +2,13 @@
 
 This guide provides a comprehensive overview of how to run, test, and manage this project.
 
+## Prerequisites
+
+This project relies on Docker and Docker Compose to create a consistent and reproducible development environment. Before you begin, please ensure you have the following installed:
+
+-   **Docker:** [Get Docker](https://docs.docker.com/get-docker/)
+-   **Docker Compose:** [Install Docker Compose](https://docs.docker.com/compose/install/)
+
 ## Local Development Setup
 
 To ensure consistency between your local development environment and the containerized environment used for CI/CD, it is crucial to use the same versions of dev dependencies, including `pre-commit` and its hooks. This project uses `uv` to manage dependencies and `uv.lock` as the single source of truth for pinned versions.

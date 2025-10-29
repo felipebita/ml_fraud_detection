@@ -38,7 +38,7 @@ def test_standardize_converts_type_and_adds_timestamp(processor, sample_df):
     assert pd.api.types.is_datetime64_any_dtype(standardized_df["event_timestamp"])
 
     # Test timestamp calculation
-    start_date = pd.Timestamp("2024-01-01")
+    start_date = pd.Timestamp("2024-01-01", tz="UTC")
     expected_timestamps = start_date + pd.to_timedelta(sample_df["step"], unit="h")
     pd.testing.assert_series_equal(
         standardized_df["event_timestamp"],

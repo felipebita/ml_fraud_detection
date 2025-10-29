@@ -25,7 +25,7 @@ mlflow:
 
 # Model training configuration
 model_training:
-  exp_name_prefix: "10-09-gs"   # Prefix for experiment names, use it if you want to create a new Experiment in MLflow
+  exp_name_prefix: "test"   # Prefix for experiment names, use it if you want to create a new Experiment in MLflow ex:"10-09-gs"
   run_name_prefix: ""   # Prefix for run names, useful for grouping runs within an experiment
   cv_strategy: "TimeSeriesSplit"
   cv_folds: 5

@@ -19,17 +19,18 @@ RUN apt-get update && \
 # Install uv using the recommended method
 COPY --from=ghcr.io/astral-sh/uv:latest /uv /usr/local/bin/uv
 
-# 2. Install third-party dependencies from pyproject.toml
-# This creates a cached layer that only changes when dependencies change.
+# Copy project dependency files
 COPY pyproject.toml uv.lock README.md ./
-RUN uv sync --all-extras
 
-# 3. Copy the rest of the application code
+# Use uv sync to install dependencies, respecting the lock file
+RUN uv sync --extra app --extra dev
+
+# Add the virtual environment's bin directory to the PATH
+# This makes tools like feast and pytest available to the shell
+ENV PATH="/app/.venv/bin:$PATH"
+
+# Copy the rest of the application code
 COPY . .
-
-# 4. Install the local application in editable mode
-# --no-deps is used because we already installed dependencies
-RUN uv pip install --system --no-deps -e .
 
 # 5. Create a non-root user and group
 RUN groupadd -g $GID -o appgroup && \

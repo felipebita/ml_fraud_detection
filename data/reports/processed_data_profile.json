@@ -30,7 +30,7 @@
     "newbalanceDest": "float64",
     "isFraud": "float64",
     "isFlaggedFraud": "float64",
-    "event_timestamp": "datetime64[ns]"
+    "event_timestamp": "datetime64[ns, UTC]"
   },
   "missing_values": {
     "step": {
@@ -268,5 +268,5 @@
       "note": "Based on hours with 10+ transactions"
     }
   },
-  "profiling_timestamp": "2025-10-03T20:23:35.515248"
+  "profiling_timestamp": "2025-10-29T02:45:38.315935"
 }

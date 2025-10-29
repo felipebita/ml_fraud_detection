@@ -7,8 +7,8 @@ processed_data_path = config["data"]["processed_path"]
 
 df = pd.read_parquet(processed_data_path)
 
-min_timestamp = df["timestamp"].min()
-max_timestamp = df["timestamp"].max()
+min_timestamp = df["event_timestamp"].min()
+max_timestamp = df["event_timestamp"].max()
 
 # Print in ISO 8601 format
 print(f"min_timestamp={min_timestamp.isoformat()}")

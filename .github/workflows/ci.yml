@@ -17,28 +17,22 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Build the Docker services
-        # We only need to build the 'app' service as it contains all dev dependencies
-        run: docker compose build app
+        run: docker compose build
+
+      - name: Start services
+        run: docker compose up -d
 
       - name: Set up the project
-        env:
-          SSH_AUTH_SOCK: /dev/null
-        run: docker compose run --rm --user "$(id -u):$(id -g)" -e HOME=/app app make setup
+        run: docker compose exec -e HOME=/app app make setup
 
       - name: Run pre-commit checks
-        env:
-          SSH_AUTH_SOCK: /dev/null
-        run: docker compose run --rm --user "$(id -u):$(id -g)" -e HOME=/app app make pre-commit
+        run: docker compose exec -e HOME=/app app make pre-commit
 
       - name: Create dummy data for tests
-        env:
-          SSH_AUTH_SOCK: /dev/null
-        run: docker compose run --rm --user "$(id -u):$(id -g)" -e HOME=/app app uv run python scripts/create_dummy_data.py
+        run: docker compose exec -e HOME=/app app uv run python scripts/create_dummy_data.py
 
       - name: Run tests
-        env:
-          SSH_AUTH_SOCK: /dev/null
-        run: docker compose run --rm --user "$(id -u):$(id -g)" -e HOME=/app app make test
+        run: docker compose exec -e HOME=/app app make test
 
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v4
