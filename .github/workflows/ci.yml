@@ -29,7 +29,7 @@ jobs:
         run: docker compose exec -e HOME=/app -e UV_CACHE_DIR=/tmp/uv-cache app make setup
 
       - name: Run pre-commit checks
-        run: docker compose exec -e HOME=/app -e UV_CACHE_DIR=/tmp/uv-cache app make pre-commit
+        run: docker compose exec -e HOME=/app -e UV_CACHE_DIR=/tmp/uv-cache app pre-commit run --all-files
 
       - name: Create dummy data for tests
         run: docker compose exec -e HOME=/app -e UV_CACHE_DIR=/tmp/uv-cache app uv run python scripts/create_dummy_data.py
