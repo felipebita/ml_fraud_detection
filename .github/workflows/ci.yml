@@ -25,6 +25,9 @@ jobs:
       - name: Prepare directories
         run: docker compose exec -u root app sh -c "mkdir -p /tmp/uv-cache /app/.venv /app/.cache /app/.pytest_cache && chown -R appuser:appgroup /tmp/uv-cache /app/.venv /app/.cache /app/.pytest_cache"
 
+      - name: Configure Git safe directory
+        run: docker compose exec -e HOME=/app -e UV_CACHE_DIR=/tmp/uv-cache app git config --global --add safe.directory /app
+
       - name: Set up the project
         run: docker compose exec -e HOME=/app -e UV_CACHE_DIR=/tmp/uv-cache app make setup
 
